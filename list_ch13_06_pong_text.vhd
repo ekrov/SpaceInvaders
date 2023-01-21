@@ -160,10 +160,10 @@ begin
    -- rule region
    --   - display rule (4-by-16 tiles)on center
    --   - rule text:
-   --        Rule:
-   --        Use two buttons
-   --        to move paddle
-   --        up and down
+   --             HI!
+   --
+   --         PLEASE PRESS
+   --        ENTER TO START
    ---------------------------------------------
    rule_on <= '1' when pix_x(9 downto 7) = "010" and
                        pix_y(9 downto 6)=  "0010"  else
