@@ -73,6 +73,7 @@ begin
          h_count_next <= h_count_reg;
       end if;
    end process;
+   
    -- mod-525 vertical sync counter
    process (v_count_reg,h_end,v_end,pixel_tick)
    begin

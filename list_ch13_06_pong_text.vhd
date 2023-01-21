@@ -5,12 +5,12 @@ use ieee.numeric_std.ALL;
 entity pong_text is
    port(
       clk, reset: in std_logic;
-      pixel_x, pixel_y: in std_logic_vector(9 downto 0);
-      dig0, dig1: in std_logic_vector(3 downto 0);
-      ball: in std_logic_vector(1 downto 0);
-      text_on: out std_logic_vector(3 downto 0);
-      text_rgb: out std_logic_vector(2 downto 0)
-   );
+pixel_x, pixel_y: in std_logic_vector(9 downto 0);
+dig0, dig1: in std_logic_vector(3 downto 0);
+ball: in std_logic_vector(1 downto 0);
+text_on: out std_logic_vector(3 downto 0);
+text_rgb: out std_logic_vector(2 downto 0)
+);
 end pong_text;
 
 architecture arch of pong_text is
