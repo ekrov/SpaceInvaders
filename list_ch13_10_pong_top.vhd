@@ -23,7 +23,7 @@ architecture arch of pong_top is
 	signal video_on, pixel_tick: std_logic;
    signal pixel_x, pixel_y: std_logic_vector (9 downto 0);
    signal graph_on, gra_still, hit, miss: std_logic;
-   signal text_on: std_logic_vector(3 downto 0);
+   signal text_on: std_logic_vector(2 downto 0);
    signal graph_rgb, text_rgb: std_logic_vector(2 downto 0);
    signal rgb_reg, rgb_next: std_logic_vector(2 downto 0);
    signal dig0, dig1: std_logic_vector(3 downto 0);
@@ -43,11 +43,11 @@ begin
 		CLKIN_IN => clock,
 		RST_IN => reset,
 		CLK2X_OUT => clk,
-		LOCKED_OUT => open);
+		LOCKED_OUT => open); 
 	--ps2 keyboard
 	timer_tick_2 <=  -- 60 Hz tick
       '1' when pixel_x="0000000000" and
-               pixel_y="0000000000" else
+               pixel_y="0000000000" else 
       '0';
 	timer_unit_2: entity work.timer_2
       port map(clk=>clk, reset=>reset,
@@ -163,14 +163,14 @@ begin
          rgb_next <= "000"; -- blank the edge/retrace
       else
          -- display score, rule or game over
-         if (text_on(3)='1') or
+         if (text_on(2)='1') or
             (state_reg=newgame and text_on(1)='1') or -- rule
             (state_reg=over and text_on(0)='1') then
             rgb_next <= text_rgb;
          elsif graph_on='1'  then -- display graph
            rgb_next <= graph_rgb;
-         elsif text_on(2)='1'  then -- display logo
-           rgb_next <= text_rgb;
+         -- elsif text_on(2)='1'  then -- display logo
+         --   rgb_next <= text_rgb;
          else
            rgb_next <= "000"; -- black background
          end if;
