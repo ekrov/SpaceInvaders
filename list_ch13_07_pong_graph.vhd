@@ -109,8 +109,8 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_vx_reg, alien_vx_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_vy_reg, alien_vy_next : unsigned(9 DOWNTO 0);
     CONSTANT ALIEN_V : INTEGER := 4;
-    CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(2, 10);
-    CONSTANT ALIEN_V_N : unsigned(9 DOWNTO 0) := unsigned(to_signed(-2, 10));
+    CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
+    CONSTANT ALIEN_V_N : unsigned(9 DOWNTO 0) := unsigned(to_signed(-1, 10));
     TYPE rom_type_alien IS ARRAY (0 TO 7) OF
     STD_LOGIC_VECTOR (7 DOWNTO 0);
     CONSTANT ALIEN_ROM : rom_type :=
@@ -122,7 +122,7 @@ ARCHITECTURE arch OF pong_graph IS
     "01100110", --  **  ** 
     "11111111", -- ********
     "10011001", -- *  **  *
-    "10011001"  -- *  **  *
+    "10011001" -- *  **  *
     );
 
     SIGNAL rom_addr_alien, rom_col_alien : unsigned(2 DOWNTO 0);
@@ -186,12 +186,12 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr, rom_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit : STD_LOGIC;
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb  :STD_LOGIC_VECTOR(2 DOWNTO 0);
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on, proj1_hit : STD_LOGIC;
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb : STD_LOGIC_VECTOR(2 DOWNTO 0);
 
--- Alien Flags
-    SIGNAL sq_alien_on, rd_alien_on : STD_LOGIC;       
-	 SIGNAL refr_tick : STD_LOGIC;
+    -- Alien Flags
+    SIGNAL sq_alien_on, rd_alien_on : STD_LOGIC;
+    SIGNAL refr_tick : STD_LOGIC;
     SIGNAL rom_ship_addr, rom_ship_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_ship_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_ship_bit : STD_LOGIC;
@@ -210,7 +210,7 @@ BEGIN
             alien_y_reg <= (OTHERS => '0');
             alien_vx_reg <= ("0000000100");
             alien_vy_reg <= ("0000000100");
-            
+
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
             SHIP_y_reg <= (OTHERS => '0');
@@ -222,7 +222,7 @@ BEGIN
             proj1_y_reg <= (OTHERS => '0');
             new_proj1_reg <= '0';
             rand_reg <= "0010110101"; -- seed
-            
+
         ELSIF (clk'event AND clk = '1') THEN
             bar_y_reg <= bar_y_next;
             ball_x_reg <= ball_x_next;
@@ -247,8 +247,6 @@ BEGIN
             proj1_y_reg <= proj1_y_next;
             rand_reg <= rand_next;
             new_proj1_reg <= new_proj1_next;
-           
-
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -274,45 +272,47 @@ BEGIN
     --proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
     proj1_x_r <= proj1_x_l + PROJ_WIDTH;
 
+    -- proj1_y_next <= to_unsigned(to_integer(heart_y_reg) - 16 - PROJ_SIZE, 10);
+    -- proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+
     proj1_on <=
         '1' WHEN (proj1_x_l <= pix_x) AND (pix_x <= proj1_x_r) AND
-        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit='0')ELSE
+        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit = '0')ELSE
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position  
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V,proj1_on)
+    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, new_proj1_reg, PROJ1_V, proj1_on, proj1_hit, keyboard_code, heart_x_reg, heart_y_reg)
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
-        IF gra_still = '1' OR --initial position of projectile 1
-            (keyboard_code=spacebar AND proj1_hit='1') THEN -- counter shot less than 500ms
-            proj1_hit<='0';
-            new_proj1_next <= '0';
-            random1 <= rand_number;
-            --proj1_x_initial <= random1(6 DOWNTO 0);
-            proj1_x_initial <= heart_x_reg;
-            PROJ1_V <=  3; -- Velocity will be 1
-            -- IF random1(5) = '1' THEN
-            --     proj1_y_next <= to_unsigned(30, 10);
-            -- ELSE
-            --     proj1_y_next <= to_unsigned(WALL_Y_B2 + 30, 10);
-            -- END IF;
-            proj1_y_next <= to_unsigned(to_integer(heart_y_reg)-16-PROJ_SIZE, 10);
-				
-			proj1_x_l<=to_unsigned((to_integer(heart_x_reg)), 10);
+        IF gra_still = '1' THEN --initial position of projectile 1
+            proj1_hit <= '1';
 
         ELSIF refr_tick = '1' THEN
-
+        
+           
             -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
             --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
             --     new_proj1_next <= '0';
-            IF proj1_y_b > (WALL_Y_T - 30 - 1) THEN
+            IF proj1_y_t > 1 THEN
                 proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
-                new_proj1_next <= '0';
+                
+                -- new_proj1_next <= '0';
             ELSE
-                new_proj1_next <= '1';
-                proj1_hit<='1';
+                -- new_proj1_next <= '1';
+                proj1_hit <= '1';
             END IF;
         END IF;
+
+
+        IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
+                proj1_hit <= '0';
+                proj1_x_initial <= heart_x_reg;
+                PROJ1_V <= 2; -- Velocity will be 1
+                proj1_y_next <= to_unsigned(to_integer(heart_y_reg) - 16 - PROJ_SIZE, 10);
+
+                proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+        END IF;
+
     END PROCESS;
 
     ----------------------------------------------
@@ -400,74 +400,78 @@ BEGIN
     --	
     --	
     -- square ball
-    ball_x_l <= ball_x_reg;
-    ball_y_t <= ball_y_reg;
-    ball_x_r <= ball_x_l + BALL_SIZE - 1;
-    ball_y_b <= ball_y_t + BALL_SIZE - 1;
-    sq_ball_on <=
-        '1' WHEN (ball_x_l <= pix_x) AND (pix_x <= ball_x_r) AND
-        (ball_y_t <= pix_y) AND (pix_y <= ball_y_b) ELSE
-        '0';
-    -- round ball
-    rom_addr <= pix_y(2 DOWNTO 0) - ball_y_t(2 DOWNTO 0);
-    rom_col <= pix_x(2 DOWNTO 0) - ball_x_l(2 DOWNTO 0);
-    rom_data <= BALL_ROM(to_integer(rom_addr));
-    rom_bit <= rom_data(to_integer(NOT rom_col));
-    rd_ball_on <=
-        '1' WHEN (sq_ball_on = '1') AND (rom_bit = '1') ELSE
-        '0';
-    ball_rgb <= "100"; -- red
-    -- new ball position
-    ball_x_next <=
-        to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
-        ball_x_reg + ball_vx_reg WHEN refr_tick = '1' ELSE
-        ball_x_reg;
-    ball_y_next <=
-        to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
-        ball_y_reg + ball_vy_reg WHEN refr_tick = '1' ELSE
-        ball_y_reg;
+    -- ball_x_l <= ball_x_reg;
+    -- ball_y_t <= ball_y_reg;
+    -- ball_x_r <= ball_x_l + BALL_SIZE - 1;
+    -- ball_y_b <= ball_y_t + BALL_SIZE - 1;
+    -- sq_ball_on <=
+    --     '1' WHEN (ball_x_l <= pix_x) AND (pix_x <= ball_x_r) AND
+    --     (ball_y_t <= pix_y) AND (pix_y <= ball_y_b) ELSE
+    --     '0';
+    -- -- round ball
+    -- rom_addr <= pix_y(2 DOWNTO 0) - ball_y_t(2 DOWNTO 0);
+    -- rom_col <= pix_x(2 DOWNTO 0) - ball_x_l(2 DOWNTO 0);
+    -- rom_data <= BALL_ROM(to_integer(rom_addr));
+    -- rom_bit <= rom_data(to_integer(NOT rom_col));
+    -- rd_ball_on <=
+    --     '1' WHEN (sq_ball_on = '1') AND (rom_bit = '1') ELSE
+    --     '0';
+    -- ball_rgb <= "100"; -- red
+    -- -- new ball position
+    -- ball_x_next <=
+    --     to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
+    --     ball_x_reg + ball_vx_reg WHEN refr_tick = '1' ELSE
+    --     ball_x_reg;
+    -- ball_y_next <=
+    --     to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
+    --     ball_y_reg + ball_vy_reg WHEN refr_tick = '1' ELSE
+    --     ball_y_reg;
     -- new ball velocity
     -- wuth new hit, miss signals
 
-    PROCESS (ball_vx_reg, ball_vy_reg, ball_y_t, ball_x_l, ball_x_r,
-        ball_y_t, ball_y_b, bar_y_t, bar_y_b, gra_still)
-    BEGIN
-        hit <= '0';
-        miss <= '0';
-        ball_vx_next <= ball_vx_reg;
-        ball_vy_next <= ball_vy_reg;
-        IF gra_still = '1' THEN --initial velocity
-            ball_vx_next <= BALL_V_N;
-            ball_vy_next <= BALL_V_P;
-        ELSIF ball_y_t < 1 THEN -- reach top
-            ball_vy_next <= BALL_V_P;
-        ELSIF ball_y_b > (MAX_Y - 1) THEN -- reach bottom
-            ball_vy_next <= BALL_V_N;
-        ELSIF ball_x_l <= WALL_X_R THEN -- reach wall
-            ball_vx_next <= BALL_V_P; -- bounce back
-        ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
-            (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
-            -- reach x of right bar, a hit
-            ball_vx_next <= BALL_V_N; -- bounce back
-            hit <= '1';
-        ELSIF (ball_x_r > MAX_X) THEN -- reach right border
-            miss <= '1'; -- a miss
+    -- PROCESS (ball_vx_reg, ball_vy_reg, ball_y_t, ball_x_l, ball_x_r,
+    --     ball_y_t, ball_y_b, bar_y_t, bar_y_b, gra_still)
+    -- BEGIN
+    --     hit <= '0';
+    --     miss <= '0';
+    --     ball_vx_next <= ball_vx_reg;
+    --     ball_vy_next <= ball_vy_reg;
+    --     IF gra_still = '1' THEN --initial velocity
+    --         ball_vx_next <= BALL_V_N;
+    --         ball_vy_next <= BALL_V_P;
+    --     ELSIF ball_y_t < 1 THEN -- reach top
+    --         ball_vy_next <= BALL_V_P;
+    --     ELSIF ball_y_b > (MAX_Y - 1) THEN -- reach bottom
+    --         ball_vy_next <= BALL_V_N;
+    --     ELSIF ball_x_l <= WALL_X_R THEN -- reach wall
+    --         ball_vx_next <= BALL_V_P; -- bounce back
+    --     ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
+    --         (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
+    --         -- reach x of right bar, a hit
+    --         ball_vx_next <= BALL_V_N; -- bounce back
+    --         hit <= '1';
+    --     ELSIF (ball_x_r > MAX_X) THEN -- reach right border
+    --         miss <= '1'; -- a miss
 
-        END IF;
-    END PROCESS;
+    --     END IF;
+    -- END PROCESS;
 
     -- Square Alien
     alien_x_l <= alien_x_reg;
     alien_y_t <= alien_y_reg;
-    alien_x_r <= alien_x_l + ALIEN_SIZE - 1;
-    alien_y_b <= alien_y_t + ALIEN_SIZE - 1;
+    -- alien_x_r <= alien_x_l + ALIEN_SIZE - 1;
+    -- alien_y_b <= alien_y_t + ALIEN_SIZE - 1;
+    alien_x_r <= alien_x_l + ALIEN_SIZE + ALIEN_SIZE - 1;
+    alien_y_b <= alien_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_on <=
         '1' WHEN (alien_x_l <= pix_x) AND (pix_x <= alien_x_r) AND
         (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
         '0';
     -- Round Alien
-    rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
-    rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
+    -- rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
+    -- rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
+    rom_addr_alien <= pix_y(3 DOWNTO 1) - alien_y_t(3 DOWNTO 1);
+    rom_col_alien <= pix_x(3 DOWNTO 1) - alien_x_l(3 DOWNTO 1);
     rom_data_alien <= ALIEN_ROM(to_integer(rom_addr_alien));
     rom_bit_alien <= rom_data_alien(to_integer(NOT rom_col_alien));
     rd_alien_on <=
@@ -497,17 +501,17 @@ BEGIN
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_vy_next <= to_unsigned(0, 10);
-        -- ELSIF alien_y_t < 1 THEN -- reach top
-        --     alien_vy_next <= ALIEN_V_P;
-        -- ELSIF alien_y_b > (MAX_Y - 1) THEN -- reach bottom
-        --     alien_vy_next <= ALIEN_V_N;
-        -- ELSIF alien_x_l <= WALL_X_R THEN -- reach wall
-        --     alien_vx_next <= ALIEN_V_P; -- bounce back
-        -- ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
-        --     (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
-        --     -- reach x of right bar, a hit
-        --     ball_vx_next <= ALIEN_V_N; -- bounce back
-        --     hit <= '1';
+            -- ELSIF alien_y_t < 1 THEN -- reach top
+            --     alien_vy_next <= ALIEN_V_P;
+            -- ELSIF alien_y_b > (MAX_Y - 1) THEN -- reach bottom
+            --     alien_vy_next <= ALIEN_V_N;
+            -- ELSIF alien_x_l <= WALL_X_R THEN -- reach wall
+            --     alien_vx_next <= ALIEN_V_P; -- bounce back
+            -- ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
+            --     (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
+            --     -- reach x of right bar, a hit
+            --     ball_vx_next <= ALIEN_V_N; -- bounce back
+            --     hit <= '1';
         ELSIF (alien_x_l < 1) THEN -- reach left border
             alien_vx_next <= ALIEN_V_P;
         ELSIF (alien_x_r > MAX_X) THEN -- reach right border
@@ -520,13 +524,13 @@ BEGIN
     -- rgb multiplexing circuit
     PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on)
     BEGIN
-        IF wall_on = '1' THEN
-            rgb <= wall_rgb;
-            --elsif bar_on='1' then
-            --      rgb <= bar_rgb;
-        ELSIF rd_ball_on = '1' THEN
-            rgb <= ball_rgb;
-        ELSIF rd_heart_on = '1' THEN
+        -- IF wall_on = '1' THEN
+        --     rgb <= wall_rgb;
+        --elsif bar_on='1' then
+        --      rgb <= bar_rgb;
+        -- ELSIF rd_ball_on = '1' THEN
+        --     rgb <= ball_rgb;
+        IF rd_heart_on = '1' THEN
             rgb <= heart_rgb;
         ELSIF rd_alien_on = '1' THEN
             rgb <= alien_rgb;
@@ -566,6 +570,6 @@ BEGIN
     --     SHIP_y_reg + SHIP_vy_reg WHEN refr_tick = '1' ELSE
     --     SHIP_y_reg;
     -- -- new graphic_on signal
-
-    graph_on <= wall_on OR rd_ball_on OR rd_ship_on OR rd_heart_on OR rd_alien_on OR proj1_on;
+    --wall_on OR rd_ball_on OR
+    graph_on <= rd_heart_on OR rd_alien_on OR proj1_on;
 END arch;

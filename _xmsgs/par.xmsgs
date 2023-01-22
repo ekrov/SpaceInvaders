@@ -18,10 +18,6 @@
    <arg fmt="%d" index="2">0</arg> CLK pins and <arg fmt="%d" index="3">12</arg> NON_CLK pins failed to route using a CLK template.
 </msg>
 
-<msg type="warning" file="Route" num="455" delta="old" >CLK Net:<arg fmt="%s" index="1">graph_unit/proj1_hit_or0000</arg> may have excessive skew because 
-   <arg fmt="%d" index="2">0</arg> CLK pins and <arg fmt="%d" index="3">14</arg> NON_CLK pins failed to route using a CLK template.
-</msg>
-
 <msg type="warning" file="ParHelpers" num="361" delta="old" >There are <arg fmt="%d" index="1">2</arg> loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
 </msg>

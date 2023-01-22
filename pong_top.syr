@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: pong_top.prj
@@ -212,13 +212,11 @@ Analyzing Entity <font_rom> in library <work> (Architecture <arch>).
 Entity <font_rom> analyzed. Unit <font_rom> generated.
 
 Analyzing Entity <pong_graph> in library <work> (Architecture <arch>).
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 283: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <keyboard_code>, <proj1_hit>, <heart_x_reg>
 WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 344: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <keyboard_code>
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 521: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 525: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <rd_heart_on>, <rd_alien_on>
-INFO:Xst:2679 - Register <PROJ1_V> in unit <pong_graph> has a constant value of 00000000000000000000000000000011 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <PROJ1_V> in unit <pong_graph> has a constant value of 00000000000000000000000000000010 during circuit operation. The register is replaced by logic.
 Entity <pong_graph> analyzed. Unit <pong_graph> generated.
 
 Analyzing Entity <timer> in library <work> (Architecture <arch>).
@@ -267,25 +265,48 @@ Synthesizing Unit <pong_graph>.
 WARNING:Xst:647 - Input <attack_1_on> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <btn> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fight_on> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1305 - Output <hit> is never assigned. Tied to value 0.
 WARNING:Xst:647 - Input <timer_up> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:653 - Signal <wall_rgb> is used but never assigned. This sourceless signal will be automatically connected to value 000.
-WARNING:Xst:653 - Signal <wall_on> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1305 - Output <miss> is never assigned. Tied to value 0.
+WARNING:Xst:1780 - Signal <wall_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <wall_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <sq_ship_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <sq_ball_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <ship_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_col> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_bit> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_addr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <rd_ship_on> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <random1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rom_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rom_col> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rom_bit> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rom_addr> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rd_ship_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <rd_ball_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <random1> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <rand_number> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <proj1_x_initial> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <new_proj1_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:653 - Signal <bar_y_t> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:653 - Signal <new_proj1_next> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <bar_y_t> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <bar_y_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <bar_y_next> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
-WARNING:Xst:653 - Signal <bar_y_b> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:1780 - Signal <bar_y_b> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <bar_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <bar_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <ball_y_t> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <ball_y_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ball_y_next> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:1780 - Signal <ball_y_b> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <ball_x_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <ball_x_r> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ball_x_next> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:1780 - Signal <ball_x_l> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <ball_vy_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ball_vy_next> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:646 - Signal <ball_vx_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <ball_vx_next> is used but never assigned. This sourceless signal will be automatically connected to value 0000000000.
+WARNING:Xst:1780 - Signal <ball_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <SHIP_y_t> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <SHIP_y_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <SHIP_y_next> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
@@ -301,32 +322,23 @@ WARNING:Xst:1780 - Signal <SHIP_vx_next> is never used or assigned. This unconne
 WARNING:Xst:646 - Signal <PROJ1_V> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:737 - Found 1-bit latch for signal <proj1_hit>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-    Found 8x8-bit ROM for signal <rom_data>.
     Found 8x8-bit ROM for signal <rom_data_alien>.
     Found 8x8-bit ROM for signal <rom_data_heart>.
+WARNING:Xst:737 - Found 10-bit latch for signal <proj1_y_next>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Found 10-bit register for signal <alien_vx_reg>.
-    Found 10-bit comparator greater for signal <alien_vx_reg$cmp_gt0000> created at line 512.
-    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 499.
+    Found 10-bit comparator greater for signal <alien_vx_reg$cmp_gt0000> created at line 516.
+    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 503.
     Found 10-bit register for signal <alien_vy_reg>.
     Found 10-bit subtractor for signal <alien_x_r>.
-    Found 10-bit adder for signal <alien_x_r$addsub0000> created at line 462.
+    Found 10-bit adder for signal <alien_x_r$addsub0000> created at line 464.
+    Found 10-bit adder for signal <alien_x_r$addsub0001> created at line 464.
     Found 10-bit register for signal <alien_x_reg>.
-    Found 10-bit adder for signal <alien_x_reg$addsub0000> created at line 478.
+    Found 10-bit adder for signal <alien_x_reg$addsub0000> created at line 482.
     Found 10-bit subtractor for signal <alien_y_b>.
-    Found 10-bit adder for signal <alien_y_b$addsub0000> created at line 463.
+    Found 10-bit adder for signal <alien_y_b$addsub0000> created at line 465.
+    Found 10-bit adder for signal <alien_y_b$addsub0001> created at line 465.
     Found 10-bit register for signal <alien_y_reg>.
-    Found 10-bit adder for signal <alien_y_reg$addsub0000> created at line 482.
-    Found 10-bit register for signal <ball_vx_reg>.
-    Found 10-bit comparator greater for signal <ball_vx_reg$cmp_gt0000> created at line 445.
-    Found 10-bit register for signal <ball_vy_reg>.
-    Found 10-bit adder for signal <ball_x_next$addsub0000> created at line 421.
-    Found 10-bit subtractor for signal <ball_x_r>.
-    Found 10-bit adder for signal <ball_x_r$addsub0000> created at line 405.
-    Found 10-bit register for signal <ball_x_reg>.
-    Found 10-bit subtractor for signal <ball_y_b>.
-    Found 10-bit adder for signal <ball_y_b$addsub0000> created at line 406.
-    Found 10-bit adder for signal <ball_y_next$addsub0000> created at line 425.
-    Found 10-bit register for signal <ball_y_reg>.
+    Found 10-bit adder for signal <alien_y_reg$addsub0000> created at line 486.
     Found 10-bit subtractor for signal <heart_x_r>.
     Found 10-bit adder for signal <heart_x_r$addsub0000> created at line 328.
     Found 10-bit register for signal <heart_x_reg>.
@@ -342,56 +354,42 @@ WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be gene
     Found 10-bit addsub for signal <heart_y_reg$addsub0000>.
     Found 10-bit comparator greatequal for signal <heart_y_reg$cmp_ge0000> created at line 352.
     Found 10-bit comparator lessequal for signal <heart_y_reg$cmp_le0000> created at line 353.
-    Found 8-bit comparator not equal for signal <keycode_next$cmp_ne0000> created at line 260.
+    Found 8-bit comparator not equal for signal <keycode_next$cmp_ne0000> created at line 258.
     Found 8-bit register for signal <keycode_reg>.
-    Found 10-bit comparator greater for signal <miss$cmp_gt0000> created at line 443.
-    Found 10-bit comparator greater for signal <miss$cmp_gt0001> created at line 452.
-    Found 10-bit comparator lessequal for signal <miss$cmp_le0000> created at line 445.
-    Found 10-bit comparator greatequal for signal <miss$cmp_le0001> created at line 447.
-    Found 10-bit comparator lessequal for signal <miss$cmp_le0002> created at line 447.
-    Found 10-bit comparator lessequal for signal <miss$cmp_le0004> created at line 447.
-    Found 10-bit comparator less for signal <miss$cmp_lt0000> created at line 441.
-    Found 10-bit comparator greater for signal <proj1_hit$cmp_gt0000> created at line 308.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0000> created at line 277.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0001> created at line 277.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0002> created at line 277.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0003> created at line 277.
+    Found 10-bit comparator greater for signal <proj1_hit$cmp_gt0000> created at line 296.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0000> created at line 278.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0001> created at line 278.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0002> created at line 278.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0003> created at line 278.
     Found 10-bit adder for signal <proj1_x_r>.
     Found 10-bit subtractor for signal <proj1_y_b>.
-    Found 10-bit adder for signal <proj1_y_b$addsub0000> created at line 273.
+    Found 10-bit adder for signal <proj1_y_b$addsub0000> created at line 271.
+    Found 10-bit subtractor for signal <proj1_y_next>.
+    Found 10-bit subtractor for signal <proj1_y_next$addsub0000> created at line 297.
+    Found 10-bit subtractor for signal <proj1_y_next$addsub0001> created at line 275.
     Found 10-bit register for signal <proj1_y_reg>.
-    Found 10-bit subtractor for signal <proj1_y_reg$addsub0000> created at line 299.
-    Found 10-bit comparator lessequal for signal <proj1_y_reg$cmp_le0000> created at line 308.
-    Found 10-bit subtractor for signal <proj1_y_reg$mux0000>.
     Found 1-bit xor4 for signal <rand_next$xor0000> created at line 322.
     Found 10-bit register for signal <rand_reg>.
-    Found 3-bit subtractor for signal <rom_addr>.
     Found 3-bit subtractor for signal <rom_addr_alien>.
     Found 3-bit subtractor for signal <rom_addr_heart>.
-    Found 1-bit 8-to-1 multiplexer for signal <rom_bit>.
     Found 1-bit 8-to-1 multiplexer for signal <rom_bit_alien>.
     Found 1-bit 8-to-1 multiplexer for signal <rom_bit_heart>.
-    Found 3-bit subtractor for signal <rom_col>.
     Found 3-bit subtractor for signal <rom_col_alien>.
     Found 3-bit subtractor for signal <rom_col_heart>.
-    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0000> created at line 464.
-    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0001> created at line 464.
-    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0002> created at line 464.
-    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0003> created at line 464.
-    Found 10-bit comparator lessequal for signal <sq_ball_on$cmp_le0000> created at line 407.
-    Found 10-bit comparator lessequal for signal <sq_ball_on$cmp_le0001> created at line 407.
-    Found 10-bit comparator lessequal for signal <sq_ball_on$cmp_le0002> created at line 407.
-    Found 10-bit comparator lessequal for signal <sq_ball_on$cmp_le0003> created at line 407.
+    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0000> created at line 466.
+    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0001> created at line 466.
+    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0002> created at line 466.
+    Found 10-bit comparator lessequal for signal <sq_alien_on$cmp_le0003> created at line 466.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0000> created at line 330.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0001> created at line 330.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0002> created at line 330.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0003> created at line 330.
     Summary:
-	inferred   3 ROM(s).
-	inferred  78 D-type flip-flop(s).
-	inferred  29 Adder/Subtractor(s).
-	inferred  36 Comparator(s).
-	inferred   3 Multiplexer(s).
+	inferred   2 ROM(s).
+	inferred  58 D-type flip-flop(s).
+	inferred  24 Adder/Subtractor(s).
+	inferred  23 Comparator(s).
+	inferred   2 Multiplexer(s).
 	inferred   1 Xor(s).
 Unit <pong_graph> synthesized.
 
@@ -514,16 +512,16 @@ INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmet
 HDL Synthesis Report
 
 Macro Statistics
-# ROMs                                                 : 6
+# ROMs                                                 : 5
  16x7-bit ROM                                          : 1
  2048x8-bit ROM                                        : 1
  64x7-bit ROM                                          : 1
- 8x8-bit ROM                                           : 3
-# Adders/Subtractors                                   : 31
- 10-bit adder                                          : 12
+ 8x8-bit ROM                                           : 2
+# Adders/Subtractors                                   : 26
+ 10-bit adder                                          : 10
  10-bit addsub                                         : 2
- 10-bit subtractor                                     : 9
- 3-bit subtractor                                      : 6
+ 10-bit subtractor                                     : 8
+ 3-bit subtractor                                      : 4
  4-bit adder                                           : 2
 # Counters                                             : 8
  10-bit up counter                                     : 2
@@ -532,27 +530,27 @@ Macro Statistics
  5-bit down counter                                    : 1
  7-bit down counter                                    : 1
  9-bit up counter                                      : 2
-# Registers                                            : 31
+# Registers                                            : 27
  1-bit register                                        : 12
- 10-bit register                                       : 12
+ 10-bit register                                       : 8
  11-bit register                                       : 2
  3-bit register                                        : 1
  4-bit register                                        : 2
  8-bit register                                        : 2
-# Latches                                              : 2
+# Latches                                              : 3
  1-bit latch                                           : 1
- 10-bit latch                                          : 1
-# Comparators                                          : 45
- 10-bit comparator greatequal                          : 5
- 10-bit comparator greater                             : 7
- 10-bit comparator less                                : 5
- 10-bit comparator lessequal                           : 24
+ 10-bit latch                                          : 2
+# Comparators                                          : 32
+ 10-bit comparator greatequal                          : 4
+ 10-bit comparator greater                             : 4
+ 10-bit comparator less                                : 4
+ 10-bit comparator lessequal                           : 16
  23-bit comparator less                                : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
-# Multiplexers                                         : 5
- 1-bit 8-to-1 multiplexer                              : 4
+# Multiplexers                                         : 4
+ 1-bit 8-to-1 multiplexer                              : 3
  7-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 4
  1-bit xor2                                            : 2
@@ -588,9 +586,6 @@ WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 i
 WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <alien_vy_reg>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <alien_vy_reg>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <alien_vy_reg>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <ball_vy_reg>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <alien_vx_reg>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <ball_vx_reg>. This FF/Latch will be trimmed during the optimization process.
 
 Synthesizing (advanced) Unit <font_rom>.
 INFO:Xst:3044 - The ROM <Mrom_data_rom0000> will be implemented as a read-only BLOCK RAM, absorbing the register: <addr_reg>.
@@ -618,15 +613,15 @@ Macro Statistics
 # FSMs                                                 : 1
 # RAMs                                                 : 1
  2048x8-bit single-port block RAM                      : 1
-# ROMs                                                 : 5
+# ROMs                                                 : 4
  16x7-bit ROM                                          : 1
  64x7-bit ROM                                          : 1
- 8x8-bit ROM                                           : 3
-# Adders/Subtractors                                   : 31
- 10-bit adder                                          : 12
+ 8x8-bit ROM                                           : 2
+# Adders/Subtractors                                   : 26
+ 10-bit adder                                          : 10
  10-bit addsub                                         : 2
- 10-bit subtractor                                     : 9
- 3-bit subtractor                                      : 6
+ 10-bit subtractor                                     : 8
+ 3-bit subtractor                                      : 4
  4-bit adder                                           : 2
 # Counters                                             : 8
  10-bit up counter                                     : 2
@@ -635,22 +630,22 @@ Macro Statistics
  5-bit down counter                                    : 1
  7-bit down counter                                    : 1
  9-bit up counter                                      : 2
-# Registers                                            : 170
- Flip-Flops                                            : 170
-# Latches                                              : 2
+# Registers                                            : 130
+ Flip-Flops                                            : 130
+# Latches                                              : 3
  1-bit latch                                           : 1
- 10-bit latch                                          : 1
-# Comparators                                          : 45
- 10-bit comparator greatequal                          : 5
- 10-bit comparator greater                             : 7
- 10-bit comparator less                                : 5
- 10-bit comparator lessequal                           : 24
+ 10-bit latch                                          : 2
+# Comparators                                          : 32
+ 10-bit comparator greatequal                          : 4
+ 10-bit comparator greater                             : 4
+ 10-bit comparator less                                : 4
+ 10-bit comparator lessequal                           : 16
  23-bit comparator less                                : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
-# Multiplexers                                         : 5
- 1-bit 8-to-1 multiplexer                              : 4
+# Multiplexers                                         : 4
+ 1-bit 8-to-1 multiplexer                              : 3
  7-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 4
  1-bit xor2                                            : 2
@@ -662,315 +657,67 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <3> in Unit <LPM_DFF_22> is equivalent to the following 6 FFs/Latches, which will be removed : <4> <7> <5> <6> <8> <9> 
-INFO:Xst:2261 - The FF/Latch <3> in Unit <LPM_DFF_21> is equivalent to the following 6 FFs/Latches, which will be removed : <4> <7> <5> <6> <8> <9> 
-INFO:Xst:2261 - The FF/Latch <3> in Unit <LPM_DFF_6> is equivalent to the following 6 FFs/Latches, which will be removed : <4> <7> <5> <6> <8> <9> 
-INFO:Xst:2261 - The FF/Latch <0> in Unit <LPM_DFF_3> is equivalent to the following 8 FFs/Latches, which will be removed : <1> <3> <4> <7> <5> <6> <8> <9> 
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_22>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_21>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_6>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_3>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <rand_reg_9> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_8> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_6> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_5> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_7> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_4> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_3> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_1> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_0> of sequential type is unconnected in block <pong_graph>.
-WARNING:Xst:2677 - Node <rand_reg_2> of sequential type is unconnected in block <pong_graph>.
 
-Optimizing unit <pong_top> ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<9>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/9/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_9>
 
-Optimizing unit <vga_sync> ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<8>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/8/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_8>
 
-Optimizing unit <m100_counter> ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<7>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/7/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_7>
 
-Optimizing unit <pong_graph> ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<6>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/6/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_6>
 
-Optimizing unit <ps2_keyboard> ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<5>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/5/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_5>
 
-Optimizing unit <pong_text> ...
-WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_0> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_1> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_2> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_3> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<4>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/4/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_4>
 
-Mapping all equations...
-Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 46.
-FlipFlop vga_sync_unit/h_count_reg_7 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_8 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_0 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_1 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_5 has been replicated 1 time(s)
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<3>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/3/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_3>
 
-Final Macro Processing ...
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<2>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/2/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_2>
 
-Processing Unit <pong_top> :
-	Found 2-bit shift register for signal <keyboard_unit/debounce_ps2_clk/flipflops_0>.
-	Found 2-bit shift register for signal <keyboard_unit/debounce_ps2_data/flipflops_0>.
-Unit <pong_top> processed.
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<1>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/1/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_1>
 
-=========================================================================
-Final Register Report
-
-Macro Statistics
-# Registers                                            : 194
- Flip-Flops                                            : 194
-# Shift Registers                                      : 2
- 2-bit shift register                                  : 2
-
-=========================================================================
-
-=========================================================================
-*                           Partition Report                            *
-=========================================================================
-
-Partition Implementation Status
--------------------------------
-
-  No Partitions were found in this design.
-
--------------------------------
-
-=========================================================================
-*                            Final Report                               *
-=========================================================================
-Final Results
-RTL Top Level Output File Name     : pong_top.ngr
-Top Level Output File Name         : pong_top
-Output Format                      : NGC
-Optimization Goal                  : Speed
-Keep Hierarchy                     : No
-
-Design Statistics
-# IOs                              : 27
-
-Cell Usage :
-# BELS                             : 1404
-#      GND                         : 1
-#      INV                         : 38
-#      LUT1                        : 100
-#      LUT2                        : 320
-#      LUT2_D                      : 1
-#      LUT2_L                      : 3
-#      LUT3                        : 56
-#      LUT3_L                      : 4
-#      LUT4                        : 205
-#      LUT4_D                      : 13
-#      LUT4_L                      : 18
-#      MUXCY                       : 375
-#      MUXF5                       : 43
-#      MUXF6                       : 6
-#      VCC                         : 1
-#      XORCY                       : 220
-# FlipFlops/Latches                : 207
-#      FD                          : 12
-#      FD_1                        : 11
-#      FDC                         : 23
-#      FDCE                        : 95
-#      FDE                         : 10
-#      FDPE                        : 4
-#      FDRE                        : 41
-#      LD                          : 10
-#      LDCE                        : 1
-# RAMS                             : 1
-#      RAMB16_S9                   : 1
-# Shift Registers                  : 2
-#      SRL16                       : 2
-# Clock Buffers                    : 2
-#      BUFG                        : 2
-# IO Buffers                       : 25
-#      IBUF                        : 3
-#      IBUFG                       : 1
-#      OBUF                        : 21
-# DCMs                             : 1
-#      DCM_SP                      : 1
-=========================================================================
-
-Device utilization summary:
----------------------------
-
-Selected Device : 3s100ecp132-5 
-
- Number of Slices:                      402  out of    960    41%  
- Number of Slice Flip Flops:            207  out of   1920    10%  
- Number of 4 input LUTs:                760  out of   1920    39%  
-    Number used as logic:               758
-    Number used as Shift registers:       2
- Number of IOs:                          27
- Number of bonded IOBs:                  25  out of     83    30%  
- Number of BRAMs:                         1  out of      4    25%  
- Number of GCLKs:                         2  out of     24     8%  
- Number of DCMs:                          1  out of      2    50%  
-
----------------------------
-Partition Resource Summary:
----------------------------
-
-  No Partitions were found in this design.
-
----------------------------
+ERROR:Xst:528 - Multi-source in Unit <pong_graph> on signal <heart_x_reg<0>>; this signal is connected to multiple drivers.
+Drivers are: 
+   Output signal of LDE instance <graph_unit/proj1_x_l/0/0>
+   Output signal of FDCE instance <graph_unit/heart_x_reg_0>
 
 
-=========================================================================
-TIMING REPORT
-
-NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
-      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
-      GENERATED AFTER PLACE-and-ROUTE.
-
-Clock Information:
-------------------
--------------------------------------------------------------+------------------------------------+-------+
-Clock Signal                                                 | Clock buffer(FF name)              | Load  |
--------------------------------------------------------------+------------------------------------+-------+
-clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X| 188   |
-graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)   | NONE(*)(graph_unit/proj1_x_l_9)    | 10    |
-graph_unit/proj1_hit_not0001(graph_unit/proj1_hit_not00011:O)| NONE(*)(graph_unit/proj1_hit)      | 1     |
-keyboard_unit/debounce_ps2_clk/result                        | NONE(keyboard_unit/ps2_word_10)    | 11    |
--------------------------------------------------------------+------------------------------------+-------+
-(*) These 2 clock signal(s) are generated by combinatorial logic,
-and XST is not able to identify which are the primary clock signals.
-Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
-
-Asynchronous Control Signals Information:
-----------------------------------------
-----------------------------------------------------------+---------------------------+-------+
-Control Signal                                            | Buffer(FF name)           | Load  |
-----------------------------------------------------------+---------------------------+-------+
-reset                                                     | IBUF                      | 122   |
-graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)| NONE(graph_unit/proj1_hit)| 1     |
-----------------------------------------------------------+---------------------------+-------+
-
-Timing Summary:
----------------
-Speed Grade: -5
-
-   Minimum period: 21.230ns (Maximum Frequency: 47.104MHz)
-   Minimum input arrival time before clock: 1.829ns
-   Maximum output required time after clock: 4.380ns
-   Maximum combinational path delay: No path found
-
-Timing Detail:
---------------
-All values displayed in nanoseconds (ns)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 21.230ns (frequency: 47.104MHz)
-  Total number of paths / destination ports: 33399 / 382
--------------------------------------------------------------------------
-Delay:               10.615ns (Levels of Logic = 18)
-  Source:            graph_unit/heart_y_reg_4 (FF)
-  Destination:       graph_unit/heart_y_reg_9 (FF)
-  Source Clock:      clock rising 2.0X
-  Destination Clock: clock rising 2.0X
-
-  Data Path: graph_unit/heart_y_reg_4 to graph_unit/heart_y_reg_9
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDCE:C->Q            12   0.514   0.820  graph_unit/heart_y_reg_4 (graph_unit/heart_y_reg_4)
-     LUT4:I3->O            3   0.612   0.520  graph_unit/heart_y_b_addsub0000<7>11 (graph_unit/heart_y_b_addsub0000<7>_bdd0)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Msub_heart_y_b_lut<7> (graph_unit/Msub_heart_y_b_lut<7>)
-     XORCY:LI->O           3   0.458   0.520  graph_unit/Msub_heart_y_b_xor<7> (graph_unit/heart_y_b<7>)
-     LUT2:I1->O            2   0.612   0.380  graph_unit/heart_x_reg_cmp_lt0000213 (graph_unit/heart_x_reg_cmp_lt0000213)
-     MUXF5:S->O            1   0.641   0.360  graph_unit/heart_x_reg_cmp_lt00002158_SW1 (N110)
-     LUT4:I3->O            3   0.612   0.520  graph_unit/heart_y_reg_mux000145 (graph_unit/heart_y_reg_mux0001)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0>)
-     MUXCY:S->O            1   0.404   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6>)
-     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7>)
-     MUXCY:CI->O           0   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8>)
-     XORCY:CI->O           1   0.699   0.426  graph_unit/Maddsub_heart_y_reg_addsub0000_xor<9> (graph_unit/heart_y_reg_addsub0000<9>)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/heart_y_reg_mux0000<0>1 (graph_unit/heart_y_reg_mux0000<0>)
-     FDCE:D                    0.268          graph_unit/heart_y_reg_9
-    ----------------------------------------
-    Total                     10.615ns (7.068ns logic, 3.547ns route)
-                                       (66.6% logic, 33.4% route)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
-  Clock period: 1.281ns (frequency: 780.671MHz)
-  Total number of paths / destination ports: 10 / 10
--------------------------------------------------------------------------
-Delay:               1.281ns (Levels of Logic = 0)
-  Source:            keyboard_unit/ps2_word_8 (FF)
-  Destination:       keyboard_unit/ps2_word_7 (FF)
-  Source Clock:      keyboard_unit/debounce_ps2_clk/result falling
-  Destination Clock: keyboard_unit/debounce_ps2_clk/result falling
-
-  Data Path: keyboard_unit/ps2_word_8 to keyboard_unit/ps2_word_7
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FD_1:C->Q             4   0.514   0.499  keyboard_unit/ps2_word_8 (keyboard_unit/ps2_word_8)
-     FD_1:D                    0.268          keyboard_unit/ps2_word_7
-    ----------------------------------------
-    Total                      1.281ns (0.782ns logic, 0.499ns route)
-                                       (61.0% logic, 39.0% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clock'
-  Total number of paths / destination ports: 2 / 2
--------------------------------------------------------------------------
-Offset:              1.829ns (Levels of Logic = 1)
-  Source:            PS2_CLK (PAD)
-  Destination:       keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0 (FF)
-  Destination Clock: clock rising 2.0X
-
-  Data Path: PS2_CLK to keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             1   1.106   0.357  PS2_CLK_IBUF (PS2_CLK_IBUF)
-     SRL16:D                   0.366          keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0
-    ----------------------------------------
-    Total                      1.829ns (1.472ns logic, 0.357ns route)
-                                       (80.5% logic, 19.5% route)
-
-=========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
-  Total number of paths / destination ports: 21 / 21
--------------------------------------------------------------------------
-Offset:              4.380ns (Levels of Logic = 1)
-  Source:            keyboard_unit/ps2_code_reg_1 (FF)
-  Destination:       led<1> (PAD)
-  Source Clock:      clock rising 2.0X
-
-  Data Path: keyboard_unit/ps2_code_reg_1 to led<1>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FD:C->Q               9   0.514   0.697  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
-     OBUF:I->O                 3.169          led_1_OBUF (led<1>)
-    ----------------------------------------
-    Total                      4.380ns (3.683ns logic, 0.697ns route)
-                                       (84.1% logic, 15.9% route)
-
-=========================================================================
-
-
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.78 secs
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 3.36 secs
  
 --> 
 
 
-Total memory usage is 647948 kilobytes
+Total memory usage is 633712 kilobytes
 
-Number of errors   :    0 (   0 filtered)
+Number of errors   :   10 (   0 filtered)
 Number of warnings :   81 (   0 filtered)
-Number of infos    :   11 (   0 filtered)
+Number of infos    :    6 (   0 filtered)
 
