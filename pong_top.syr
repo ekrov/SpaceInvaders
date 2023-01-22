@@ -120,8 +120,11 @@ Architecture logic of Entity ps2_keyboard is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd" in Library work.
 Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
-Architecture arch of Entity pong_text is up to date.
+WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" is newer than current system time.
+Entity <pong_text> compiled.
+Entity <pong_text> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
+WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" is newer than current system time.
 Entity <pong_graph> compiled.
 Entity <pong_graph> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
@@ -445,15 +448,15 @@ Unit <ps2_keyboard> synthesized.
 
 Synthesizing Unit <pong_text>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd".
-    Found 64x7-bit ROM for signal <char_addr_r$rom0000> created at line 174.
+    Found 64x7-bit ROM for signal <char_addr_r$rom0000> created at line 175.
     Found 16x7-bit ROM for signal <char_addr_o>.
     Found 7-bit 16-to-1 multiplexer for signal <char_addr_s>.
     Found 1-bit 8-to-1 multiplexer for signal <font_bit>.
-    Found 4-bit comparator greatequal for signal <logo_on$cmp_le0000> created at line 147.
-    Found 4-bit comparator lessequal for signal <logo_on$cmp_le0001> created at line 147.
-    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 180.
-    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 180.
-    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 116.
+    Found 4-bit comparator greatequal for signal <logo_on$cmp_le0000> created at line 148.
+    Found 4-bit comparator lessequal for signal <logo_on$cmp_le0001> created at line 148.
+    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 181.
+    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 181.
+    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 117.
     Summary:
 	inferred   2 ROM(s).
 	inferred   5 Comparator(s).
@@ -725,21 +728,21 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1125
+# BELS                             : 1123
 #      GND                         : 1
 #      INV                         : 26
 #      LUT1                        : 72
 #      LUT2                        : 226
 #      LUT2_L                      : 3
-#      LUT3                        : 50
+#      LUT3                        : 49
 #      LUT3_D                      : 1
 #      LUT3_L                      : 6
-#      LUT4                        : 223
-#      LUT4_D                      : 9
-#      LUT4_L                      : 24
+#      LUT4                        : 222
+#      LUT4_D                      : 7
+#      LUT4_L                      : 25
 #      MULT_AND                    : 1
 #      MUXCY                       : 276
-#      MUXF5                       : 36
+#      MUXF5                       : 37
 #      MUXF6                       : 9
 #      VCC                         : 1
 #      XORCY                       : 161
@@ -775,8 +778,8 @@ Selected Device : 3s100ecp132-5
 
  Number of Slices:                      340  out of    960    35%  
  Number of Slice Flip Flops:            189  out of   1920     9%  
- Number of 4 input LUTs:                642  out of   1920    33%  
-    Number used as logic:               640
+ Number of 4 input LUTs:                639  out of   1920    33%  
+    Number used as logic:               637
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  27  out of     83    32%  
@@ -840,7 +843,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
   Clock period: 21.170ns (frequency: 47.237MHz)
-  Total number of paths / destination ports: 31832 / 340
+  Total number of paths / destination ports: 31826 / 340
 -------------------------------------------------------------------------
 Delay:               10.585ns (Levels of Logic = 11)
   Source:            graph_unit/heart_y_reg_6 (FF)
@@ -932,15 +935,15 @@ Offset:              4.252ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.37 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.16 secs
  
 --> 
 
 
-Total memory usage is 547704 kilobytes
+Total memory usage is 547688 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   65 (   0 filtered)
+Number of warnings :   67 (   0 filtered)
 Number of infos    :    9 (   0 filtered)
 
