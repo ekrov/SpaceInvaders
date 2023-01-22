@@ -98,6 +98,36 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr_heart, rom_col_heart : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_heart : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_heart : STD_LOGIC;
+    ---------------------------------  
+    -- Alien  
+    ---------------------------------
+    CONSTANT ALIEN_SIZE : INTEGER := 8; -- 8
+    SIGNAL alien_x_l, alien_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_y_t, alien_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_x_reg, alien_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_y_reg, alien_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_vx_reg, alien_vx_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_vy_reg, alien_vy_next : unsigned(9 DOWNTO 0);
+    CONSTANT ALIEN_V : INTEGER := 4;
+    CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(2, 10);
+    CONSTANT ALIEN_V_N : unsigned(9 DOWNTO 0) := unsigned(to_signed(-2, 10));
+    TYPE rom_type_alien IS ARRAY (0 TO 7) OF
+    STD_LOGIC_VECTOR (7 DOWNTO 0);
+    CONSTANT ALIEN_ROM : rom_type :=
+    (
+    "01111110", --  ****** 
+    "10011001", -- *  **  * 
+    "01111110", --  ****** 
+    "00111100", --   ****   
+    "01100110", --  **  ** 
+    "11111111", -- ********
+    "10011001", -- *  **  *
+    "10011001"  -- *  **  *
+    );
+
+    SIGNAL rom_addr_alien, rom_col_alien : unsigned(2 DOWNTO 0);
+    SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL rom_bit_alien : STD_LOGIC;
 
     ---------------------------------
     -- Constant Keys 
@@ -157,8 +187,9 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit : STD_LOGIC;
     SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb :
-    STD_LOGIC_VECTOR(2 DOWNTO 0);
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb  :
+-- Alien Flags
+    SIGNAL sq_alien_on, rd_alien_on : STD_LOGIC;    STD_LOGIC_VECTOR(2 DOWNTO 0);
     SIGNAL refr_tick : STD_LOGIC;
     SIGNAL rom_ship_addr, rom_ship_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_ship_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -173,6 +204,12 @@ BEGIN
             ball_y_reg <= (OTHERS => '0');
             ball_vx_reg <= ("0000000100");
             ball_vy_reg <= ("0000000100");
+
+            alien_x_reg <= (OTHERS => '0');
+            alien_y_reg <= (OTHERS => '0');
+            alien_vx_reg <= ("0000000100");
+            alien_vy_reg <= ("0000000100");
+            
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
             SHIP_y_reg <= (OTHERS => '0');
@@ -192,6 +229,11 @@ BEGIN
             ball_vx_reg <= ball_vx_next;
             ball_vy_reg <= ball_vy_next;
             keycode_reg <= keycode_next;
+
+            alien_x_reg <= alien_x_next;
+            alien_y_reg <= alien_y_next;
+            alien_vx_reg <= alien_vx_next;
+            alien_vy_reg <= alien_vy_next;
 
             SHIP_x_reg <= ball_x_next;
             SHIP_y_reg <= ball_y_next;
@@ -412,6 +454,68 @@ BEGIN
 
         END IF;
     END PROCESS;
+
+    -- Square Alien
+    alien_x_l <= alien_x_reg;
+    alien_y_t <= alien_y_reg;
+    alien_x_r <= alien_x_l + ALIEN_SIZE - 1;
+    alien_y_b <= alien_y_t + ALIEN_SIZE - 1;
+    sq_alien_on <=
+        '1' WHEN (alien_x_l <= pix_x) AND (pix_x <= alien_x_r) AND
+        (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
+        '0';
+    -- Round Alien
+    rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
+    rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
+    rom_data_alien <= ALIEN_ROM(to_integer(rom_addr_alien));
+    rom_bit_alien <= rom_data_alien(to_integer(NOT rom_col_alien));
+    rd_alien_on <=
+        '1' WHEN (sq_alien_on = '1') AND (rom_bit_alien = '1') ELSE
+        '0';
+    alien_rgb <= "010"; -- green
+    -- new alien position
+    alien_x_next <=
+        to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
+        alien_x_reg + alien_vx_reg WHEN refr_tick = '1' ELSE
+        alien_x_reg;
+    alien_y_next <=
+        to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
+        alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
+        alien_y_reg;
+    -- ball_y_next <= to_unsigned((MAX_Y)/2, 10);
+
+    -- New alien velocity
+    -- With new hit, miss signals
+
+    PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
+        alien_y_b, gra_still)
+    BEGIN
+        alien_vx_next <= alien_vx_reg;
+        alien_vy_next <= alien_vy_reg;
+        IF gra_still = '1' THEN --initial velocity
+            alien_vx_next <= ALIEN_V_N;
+            -- alien_vy_next <= ALIEN_V_P;
+            alien_vy_next <= to_unsigned(0, 10);
+        -- ELSIF alien_y_t < 1 THEN -- reach top
+        --     alien_vy_next <= ALIEN_V_P;
+        -- ELSIF alien_y_b > (MAX_Y - 1) THEN -- reach bottom
+        --     alien_vy_next <= ALIEN_V_N;
+        -- ELSIF alien_x_l <= WALL_X_R THEN -- reach wall
+        --     alien_vx_next <= ALIEN_V_P; -- bounce back
+        -- ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
+        --     (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
+        --     -- reach x of right bar, a hit
+        --     ball_vx_next <= ALIEN_V_N; -- bounce back
+        --     hit <= '1';
+        ELSIF (alien_x_l < 1) THEN -- reach left border
+            alien_vx_next <= ALIEN_V_P;
+        ELSIF (alien_x_r > MAX_X) THEN -- reach right border
+            -- miss <= '1'; -- a miss
+            alien_vx_next <= ALIEN_V_N;
+
+        END IF;
+    END PROCESS;
+
     -- rgb multiplexing circuit
     PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on)
     BEGIN
@@ -423,6 +527,8 @@ BEGIN
             rgb <= ball_rgb;
         ELSIF rd_heart_on = '1' THEN
             rgb <= heart_rgb;
+        ELSIF rd_alien_on = '1' THEN
+            rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
         ELSE
@@ -460,5 +566,5 @@ BEGIN
     --     SHIP_y_reg;
     -- -- new graphic_on signal
 
-    graph_on <= wall_on OR rd_ball_on OR rd_ship_on OR rd_heart_on OR proj1_on;
+    graph_on <= wall_on OR rd_ball_on OR rd_ship_on OR rd_heart_on OR rd_alien_on OR proj1_on;
 END arch;
