@@ -211,7 +211,7 @@ BEGIN
             alien_y_reg <= (OTHERS => '0');
             alien_vx_reg <= ("0000000100");
             alien_vy_reg <= ("0000000100");
-            
+
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
             SHIP_y_reg <= (OTHERS => '0');
@@ -452,15 +452,19 @@ BEGIN
     -- Square Alien
     alien_x_l <= alien_x_reg;
     alien_y_t <= alien_y_reg;
-    alien_x_r <= alien_x_l + ALIEN_SIZE - 1;
-    alien_y_b <= alien_y_t + ALIEN_SIZE - 1;
+    -- alien_x_r <= alien_x_l + ALIEN_SIZE - 1;
+    -- alien_y_b <= alien_y_t + ALIEN_SIZE - 1;
+    alien_x_r <= alien_x_l + ALIEN_SIZE + ALIEN_SIZE - 1;
+    alien_y_b <= alien_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_on <=
         '1' WHEN (alien_x_l <= pix_x) AND (pix_x <= alien_x_r) AND
         (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
         '0';
     -- Round Alien
-    rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
-    rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
+    -- rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
+    -- rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
+    rom_addr_alien <=   pix_y(3 DOWNTO 1) - alien_y_t(3 DOWNTO 1);
+    rom_col_alien <=    pix_x(3 DOWNTO 1) - alien_x_l(3 DOWNTO 1);
     rom_data_alien <= ALIEN_ROM(to_integer(rom_addr_alien));
     rom_bit_alien <= rom_data_alien(to_integer(NOT rom_col_alien));
     rd_alien_on <=
