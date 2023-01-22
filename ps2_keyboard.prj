@@ -1,0 +1,2 @@
+vhdl work "debounce_internet.vhd"
+vhdl work "ps2_keyboard.vhd"

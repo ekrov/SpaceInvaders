@@ -1,0 +1,16 @@
+Release 14.7 Drc P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Sat Jan 21 23:39:29 2023
+
+drc -z pong_top.ncd pong_top.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   graph_unit/new_proj1_next_or0000 is sourced by a combinatorial pin. This is
+   not good design practice. Use the CE pin to control the loading of data into
+   the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net graph_unit/refr_tick is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+DRC detected 0 errors and 2 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

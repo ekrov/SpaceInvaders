@@ -1,0 +1,5 @@
+set -tmpdir "C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/xst/projnav.tmp"
+set -xsthdpdir "C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/xst"
+elaborate
+-ifn ps2_keyboard.prj
+-ifmt mixed

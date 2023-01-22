@@ -1,0 +1,5 @@
+set -tmpdir "/home/ise/projects/Jogo_EletProg/xst/projnav.tmp"
+set -xsthdpdir "/home/ise/projects/Jogo_EletProg/xst"
+elaborate
+-ifn debounce.prj
+-ifmt mixed

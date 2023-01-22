@@ -5,12 +5,12 @@ use ieee.numeric_std.ALL;
 entity pong_text is
    port(
       clk, reset: in std_logic;
-pixel_x, pixel_y: in std_logic_vector(9 downto 0);
-dig0, dig1: in std_logic_vector(3 downto 0);
-ball: in std_logic_vector(1 downto 0);
-text_on: out std_logic_vector(3 downto 0);
-text_rgb: out std_logic_vector(2 downto 0)
-);
+      pixel_x, pixel_y: in std_logic_vector(9 downto 0);
+      dig0, dig1: in std_logic_vector(3 downto 0);
+      ball: in std_logic_vector(1 downto 0);
+      text_on: out std_logic_vector(3 downto 0);
+      text_rgb: out std_logic_vector(2 downto 0)
+   );
 end pong_text;
 
 architecture arch of pong_text is
@@ -32,7 +32,8 @@ architecture arch of pong_text is
    constant RULE_ROM: rule_rom_type :=
    (
       -- row 1
-      "0000000", -- 
+      
+       "0000000", -- 
       "0000000", -- 
       "0000000", --
       "0000000", -- 
@@ -53,52 +54,57 @@ architecture arch of pong_text is
       "0000000", --
       "0000000", --
       "0000000", --
+      -- row 2
+      "1010101", -- U
+      "1110011", -- s
+      "1100101", -- e
       "0000000", --
+      "1110100", -- t
+      "1110111", -- w
+      "1101111", -- o
       "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
+      "1100010", -- b
+      "1110101", -- u
+      "1110100", -- t
+      "1110100", -- t
+      "1101111", -- o
+      "1101110", -- n
+      "1110011", -- s
       "0000000", --
       -- row 3
-      "0000000", -- 
+      "1110100", -- t
+      "1101111", -- o
       "0000000", --
-      "1010000", -- P
-      "1001100", -- L
-      "1000101", -- E
-      "1000001", -- A
-      "1010011", -- S
-      "1000101", -- E
-      "0000000", -- 
-      "1010000", -- P
-      "1010010", -- R
-      "1000101", -- E
-      "1010011", -- S
-      "1010011", -- S
-      "0000000", -- 
-      "0000000", --       
+      "1101101", -- m
+      "1101111", -- o
+      "1110110", -- v
+      "1100101", -- e
+      "0000000", --
+      "1110000", -- p
+      "1100001", -- a
+      "1100100", -- d
+      "1100100", -- d
+      "1101100", -- l
+      "1100101", -- e
+      "0000000", --
+      "0000000", --
       -- row 4
-      "0000000", -- 
-      "1000101", -- E
-      "1001110", -- N
-      "1010100", -- T
-      "1000101", -- E
-      "1010010", -- R
-      "0000000", -- 
-      "1010100", -- T
-      "1001111", -- O
+      "1110101", -- u
+      "1110000", -- p
       "0000000", --
-      "1010011", -- S
-      "1010100", -- T
-      "1000001", -- A
-      "1010010", -- R
-      "1010100", -- T      
-      "0000000" --
+      "1100001", -- a
+      "1101110", -- n
+      "1100100", -- d
+      "0000000", --
+      "1100100", -- d
+      "1101111", -- o
+      "1110111", -- w
+      "1101110", -- n
+      "0101110", -- .
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000"  --
    );
 begin
    pix_x <= unsigned(pixel_x);
@@ -160,10 +166,10 @@ begin
    -- rule region
    --   - display rule (4-by-16 tiles)on center
    --   - rule text:
-   --             HI!
-   --
-   --         PLEASE PRESS
-   --        ENTER TO START
+   --        Rule:
+   --        Use two buttons
+   --        to move paddle
+   --        up and down
    ---------------------------------------------
    rule_on <= '1' when pix_x(9 downto 7) = "010" and
                        pix_y(9 downto 6)=  "0010"  else

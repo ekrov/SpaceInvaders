@@ -1,0 +1,120 @@
+V3 78
+FL /home/ise/projects/Jogo_EletProg/ClockManager.vhd 2019/11/22.15:03:01 P.20131013
+FL /home/ise/projects/Jogo_EletProg/debounce.vhd 2022/12/30.11:35:54 P.20131013
+EN work/debounce 1672395835 FL /home/ise/projects/Jogo_EletProg/debounce.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/debounce/logic 1672395836 \
+      FL /home/ise/projects/Jogo_EletProg/debounce.vhd EN work/debounce 1672395835
+FL /home/ise/projects/Jogo_EletProg/debounce_2.vhd 2022/12/30.11:30:36 P.20131013
+EN work/debounce_2 1672395518 FL /home/ise/projects/Jogo_EletProg/debounce_2.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/debounce_2/fsmd_arch 1672395519 \
+      FL /home/ise/projects/Jogo_EletProg/debounce_2.vhd EN work/debounce_2 1672395518
+FL /home/ise/projects/Jogo_EletProg/debounce_handson.vhd 2022/12/30.12:06:05 P.20131013
+EN work/debounce_handson 1672398169 \
+      FL /home/ise/projects/Jogo_EletProg/debounce_handson.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/debounce_handson/fsmd_arch 1672398170 \
+      FL /home/ise/projects/Jogo_EletProg/debounce_handson.vhd \
+      EN work/debounce_handson 1672398169
+FL /home/ise/projects/Jogo_EletProg/debounce_internet.vhd 2022/12/30.11:37:04 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch12_01_vga_sync.vhd 2019/11/08.15:13:00 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_01_font_rom.vhd 2019/11/08.12:14:08 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_06_pong_text.vhd 2019/11/08.12:09:34 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_07_pong_graph.vhd 2022/12/29.10:27:55 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_08_pong_counter.vhd 2008/01/28.16:25:20 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_09_pong_timer.vhd 2019/11/08.11:54:50 P.20131013
+FL /home/ise/projects/Jogo_EletProg/list_ch13_10_pong_top.vhd 2022/12/30.12:02:56 P.20131013
+FL /home/ise/projects/Jogo_EletProg/ps2_keyboard.vhd 2022/12/30.12:27:00 P.20131013
+FL /home/ise/projects/Jogo_EletProg/timer_2.vhd 2022/12/27.14:54:18 P.20131013
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ClockManager.vhd 2019/11/22.15:03:01 P.20131013
+EN work/clockmanager 1674344346 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ClockManager.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 LB UNISIM \
+      PH unisim/VCOMPONENTS 1381692182
+AR work/clockmanager/BEHAVIORAL 1674344347 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ClockManager.vhd \
+      EN work/clockmanager 1674344346 CP IBUFG CP BUFG CP DCM_SP
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/debounce_internet.vhd 2022/12/30.11:37:04 P.20131013
+EN work/debounce_internet 1674344344 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/debounce_internet.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179
+AR work/debounce_internet/logic 1674344345 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/debounce_internet.vhd \
+      EN work/debounce_internet 1674344344
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd 2019/11/08.15:13:00 P.20131013
+EN work/vga_sync 1674344352 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/vga_sync/arch 1674344353 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd \
+      EN work/vga_sync 1674344352
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_01_font_rom.vhd 2019/11/08.12:14:08 P.20131013
+EN work/font_rom 1674344342 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_01_font_rom.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/font_rom/arch 1674344343 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_01_font_rom.vhd \
+      EN work/font_rom 1674344342
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd 2023/01/21.17:10:14 P.20131013
+EN work/pong_text 1674344354 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/pong_text/arch 1674344355 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd \
+      EN work/pong_text 1674344354 CP work/font_rom
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd 2023/01/21.20:04:12 P.20131013
+EN work/pong_graph 1674344356 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/pong_graph/arch 1674344357 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd \
+      EN work/pong_graph 1674344356
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd 2008/01/28.16:25:20 P.20131013
+EN work/m100_counter 1674344360 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/m100_counter/arch 1674344361 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd \
+      EN work/m100_counter 1674344360
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd 2019/11/08.11:54:50 P.20131013
+EN work/timer 1674344358 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/timer/arch 1674344359 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd \
+      EN work/timer 1674344358
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd 2023/01/04.11:35:39 P.20131013
+EN work/pong_top 1674344362 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/pong_top/arch 1674344363 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd \
+      EN work/pong_top 1674344362 CP work/clockmanager CP work/timer_2 \
+      CP work/ps2_keyboard CP work/vga_sync CP work/pong_text CP work/pong_graph \
+      CP work/timer CP work/m100_counter
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ps2_keyboard.vhd 2023/01/04.10:20:43 P.20131013
+EN work/ps2_keyboard 1674344350 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ps2_keyboard.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/ps2_keyboard/logic 1674344351 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ps2_keyboard.vhd \
+      EN work/ps2_keyboard 1674344350 CP debounce_internet
+FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/timer_2.vhd 2022/12/27.14:54:18 P.20131013
+EN work/timer_2 1674344348 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/timer_2.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/timer_2/arch 1674344349 \
+      FL /home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/timer_2.vhd \
+      EN work/timer_2 1674344348
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/ClockManager.vhd 2019/11/22.15:03:01 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/debounce_internet.vhd 2022/12/30.11:37:04 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch12_01_vga_sync.vhd 2019/11/08.15:13:00 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_01_font_rom.vhd 2019/11/08.12:14:08 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_06_pong_text.vhd 2019/11/08.12:09:34 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_07_pong_graph.vhd 2022/12/29.10:27:55 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_08_pong_counter.vhd 2008/01/28.16:25:20 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_09_pong_timer.vhd 2019/11/08.11:54:50 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/list_ch13_10_pong_top.vhd 2022/12/30.12:02:56 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/ps2_keyboard.vhd 2022/12/30.19:56:55 P.20131013
+FL C:/Xilinx/EEC/Eletronica_Programavel/Proj_alunos/Jogo_EletProg/timer_2.vhd 2022/12/27.14:54:18 P.20131013
