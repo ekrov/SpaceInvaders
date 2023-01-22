@@ -36,7 +36,7 @@ architecture arch of pong_top is
 	signal debounce_out: std_logic; 
 begin
 
-   -- instantiate clock manager unit
+   -- instantiate clock manager unit "Boas"
 	-- this unit converts the 25MHz input clock to the expected 50MHz clock
 	ClockManager_unit: entity work.clockmanager 
 	  port map(
