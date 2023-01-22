@@ -122,8 +122,7 @@ Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 Architecture arch of Entity pong_text is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
-Entity <pong_graph> compiled.
-Entity <pong_graph> (Architecture <arch>) compiled.
+Architecture arch of Entity pong_graph is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
 Architecture arch of Entity timer is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd" in Library work.
@@ -213,7 +212,7 @@ Entity <font_rom> analyzed. Unit <font_rom> generated.
 
 Analyzing Entity <pong_graph> in library <work> (Architecture <arch>).
 WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 240: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <keyboard_code>, <heart_x_reg>
+   <keyboard_code>, <proj1_hit>, <heart_x_reg>
 WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 301: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <keyboard_code>
 WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 416: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
@@ -715,18 +714,18 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1164
+# BELS                             : 1165
 #      GND                         : 1
 #      INV                         : 34
 #      LUT1                        : 86
-#      LUT2                        : 242
+#      LUT2                        : 243
 #      LUT2_D                      : 1
 #      LUT2_L                      : 3
-#      LUT3                        : 48
+#      LUT3                        : 49
 #      LUT3_D                      : 2
-#      LUT3_L                      : 4
-#      LUT4                        : 190
-#      LUT4_D                      : 11
+#      LUT3_L                      : 3
+#      LUT4                        : 189
+#      LUT4_D                      : 12
 #      LUT4_L                      : 15
 #      MUXCY                       : 299
 #      MUXF5                       : 42
@@ -764,8 +763,8 @@ Selected Device : 3s100ecp132-5
 
  Number of Slices:                      338  out of    960    35%  
  Number of Slice Flip Flops:            181  out of   1920     9%  
- Number of 4 input LUTs:                638  out of   1920    33%  
-    Number used as logic:               636
+ Number of 4 input LUTs:                639  out of   1920    33%  
+    Number used as logic:               637
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -795,7 +794,7 @@ Clock Information:
 Clock Signal                                                 | Clock buffer(FF name)              | Load  |
 -------------------------------------------------------------+------------------------------------+-------+
 clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X| 162   |
-graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or00001:O)  | NONE(*)(graph_unit/proj1_x_l_9)    | 10    |
+graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)   | NONE(*)(graph_unit/proj1_x_l_9)    | 10    |
 graph_unit/proj1_hit_not0001(graph_unit/proj1_hit_not00011:O)| NONE(*)(graph_unit/proj1_hit)      | 1     |
 keyboard_unit/debounce_ps2_clk/result                        | NONE(keyboard_unit/ps2_word_10)    | 11    |
 -------------------------------------------------------------+------------------------------------+-------+
@@ -806,12 +805,12 @@ INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered
 
 Asynchronous Control Signals Information:
 ----------------------------------------
------------------------------------------------------------+---------------------------+-------+
-Control Signal                                             | Buffer(FF name)           | Load  |
------------------------------------------------------------+---------------------------+-------+
-reset                                                      | IBUF                      | 96    |
-graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or00001:O)| NONE(graph_unit/proj1_hit)| 1     |
------------------------------------------------------------+---------------------------+-------+
+----------------------------------------------------------+---------------------------+-------+
+Control Signal                                            | Buffer(FF name)           | Load  |
+----------------------------------------------------------+---------------------------+-------+
+reset                                                     | IBUF                      | 96    |
+graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)| NONE(graph_unit/proj1_hit)| 1     |
+----------------------------------------------------------+---------------------------+-------+
 
 Timing Summary:
 ---------------
@@ -850,8 +849,8 @@ Delay:               10.879ns (Levels of Logic = 11)
      LUT2:I1->O            1   0.612   0.000  graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<9> (graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<9>)
      MUXCY:S->O            1   0.752   0.360  graph_unit/Mcompar_sq_heart_on_cmp_le0003_cy<9> (graph_unit/sq_heart_on_cmp_le0003)
      LUT4_D:I3->O          6   0.612   0.599  graph_unit/rd_heart_on_and0000 (graph_unit/rd_heart_on)
-     LUT3:I2->O            1   0.612   0.357  rgb_next<0>_SW0 (N53)
-     MUXF5:S->O            1   0.641   0.360  rgb_next<0>341_SW4 (N79)
+     LUT3:I2->O            1   0.612   0.357  rgb_next<0>_SW0 (N55)
+     MUXF5:S->O            1   0.641   0.360  rgb_next<0>341_SW4 (N81)
      LUT4:I3->O            1   0.612   0.000  rgb_next<0> (rgb_next<0>)
      FDCE:D                    0.268          rgb_reg_0
     ----------------------------------------
@@ -920,13 +919,13 @@ Offset:              4.380ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 6.69 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.37 secs
  
 --> 
 
 
-Total memory usage is 643992 kilobytes
+Total memory usage is 644032 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   67 (   0 filtered)
