@@ -13,13 +13,13 @@ Z6 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd
 Z7 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd
 l0
 L12
-Vjo:58O`HQcC:G^ba^BGKH2
+Vz8BNmNz5]B7TGUZko[BHj0
 Z8 OV;C;10.1d;51
 32
-Z9 !s108 1674404677.833000
-Z10 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd|
+Z9 !s108 1674404779.884000
+Z10 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd|
 Z11 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd|
-Z12 o-permissive -quiet -work {d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library} -defercheck -nocheck -explicit -O0
+Z12 o-quiet -work {d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library} -check_synthesis -lint -rangecheck -pedanticerrors -explicit -O0
 Z13 tExplicit 1
 !s100 OAneX]>WPK6:]j]^X0:EG2
 !i10b 1
@@ -27,11 +27,10 @@ Aarch
 R2
 R3
 R4
-Z14 DEx4 work 8 font_rom 0 22 jo:58O`HQcC:G^ba^BGKH2
+DEx4 work 8 font_rom 0 22 z8BNmNz5]B7TGUZko[BHj0
 l2205
 L20
-Vd`RkA8DN:^?MT`MDY[4<I0
-!s100 biEMbn7KT`7fQ9I@;HXo22
+V4GAeXBi5TnPRm@ABOoTS63
 R8
 32
 R9
@@ -39,29 +38,67 @@ R10
 R11
 R12
 R13
+!s100 biEMbn7KT`7fQ9I@;HXo22
 !i10b 1
-Epong_text
-Z15 w1674401413
+Epong_graph
+Z14 w1674409655
 R2
 R3
 R4
 R5
-Z16 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd
-Z17 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd
+Z15 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd
+Z16 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd
 l0
 L5
-V1To=>?edl^F<D>CWlX=MY0
-!s100 GE0odI4<6AW?l0^YeC13H0
+V_jOiaEB]?IU[ZYE_;VYh_2
+!s100 E2=QJ;>GckBCE`J_P=CPG0
 R8
 32
 !i10b 1
-Z18 !s108 1674404677.924000
-Z19 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd|
-Z20 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd|
-Z21 o-quiet -work {d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library} -check_synthesis -lint -rangecheck -pedanticerrors -explicit -O0
+Z17 !s108 1674409656.528000
+Z18 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd|
+Z19 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd|
+R12
 R13
 Aarch
-R14
+R2
+R3
+R4
+Z20 DEx4 work 10 pong_graph 0 22 _jOiaEB]?IU[ZYE_;VYh_2
+l199
+L19
+Z21 Vk6WcnI@YhiZS_TA[EH;i`2
+Z22 !s100 UG67VoS;T`=:`U?ETeBgz2
+R8
+32
+!i10b 1
+R17
+R18
+R19
+R12
+R13
+Epong_text
+Z23 w1674401413
+R2
+R3
+R4
+R5
+Z24 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd
+Z25 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd
+l0
+L5
+V1To=>?edl^F<D>CWlX=MY0
+R8
+32
+Z26 !s108 1674404677.924000
+Z27 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd|
+Z28 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_06_pong_text.vhd|
+R12
+R13
+!s100 GE0odI4<6AW?l0^YeC13H0
+!i10b 1
+Aarch
+DEx4 work 8 font_rom 0 22 jo:58O`HQcC:G^ba^BGKH2
 R2
 R3
 R4
@@ -69,32 +106,32 @@ DEx4 work 9 pong_text 0 22 1To=>?edl^F<D>CWlX=MY0
 l104
 L16
 Vk?H]Jc[;cDAfgm_EoZ0;;3
-!s100 deH?ziV?_jO24@JP5S47i2
 R8
 32
-!i10b 1
-R18
-R19
-R20
-R21
+R26
+R27
+R28
+R12
 R13
+!s100 deH?ziV?_jO24@JP5S47i2
+!i10b 1
 Evga_sync
-Z22 w1674338819
+Z29 w1674338819
 R2
 R3
 R4
 R5
-Z23 8C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
-Z24 FC:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
+Z30 8C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
+Z31 FC:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
 l0
 L5
 VVZf_fmE30Z?9nNLgj?8AV2
 R8
 32
-Z25 !s108 1674338819.795000
-Z26 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
-Z27 !s107 C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
-R21
+Z32 !s108 1674338819.795000
+Z33 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
+Z34 !s107 C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
+R12
 R13
 !s100 DEPi?EXA@7T3ATm=VJPSA0
 !i10b 1
@@ -108,10 +145,10 @@ L14
 V2o3:HBdd;EWB2A24NC:SX3
 R8
 32
-R25
-R26
-R27
-R21
+R32
+R33
+R34
+R12
 R13
 !s100 Knm72GQNiHcAVhc9XD<2S0
 !i10b 1
