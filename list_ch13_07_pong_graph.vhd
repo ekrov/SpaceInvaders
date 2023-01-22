@@ -461,10 +461,10 @@ BEGIN
         to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
         alien_x_reg + alien_vx_reg WHEN refr_tick = '1' ELSE
         alien_x_reg;
-    ball_y_next <=
+    alien_y_next <=
         to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
-        ball_y_reg + ball_vy_reg WHEN refr_tick = '1' ELSE
-        ball_y_reg;
+        alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
+        alien_y_reg;
     -- ball_y_next <= to_unsigned((MAX_Y)/2, 10);
 
     -- New alien velocity
