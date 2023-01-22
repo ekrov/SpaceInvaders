@@ -112,16 +112,18 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr_alien, rom_col_alien : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
-    -- Alien 1
-    SIGNAL alien_2_x_l,       alien_2_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_y_t,       alien_2_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_x_reg,     alien_2_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_y_reg,     alien_2_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_vx_reg,    alien_2_vx_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_vy_reg,    alien_2_vy_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_alive : STD_LOGIC;
+    -- Alien 2
+    SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_x_reg, alien_2_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_y_reg, alien_2_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_vx_reg, alien_2_vx_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_vy_reg, alien_2_vy_next : unsigned(9 DOWNTO 0);
     SIGNAL rom_addr_alien_2, rom_col_alien_2 : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
+    SIGNAL alien_2_alive : STD_LOGIC;
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
@@ -137,8 +139,8 @@ ARCHITECTURE arch OF pong_graph IS
     "01100110", --  **  ** 
     "11111111", -- ********
     "10011001", -- *  **  *
-    "10011001"  -- *  **  *
-    );    
+    "10011001" -- *  **  *
+    );
 
     ---------------------------------
     -- Constant Keys 
@@ -197,8 +199,8 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr, rom_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit : STD_LOGIC;
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb , alien_rgb :
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on, proj1_hit : STD_LOGIC;
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
     -- Alien Flags
     SIGNAL sq_alien_1_on, rd_alien_1_on : STD_LOGIC;
@@ -223,11 +225,13 @@ BEGIN
             alien_y_reg <= (OTHERS => '0');
             alien_vx_reg <= ("0000000100");
             alien_vy_reg <= ("0000000100");
+            alien_alive <= '1';
 
             alien_2_x_reg <= (OTHERS => '0');
             alien_2_y_reg <= (OTHERS => '0');
             alien_2_vx_reg <= ("0000000100");
             alien_2_vy_reg <= ("0000000100");
+            alien_2_alive <= '1';
 
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
@@ -240,7 +244,7 @@ BEGIN
             proj1_y_reg <= (OTHERS => '0');
             new_proj1_reg <= '0';
             rand_reg <= "0010110101"; -- seed
-            
+
         ELSIF (clk'event AND clk = '1') THEN
             bar_y_reg <= bar_y_next;
             ball_x_reg <= ball_x_next;
@@ -270,8 +274,6 @@ BEGIN
             proj1_y_reg <= proj1_y_next;
             rand_reg <= rand_next;
             new_proj1_reg <= new_proj1_next;
-           
-
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -299,11 +301,11 @@ BEGIN
 
     proj1_on <=
         '1' WHEN (proj1_x_l <= pix_x) AND (pix_x <= proj1_x_r) AND
-        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit='0')ELSE
+        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit = '0')ELSE
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position  
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V,proj1_on)
+    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on)
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
         IF gra_still = '1' THEN --initial position of projectile 1
@@ -316,22 +318,20 @@ BEGIN
             --     new_proj1_next <= '0';
             IF proj1_y_t > 1 THEN
                 proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
-                
+
                 -- new_proj1_next <= '0';
             ELSE
                 -- new_proj1_next <= '1';
                 proj1_hit <= '1';
             END IF;
         END IF;
-
-
         IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
-                proj1_hit <= '0';
-                proj1_x_initial <= heart_x_reg;
-                PROJ1_V <= 2; -- Velocity will be 1
-                proj1_y_next <= to_unsigned(to_integer(heart_y_reg) - 16 - PROJ_SIZE, 10);
+            proj1_hit <= '0';
+            proj1_x_initial <= heart_x_reg;
+            PROJ1_V <= 2; -- Velocity will be 1
+            proj1_y_next <= to_unsigned(to_integer(heart_y_reg) - 16 - PROJ_SIZE, 10);
 
-                proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+            proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
         END IF;
 
     END PROCESS;
@@ -494,12 +494,12 @@ BEGIN
     -- Round Alien
     -- rom_addr_alien <= pix_y(2 DOWNTO 0) - alien_y_t(2 DOWNTO 0);
     -- rom_col_alien <= pix_x(2 DOWNTO 0) - alien_x_l(2 DOWNTO 0);
-    rom_addr_alien <=   pix_y(3 DOWNTO 1) - alien_y_t(3 DOWNTO 1);
-    rom_col_alien <=    pix_x(3 DOWNTO 1) - alien_x_l(3 DOWNTO 1);
+    rom_addr_alien <= pix_y(3 DOWNTO 1) - alien_y_t(3 DOWNTO 1);
+    rom_col_alien <= pix_x(3 DOWNTO 1) - alien_x_l(3 DOWNTO 1);
     rom_data_alien <= ALIEN_ROM(to_integer(rom_addr_alien));
     rom_bit_alien <= rom_data_alien(to_integer(NOT rom_col_alien));
     rd_alien_1_on <=
-        '1' WHEN (sq_alien_1_on = '1') AND (rom_bit_alien = '1') ELSE
+        '1' WHEN (sq_alien_1_on = '1') AND (rom_bit_alien = '1') AND (alien_alive = '1') ELSE
         '0';
     alien_rgb <= "010"; -- green
     -- new alien position
@@ -525,23 +525,28 @@ BEGIN
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_vy_next <= to_unsigned(0, 10);
-        -- ELSIF alien_y_t < 1 THEN -- reach top
-        --     alien_vy_next <= ALIEN_V_P;
-        -- ELSIF alien_y_b > (MAX_Y - 1) THEN -- reach bottom
-        --     alien_vy_next <= ALIEN_V_N;
-        -- ELSIF alien_x_l <= WALL_X_R THEN -- reach wall
-        --     alien_vx_next <= ALIEN_V_P; -- bounce back
-        -- ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
-        --     (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
-        --     -- reach x of right bar, a hit
-        --     ball_vx_next <= ALIEN_V_N; -- bounce back
-        --     hit <= '1';
-        ELSIF (alien_x_l < 1) THEN -- reach left border
-            alien_vx_next <= ALIEN_V_P;
-        ELSIF (alien_x_r > MAX_X) THEN -- reach right border
-            -- miss <= '1'; -- a miss
-            alien_vx_next <= ALIEN_V_N;
+            -- ELSIF alien_y_t < 1 THEN -- reach top
+            --     alien_vy_next <= ALIEN_V_P;
+            -- ELSIF alien_y_b > (MAX_Y - 1) THEN -- reach bottom
+            --     alien_vy_next <= ALIEN_V_N;
+            -- ELSIF alien_x_l <= WALL_X_R THEN -- reach wall
+            --     alien_vx_next <= ALIEN_V_P; -- bounce back
+            -- ELSIF (BAR_X_L <= ball_x_r) AND (ball_x_r <= BAR_X_R) AND
+            --     (bar_y_t <= ball_y_b) AND (ball_y_t <= bar_y_b) THEN
+            --     -- reach x of right bar, a hit
+            --     ball_vx_next <= ALIEN_V_N; -- bounce back
+            --     hit <= '1';
+        ELSIF (alien_alive = '1') THEN
+            IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
+                alien_alive <= '0';
+            END IF;
+            IF (alien_x_l < 1) THEN -- reach left border
+                alien_vx_next <= ALIEN_V_P;
+            ELSIF (alien_x_r > MAX_X) THEN -- reach right border
+                -- miss <= '1'; -- a miss
+                alien_vx_next <= ALIEN_V_N;
 
+            END IF;
         END IF;
     END PROCESS;
 
@@ -558,12 +563,15 @@ BEGIN
         (alien_2_y_t <= pix_y) AND (pix_y <= alien_2_y_b) ELSE
         '0';
     -- Round Alien
-    rom_addr_alien_2 <=   pix_y(3 DOWNTO 1) - alien_2_y_t(3 DOWNTO 1);
-    rom_col_alien_2 <=    pix_x(3 DOWNTO 1) - alien_2_x_l(3 DOWNTO 1);
-    rom_data_alien_2 <= ALIEN_ROM(to_integer(rom_addr_alien_2));
-    rom_bit_alien_2 <= rom_data_alien(to_integer(NOT rom_col_alien_2));
+    rom_addr_alien_2 <= pix_y(3 DOWNTO 1) - alien_2_y_t(3 DOWNTO 1);
+    rom_col_alien_2 <= pix_x(3 DOWNTO 1) - alien_2_x_l(3 DOWNTO 1);
+    -- rom_data_alien_2 <= ALIEN_ROM(to_integer(rom_addr_alien_2));
+    rom_data_alien_2 <= ALIEN_ROM(to_integer(rom_addr_alien_2) - 1) WHEN to_integer(rom_addr_alien_2) > 0
+        ELSE
+        ALIEN_ROM(7);
+    rom_bit_alien_2 <= rom_data_alien_2(to_integer(NOT rom_col_alien_2));
     rd_alien_2_on <=
-        '1' WHEN (sq_alien_2_on = '1') AND (rom_bit_alien_2 = '1') ELSE
+        '1' WHEN (sq_alien_2_on = '1') AND (rom_bit_alien_2 = '1') AND (alien_2_alive = '1') ELSE
         '0';
     alien_rgb <= "010"; -- green
     -- new alien position
@@ -587,12 +595,16 @@ BEGIN
             alien_2_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
-        ELSIF (alien_2_x_l < 1) THEN -- reach left border
-            alien_2_vx_next <= ALIEN_V_P;
-        ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
-            -- miss <= '1'; -- a miss
-            alien_2_vx_next <= ALIEN_V_N;
-
+        ELSIF (alien_2_alive = '1') THEN
+            IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
+                alien_2_alive <= '0';
+            END IF;
+            IF (alien_2_x_l < 1) THEN -- reach left border
+                alien_2_vx_next <= ALIEN_V_P;
+            ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
+                -- miss <= '1'; -- a miss
+                alien_2_vx_next <= ALIEN_V_N;
+            END IF;
         END IF;
     END PROCESS;
 
@@ -601,8 +613,8 @@ BEGIN
     BEGIN
         -- IF wall_on = '1' THEN
         --     rgb <= wall_rgb;
-            --elsif bar_on='1' then
-            --      rgb <= bar_rgb;
+        --elsif bar_on='1' then
+        --      rgb <= bar_rgb;
         -- ELSIF rd_ball_on = '1' THEN
         --     rgb <= ball_rgb;
         IF rd_heart_on = '1' THEN
