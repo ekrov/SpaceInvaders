@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: pong_top.prj
@@ -118,20 +118,20 @@ Architecture arch of Entity timer_2 is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/ps2_keyboard.vhd" in Library work.
 Architecture logic of Entity ps2_keyboard is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd" in Library work.
+WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd" is newer than current system time.
 Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" is newer than current system time.
-Entity <pong_text> compiled.
-Entity <pong_text> (Architecture <arch>) compiled.
+Architecture arch of Entity pong_text is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" is newer than current system time.
-Entity <pong_graph> compiled.
-Entity <pong_graph> (Architecture <arch>) compiled.
+Architecture arch of Entity pong_graph is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
 Architecture arch of Entity timer is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd" in Library work.
 Architecture arch of Entity m100_counter is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" in Library work.
+WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" is newer than current system time.
 Architecture arch of Entity pong_top is up to date.
 
 =========================================================================
@@ -448,18 +448,16 @@ Unit <ps2_keyboard> synthesized.
 
 Synthesizing Unit <pong_text>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd".
-    Found 64x7-bit ROM for signal <char_addr_r$rom0000> created at line 175.
+    Found 64x7-bit ROM for signal <char_addr_r$rom0000> created at line 156.
     Found 16x7-bit ROM for signal <char_addr_o>.
     Found 7-bit 16-to-1 multiplexer for signal <char_addr_s>.
     Found 1-bit 8-to-1 multiplexer for signal <font_bit>.
-    Found 4-bit comparator greatequal for signal <logo_on$cmp_le0000> created at line 148.
-    Found 4-bit comparator lessequal for signal <logo_on$cmp_le0001> created at line 148.
-    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 181.
-    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 181.
+    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 162.
+    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 162.
     Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 117.
     Summary:
 	inferred   2 ROM(s).
-	inferred   5 Comparator(s).
+	inferred   3 Comparator(s).
 	inferred   8 Multiplexer(s).
 Unit <pong_text> synthesized.
 
@@ -530,14 +528,12 @@ Macro Statistics
  1-bit latch                                           : 1
  10-bit latch                                          : 1
  7-bit latch                                           : 1
-# Comparators                                          : 43
+# Comparators                                          : 41
  10-bit comparator greatequal                          : 6
  10-bit comparator greater                             : 6
  10-bit comparator less                                : 4
  10-bit comparator lessequal                           : 21
  23-bit comparator less                                : 1
- 4-bit comparator greatequal                           : 1
- 4-bit comparator lessequal                            : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
@@ -623,14 +619,12 @@ Macro Statistics
  1-bit latch                                           : 1
  10-bit latch                                          : 1
  7-bit latch                                           : 1
-# Comparators                                          : 43
+# Comparators                                          : 41
  10-bit comparator greatequal                          : 6
  10-bit comparator greater                             : 6
  10-bit comparator less                                : 4
  10-bit comparator lessequal                           : 21
  23-bit comparator less                                : 1
- 4-bit comparator greatequal                           : 1
- 4-bit comparator lessequal                            : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
@@ -681,9 +675,7 @@ WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is uncon
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 39.
-FlipFlop vga_sync_unit/h_count_reg_7 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_8 has been replicated 1 time(s)
+Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 37.
 
 Final Macro Processing ...
 
@@ -696,8 +688,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 178
- Flip-Flops                                            : 178
+# Registers                                            : 176
+ Flip-Flops                                            : 176
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -728,29 +720,30 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1123
+# BELS                             : 1104
 #      GND                         : 1
-#      INV                         : 26
-#      LUT1                        : 72
-#      LUT2                        : 226
-#      LUT2_L                      : 3
-#      LUT3                        : 49
+#      INV                         : 25
+#      LUT1                        : 74
+#      LUT2                        : 220
+#      LUT2_D                      : 1
+#      LUT2_L                      : 1
+#      LUT3                        : 55
 #      LUT3_D                      : 1
-#      LUT3_L                      : 6
-#      LUT4                        : 222
-#      LUT4_D                      : 7
-#      LUT4_L                      : 25
+#      LUT3_L                      : 4
+#      LUT4                        : 206
+#      LUT4_D                      : 5
+#      LUT4_L                      : 13
 #      MULT_AND                    : 1
 #      MUXCY                       : 276
-#      MUXF5                       : 37
-#      MUXF6                       : 9
+#      MUXF5                       : 48
+#      MUXF6                       : 11
 #      VCC                         : 1
 #      XORCY                       : 161
-# FlipFlops/Latches                : 189
+# FlipFlops/Latches                : 187
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 30
-#      FDCE                        : 69
+#      FDCE                        : 67
 #      FDE                         : 10
 #      FDP                         : 5
 #      FDPE                        : 2
@@ -776,10 +769,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      340  out of    960    35%  
- Number of Slice Flip Flops:            189  out of   1920     9%  
- Number of 4 input LUTs:                639  out of   1920    33%  
-    Number used as logic:               637
+ Number of Slices:                      325  out of    960    33%  
+ Number of Slice Flip Flops:            187  out of   1920     9%  
+ Number of 4 input LUTs:                607  out of   1920    31%  
+    Number used as logic:               605
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  27  out of     83    32%  
@@ -808,9 +801,9 @@ Clock Information:
 ---------------------------------------------------------------------+------------------------------------+-------+
 Clock Signal                                                         | Clock buffer(FF name)              | Load  |
 ---------------------------------------------------------------------+------------------------------------+-------+
-clock                                                                | ClockManager_unit/DCM_SP_INST:CLK2X| 172   |
+clock                                                                | ClockManager_unit/DCM_SP_INST:CLK2X| 170   |
 graph_unit/new_proj1_next_or0000(graph_unit/new_proj1_next_or00001:O)| NONE(*)(graph_unit/random1_5)      | 8     |
-graph_unit/refr_tick(graph_unit/refr_tick_and000055:O)               | NONE(*)(graph_unit/new_proj1_next) | 1     |
+graph_unit/refr_tick(graph_unit/refr_tick_and000057:O)               | NONE(*)(graph_unit/new_proj1_next) | 1     |
 keyboard_unit/debounce_ps2_clk/result                                | NONE(keyboard_unit/ps2_word_10)    | 11    |
 ---------------------------------------------------------------------+------------------------------------+-------+
 (*) These 2 clock signal(s) are generated by combinatorial logic,
@@ -823,7 +816,7 @@ Asynchronous Control Signals Information:
 ---------------------------------------------------------------------+--------------------------------+-------+
 Control Signal                                                       | Buffer(FF name)                | Load  |
 ---------------------------------------------------------------------+--------------------------------+-------+
-reset                                                                | IBUF                           | 106   |
+reset                                                                | IBUF                           | 104   |
 graph_unit/new_proj1_next_or0000(graph_unit/new_proj1_next_or00001:O)| NONE(graph_unit/new_proj1_next)| 1     |
 ---------------------------------------------------------------------+--------------------------------+-------+
 
@@ -831,7 +824,7 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 21.170ns (Maximum Frequency: 47.237MHz)
+   Minimum period: 20.442ns (Maximum Frequency: 48.918MHz)
    Minimum input arrival time before clock: 2.589ns
    Maximum output required time after clock: 4.252ns
    Maximum combinational path delay: No path found
@@ -842,35 +835,47 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 21.170ns (frequency: 47.237MHz)
-  Total number of paths / destination ports: 31826 / 340
+  Clock period: 20.442ns (frequency: 48.918MHz)
+  Total number of paths / destination ports: 26969 / 336
 -------------------------------------------------------------------------
-Delay:               10.585ns (Levels of Logic = 11)
-  Source:            graph_unit/heart_y_reg_6 (FF)
-  Destination:       rgb_reg_1 (FF)
+Delay:               10.221ns (Levels of Logic = 23)
+  Source:            graph_unit/heart_y_reg_0 (FF)
+  Destination:       graph_unit/heart_y_reg_9 (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: graph_unit/heart_y_reg_6 to rgb_reg_1
+  Data Path: graph_unit/heart_y_reg_0 to graph_unit/heart_y_reg_9
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             5   0.514   0.690  graph_unit/heart_y_reg_6 (graph_unit/heart_y_reg_6)
-     LUT4:I0->O            3   0.612   0.520  graph_unit/heart_y_b_addsub0000<7>11 (graph_unit/heart_y_b_addsub0000<7>_bdd0)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Msub_heart_y_b_lut<7> (graph_unit/Msub_heart_y_b_lut<7>)
-     MUXCY:S->O            1   0.404   0.000  graph_unit/Msub_heart_y_b_cy<7> (graph_unit/Msub_heart_y_b_cy<7>)
-     XORCY:CI->O          11   0.699   0.862  graph_unit/Msub_heart_y_b_xor<8> (graph_unit/heart_y_b<8>)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<8> (graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<8>)
-     MUXCY:S->O            1   0.404   0.000  graph_unit/Mcompar_sq_heart_on_cmp_le0003_cy<8> (graph_unit/Mcompar_sq_heart_on_cmp_le0003_cy<8>)
-     MUXCY:CI->O           1   0.399   0.360  graph_unit/Mcompar_sq_heart_on_cmp_le0003_cy<9> (graph_unit/sq_heart_on_cmp_le0003)
-     LUT4_D:I3->O          2   0.612   0.410  graph_unit/rd_heart_on_and0000 (graph_unit/rd_heart_on)
-     LUT4_D:I2->O          1   0.612   0.360  graph_unit/graph_on27 (graph_on)
-     LUT4_D:I3->O          2   0.612   0.410  rgb_next<0>4 (N7)
-     LUT4:I2->O            1   0.612   0.000  rgb_next<1>28 (rgb_next<1>)
-     FDCE:D                    0.268          rgb_reg_1
+     FDCE:C->Q             7   0.514   0.754  graph_unit/heart_y_reg_0 (graph_unit/heart_y_reg_0)
+     LUT1:I0->O            1   0.612   0.000  graph_unit/Msub_heart_y_b_cy<0>_rt (graph_unit/Msub_heart_y_b_cy<0>_rt)
+     MUXCY:S->O            1   0.404   0.000  graph_unit/Msub_heart_y_b_cy<0> (graph_unit/Msub_heart_y_b_cy<0>)
+     MUXCY:CI->O           1   0.051   0.000  graph_unit/Msub_heart_y_b_cy<1> (graph_unit/Msub_heart_y_b_cy<1>)
+     MUXCY:CI->O           1   0.051   0.000  graph_unit/Msub_heart_y_b_cy<2> (graph_unit/Msub_heart_y_b_cy<2>)
+     MUXCY:CI->O           1   0.051   0.000  graph_unit/Msub_heart_y_b_cy<3> (graph_unit/Msub_heart_y_b_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  graph_unit/Msub_heart_y_b_cy<4> (graph_unit/Msub_heart_y_b_cy<4>)
+     XORCY:CI->O           4   0.699   0.502  graph_unit/Msub_heart_y_b_xor<5> (graph_unit/heart_y_b<5>)
+     LUT4:I3->O            1   0.612   0.000  graph_unit/heart_y_reg_mux000145_SW1_G (N94)
+     MUXF5:I1->O           1   0.278   0.360  graph_unit/heart_y_reg_mux000145_SW1 (N89)
+     LUT4_D:I3->LO         1   0.612   0.103  graph_unit/heart_y_reg_mux000155 (N135)
+     LUT4:I3->O            3   0.612   0.520  graph_unit/heart_y_reg_mux000170 (graph_unit/heart_y_reg_mux0001)
+     LUT2:I1->O            1   0.612   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.404   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7>)
+     MUXCY:CI->O           0   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8>)
+     XORCY:CI->O           1   0.699   0.426  graph_unit/Maddsub_heart_y_reg_addsub0000_xor<9> (graph_unit/heart_y_reg_addsub0000<9>)
+     LUT2:I1->O            1   0.612   0.000  graph_unit/heart_y_reg_mux0000<0>1 (graph_unit/heart_y_reg_mux0000<0>)
+     FDCE:D                    0.268          graph_unit/heart_y_reg_9
     ----------------------------------------
-    Total                     10.585ns (6.973ns logic, 3.612ns route)
-                                       (65.9% logic, 34.1% route)
+    Total                     10.221ns (7.556ns logic, 2.665ns route)
+                                       (73.9% logic, 26.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -936,14 +941,14 @@ Offset:              4.252ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.16 secs
+Total CPU time to Xst completion: 5.62 secs
  
 --> 
 
 
-Total memory usage is 547688 kilobytes
+Total memory usage is 546604 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   67 (   0 filtered)
+Number of warnings :   69 (   0 filtered)
 Number of infos    :    9 (   0 filtered)
 
