@@ -112,7 +112,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr_alien, rom_col_alien : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
-    SIGNAL alien_alive : STD_LOGIC;
+    SIGNAL alien_alive, alien_alive_reg, alien_alive_next : STD_LOGIC;
     -- Alien 2
     SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
@@ -123,7 +123,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr_alien_2, rom_col_alien_2 : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
-    SIGNAL alien_2_alive : STD_LOGIC;
+    SIGNAL alien_2_alive, alien_2_alive_reg, alien_2_alive_next : STD_LOGIC;
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
@@ -139,7 +139,7 @@ ARCHITECTURE arch OF pong_graph IS
     "01100110", --  **  ** 
     "11111111", -- ********
     "10011001", -- *  **  *
-    "10011001" -- *  **  *
+    "10011001"  -- *  **  *
     );
 
     ---------------------------------
@@ -225,13 +225,13 @@ BEGIN
             alien_y_reg <= (OTHERS => '0');
             alien_vx_reg <= ("0000000100");
             alien_vy_reg <= ("0000000100");
-            alien_alive <= '1';
+            alien_alive_reg <= '1';
 
             alien_2_x_reg <= (OTHERS => '0');
             alien_2_y_reg <= (OTHERS => '0');
             alien_2_vx_reg <= ("0000000100");
             alien_2_vy_reg <= ("0000000100");
-            alien_2_alive <= '1';
+            alien_2_alive_reg <= '1';
 
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
@@ -257,11 +257,13 @@ BEGIN
             alien_y_reg <= alien_y_next;
             alien_vx_reg <= alien_vx_next;
             alien_vy_reg <= alien_vy_next;
+            alien_alive_reg <= alien_alive_next;
 
             alien_2_x_reg <= alien_2_x_next;
             alien_2_y_reg <= alien_2_y_next;
             alien_2_vx_reg <= alien_2_vx_next;
             alien_2_vy_reg <= alien_2_vy_next;
+            alien_2_alive_reg <= alien_2_alive_next;
 
             SHIP_x_reg <= ball_x_next;
             SHIP_y_reg <= ball_y_next;
@@ -511,6 +513,8 @@ BEGIN
         to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
         alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
         alien_y_reg;
+
+    alien_alive <= alien_alive_reg;
     -- ball_y_next <= to_unsigned((MAX_Y)/2, 10);
 
     -- New alien velocity
@@ -521,6 +525,7 @@ BEGIN
     BEGIN
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
+        alien_alive_next <= alien_alive_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
@@ -538,7 +543,7 @@ BEGIN
             --     hit <= '1';
         ELSIF (alien_alive = '1') THEN
             IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
-                alien_alive <= '0';
+                alien_alive_next <= '0';
             END IF;
             IF (alien_x_l < 1) THEN -- reach left border
                 alien_vx_next <= ALIEN_V_P;
@@ -584,6 +589,8 @@ BEGIN
         alien_2_y_reg + alien_2_vy_reg WHEN refr_tick = '1' ELSE
         alien_2_y_reg;
 
+    alien_2_alive <= alien_2_alive_reg;
+
     -- New alien 2 velocity
 
     PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_y_t, alien_2_x_l, alien_2_x_r,
@@ -591,13 +598,14 @@ BEGIN
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
         alien_2_vy_next <= alien_2_vy_reg;
+        alien_2_alive_next <= alien_2_alive_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_2_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_2_alive = '1') THEN
             IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
-                alien_2_alive <= '0';
+                alien_2_alive_next <= '0';
             END IF;
             IF (alien_2_x_l < 1) THEN -- reach left border
                 alien_2_vx_next <= ALIEN_V_P;
