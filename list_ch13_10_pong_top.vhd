@@ -114,7 +114,7 @@ begin
    end process;
    -- fsmd next-state logic
    process(btn,hit,miss,timer_up,state_reg,
-           ball_reg,ball_next)
+           ball_reg,ball_next, CODEWORD)
    begin
       gra_still <= '1';
       timer_start <='0';
@@ -126,7 +126,8 @@ begin
          when newgame =>
             ball_next <= "11";    -- three balls
             d_clr <= '1';         -- clear score
-            if (btn /= "00") then -- button pressed
+            -- if (btn /= "00") then -- button pressed
+            if (CODEWORD = "01011010") then -- button pressed
                state_next <= play;
                ball_next <= ball_reg - 1;
             end if;

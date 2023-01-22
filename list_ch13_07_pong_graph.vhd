@@ -100,7 +100,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_bit_heart : STD_LOGIC;
 
     ---------------------------------
-    -- Constant Keys buenos dias
+    -- Constant Keys 
     ---------------------------------
     CONSTANT a : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01101011";
     CONSTANT d : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110100";
@@ -116,8 +116,8 @@ ARCHITECTURE arch OF pong_graph IS
     ---------------------------------
     -- Projectiles - Bars
     ---------------------------------
-    CONSTANT PROJ_WIDTH : INTEGER := 6;
-    CONSTANT PROJ_SIZE : INTEGER := 40;
+    CONSTANT PROJ_WIDTH : INTEGER := 3;
+    CONSTANT PROJ_SIZE : INTEGER := 10;
     -- Porjectile 1
     SIGNAL proj1_y_t, proj1_y_b : unsigned(9 DOWNTO 0);
     SIGNAL proj1_x_l, proj1_x_r : unsigned(9 DOWNTO 0);
@@ -156,7 +156,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_addr, rom_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit : STD_LOGIC;
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on : STD_LOGIC;
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
     SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
     SIGNAL refr_tick : STD_LOGIC;
@@ -184,6 +184,7 @@ BEGIN
             proj1_y_reg <= (OTHERS => '0');
             new_proj1_reg <= '0';
             rand_reg <= "0010110101"; -- seed
+            
         ELSIF (clk'event AND clk = '1') THEN
             bar_y_reg <= bar_y_next;
             ball_x_reg <= ball_x_next;
@@ -203,6 +204,8 @@ BEGIN
             proj1_y_reg <= proj1_y_next;
             rand_reg <= rand_next;
             new_proj1_reg <= new_proj1_next;
+           
+
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -225,30 +228,34 @@ BEGIN
     ----------------------------------------------
     proj1_y_t <= proj1_y_reg;
     proj1_y_b <= proj1_y_t + PROJ_SIZE - 1;
-    proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+    --proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
     proj1_x_r <= proj1_x_l + PROJ_WIDTH;
 
     proj1_on <=
         '1' WHEN (proj1_x_l <= pix_x) AND (pix_x <= proj1_x_r) AND
-        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) ELSE
+        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit='0')ELSE
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position  
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V)
+    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V,proj1_on)
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
         IF gra_still = '1' OR --initial position of projectile 1
-            (keyboard_code=spacebar) THEN
+            (keyboard_code=spacebar AND proj1_hit='1') THEN -- counter shot less than 500ms
+            proj1_hit<='0';
             new_proj1_next <= '0';
             random1 <= rand_number;
             --proj1_x_initial <= random1(6 DOWNTO 0);
             proj1_x_initial <= heart_x_reg;
-            PROJ1_V <=  1; -- Velocity will be 1
-            IF random1(5) = '1' THEN
-                proj1_y_next <= to_unsigned(30, 10);
-            ELSE
-                proj1_y_next <= to_unsigned(WALL_Y_B2 + 30, 10);
-            END IF;
+            PROJ1_V <=  3; -- Velocity will be 1
+            -- IF random1(5) = '1' THEN
+            --     proj1_y_next <= to_unsigned(30, 10);
+            -- ELSE
+            --     proj1_y_next <= to_unsigned(WALL_Y_B2 + 30, 10);
+            -- END IF;
+            proj1_y_next <= to_unsigned(to_integer(heart_y_reg)-16-PROJ_SIZE, 10);
+				
+			proj1_x_l<=to_unsigned((to_integer(heart_x_reg)), 10);
 
         ELSIF refr_tick = '1' THEN
 
@@ -260,6 +267,7 @@ BEGIN
                 new_proj1_next <= '0';
             ELSE
                 new_proj1_next <= '1';
+                proj1_hit<='1';
             END IF;
         END IF;
     END PROCESS;
