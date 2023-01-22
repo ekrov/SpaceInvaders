@@ -109,8 +109,8 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_vx_reg, alien_vx_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_vy_reg, alien_vy_next : unsigned(9 DOWNTO 0);
     CONSTANT ALIEN_V : INTEGER := 4;
-    CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(2, 10);
-    CONSTANT ALIEN_V_N : unsigned(9 DOWNTO 0) := unsigned(to_signed(-2, 10));
+    CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
+    CONSTANT ALIEN_V_N : unsigned(9 DOWNTO 0) := unsigned(to_signed(-1, 10));
     TYPE rom_type_alien IS ARRAY (0 TO 7) OF
     STD_LOGIC_VECTOR (7 DOWNTO 0);
     CONSTANT ALIEN_ROM : rom_type :=
