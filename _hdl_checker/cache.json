@@ -661,7 +661,7 @@
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
      "__class__": "Path"
     },
-    "mtime": 1674410969.3361127,
+    "mtime": 1674411262.3855534,
     "flags": {
      "source_specific": [],
      "single": [],
@@ -1642,6 +1642,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp9lqhkyfc.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpvwmm5yu_.vhd",
     "__class__": "Path"
    },
    {

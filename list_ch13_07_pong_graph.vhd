@@ -318,11 +318,11 @@ BEGIN
         END IF;
     END PROCESS;
 
-    -- wall
-    wall_on <=
-        '1' WHEN (WALL_X_L <= pix_x) AND (pix_x <= WALL_X_R) ELSE
-        '0';
-    wall_rgb <= "001"; -- blue
+    -- -- wall
+    -- wall_on <=
+    --     '1' WHEN (WALL_X_L <= pix_x) AND (pix_x <= WALL_X_R) ELSE
+    --     '0';
+    -- wall_rgb <= "001"; -- blue
 
     --	
     --   -- paddle bar

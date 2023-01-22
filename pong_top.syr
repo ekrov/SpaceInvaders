@@ -122,7 +122,8 @@ Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 Architecture arch of Entity pong_text is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
-Architecture arch of Entity pong_graph is up to date.
+Entity <pong_graph> compiled.
+Entity <pong_graph> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
 Architecture arch of Entity timer is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd" in Library work.
@@ -267,6 +268,8 @@ WARNING:Xst:647 - Input <attack_1_on> is never used. This port will be preserved
 WARNING:Xst:647 - Input <btn> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <fight_on> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <timer_up> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:653 - Signal <wall_rgb> is used but never assigned. This sourceless signal will be automatically connected to value 000.
+WARNING:Xst:653 - Signal <wall_on> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:1780 - Signal <sq_ship_on> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <ship_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
@@ -363,13 +366,11 @@ WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be gene
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0001> created at line 287.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0002> created at line 287.
     Found 10-bit comparator lessequal for signal <sq_heart_on$cmp_le0003> created at line 287.
-    Found 10-bit comparator greatequal for signal <wall_on$cmp_le0000> created at line 322.
-    Found 10-bit comparator lessequal for signal <wall_on$cmp_le0001> created at line 322.
     Summary:
 	inferred   2 ROM(s).
 	inferred  58 D-type flip-flop(s).
 	inferred  21 Adder/Subtractor(s).
-	inferred  32 Comparator(s).
+	inferred  30 Comparator(s).
 	inferred   2 Multiplexer(s).
 	inferred   1 Xor(s).
 Unit <pong_graph> synthesized.
@@ -521,11 +522,11 @@ Macro Statistics
 # Latches                                              : 2
  1-bit latch                                           : 1
  10-bit latch                                          : 1
-# Comparators                                          : 41
- 10-bit comparator greatequal                          : 6
+# Comparators                                          : 39
+ 10-bit comparator greatequal                          : 5
  10-bit comparator greater                             : 6
  10-bit comparator less                                : 4
- 10-bit comparator lessequal                           : 21
+ 10-bit comparator lessequal                           : 20
  23-bit comparator less                                : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
@@ -609,11 +610,11 @@ Macro Statistics
 # Latches                                              : 2
  1-bit latch                                           : 1
  10-bit latch                                          : 1
-# Comparators                                          : 41
- 10-bit comparator greatequal                          : 6
+# Comparators                                          : 39
+ 10-bit comparator greatequal                          : 5
  10-bit comparator greater                             : 6
  10-bit comparator less                                : 4
- 10-bit comparator lessequal                           : 21
+ 10-bit comparator lessequal                           : 20
  23-bit comparator less                                : 1
  5-bit comparator greatequal                           : 1
  5-bit comparator lessequal                            : 1
@@ -667,9 +668,6 @@ WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is uncon
 Mapping all equations...
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 37.
-FlipFlop vga_sync_unit/h_count_reg_7 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_8 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_5 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -682,8 +680,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 168
- Flip-Flops                                            : 168
+# Registers                                            : 165
+ Flip-Flops                                            : 165
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -714,29 +712,27 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1165
+# BELS                             : 1141
 #      GND                         : 1
 #      INV                         : 34
 #      LUT1                        : 86
-#      LUT2                        : 243
-#      LUT2_D                      : 1
+#      LUT2                        : 237
 #      LUT2_L                      : 3
 #      LUT3                        : 49
-#      LUT3_D                      : 2
-#      LUT3_L                      : 3
-#      LUT4                        : 189
-#      LUT4_D                      : 12
-#      LUT4_L                      : 15
+#      LUT3_L                      : 5
+#      LUT4                        : 179
+#      LUT4_D                      : 9
+#      LUT4_L                      : 14
 #      MUXCY                       : 299
-#      MUXF5                       : 42
+#      MUXF5                       : 39
 #      MUXF6                       : 5
 #      VCC                         : 1
 #      XORCY                       : 180
-# FlipFlops/Latches                : 181
+# FlipFlops/Latches                : 178
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 23
-#      FDCE                        : 71
+#      FDCE                        : 68
 #      FDE                         : 10
 #      FDPE                        : 2
 #      FDRE                        : 41
@@ -761,10 +757,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      338  out of    960    35%  
- Number of Slice Flip Flops:            181  out of   1920     9%  
- Number of 4 input LUTs:                639  out of   1920    33%  
-    Number used as logic:               637
+ Number of Slices:                      327  out of    960    34%  
+ Number of Slice Flip Flops:            178  out of   1920     9%  
+ Number of 4 input LUTs:                618  out of   1920    32%  
+    Number used as logic:               616
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -793,7 +789,7 @@ Clock Information:
 -------------------------------------------------------------+------------------------------------+-------+
 Clock Signal                                                 | Clock buffer(FF name)              | Load  |
 -------------------------------------------------------------+------------------------------------+-------+
-clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X| 162   |
+clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X| 159   |
 graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)   | NONE(*)(graph_unit/proj1_x_l_9)    | 10    |
 graph_unit/proj1_hit_not0001(graph_unit/proj1_hit_not00011:O)| NONE(*)(graph_unit/proj1_hit)      | 1     |
 keyboard_unit/debounce_ps2_clk/result                        | NONE(keyboard_unit/ps2_word_10)    | 11    |
@@ -808,7 +804,7 @@ Asynchronous Control Signals Information:
 ----------------------------------------------------------+---------------------------+-------+
 Control Signal                                            | Buffer(FF name)           | Load  |
 ----------------------------------------------------------+---------------------------+-------+
-reset                                                     | IBUF                      | 96    |
+reset                                                     | IBUF                      | 93    |
 graph_unit/proj1_hit_or0000(graph_unit/proj1_hit_or0000:O)| NONE(graph_unit/proj1_hit)| 1     |
 ----------------------------------------------------------+---------------------------+-------+
 
@@ -816,7 +812,7 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 21.759ns (Maximum Frequency: 45.958MHz)
+   Minimum period: 21.230ns (Maximum Frequency: 47.104MHz)
    Minimum input arrival time before clock: 1.829ns
    Maximum output required time after clock: 4.380ns
    Maximum combinational path delay: No path found
@@ -827,35 +823,42 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 21.759ns (frequency: 45.958MHz)
-  Total number of paths / destination ports: 32431 / 332
+  Clock period: 21.230ns (frequency: 47.104MHz)
+  Total number of paths / destination ports: 28408 / 326
 -------------------------------------------------------------------------
-Delay:               10.879ns (Levels of Logic = 11)
+Delay:               10.615ns (Levels of Logic = 18)
   Source:            graph_unit/heart_y_reg_4 (FF)
-  Destination:       rgb_reg_0 (FF)
+  Destination:       graph_unit/heart_y_reg_9 (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: graph_unit/heart_y_reg_4 to rgb_reg_0
+  Data Path: graph_unit/heart_y_reg_4 to graph_unit/heart_y_reg_9
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCE:C->Q            12   0.514   0.820  graph_unit/heart_y_reg_4 (graph_unit/heart_y_reg_4)
      LUT4:I3->O            3   0.612   0.520  graph_unit/heart_y_b_addsub0000<7>11 (graph_unit/heart_y_b_addsub0000<7>_bdd0)
      LUT2:I1->O            1   0.612   0.000  graph_unit/Msub_heart_y_b_lut<7> (graph_unit/Msub_heart_y_b_lut<7>)
-     MUXCY:S->O            1   0.404   0.000  graph_unit/Msub_heart_y_b_cy<7> (graph_unit/Msub_heart_y_b_cy<7>)
-     MUXCY:CI->O           0   0.051   0.000  graph_unit/Msub_heart_y_b_cy<8> (graph_unit/Msub_heart_y_b_cy<8>)
-     XORCY:CI->O          11   0.699   0.862  graph_unit/Msub_heart_y_b_xor<9> (graph_unit/heart_y_b<9>)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<9> (graph_unit/Mcompar_sq_heart_on_cmp_le0003_lut<9>)
-     MUXCY:S->O            1   0.752   0.360  graph_unit/Mcompar_sq_heart_on_cmp_le0003_cy<9> (graph_unit/sq_heart_on_cmp_le0003)
-     LUT4_D:I3->O          6   0.612   0.599  graph_unit/rd_heart_on_and0000 (graph_unit/rd_heart_on)
-     LUT3:I2->O            1   0.612   0.357  rgb_next<0>_SW0 (N55)
-     MUXF5:S->O            1   0.641   0.360  rgb_next<0>341_SW4 (N81)
-     LUT4:I3->O            1   0.612   0.000  rgb_next<0> (rgb_next<0>)
-     FDCE:D                    0.268          rgb_reg_0
+     XORCY:LI->O           3   0.458   0.520  graph_unit/Msub_heart_y_b_xor<7> (graph_unit/heart_y_b<7>)
+     LUT2:I1->O            2   0.612   0.380  graph_unit/heart_x_reg_cmp_lt0000213 (graph_unit/heart_x_reg_cmp_lt0000213)
+     MUXF5:S->O            1   0.641   0.360  graph_unit/heart_x_reg_cmp_lt00002158_SW1 (N66)
+     LUT4:I3->O            3   0.612   0.520  graph_unit/heart_y_reg_mux000145 (graph_unit/heart_y_reg_mux0001)
+     LUT2:I1->O            1   0.612   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.404   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<7>)
+     MUXCY:CI->O           0   0.052   0.000  graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8> (graph_unit/Maddsub_heart_y_reg_addsub0000_cy<8>)
+     XORCY:CI->O           1   0.699   0.426  graph_unit/Maddsub_heart_y_reg_addsub0000_xor<9> (graph_unit/heart_y_reg_addsub0000<9>)
+     LUT2:I1->O            1   0.612   0.000  graph_unit/heart_y_reg_mux0000<0>1 (graph_unit/heart_y_reg_mux0000<0>)
+     FDCE:D                    0.268          graph_unit/heart_y_reg_9
     ----------------------------------------
-    Total                     10.879ns (7.001ns logic, 3.878ns route)
-                                       (64.4% logic, 35.6% route)
+    Total                     10.615ns (7.068ns logic, 3.547ns route)
+                                       (66.6% logic, 33.4% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -920,14 +923,14 @@ Offset:              4.380ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.37 secs
+Total CPU time to Xst completion: 6.16 secs
  
 --> 
 
 
-Total memory usage is 644032 kilobytes
+Total memory usage is 644016 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   67 (   0 filtered)
+Number of warnings :   69 (   0 filtered)
 Number of infos    :    9 (   0 filtered)
 
