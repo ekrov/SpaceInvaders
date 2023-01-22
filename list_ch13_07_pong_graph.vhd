@@ -187,10 +187,11 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit : STD_LOGIC;
     SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb  :
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb, alien_rgb  :STD_LOGIC_VECTOR(2 DOWNTO 0);
+
 -- Alien Flags
-    SIGNAL sq_alien_on, rd_alien_on : STD_LOGIC;    STD_LOGIC_VECTOR(2 DOWNTO 0);
-    SIGNAL refr_tick : STD_LOGIC;
+    SIGNAL sq_alien_on, rd_alien_on : STD_LOGIC;       
+	 SIGNAL refr_tick : STD_LOGIC;
     SIGNAL rom_ship_addr, rom_ship_col : unsigned(2 DOWNTO 0);
     SIGNAL rom_ship_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_ship_bit : STD_LOGIC;
