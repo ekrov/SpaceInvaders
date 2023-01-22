@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: pong_top.prj
@@ -974,13 +974,13 @@ Offset:              4.433ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 7.87 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.02 secs
  
 --> 
 
 
-Total memory usage is 648068 kilobytes
+Total memory usage is 648036 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   91 (   0 filtered)

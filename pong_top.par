@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-localhost.localdomain::  Sun Jan 22 21:52:31 2023
+localhost.localdomain::  Sun Jan 22 21:57:17 2023
 
 par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
 
@@ -55,15 +55,15 @@ Placer effort level (-pl):    High
 Placer cost table entry (-t): 1
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 1 secs 
-Finished initial Timing Analysis.  REAL time: 1 secs 
+Starting initial Timing Analysis.  REAL time: 0 secs 
+Finished initial Timing Analysis.  REAL time: 0 secs 
 
 WARNING:Par:288 - The signal btn<0>_IBUF has no load.  PAR will not attempt to route this signal.
 WARNING:Par:288 - The signal btn<1>_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
 Total REAL time at the beginning of Placer: 1 secs 
-Total CPU  time at the beginning of Placer: 1 secs 
+Total CPU  time at the beginning of Placer: 0 secs 
 
 Phase 1.1  Initial Placement Analysis
 Phase 1.1  Initial Placement Analysis (Checksum:ad127f46) REAL time: 1 secs 
@@ -98,10 +98,10 @@ Phase 9.8  Global Placement
 ........................................................
 .......
 ...........
-Phase 9.8  Global Placement (Checksum:775178e8) REAL time: 3 secs 
+Phase 9.8  Global Placement (Checksum:775178e8) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:775178e8) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:775178e8) REAL time: 2 secs 
 
 Phase 11.18  Placement Optimization
 Phase 11.18  Placement Optimization (Checksum:7c6aca5b) REAL time: 3 secs 
@@ -118,9 +118,9 @@ Writing design to file pong_top.ncd
 Starting Router
 
 
-Phase  1  : 2601 unrouted;      REAL time: 4 secs 
+Phase  1  : 2601 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 2422 unrouted;      REAL time: 4 secs 
+Phase  2  : 2422 unrouted;      REAL time: 3 secs 
 
 Phase  3  : 441 unrouted;      REAL time: 4 secs 
 
@@ -203,7 +203,7 @@ All signals are completely routed.
 WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
 Total REAL time to PAR completion: 5 secs 
-Total CPU time to PAR completion: 5 secs 
+Total CPU time to PAR completion: 4 secs 
 
 Peak Memory Usage:  650 MB
 
