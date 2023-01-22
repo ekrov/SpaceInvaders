@@ -8,7 +8,7 @@ entity pong_text is
       pixel_x, pixel_y: in std_logic_vector(9 downto 0);
       dig0, dig1: in std_logic_vector(3 downto 0);
       ball: in std_logic_vector(1 downto 0);
-      text_on: out std_logic_vector(3 downto 0);
+      text_on: out std_logic_vector(2 downto 0);
       text_rgb: out std_logic_vector(2 downto 0)
    );
 end pong_text;
@@ -16,15 +16,15 @@ end pong_text;
 architecture arch of pong_text is
    signal pix_x, pix_y: unsigned(9 downto 0);
    signal rom_addr: std_logic_vector(10 downto 0);
-   signal char_addr, char_addr_s, char_addr_l, char_addr_r,
+   signal char_addr, char_addr_s, char_addr_r,
           char_addr_o: std_logic_vector(6 downto 0);
-   signal row_addr, row_addr_s, row_addr_l,row_addr_r,
+   signal row_addr, row_addr_s, row_addr_r,
           row_addr_o: std_logic_vector(3 downto 0);
-   signal bit_addr, bit_addr_s, bit_addr_l,bit_addr_r,
+   signal bit_addr, bit_addr_s, bit_addr_r,
           bit_addr_o: std_logic_vector(2 downto 0);
    signal font_word: std_logic_vector(7 downto 0);
    signal font_bit: std_logic;
-   signal score_on, logo_on, rule_on, over_on: std_logic;
+   signal score_on, rule_on, over_on: std_logic;
    signal rule_rom_addr: unsigned(5 downto 0);
    type rule_rom_type is array (0 to 63) of
        std_logic_vector (6 downto 0);
@@ -138,25 +138,6 @@ begin
         "1101100" when "1101", -- l x6c
         "0111010" when "1110", -- :
         "01100" & ball when others;
-
-   ---------------------------------------------
-   -- logo region:
-   --   - display logo "PONG" on top center
-   --   - used as background
-   --   - scale to 64-by-128 font
-   ---------------------------------------------
-   logo_on <=
-      '1' when pix_y(9 downto 7)=2 and
-         (3<= pix_x(9 downto 6) and pix_x(9 downto 6)<=6) else
-      '0';
-   row_addr_l <= std_logic_vector(pix_y(6 downto 3));
-   bit_addr_l <= std_logic_vector(pix_x(5 downto 3));
-   with pix_x(8 downto 6) select
-     char_addr_l <= 
-        "1010000" when "011", -- P x50
-        "1001001" when "100", -- O x4f
-        "1001100" when "101", -- N x4e
-        "1000000" when others; --G x47
    ---------------------------------------------
    -- rule region
    --   - display rule (4-by-16 tiles)on center
@@ -198,10 +179,10 @@ begin
    ---------------------------------------------
    -- mux for font ROM addresses and rgb
    ---------------------------------------------
-   process(score_on,logo_on,rule_on,pix_x,pix_y,font_bit,
-           char_addr_s,char_addr_l,char_addr_r,char_addr_o,
-           row_addr_s,row_addr_l,row_addr_r,row_addr_o,
-           bit_addr_s,bit_addr_l,bit_addr_r,bit_addr_o)
+   process(score_on,rule_on,pix_x,pix_y,font_bit,
+           char_addr_s,char_addr_r,char_addr_o,
+           row_addr_s,row_addr_r,row_addr_o,
+           bit_addr_s,bit_addr_r,bit_addr_o)
    begin
       text_rgb <= "110";  -- background, yellow
       if score_on='1' then
@@ -218,13 +199,6 @@ begin
          if font_bit='1' then
             text_rgb <= "001";
          end if;
-      elsif logo_on='1' then
-         char_addr <= char_addr_l;
-         row_addr <= row_addr_l;
-         bit_addr <= bit_addr_l;
-         if font_bit='1' then
-            text_rgb <= "011";
-         end if;
       else -- game over
          char_addr <= char_addr_o;
          row_addr <= row_addr_o;
@@ -234,7 +208,7 @@ begin
          end if;
       end if;
    end process;
-   text_on <= score_on & logo_on & rule_on & over_on;
+   text_on <= score_on & rule_on & over_on;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------
