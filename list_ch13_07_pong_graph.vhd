@@ -106,6 +106,7 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT d : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110100";
     CONSTANT s : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110010";
     CONSTANT w : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110101";
+    CONSTANT spacebar : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
 
     ---------------------------------
     -- Random Generator
@@ -124,7 +125,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL PROJ1_V : INTEGER;
     SIGNAL new_proj1_next, new_proj1_reg : STD_LOGIC;
 
-    SIGNAL proj1_x_initial : unsigned(6 DOWNTO 0);
+    SIGNAL proj1_x_initial : unsigned(9 DOWNTO 0);
     SIGNAL random1 : unsigned(9 DOWNTO 0);
 
     -------------------------------
@@ -224,12 +225,12 @@ BEGIN
     ----------------------------------------------
     proj1_y_t <= proj1_y_reg;
     proj1_y_b <= proj1_y_t + PROJ_SIZE - 1;
-    proj1_x_l <= to_unsigned((to_integer(proj1_x_initial) + WALL1_X_R), 10);
+    proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
     proj1_x_r <= proj1_x_l + PROJ_WIDTH;
 
     proj1_on <=
         '1' WHEN (proj1_x_l <= pix_x) AND (pix_x <= proj1_x_r) AND
-        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND attack_1_on = '1' ELSE
+        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) ELSE
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position  
@@ -237,11 +238,11 @@ BEGIN
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
         IF gra_still = '1' OR --initial position of projectile 1
-            (attack_1_on = '1' AND new_proj1_reg = '1') THEN
+            (keyboard_code=spacebar) THEN
             new_proj1_next <= '0';
             random1 <= rand_number;
-            -- proj1_x_initial <= random1(6 DOWNTO 0);
-            proj1_x_initial <= heart_x_reg(6 DOWNTO 0);
+            --proj1_x_initial <= random1(6 DOWNTO 0);
+            proj1_x_initial <= heart_x_reg;
             PROJ1_V <=  1; -- Velocity will be 1
             IF random1(5) = '1' THEN
                 proj1_y_next <= to_unsigned(30, 10);
@@ -254,7 +255,7 @@ BEGIN
             -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
             --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
             --     new_proj1_next <= '0';
-            IF proj1_y_b > (WALL_Y_T - 30 - 1) AND random1(5) = '0' THEN
+            IF proj1_y_b > (WALL_Y_T - 30 - 1) THEN
                 proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
                 new_proj1_next <= '0';
             ELSE
