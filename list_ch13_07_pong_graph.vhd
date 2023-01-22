@@ -58,46 +58,83 @@ ARCHITECTURE arch OF pong_graph IS
     "01111110", --  ******
     "00111100" --   ****
     );
-    TYPE rom_type_2 IS ARRAY (0 TO 7) OF
-    STD_LOGIC_VECTOR (7 DOWNTO 0);
-    CONSTANT SHIP_ROM : rom_type_2 :=
-    (
-    "11111111", -- ********
-    "01111110", --  ******
-    "11111111", -- ********
-    "11111111", -- ********
-    "11111111", -- ********
-    "11111111", -- ********
-    "01111110", --  ******
-    "11111111" -- ********
-    );
+    -- TYPE rom_type_2 IS ARRAY (0 TO 7) OF
+    -- STD_LOGIC_VECTOR (7 DOWNTO 0);
+    -- CONSTANT SHIP_ROM : rom_type_2 :=
+    -- (
+    -- "11111111", -- ********
+    -- "01111110", --  ******
+    -- "11111111", -- ********
+    -- "11111111", -- ********
+    -- "11111111", -- ********
+    -- "11111111", -- ********
+    -- "01111110", --  ******
+    -- "11111111" -- ********
+    -- );
 
     ---------------------------------  
-    -- Heart  
+    -- ship  
     ---------------------------------
-    CONSTANT HEART_SIZE : INTEGER := 8; -- 8
-    SIGNAL heart_x_l, heart_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL heart_y_t, heart_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL heart_x_reg, heart_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL heart_y_reg, heart_y_next : unsigned(9 DOWNTO 0);
-    CONSTANT HEART_V : INTEGER := 4;
-    TYPE rom_type_heart IS ARRAY (0 TO 7) OF
-    STD_LOGIC_VECTOR (7 DOWNTO 0);
-    CONSTANT HEART_ROM : rom_type :=
+    -- CONSTANT ship_SIZE : INTEGER := 8; -- 8
+    -- SIGNAL ship_x_l, ship_x_r : unsigned(9 DOWNTO 0);
+    -- SIGNAL ship_y_t, ship_y_b : unsigned(9 DOWNTO 0);
+    -- SIGNAL ship_x_reg, ship_x_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL ship_y_reg, ship_y_next : unsigned(9 DOWNTO 0);
+    -- CONSTANT ship_V : INTEGER := 4;
+    -- TYPE rom_type_ship IS ARRAY (0 TO 7) OF
+    -- STD_LOGIC_VECTOR (7 DOWNTO 0);
+    -- CONSTANT ship_ROM : rom_type :=
+    -- (
+    -- "00011000", --    **
+    -- "00011000", --    **    
+    -- "00011000", --    **   
+    -- "00111100", --   ****   
+    -- "01111110", --  ****** 
+    -- "11111111", -- ********
+    -- "11111111", -- ********
+    -- "11111111" -- ********
+    -- );
+
+    -- SIGNAL rom_addr_ship, rom_col_ship : unsigned(2 DOWNTO 0);
+    -- SIGNAL rom_data_ship : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    -- SIGNAL rom_bit_ship : STD_LOGIC;
+
+    ---------------------------------
+    -- giga ship
+    ---------------------------------
+    CONSTANT ship_SIZE : INTEGER := 16; 
+    SIGNAL ship_x_l, ship_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL ship_y_t, ship_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL ship_x_reg, ship_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_y_reg, ship_y_next : unsigned(9 DOWNTO 0);
+    CONSTANT ship_V : INTEGER := 4;
+    TYPE rom_type_ship IS ARRAY (0 TO 15) OF
+    STD_LOGIC_VECTOR (15 DOWNTO 0);
+    CONSTANT ship_ROM : rom_type_ship :=
     (
-    "00011000", --    **
-    "00011000", --    **    
-    "00011000", --    **   
-    "00111100", --   ****   
-    "01111110", --  ****** 
-    "11111111", -- ********
-    "11111111", -- ********
-    "11111111" -- ********
+    "0000000000000000", 
+    "0000000000000000", 
+    "0000000000000000", 
+    "0000000011000000", 
+    "0000001001100000", 
+    "0000000100010000", 
+    "0000010010101000", 
+    "0000110101100100", 
+    "0001001001010010", 
+    "0011010101010110", 
+    "0000001011100000", 
+    "0000001101100000", 
+    "0000011001010000", 
+    "0000000111000000", 
+    "0000000000000000", 
+    "0000000000000000"
     );
 
-    SIGNAL rom_addr_heart, rom_col_heart : unsigned(2 DOWNTO 0);
-    SIGNAL rom_data_heart : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL rom_bit_heart : STD_LOGIC;
+    SIGNAL rom_addr_ship, rom_col_ship : unsigned(3 DOWNTO 0);
+    SIGNAL rom_data_ship : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    SIGNAL rom_bit_ship : STD_LOGIC;
+
+    
     ---------------------------------  
     -- Alien  
     ---------------------------------
@@ -183,22 +220,22 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT WALL_Y_B : INTEGER := WALL_Y_T2 + WALL_SIZE;
     CONSTANT WALL_Y_B2 : INTEGER := WALL_Y_B + WIDTH;
 
-    CONSTANT SHIP_SIZE : INTEGER := 8; -- 8
-    SIGNAL SHIP_x_l, SHIP_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL SHIP_y_t, SHIP_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL SHIP_x_reg, SHIP_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL SHIP_y_reg, SHIP_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL SHIP_vx_reg, SHIP_vx_next : unsigned(9 DOWNTO 0);
-    SIGNAL SHIP_vy_reg, SHIP_vy_next : unsigned(9 DOWNTO 0);
-    CONSTANT SHIP_V_P : unsigned(9 DOWNTO 0)
-    := to_unsigned(2, 10);
-    CONSTANT SHIP_V_N : unsigned(9 DOWNTO 0)
-    := unsigned(to_signed(-2, 10));
-    SIGNAL rom_addr, rom_col : unsigned(2 DOWNTO 0);
-    SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL rom_bit : STD_LOGIC;
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, sq_heart_on, rd_heart_on,proj1_hit : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, heart_rgb , alien_rgb :
+    -- CONSTANT SHIP_SIZE : INTEGER := 8; -- 8
+    -- SIGNAL SHIP_x_l, SHIP_x_r : unsigned(9 DOWNTO 0);
+    -- SIGNAL SHIP_y_t, SHIP_y_b : unsigned(9 DOWNTO 0);
+    -- SIGNAL SHIP_x_reg, SHIP_x_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL SHIP_y_reg, SHIP_y_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL SHIP_vx_reg, SHIP_vx_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL SHIP_vy_reg, SHIP_vy_next : unsigned(9 DOWNTO 0);
+    -- CONSTANT SHIP_V_P : unsigned(9 DOWNTO 0)
+    -- := to_unsigned(2, 10);
+    -- CONSTANT SHIP_V_N : unsigned(9 DOWNTO 0)
+    -- := unsigned(to_signed(-2, 10));
+    -- SIGNAL rom_addr, rom_col : unsigned(2 DOWNTO 0);
+    -- SIGNAL rom_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    -- SIGNAL rom_bit : STD_LOGIC;
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on,proj1_hit : STD_LOGIC;
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, alien_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
     -- Alien Flags
     SIGNAL sq_alien_1_on, rd_alien_1_on : STD_LOGIC;
@@ -230,12 +267,12 @@ BEGIN
             alien_2_vy_reg <= ("0000000100");
 
             keycode_reg <= (OTHERS => '0');
-            SHIP_x_reg <= (OTHERS => '0');
-            SHIP_y_reg <= (OTHERS => '0');
-            SHIP_vx_reg <= ("0000000100");
-            SHIP_vy_reg <= ("0000000100");
-            heart_x_reg <= (OTHERS => '0');
-            heart_y_reg <= (OTHERS => '0');
+            -- SHIP_x_reg <= (OTHERS => '0');
+            -- SHIP_y_reg <= (OTHERS => '0');
+            -- SHIP_vx_reg <= ("0000000100");
+            -- SHIP_vy_reg <= ("0000000100");
+            ship_x_reg <= (OTHERS => '0');
+            ship_y_reg <= (OTHERS => '0');
 
             proj1_y_reg <= (OTHERS => '0');
             new_proj1_reg <= '0';
@@ -259,13 +296,13 @@ BEGIN
             alien_2_vx_reg <= alien_2_vx_next;
             alien_2_vy_reg <= alien_2_vy_next;
 
-            SHIP_x_reg <= ball_x_next;
-            SHIP_y_reg <= ball_y_next;
-            SHIP_vx_reg <= ball_vx_next;
-            SHIP_vy_reg <= ball_vy_next;
+            -- SHIP_x_reg <= ball_x_next;
+            -- SHIP_y_reg <= ball_y_next;
+            -- SHIP_vx_reg <= ball_vx_next;
+            -- SHIP_vy_reg <= ball_vy_next;
 
-            heart_x_reg <= heart_x_next;
-            heart_y_reg <= heart_y_next;
+            ship_x_reg <= ship_x_next;
+            ship_y_reg <= ship_y_next;
 
             proj1_y_reg <= proj1_y_next;
             rand_reg <= rand_next;
@@ -294,7 +331,7 @@ BEGIN
     ----------------------------------------------
     proj1_y_t <= proj1_y_reg;
     proj1_y_b <= proj1_y_t + PROJ_SIZE - 1;
-    --proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+    --proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
     proj1_x_r <= proj1_x_l + PROJ_WIDTH;
 
     proj1_on <=
@@ -327,11 +364,11 @@ BEGIN
 
         IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
                 proj1_hit <= '0';
-                proj1_x_initial <= heart_x_reg;
+                proj1_x_initial <= ship_x_reg;
                 PROJ1_V <= 2; -- Velocity will be 1
-                proj1_y_next <= to_unsigned(to_integer(heart_y_reg) - 16 - PROJ_SIZE, 10);
+                proj1_y_next <= to_unsigned(to_integer(ship_y_reg) - 16 - PROJ_SIZE, 10);
 
-                proj1_x_l <= to_unsigned((to_integer(heart_x_reg)), 10);
+                proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
         END IF;
 
     END PROCESS;
@@ -343,41 +380,41 @@ BEGIN
     rand_next <= (rand_reg(4)XOR rand_reg(3)XOR rand_reg(2) XOR rand_reg(0)) & rand_reg(9 DOWNTO 1);
     rand_number <= rand_reg;
 
-    -- square heart
-    heart_x_l <= heart_x_reg;
-    heart_y_t <= heart_y_reg;
-    heart_x_r <= heart_x_l + heart_SIZE - 1;
-    heart_y_b <= heart_y_t + heart_SIZE - 1;
-    sq_heart_on <=
-        '1' WHEN (heart_x_l <= pix_x) AND (pix_x <= heart_x_r) AND
-        (heart_y_t <= pix_y) AND (pix_y <= heart_y_b) ELSE
+    -- square ship
+    ship_x_l <= ship_x_reg;
+    ship_y_t <= ship_y_reg;
+    ship_x_r <= ship_x_l + ship_SIZE - 1;
+    ship_y_b <= ship_y_t + ship_SIZE - 1;
+    sq_ship_on <=
+        '1' WHEN (ship_x_l <= pix_x) AND (pix_x <= ship_x_r) AND
+        (ship_y_t <= pix_y) AND (pix_y <= ship_y_b) ELSE
         '0';
-    -- round heart
-    rom_addr_heart <= pix_y(2 DOWNTO 0) - heart_y_t(2 DOWNTO 0);
-    rom_col_heart <= pix_x(2 DOWNTO 0) - heart_x_l(2 DOWNTO 0);
-    rom_data_heart <= HEART_ROM(to_integer(rom_addr_heart));
-    rom_bit_heart <= rom_data_heart(to_integer(NOT rom_col_heart));
-    rd_heart_on <=
-        '1' WHEN (sq_heart_on = '1') AND (rom_bit_heart = '1') ELSE
+    -- round ship
+    rom_addr_ship <= pix_y(3 DOWNTO 0) - ship_y_t(3 DOWNTO 0);
+    rom_col_ship <= pix_x(3 DOWNTO 0) - ship_x_l(3 DOWNTO 0);
+    rom_data_ship <= ship_ROM(to_integer(rom_addr_ship));
+    rom_bit_ship <= rom_data_ship(to_integer(NOT rom_col_ship));
+    rd_ship_on <=
+        '1' WHEN (sq_ship_on = '1') AND (rom_bit_ship = '1') ELSE
         '0';
-    heart_rgb <= "100"; -- red
-    -- new heart position
-    PROCESS (refr_tick, gra_still, heart_y_reg, heart_x_reg, keycode_reg, rand_number, heart_y_b, heart_y_t, heart_x_l, heart_x_r)
+    ship_rgb <= "100"; -- red
+    -- new ship position
+    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, keycode_reg, rand_number, ship_y_b, ship_y_t, ship_x_l, ship_x_r)
     BEGIN
-        heart_y_next <= heart_y_reg;
-        heart_x_next <= heart_x_reg;
-        IF gra_still = '1' THEN --initial position of heart
-            heart_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
-            heart_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
+        ship_y_next <= ship_y_reg;
+        ship_x_next <= ship_x_reg;
+        IF gra_still = '1' THEN --initial position of ship
+            ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
+            ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
         ELSIF refr_tick = '1' THEN
-            IF (keyboard_code = s) AND heart_y_b < (WALL_Y_B - 1) THEN
-                heart_y_next <= heart_y_reg + HEART_V; -- move down
-            ELSIF (keyboard_code = w) AND heart_y_t > WALL_Y_T2 + 1 THEN
-                heart_y_next <= heart_y_reg - HEART_V; -- move up
-            ELSIF (keyboard_code = a) AND heart_x_l > (WALL1_X_R + 1) THEN
-                heart_x_next <= heart_x_reg - HEART_V;
-            ELSIF (keyboard_code = d) AND heart_x_r < (WALL2_X_L - 1) THEN
-                heart_x_next <= heart_x_reg + HEART_V;
+            IF (keyboard_code = s) AND ship_y_b < (WALL_Y_B - 1) THEN
+                ship_y_next <= ship_y_reg + ship_V; -- move down
+            ELSIF (keyboard_code = w) AND ship_y_t > WALL_Y_T2 + 1 THEN
+                ship_y_next <= ship_y_reg - ship_V; -- move up
+            ELSIF (keyboard_code = a) AND ship_x_l > (WALL1_X_R + 1) THEN
+                ship_x_next <= ship_x_reg - ship_V;
+            ELSIF (keyboard_code = d) AND ship_x_r < (WALL2_X_L - 1) THEN
+                ship_x_next <= ship_x_reg + ship_V;
             END IF;
         END IF;
     END PROCESS;
@@ -605,8 +642,8 @@ BEGIN
             --      rgb <= bar_rgb;
         -- ELSIF rd_ball_on = '1' THEN
         --     rgb <= ball_rgb;
-        IF rd_heart_on = '1' THEN
-            rgb <= heart_rgb;
+        IF rd_ship_on = '1' THEN
+            rgb <= ship_rgb;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
@@ -646,5 +683,5 @@ BEGIN
     --     SHIP_y_reg;
     -- -- new graphic_on signal
 
-    graph_on <= rd_heart_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on;
+    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on;
 END arch;
