@@ -206,6 +206,12 @@ BEGIN
             ball_y_reg <= (OTHERS => '0');
             ball_vx_reg <= ("0000000100");
             ball_vy_reg <= ("0000000100");
+
+            alien_x_reg <= (OTHERS => '0');
+            alien_y_reg <= (OTHERS => '0');
+            alien_vx_reg <= ("0000000100");
+            alien_vy_reg <= ("0000000100");
+            
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
             SHIP_y_reg <= (OTHERS => '0');
@@ -224,6 +230,11 @@ BEGIN
             ball_vx_reg <= ball_vx_next;
             ball_vy_reg <= ball_vy_next;
             keycode_reg <= keycode_next;
+
+            alien_x_reg <= alien_x_next;
+            alien_y_reg <= alien_y_next;
+            alien_vx_reg <= alien_vx_next;
+            alien_vy_reg <= alien_vy_next;
 
             SHIP_x_reg <= ball_x_next;
             SHIP_y_reg <= ball_y_next;
