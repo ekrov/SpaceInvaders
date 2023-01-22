@@ -473,8 +473,6 @@ BEGIN
     PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
         alien_y_b, gra_still)
     BEGIN
-        hit <= '0';
-        miss <= '0';
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
         IF gra_still = '1' THEN --initial velocity
