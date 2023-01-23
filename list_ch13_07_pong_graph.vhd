@@ -735,7 +735,7 @@ BEGIN
         --      rgb <= bar_rgb;
         -- ELSIF rd_ball_on = '1' THEN
         --     rgb <= ball_rgb;
-        IF rd_heart_on = '1' THEN
+        IF rd_heart_on = '1' THEN 
             rgb <= heart_rgb;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
             rgb <= alien_rgb;
