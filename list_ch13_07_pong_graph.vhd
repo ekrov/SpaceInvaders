@@ -726,7 +726,8 @@ BEGIN
     END PROCESS;
 
     -- rgb multiplexing circuit
-    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on)
+    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
+            alien_projectil_on, alien_2_projectil_on)
     BEGIN
         -- IF wall_on = '1' THEN
         --     rgb <= wall_rgb;
@@ -737,6 +738,8 @@ BEGIN
         IF rd_heart_on = '1' THEN
             rgb <= heart_rgb;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
+            rgb <= alien_rgb;
+        ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
