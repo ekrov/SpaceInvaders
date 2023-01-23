@@ -4,15 +4,15 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: pong_top.prj
@@ -215,10 +215,10 @@ Entity <font_rom> analyzed. Unit <font_rom> generated.
 
 Analyzing Entity <pong_graph> in library <work> (Architecture <arch>).
 WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 602: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <alien_alive_reg>, <alien_alive>, <rd_alien_1_on>, <proj1_on>
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 677: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <alien_2_alive_reg>, <alien_2_alive>, <rd_alien_2_on>, <proj1_on>
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 703: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <alien_alive>
+WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 694: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <alien_alive_reg>, <alien_2_alive_reg>, <rd_alien_1_on>, <rd_alien_2_on>
+WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 714: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
    <rd_ship_on>, <rd_alien_1_on>, <rd_alien_2_on>, <alien_rgb>
 INFO:Xst:2679 - Register <PROJ1_V> in unit <pong_graph> has a constant value of 00000000000000000000000000000010 during circuit operation. The register is replaced by logic.
 Entity <pong_graph> analyzed. Unit <pong_graph> generated.
@@ -311,25 +311,25 @@ WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be gene
     Found 8x8-bit ROM for signal <rom_data_alien>.
     Found 1-bit register for signal <alien_2_alive_reg>.
     Found 10-bit register for signal <alien_2_vx_reg>.
-    Found 10-bit comparator greatequal for signal <alien_2_vx_reg$cmp_ge0000> created at line 693.
-    Found 10-bit comparator lessequal for signal <alien_2_vx_reg$cmp_le0000> created at line 694.
-    Found 10-bit comparator less for signal <alien_2_vx_reg$cmp_lt0000> created at line 693.
+    Found 10-bit comparator greatequal for signal <alien_2_vx_reg$cmp_ge0000> created at line 682.
+    Found 10-bit comparator lessequal for signal <alien_2_vx_reg$cmp_le0000> created at line 683.
+    Found 10-bit comparator less for signal <alien_2_vx_reg$cmp_lt0000> created at line 682.
     Found 10-bit register for signal <alien_2_vy_reg>.
     Found 10-bit subtractor for signal <alien_2_x_r>.
-    Found 10-bit adder for signal <alien_2_x_r$addsub0000> created at line 645.
-    Found 10-bit adder for signal <alien_2_x_r$addsub0001> created at line 645.
+    Found 10-bit adder for signal <alien_2_x_r$addsub0000> created at line 639.
+    Found 10-bit adder for signal <alien_2_x_r$addsub0001> created at line 639.
     Found 10-bit register for signal <alien_2_x_reg>.
-    Found 10-bit adder for signal <alien_2_x_reg$addsub0000> created at line 664.
+    Found 10-bit adder for signal <alien_2_x_reg$addsub0000> created at line 658.
     Found 10-bit subtractor for signal <alien_2_y_b>.
-    Found 10-bit adder for signal <alien_2_y_b$addsub0000> created at line 646.
-    Found 10-bit adder for signal <alien_2_y_b$addsub0001> created at line 646.
+    Found 10-bit adder for signal <alien_2_y_b$addsub0000> created at line 640.
+    Found 10-bit adder for signal <alien_2_y_b$addsub0001> created at line 640.
     Found 10-bit register for signal <alien_2_y_reg>.
-    Found 10-bit adder for signal <alien_2_y_reg$addsub0000> created at line 668.
+    Found 10-bit adder for signal <alien_2_y_reg$addsub0000> created at line 662.
     Found 1-bit register for signal <alien_alive_reg>.
     Found 10-bit register for signal <alien_vx_reg>.
-    Found 10-bit comparator greatequal for signal <alien_vx_reg$cmp_ge0000> created at line 629.
-    Found 10-bit comparator lessequal for signal <alien_vx_reg$cmp_le0000> created at line 630.
-    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 629.
+    Found 10-bit comparator greatequal for signal <alien_vx_reg$cmp_ge0000> created at line 623.
+    Found 10-bit comparator lessequal for signal <alien_vx_reg$cmp_le0000> created at line 624.
+    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 623.
     Found 10-bit register for signal <alien_vy_reg>.
     Found 10-bit subtractor for signal <alien_x_r>.
     Found 10-bit adder for signal <alien_x_r$addsub0000> created at line 569.
@@ -370,7 +370,7 @@ WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be gene
     Found 3-bit subtractor for signal <rom_col_alien>.
     Found 3-bit subtractor for signal <rom_col_alien_2>.
     Found 4-bit subtractor for signal <rom_col_ship>.
-    Found 3-bit comparator greater for signal <rom_data_alien_2$cmp_gt0000> created at line 655.
+    Found 3-bit comparator greater for signal <rom_data_alien_2$cmp_gt0000> created at line 649.
     Found 10-bit subtractor for signal <ship_x_r>.
     Found 10-bit adder for signal <ship_x_r$addsub0000> created at line 422.
     Found 10-bit register for signal <ship_x_reg>.
@@ -388,10 +388,10 @@ WARNING:Xst:737 - Found 10-bit latch for signal <proj1_x_l>. Latches may be gene
     Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0001> created at line 571.
     Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0002> created at line 571.
     Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0003> created at line 571.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0000> created at line 647.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0001> created at line 647.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0002> created at line 647.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0003> created at line 647.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0000> created at line 641.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0001> created at line 641.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0002> created at line 641.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0003> created at line 641.
     Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0000> created at line 424.
     Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0001> created at line 424.
     Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0002> created at line 424.
@@ -706,6 +706,7 @@ WARNING:Xst:2677 - Node <rand_reg_1> of sequential type is unconnected in block 
 WARNING:Xst:2677 - Node <rand_reg_0> of sequential type is unconnected in block <pong_graph>.
 WARNING:Xst:2677 - Node <rand_reg_2> of sequential type is unconnected in block <pong_graph>.
 INFO:Xst:2261 - The FF/Latch <alien_2_vy_reg_2> in Unit <pong_graph> is equivalent to the following FF/Latch, which will be removed : <alien_vy_reg_2> 
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_2_alive_next_and0001.
 
 Optimizing unit <pong_top> ...
 
@@ -727,14 +728,8 @@ WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is uncon
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 47.
-FlipFlop graph_unit/ship_y_reg_2 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_1 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_7 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/h_count_reg_8 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_1 has been replicated 1 time(s)
+Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 48.
 FlipFlop vga_sync_unit/v_count_reg_2 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_3 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -747,8 +742,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 193
- Flip-Flops                                            : 193
+# Registers                                            : 187
+ Flip-Flops                                            : 187
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -779,29 +774,28 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1437
+# BELS                             : 1435
 #      GND                         : 1
 #      INV                         : 54
 #      LUT1                        : 108
-#      LUT2                        : 293
-#      LUT2_D                      : 2
-#      LUT2_L                      : 3
-#      LUT3                        : 66
-#      LUT3_D                      : 3
-#      LUT3_L                      : 6
-#      LUT4                        : 220
+#      LUT2                        : 263
+#      LUT2_D                      : 3
+#      LUT2_L                      : 1
+#      LUT3                        : 117
+#      LUT3_L                      : 5
+#      LUT4                        : 206
 #      LUT4_D                      : 11
-#      LUT4_L                      : 20
+#      LUT4_L                      : 15
 #      MUXCY                       : 369
-#      MUXF5                       : 53
+#      MUXF5                       : 54
 #      MUXF6                       : 11
 #      VCC                         : 1
 #      XORCY                       : 216
-# FlipFlops/Latches                : 215
+# FlipFlops/Latches                : 209
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 3
-#      FDCE                        : 113
+#      FDCE                        : 107
 #      FDE                         : 10
 #      FDPE                        : 5
 #      FDRE                        : 41
@@ -828,9 +822,9 @@ Device utilization summary:
 Selected Device : 3s100ecp132-5 
 
  Number of Slices:                      424  out of    960    44%  
- Number of Slice Flip Flops:            215  out of   1920    11%  
- Number of 4 input LUTs:                788  out of   1920    41%  
-    Number used as logic:               786
+ Number of Slice Flip Flops:            209  out of   1920    10%  
+ Number of 4 input LUTs:                785  out of   1920    40%  
+    Number used as logic:               783
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -859,7 +853,7 @@ Clock Information:
 -------------------------------------------------------------------+------------------------------------+-------+
 Clock Signal                                                       | Clock buffer(FF name)              | Load  |
 -------------------------------------------------------------------+------------------------------------+-------+
-clock                                                              | ClockManager_unit/DCM_SP_INST:CLK2X| 187   |
+clock                                                              | ClockManager_unit/DCM_SP_INST:CLK2X| 181   |
 state_reg_FSM_FFd1                                                 | NONE(graph_unit/proj1_y_initial_9) | 9     |
 graph_unit/proj1_x_l_cmp_eq0000(graph_unit/proj1_x_l_cmp_eq00002:O)| NONE(*)(graph_unit/proj1_x_l_9)    | 10    |
 graph_unit/proj1_hit_not0001(graph_unit/proj1_hit_not00011:O)      | NONE(*)(graph_unit/proj1_hit)      | 1     |
@@ -875,7 +869,7 @@ Asynchronous Control Signals Information:
 -------------------------------------------------------------+---------------------------+-------+
 Control Signal                                               | Buffer(FF name)           | Load  |
 -------------------------------------------------------------+---------------------------+-------+
-reset                                                        | IBUF                      | 121   |
+reset                                                        | IBUF                      | 115   |
 d_clr(state_reg_FSM_Out01_INV_0:O)                           | NONE(graph_unit/proj1_hit)| 1     |
 graph_unit/proj1_hit_and0000(graph_unit/proj1_hit_and00001:O)| NONE(graph_unit/proj1_hit)| 1     |
 -------------------------------------------------------------+---------------------------+-------+
@@ -884,9 +878,9 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 20.740ns (Maximum Frequency: 48.215MHz)
+   Minimum period: 22.805ns (Maximum Frequency: 43.850MHz)
    Minimum input arrival time before clock: 1.829ns
-   Maximum output required time after clock: 4.285ns
+   Maximum output required time after clock: 4.326ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -895,34 +889,35 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 20.740ns (frequency: 48.215MHz)
-  Total number of paths / destination ports: 34830 / 399
+  Clock period: 22.805ns (frequency: 43.850MHz)
+  Total number of paths / destination ports: 40870 / 389
 -------------------------------------------------------------------------
-Delay:               10.370ns (Levels of Logic = 10)
-  Source:            graph_unit/ship_y_reg_4 (FF)
-  Destination:       rgb_reg_2 (FF)
+Delay:               11.402ns (Levels of Logic = 11)
+  Source:            vga_sync_unit/v_count_reg_1 (FF)
+  Destination:       graph_unit/alien_2_alive_reg (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: graph_unit/ship_y_reg_4 to rgb_reg_2
+  Data Path: vga_sync_unit/v_count_reg_1 to graph_unit/alien_2_alive_reg
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            15   0.514   0.867  graph_unit/ship_y_reg_4 (graph_unit/ship_y_reg_4)
-     LUT4:I3->O            2   0.612   0.449  graph_unit/ship_y_b_addsub0000<8>11 (graph_unit/ship_y_b_addsub0000<8>_bdd0)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Msub_ship_y_b_lut<8> (graph_unit/Msub_ship_y_b_lut<8>)
-     MUXCY:S->O            0   0.404   0.000  graph_unit/Msub_ship_y_b_cy<8> (graph_unit/Msub_ship_y_b_cy<8>)
-     XORCY:CI->O           2   0.699   0.449  graph_unit/Msub_ship_y_b_xor<9> (graph_unit/ship_y_b<9>)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/Mcompar_sq_ship_on_cmp_le0003_lut<9> (graph_unit/Mcompar_sq_ship_on_cmp_le0003_lut<9>)
-     MUXCY:S->O            2   0.752   0.383  graph_unit/Mcompar_sq_ship_on_cmp_le0003_cy<9> (graph_unit/sq_ship_on_cmp_le0003)
-     LUT4:I3->O            2   0.612   0.532  graph_unit/rd_ship_on_and0000155 (graph_unit/rd_ship_on_and0000155)
-     LUT4:I0->O            2   0.612   0.380  rgb_next<2>_SW0 (N64)
-     MUXF5:S->O            1   0.641   0.360  rgb_next<0>320_SW2 (N100)
-     LUT4:I3->O            1   0.612   0.000  rgb_next<2> (rgb_next<2>)
-     FDCE:D                    0.268          rgb_reg_2
+     FDCE:C->Q            33   0.514   1.076  vga_sync_unit/v_count_reg_1 (vga_sync_unit/v_count_reg_1)
+     LUT4_D:I3->LO         1   0.612   0.130  graph_unit/Msub_rom_addr_alien_cy<1>11 (N158)
+     LUT3:I2->O            1   0.612   0.360  graph_unit/Mrom_rom_data_alien21_SW2 (N94)
+     LUT4:I3->O            2   0.612   0.383  graph_unit/Mrom_rom_data_alien21 (graph_unit/Mrom_rom_data_alien2)
+     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_5 (graph_unit/Mmux_rom_bit_alien_5)
+     MUXF5:I0->O           1   0.278   0.000  graph_unit/Mmux_rom_bit_alien_3_f5 (graph_unit/Mmux_rom_bit_alien_3_f5)
+     MUXF6:I1->O           2   0.451   0.380  graph_unit/Mmux_rom_bit_alien_2_f6 (graph_unit/rom_bit_alien)
+     MUXF5:S->O            1   0.641   0.360  graph_unit/rd_alien_1_on_and0000_SW2 (N97)
+     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/proj1_on_and0000_SW2 (N78)
+     LUT4:I3->O            1   0.612   0.509  graph_unit/alien_2_alive_next_and000110 (graph_unit/alien_2_alive_next_and000110)
+     LUT2_D:I0->O          3   0.612   0.481  graph_unit/alien_2_alive_next_and000128 (graph_unit/alien_2_alive_next_and0001)
+     LUT3:I2->O            1   0.612   0.357  graph_unit/alien_2_alive_reg_not00011 (graph_unit/alien_2_alive_reg_not0001)
+     FDPE:CE                   0.483          graph_unit/alien_2_alive_reg
     ----------------------------------------
-    Total                     10.370ns (6.950ns logic, 3.420ns route)
-                                       (67.0% logic, 33.0% route)
+    Total                     11.402ns (7.263ns logic, 4.139ns route)
+                                       (63.7% logic, 36.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'state_reg_FSM_FFd1'
@@ -990,7 +985,7 @@ Offset:              1.829ns (Levels of Logic = 1)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
   Total number of paths / destination ports: 21 / 21
 -------------------------------------------------------------------------
-Offset:              4.285ns (Levels of Logic = 1)
+Offset:              4.326ns (Levels of Logic = 1)
   Source:            keyboard_unit/ps2_code_reg_1 (FF)
   Destination:       led<1> (PAD)
   Source Clock:      clock rising 2.0X
@@ -999,24 +994,24 @@ Offset:              4.285ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               7   0.514   0.602  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
+     FD:C->Q               8   0.514   0.643  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
      OBUF:I->O                 3.169          led_1_OBUF (led<1>)
     ----------------------------------------
-    Total                      4.285ns (3.683ns logic, 0.602ns route)
-                                       (86.0% logic, 14.0% route)
+    Total                      4.326ns (3.683ns logic, 0.643ns route)
+                                       (85.1% logic, 14.9% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 7.70 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.89 secs
  
 --> 
 
 
-Total memory usage is 647112 kilobytes
+Total memory usage is 644572 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   94 (   0 filtered)
+Number of warnings :   95 (   0 filtered)
 Number of infos    :   12 (   0 filtered)
 

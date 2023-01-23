@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 23 02:55:31 2023
+// Written by: Map P.20131013 on Mon Jan 23 03:05:10 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -124,11 +124,7 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "keyboard_unit/ps2_code_next_4" BEL "keyboard_unit/ps2_code_next_3"
         BEL "keyboard_unit/ps2_code_next_2" BEL
         "keyboard_unit/ps2_code_next_1" BEL "keyboard_unit/ps2_code_next_0"
-        BEL "state_reg_FSM_FFd1" BEL "graph_unit/ship_y_reg_2_1" BEL
-        "vga_sync_unit/h_count_reg_7_1" BEL "vga_sync_unit/h_count_reg_1_1"
-        BEL "vga_sync_unit/v_count_reg_2_1" BEL
-        "vga_sync_unit/v_count_reg_3_1" BEL "vga_sync_unit/v_count_reg_1_1"
-        BEL "vga_sync_unit/h_count_reg_8_1" BEL
+        BEL "state_reg_FSM_FFd1" BEL "vga_sync_unit/v_count_reg_2_1" BEL
         "text_unit/font_unit/Mrom_data_rom0000.A" BEL
         "keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0/SRL16E" BEL
         "keyboard_unit/debounce_ps2_clk/flipflops_0" BEL

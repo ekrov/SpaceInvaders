@@ -585,11 +585,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_x_next <=
-        to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
+        to_unsigned((MAX_X)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_x_reg + alien_vx_reg WHEN refr_tick = '1' ELSE
         alien_x_reg;
     alien_y_next <=
-        to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
+        to_unsigned((MAX_Y)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
         alien_y_reg;
 
@@ -602,10 +602,8 @@ BEGIN
     PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
         alien_y_b, gra_still)
     BEGIN
-        hit<='0';
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
-        alien_alive_next <= alien_alive_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
@@ -622,10 +620,6 @@ BEGIN
         --     ball_vx_next <= ALIEN_V_N; -- bounce back
         --     hit <= '1';
         ELSIF (alien_alive = '1') THEN
-            IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
-                hit <= '1';
-                alien_alive_next <= '0';
-            END IF;
             IF (alien_x_l < 1) THEN -- reach left border
             alien_vx_next <= ALIEN_V_P;
         ELSIF (alien_x_r > MAX_X) THEN -- reach right border
@@ -662,11 +656,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_2_x_next <=
-        to_unsigned(((MAX_X)/2) + 50, 10) WHEN gra_still = '1' ELSE
+        to_unsigned(((MAX_X)/2) + 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_x_reg + alien_2_vx_reg WHEN refr_tick = '1' ELSE
         alien_2_x_reg;
     alien_2_y_next <=
-        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN gra_still = '1' ELSE
+        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_y_reg + alien_2_vy_reg WHEN refr_tick = '1' ELSE
         alien_2_y_reg;
 
@@ -675,27 +669,44 @@ BEGIN
     -- New alien 2 velocity
 
     PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_y_t, alien_2_x_l, alien_2_x_r,
-        alien_2_y_b, gra_still)
+        alien_2_y_b, gra_still,alien_2_alive)
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
         alien_2_vy_next <= alien_2_vy_reg;
-        alien_2_alive_next <= alien_2_alive_reg;
+
         IF gra_still = '1' THEN --initial velocity
             alien_2_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_2_alive = '1') THEN
-            IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
-                alien_2_alive_next <= '0';
-                -- hit<='1';
-
-            END IF;
             IF (alien_2_x_l < 1) THEN -- reach left border
             alien_2_vx_next <= ALIEN_V_P;
         ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
             -- miss <= '1'; -- a miss
             alien_2_vx_next <= ALIEN_V_N;
             END IF;
+        END IF;
+    END PROCESS;
+
+    ----------------------------------------------  
+    --- Aliens Elimination Process
+    ----------------------------------------------
+    PROCESS (refr_tick, alien_alive, alien_2_alive, proj1_on)
+    BEGIN
+    hit <='0';
+        alien_alive_next <= alien_alive_reg;
+        alien_2_alive_next <= alien_2_alive_reg;
+        IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
+            alien_alive_next <= '1';
+            alien_2_alive_next <= '1';
+        END IF;
+        IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
+            alien_alive_next <= '0';
+            hit <='1';
+        END IF;
+        IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
+            alien_2_alive_next <= '0';
+            hit <='1';
         END IF;
     END PROCESS;
 

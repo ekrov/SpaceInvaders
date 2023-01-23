@@ -32,514 +32,674 @@ INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and
    Uncertainty calculation.  Please make appropriate modification to 
    SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
    Error.
+5 logic loops found and disabled.
+
+  ----------------------------------------------------------------------
+ ! Warning: The following connections close logic loops, and some paths !
+ !          through these connections may not be analyzed. To better    !
+ !          understand the logic associated with these loops, run a     !
+ !          Analyze Against User-Defined End-Point Analysis inside      !
+ !          Timing Analyzer (timingan) with the listed signal as a      !
+ !          source NET (*signal_name). The Timing Report will display   !
+ !          all the paths associated with this signal and the logic     !
+ !          loop will be reported.                                      !
+ !                                                                      !
+ ! Signal                            Driver            Load             !
+ ! --------------------------------  ----------------  ---------------- !
+ ! nit/alien_2_alive_next_and000110  SLICE_X25Y21.X    SLICE_X24Y21.G4  !
+ ! nit/alien_2_alive_next_and000110  SLICE_X25Y21.X    SLICE_X25Y22.G2  !
+ ! nit/alien_2_alive_next_and000125  SLICE_X25Y20.X    SLICE_X25Y22.G1  !
+ ! nit/alien_2_alive_next_and000110  SLICE_X25Y21.X    SLICE_X24Y29.F1  !
+ ! nit/alien_2_alive_next_and000125  SLICE_X25Y20.X    SLICE_X24Y29.F3  !
+  ---------------------------------------------------------------------- 
+
 
 ================================================================================
 Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 40806 paths analyzed, 621 endpoints analyzed, 0 failing endpoints
+ 46367 paths analyzed, 644 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  11.925ns.
+ Minimum period is  14.958ns.
 --------------------------------------------------------------------------------
 
-Paths for end point counter_unit/dig1_reg_3 (SLICE_X12Y31.CE), 970 paths
+Paths for end point graph_unit/alien_alive_reg (SLICE_X25Y26.CE), 6210 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     28.075ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_3 (FF)
+Slack (setup path):     25.042ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_3 (FF)
+  Destination:          graph_unit/alien_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.923ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.949ns (Levels of Logic = 12)
+  Clock Path Skew:      -0.009ns (0.027 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_3
+  Maximum Data Path: graph_unit/proj1_y_reg_3 to graph_unit/alien_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.871   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CLK     Tceck                 0.483   counter_unit/dig1_reg<3>
-                                                       counter_unit/dig1_reg_3
+    SLICE_X25Y7.YQ       Tcko                  0.511   graph_unit/proj1_y_reg<4>
+                                                       graph_unit/proj1_y_reg_3
+    SLICE_X31Y7.F2       net (fanout=4)        1.128   graph_unit/proj1_y_reg<3>
+    SLICE_X31Y7.Y        Topy                  1.427   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_lut<3>_INV_0
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.F3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_G
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.F4      net (fanout=5)        0.540   graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.X       Tilo                  0.612   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg_not00011
+    SLICE_X25Y26.CE      net (fanout=1)        0.965   graph_unit/alien_alive_reg_not0001
+    SLICE_X25Y26.CLK     Tceck                 0.483   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.923ns (4.563ns logic, 7.360ns route)
-                                                       (38.3% logic, 61.7% route)
+    Total                                     14.949ns (9.482ns logic, 5.467ns route)
+                                                       (63.4% logic, 36.6% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.173ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_3 (FF)
+Slack (setup path):     25.042ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_3 (FF)
+  Destination:          graph_unit/alien_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.825ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.949ns (Levels of Logic = 12)
+  Clock Path Skew:      -0.009ns (0.027 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_3
+  Maximum Data Path: graph_unit/proj1_y_reg_3 to graph_unit/alien_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.773   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CLK     Tceck                 0.483   counter_unit/dig1_reg<3>
-                                                       counter_unit/dig1_reg_3
+    SLICE_X25Y7.YQ       Tcko                  0.511   graph_unit/proj1_y_reg<4>
+                                                       graph_unit/proj1_y_reg_3
+    SLICE_X31Y7.F2       net (fanout=4)        1.128   graph_unit/proj1_y_reg<3>
+    SLICE_X31Y7.Y        Topy                  1.427   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_lut<3>_INV_0
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.G3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_F
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.F4      net (fanout=5)        0.540   graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.X       Tilo                  0.612   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg_not00011
+    SLICE_X25Y26.CE      net (fanout=1)        0.965   graph_unit/alien_alive_reg_not0001
+    SLICE_X25Y26.CLK     Tceck                 0.483   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.825ns (4.465ns logic, 7.360ns route)
-                                                       (37.8% logic, 62.2% route)
+    Total                                     14.949ns (9.482ns logic, 5.467ns route)
+                                                       (63.4% logic, 36.6% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.185ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_4 (FF)
-  Destination:          counter_unit/dig1_reg_3 (FF)
+Slack (setup path):     25.075ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_2 (FF)
+  Destination:          graph_unit/alien_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.813ns (Levels of Logic = 7)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.916ns (Levels of Logic = 13)
+  Clock Path Skew:      -0.009ns (0.027 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_4 to counter_unit/dig1_reg_3
+  Maximum Data Path: graph_unit/proj1_y_reg_2 to graph_unit/alien_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y18.YQ      Tcko                  0.567   vga_sync_unit/h_count_reg<5>
-                                                       vga_sync_unit/h_count_reg_4
-    SLICE_X27Y36.F2      net (fanout=44)       2.608   vga_sync_unit/h_count_reg<4>
-    SLICE_X27Y36.COUT    Topcyf                1.011   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.COUT    Tbyp                  0.103   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<6>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y31.CLK     Tceck                 0.483   counter_unit/dig1_reg<3>
-                                                       counter_unit/dig1_reg_3
+    SLICE_X25Y6.XQ       Tcko                  0.514   graph_unit/proj1_y_reg<2>
+                                                       graph_unit/proj1_y_reg_2
+    SLICE_X31Y6.G3       net (fanout=4)        0.892   graph_unit/proj1_y_reg<2>
+    SLICE_X31Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b_addsub0000<1>
+                                                       graph_unit/proj1_y_reg<2>_rt
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<2>
+    SLICE_X31Y7.CIN      net (fanout=1)        0.000   graph_unit/Madd_proj1_y_b_addsub0000_cy<2>
+    SLICE_X31Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.G3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_F
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.F4      net (fanout=5)        0.540   graph_unit/alien_2_alive_next_and000110
+    SLICE_X25Y26.X       Tilo                  0.612   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg_not00011
+    SLICE_X25Y26.CE      net (fanout=1)        0.965   graph_unit/alien_alive_reg_not0001
+    SLICE_X25Y26.CLK     Tceck                 0.483   graph_unit/alien_alive_reg
+                                                       graph_unit/alien_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.813ns (4.859ns logic, 6.954ns route)
-                                                       (41.1% logic, 58.9% route)
+    Total                                     14.916ns (9.685ns logic, 5.231ns route)
+                                                       (64.9% logic, 35.1% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point counter_unit/dig1_reg_1 (SLICE_X12Y30.CE), 970 paths
+Paths for end point graph_unit/alien_2_alive_reg (SLICE_X24Y28.CE), 6226 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     28.075ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_1 (FF)
+Slack (setup path):     25.455ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_3 (FF)
+  Destination:          graph_unit/alien_2_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.923ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.535ns (Levels of Logic = 12)
+  Clock Path Skew:      -0.010ns (0.026 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_1
+  Maximum Data Path: graph_unit/proj1_y_reg_3 to graph_unit/alien_2_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.871   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<1>
-                                                       counter_unit/dig1_reg_1
+    SLICE_X25Y7.YQ       Tcko                  0.511   graph_unit/proj1_y_reg<4>
+                                                       graph_unit/proj1_y_reg_3
+    SLICE_X31Y7.F2       net (fanout=4)        1.128   graph_unit/proj1_y_reg<3>
+    SLICE_X31Y7.Y        Topy                  1.427   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_lut<3>_INV_0
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.F3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_G
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.F4      net (fanout=5)        0.797   graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.X       Tilo                  0.660   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg_not00011
+    SLICE_X24Y28.CE      net (fanout=1)        0.246   graph_unit/alien_2_alive_reg_not0001
+    SLICE_X24Y28.CLK     Tceck                 0.483   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.923ns (4.563ns logic, 7.360ns route)
-                                                       (38.3% logic, 61.7% route)
+    Total                                     14.535ns (9.530ns logic, 5.005ns route)
+                                                       (65.6% logic, 34.4% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.173ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_1 (FF)
+Slack (setup path):     25.455ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_3 (FF)
+  Destination:          graph_unit/alien_2_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.825ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.535ns (Levels of Logic = 12)
+  Clock Path Skew:      -0.010ns (0.026 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_1
+  Maximum Data Path: graph_unit/proj1_y_reg_3 to graph_unit/alien_2_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.773   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<1>
-                                                       counter_unit/dig1_reg_1
+    SLICE_X25Y7.YQ       Tcko                  0.511   graph_unit/proj1_y_reg<4>
+                                                       graph_unit/proj1_y_reg_3
+    SLICE_X31Y7.F2       net (fanout=4)        1.128   graph_unit/proj1_y_reg<3>
+    SLICE_X31Y7.Y        Topy                  1.427   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_lut<3>_INV_0
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.G3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_F
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.F4      net (fanout=5)        0.797   graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.X       Tilo                  0.660   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg_not00011
+    SLICE_X24Y28.CE      net (fanout=1)        0.246   graph_unit/alien_2_alive_reg_not0001
+    SLICE_X24Y28.CLK     Tceck                 0.483   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.825ns (4.465ns logic, 7.360ns route)
-                                                       (37.8% logic, 62.2% route)
+    Total                                     14.535ns (9.530ns logic, 5.005ns route)
+                                                       (65.6% logic, 34.4% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.185ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_4 (FF)
-  Destination:          counter_unit/dig1_reg_1 (FF)
+Slack (setup path):     25.488ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/proj1_y_reg_2 (FF)
+  Destination:          graph_unit/alien_2_alive_reg (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.813ns (Levels of Logic = 7)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      14.502ns (Levels of Logic = 13)
+  Clock Path Skew:      -0.010ns (0.026 - 0.036)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_4 to counter_unit/dig1_reg_1
+  Maximum Data Path: graph_unit/proj1_y_reg_2 to graph_unit/alien_2_alive_reg
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y18.YQ      Tcko                  0.567   vga_sync_unit/h_count_reg<5>
-                                                       vga_sync_unit/h_count_reg_4
-    SLICE_X27Y36.F2      net (fanout=44)       2.608   vga_sync_unit/h_count_reg<4>
-    SLICE_X27Y36.COUT    Topcyf                1.011   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.COUT    Tbyp                  0.103   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<6>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X12Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<1>
-                                                       counter_unit/dig1_reg_1
+    SLICE_X25Y6.XQ       Tcko                  0.514   graph_unit/proj1_y_reg<2>
+                                                       graph_unit/proj1_y_reg_2
+    SLICE_X31Y6.G3       net (fanout=4)        0.892   graph_unit/proj1_y_reg<2>
+    SLICE_X31Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b_addsub0000<1>
+                                                       graph_unit/proj1_y_reg<2>_rt
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<2>
+    SLICE_X31Y7.CIN      net (fanout=1)        0.000   graph_unit/Madd_proj1_y_b_addsub0000_cy<2>
+    SLICE_X31Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b_addsub0000<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_cy<3>
+                                                       graph_unit/Madd_proj1_y_b_addsub0000_xor<4>
+    SLICE_X29Y6.G2       net (fanout=1)        0.347   graph_unit/proj1_y_b_addsub0000<4>
+    SLICE_X29Y6.COUT     Topcyg                0.871   graph_unit/proj1_y_b<3>
+                                                       graph_unit/Msub_proj1_y_b_lut<4>_INV_0
+                                                       graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.CIN      net (fanout=1)        0.000   graph_unit/Msub_proj1_y_b_cy<4>
+    SLICE_X29Y7.Y        Tciny                 0.756   graph_unit/proj1_y_b<5>
+                                                       graph_unit/Msub_proj1_y_b_cy<5>
+                                                       graph_unit/Msub_proj1_y_b_xor<6>
+    SLICE_X29Y12.G2      net (fanout=1)        0.778   graph_unit/proj1_y_b<6>
+    SLICE_X29Y12.COUT    Topcyg                0.871   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_lut<6>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<6>
+    SLICE_X29Y13.COUT    Tbyp                  0.103   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<7>
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_proj1_on_cmp_le0003_cy<8>
+    SLICE_X29Y14.XB      Tcinxb                0.352   graph_unit/proj1_on_cmp_le0003
+                                                       graph_unit/Mcompar_proj1_on_cmp_le0003_cy<9>
+    SLICE_X25Y20.F1      net (fanout=4)        1.187   graph_unit/proj1_on_cmp_le0003
+    SLICE_X25Y20.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000125
+                                                       graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.G3      net (fanout=5)        0.032   graph_unit/alien_2_alive_next_and000125
+    SLICE_X24Y21.Y       Tilo                  0.660   N96
+                                                       graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.G3      net (fanout=3)        0.055   graph_unit/alien_2_alive_next_and00013
+    SLICE_X24Y20.X       Tif5x                 1.000   N97
+                                                       graph_unit/rd_alien_1_on_and0000_SW2_F
+                                                       graph_unit/rd_alien_1_on_and0000_SW2
+    SLICE_X25Y21.G4      net (fanout=1)        0.021   N97
+    SLICE_X25Y21.Y       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/proj1_on_and0000_SW2
+    SLICE_X25Y21.F1      net (fanout=1)        0.414   graph_unit/proj1_on_and0000_SW2/O
+    SLICE_X25Y21.X       Tilo                  0.612   graph_unit/alien_2_alive_next_and000110
+                                                       graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.F4      net (fanout=5)        0.797   graph_unit/alien_2_alive_next_and000110
+    SLICE_X24Y28.X       Tilo                  0.660   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg_not00011
+    SLICE_X24Y28.CE      net (fanout=1)        0.246   graph_unit/alien_2_alive_reg_not0001
+    SLICE_X24Y28.CLK     Tceck                 0.483   graph_unit/alien_2_alive_reg
+                                                       graph_unit/alien_2_alive_reg
     -------------------------------------------------  ---------------------------
-    Total                                     11.813ns (4.859ns logic, 6.954ns route)
-                                                       (41.1% logic, 58.9% route)
+    Total                                     14.502ns (9.733ns logic, 4.769ns route)
+                                                       (67.1% logic, 32.9% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point counter_unit/dig1_reg_2 (SLICE_X13Y30.CE), 970 paths
+Paths for end point rgb_reg_2 (SLICE_X19Y19.F2), 2167 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     28.075ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_2 (FF)
+Slack (setup path):     27.779ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/alien_2_x_reg_7 (FF)
+  Destination:          rgb_reg_2 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.923ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      12.218ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.003ns (0.040 - 0.043)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_2
+  Maximum Data Path: graph_unit/alien_2_x_reg_7 to rgb_reg_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.871   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<2>
-                                                       counter_unit/dig1_reg_2
+    SLICE_X18Y34.XQ      Tcko                  0.515   graph_unit/alien_2_x_reg<7>
+                                                       graph_unit/alien_2_x_reg_7
+    SLICE_X20Y34.F3      net (fanout=5)        1.601   graph_unit/alien_2_x_reg<7>
+    SLICE_X20Y34.X       Tilo                  0.660   graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>
+                                                       graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>11
+    SLICE_X25Y37.F2      net (fanout=2)        0.556   graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>
+    SLICE_X25Y37.Y       Topy                  1.427   graph_unit/alien_2_x_r<8>
+                                                       graph_unit/Msub_alien_2_x_r_lut<8>
+                                                       graph_unit/Msub_alien_2_x_r_cy<8>
+                                                       graph_unit/Msub_alien_2_x_r_xor<9>
+    SLICE_X23Y35.G1      net (fanout=2)        1.111   graph_unit/alien_2_x_r<9>
+    SLICE_X23Y35.COUT    Topcyg                0.871   graph_unit/sq_alien_2_on_cmp_le0001
+                                                       graph_unit/Mcompar_sq_alien_2_on_cmp_le0001_lut<9>
+                                                       graph_unit/Mcompar_sq_alien_2_on_cmp_le0001_cy<9>
+    SLICE_X22Y28.G3      net (fanout=1)        0.898   graph_unit/sq_alien_2_on_cmp_le0001
+    SLICE_X22Y28.Y       Tilo                  0.660   N76
+                                                       graph_unit/rd_alien_2_on_and0000
+    SLICE_X20Y19.G1      net (fanout=8)        1.471   graph_unit/rd_alien_2_on
+    SLICE_X20Y19.Y       Tilo                  0.660   N4
+                                                       rgb_next<0>32
+    SLICE_X20Y19.F3      net (fanout=3)        0.027   rgb_next<0>32
+    SLICE_X20Y19.X       Tilo                  0.660   N4
+                                                       rgb_next<0>320
+    SLICE_X19Y19.F2      net (fanout=1)        0.373   N4
+    SLICE_X19Y19.CLK     Tfck                  0.728   rgb_reg<2>
+                                                       rgb_next<2>
+                                                       rgb_reg_2
     -------------------------------------------------  ---------------------------
-    Total                                     11.923ns (4.563ns logic, 7.360ns route)
-                                                       (38.3% logic, 61.7% route)
+    Total                                     12.218ns (6.181ns logic, 6.037ns route)
+                                                       (50.6% logic, 49.4% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.173ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_7 (FF)
-  Destination:          counter_unit/dig1_reg_2 (FF)
+Slack (setup path):     27.877ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/alien_2_x_reg_7 (FF)
+  Destination:          rgb_reg_2 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.825ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      12.120ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.003ns (0.040 - 0.043)
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_7 to counter_unit/dig1_reg_2
+  Maximum Data Path: graph_unit/alien_2_x_reg_7 to rgb_reg_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y19.XQ      Tcko                  0.514   vga_sync_unit/h_count_reg<7>
-                                                       vga_sync_unit/h_count_reg_7
-    SLICE_X27Y37.G1      net (fanout=32)       3.014   vga_sync_unit/h_count_reg<7>
-    SLICE_X27Y37.COUT    Topcyg                0.773   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<2>
-                                                       counter_unit/dig1_reg_2
+    SLICE_X18Y34.XQ      Tcko                  0.515   graph_unit/alien_2_x_reg<7>
+                                                       graph_unit/alien_2_x_reg_7
+    SLICE_X20Y34.F3      net (fanout=5)        1.601   graph_unit/alien_2_x_reg<7>
+    SLICE_X20Y34.X       Tilo                  0.660   graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>
+                                                       graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>11
+    SLICE_X25Y37.F2      net (fanout=2)        0.556   graph_unit/Madd_alien_2_x_r_addsub0001_Madd_cy<7>
+    SLICE_X25Y37.Y       Topy                  1.427   graph_unit/alien_2_x_r<8>
+                                                       graph_unit/Msub_alien_2_x_r_lut<8>
+                                                       graph_unit/Msub_alien_2_x_r_cy<8>
+                                                       graph_unit/Msub_alien_2_x_r_xor<9>
+    SLICE_X23Y35.G1      net (fanout=2)        1.111   graph_unit/alien_2_x_r<9>
+    SLICE_X23Y35.COUT    Topcyg                0.773   graph_unit/sq_alien_2_on_cmp_le0001
+                                                       graph_unit/Mcompar_sq_alien_2_on_cmp_le0001_cy<9>
+    SLICE_X22Y28.G3      net (fanout=1)        0.898   graph_unit/sq_alien_2_on_cmp_le0001
+    SLICE_X22Y28.Y       Tilo                  0.660   N76
+                                                       graph_unit/rd_alien_2_on_and0000
+    SLICE_X20Y19.G1      net (fanout=8)        1.471   graph_unit/rd_alien_2_on
+    SLICE_X20Y19.Y       Tilo                  0.660   N4
+                                                       rgb_next<0>32
+    SLICE_X20Y19.F3      net (fanout=3)        0.027   rgb_next<0>32
+    SLICE_X20Y19.X       Tilo                  0.660   N4
+                                                       rgb_next<0>320
+    SLICE_X19Y19.F2      net (fanout=1)        0.373   N4
+    SLICE_X19Y19.CLK     Tfck                  0.728   rgb_reg<2>
+                                                       rgb_next<2>
+                                                       rgb_reg_2
     -------------------------------------------------  ---------------------------
-    Total                                     11.825ns (4.465ns logic, 7.360ns route)
-                                                       (37.8% logic, 62.2% route)
+    Total                                     12.120ns (6.083ns logic, 6.037ns route)
+                                                       (50.2% logic, 49.8% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     28.185ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga_sync_unit/h_count_reg_4 (FF)
-  Destination:          counter_unit/dig1_reg_2 (FF)
+Slack (setup path):     28.054ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               graph_unit/ship_y_reg_7 (FF)
+  Destination:          rgb_reg_2 (FF)
   Requirement:          40.000ns
-  Data Path Delay:      11.813ns (Levels of Logic = 7)
-  Clock Path Skew:      -0.002ns (0.038 - 0.040)
+  Data Path Delay:      11.946ns (Levels of Logic = 8)
+  Clock Path Skew:      0.000ns
   Source Clock:         clk rising at 0.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga_sync_unit/h_count_reg_4 to counter_unit/dig1_reg_2
+  Maximum Data Path: graph_unit/ship_y_reg_7 to rgb_reg_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y18.YQ      Tcko                  0.567   vga_sync_unit/h_count_reg<5>
-                                                       vga_sync_unit/h_count_reg_4
-    SLICE_X27Y36.F2      net (fanout=44)       2.608   vga_sync_unit/h_count_reg<4>
-    SLICE_X27Y36.COUT    Topcyf                1.011   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_lut<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<4>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<5>
-    SLICE_X27Y37.COUT    Tbyp                  0.103   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<6>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.CIN     net (fanout=1)        0.000   graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<7>
-    SLICE_X27Y38.COUT    Tbyp                  0.103   graph_unit/sq_alien_1_on_cmp_le0000
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<8>
-                                                       graph_unit/Mcompar_sq_alien_1_on_cmp_le0000_cy<9>
-    SLICE_X26Y24.F2      net (fanout=1)        1.011   graph_unit/sq_alien_1_on_cmp_le0000
-    SLICE_X26Y24.X       Tilo                  0.660   N62
-                                                       graph_unit/rd_alien_1_on_and0000_SW0
-    SLICE_X24Y18.G2      net (fanout=1)        0.876   N62
-    SLICE_X24Y18.Y       Tilo                  0.660   N80
-                                                       graph_unit/rd_alien_1_on_and0000
-    SLICE_X20Y23.G4      net (fanout=6)        0.878   graph_unit/rd_alien_1_on
-    SLICE_X20Y23.Y       Tilo                  0.660   counter_unit/dig0_reg_not0002
-                                                       graph_unit/hit1
-    SLICE_X13Y25.F3      net (fanout=3)        1.023   hit
-    SLICE_X13Y25.X       Tilo                  0.612   counter_unit/dig1_reg_not0002
-                                                       counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CE      net (fanout=3)        0.558   counter_unit/dig1_reg_not0002
-    SLICE_X13Y30.CLK     Tceck                 0.483   counter_unit/dig1_reg<2>
-                                                       counter_unit/dig1_reg_2
+    SLICE_X25Y1.XQ       Tcko                  0.514   graph_unit/ship_y_reg<7>
+                                                       graph_unit/ship_y_reg_7
+    SLICE_X13Y4.G4       net (fanout=9)        1.696   graph_unit/ship_y_reg<7>
+    SLICE_X13Y4.Y        Tilo                  0.612   graph_unit/ship_y_b<9>
+                                                       graph_unit/Madd_ship_y_b_addsub0000_cy<7>11
+    SLICE_X13Y3.G1       net (fanout=2)        0.439   graph_unit/Madd_ship_y_b_addsub0000_cy<7>
+    SLICE_X13Y3.Y        Topgy                 1.070   graph_unit/ship_y_b<7>
+                                                       graph_unit/Msub_ship_y_b_lut<8>
+                                                       graph_unit/Msub_ship_y_b_xor<8>
+    SLICE_X13Y8.G2       net (fanout=2)        1.243   graph_unit/ship_y_b<8>
+    SLICE_X13Y8.COUT     Topcyg                0.871   graph_unit/Mcompar_sq_ship_on_cmp_le0003_cy<8>
+                                                       graph_unit/Mcompar_sq_ship_on_cmp_le0003_lut<8>
+                                                       graph_unit/Mcompar_sq_ship_on_cmp_le0003_cy<8>
+    SLICE_X13Y9.CIN      net (fanout=1)        0.000   graph_unit/Mcompar_sq_ship_on_cmp_le0003_cy<8>
+    SLICE_X13Y9.XB       Tcinxb                0.352   graph_unit/sq_ship_on_cmp_le0003
+                                                       graph_unit/Mcompar_sq_ship_on_cmp_le0003_cy<9>
+    SLICE_X12Y12.F1      net (fanout=1)        0.611   graph_unit/sq_ship_on_cmp_le0003
+    SLICE_X12Y12.X       Tilo                  0.660   graph_unit/rd_ship_on_and0000155
+                                                       graph_unit/rd_ship_on_and0000155
+    SLICE_X14Y12.F3      net (fanout=1)        0.550   graph_unit/rd_ship_on_and0000155
+    SLICE_X14Y12.X       Tilo                  0.660   graph_unit/rd_ship_on
+                                                       graph_unit/rd_ship_on_and0000161
+    SLICE_X20Y19.F1      net (fanout=4)        0.907   graph_unit/rd_ship_on
+    SLICE_X20Y19.X       Tilo                  0.660   N4
+                                                       rgb_next<0>320
+    SLICE_X19Y19.F2      net (fanout=1)        0.373   N4
+    SLICE_X19Y19.CLK     Tfck                  0.728   rgb_reg<2>
+                                                       rgb_next<2>
+                                                       rgb_reg_2
     -------------------------------------------------  ---------------------------
-    Total                                     11.813ns (4.859ns logic, 6.954ns route)
-                                                       (41.1% logic, 58.9% route)
+    Total                                     11.946ns (6.127ns logic, 5.819ns route)
+                                                       (51.3% logic, 48.7% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point keyboard_unit/ps2_code_reg_3 (SLICE_X3Y25.BX), 1 path
+Paths for end point keyboard_unit/ps2_code_reg_1 (SLICE_X1Y18.BX), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.812ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               keyboard_unit/ps2_code_next_3 (FF)
-  Destination:          keyboard_unit/ps2_code_reg_3 (FF)
+Slack (hold path):      0.821ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               keyboard_unit/ps2_code_next_1 (FF)
+  Destination:          keyboard_unit/ps2_code_reg_1 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.809ns (Levels of Logic = 0)
-  Clock Path Skew:      -0.003ns (0.007 - 0.010)
+  Data Path Delay:      0.821ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
   Source Clock:         clk rising at 40.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: keyboard_unit/ps2_code_next_3 to keyboard_unit/ps2_code_reg_3
+  Minimum Data Path: keyboard_unit/ps2_code_next_1 to keyboard_unit/ps2_code_reg_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X0Y24.XQ       Tcko                  0.412   keyboard_unit/ps2_code_next<3>
-                                                       keyboard_unit/ps2_code_next_3
-    SLICE_X3Y25.BX       net (fanout=1)        0.317   keyboard_unit/ps2_code_next<3>
-    SLICE_X3Y25.CLK      Tckdi       (-Th)    -0.080   keyboard_unit/ps2_code_reg<3>
-                                                       keyboard_unit/ps2_code_reg_3
+    SLICE_X0Y21.XQ       Tcko                  0.412   keyboard_unit/ps2_code_next<1>
+                                                       keyboard_unit/ps2_code_next_1
+    SLICE_X1Y18.BX       net (fanout=1)        0.329   keyboard_unit/ps2_code_next<1>
+    SLICE_X1Y18.CLK      Tckdi       (-Th)    -0.080   keyboard_unit/ps2_code_reg<1>
+                                                       keyboard_unit/ps2_code_reg_1
     -------------------------------------------------  ---------------------------
-    Total                                      0.809ns (0.492ns logic, 0.317ns route)
-                                                       (60.8% logic, 39.2% route)
+    Total                                      0.821ns (0.492ns logic, 0.329ns route)
+                                                       (59.9% logic, 40.1% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point keyboard_unit/ps2_code_reg_7 (SLICE_X2Y24.BX), 1 path
+Paths for end point keyboard_unit/ps2_code_reg_0 (SLICE_X1Y18.BY), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.847ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               keyboard_unit/ps2_code_next_7 (FF)
-  Destination:          keyboard_unit/ps2_code_reg_7 (FF)
+Slack (hold path):      0.900ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               keyboard_unit/ps2_code_next_0 (FF)
+  Destination:          keyboard_unit/ps2_code_reg_0 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.844ns (Levels of Logic = 0)
-  Clock Path Skew:      -0.003ns (0.007 - 0.010)
+  Data Path Delay:      0.900ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
   Source Clock:         clk rising at 40.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: keyboard_unit/ps2_code_next_7 to keyboard_unit/ps2_code_reg_7
+  Minimum Data Path: keyboard_unit/ps2_code_next_0 to keyboard_unit/ps2_code_reg_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X1Y24.XQ       Tcko                  0.411   keyboard_unit/ps2_code_next<7>
-                                                       keyboard_unit/ps2_code_next_7
-    SLICE_X2Y24.BX       net (fanout=1)        0.317   keyboard_unit/ps2_code_next<7>
-    SLICE_X2Y24.CLK      Tckdi       (-Th)    -0.116   keyboard_unit/ps2_code_reg<7>
-                                                       keyboard_unit/ps2_code_reg_7
+    SLICE_X0Y21.YQ       Tcko                  0.454   keyboard_unit/ps2_code_next<1>
+                                                       keyboard_unit/ps2_code_next_0
+    SLICE_X1Y18.BY       net (fanout=1)        0.329   keyboard_unit/ps2_code_next<0>
+    SLICE_X1Y18.CLK      Tckdi       (-Th)    -0.117   keyboard_unit/ps2_code_reg<1>
+                                                       keyboard_unit/ps2_code_reg_0
     -------------------------------------------------  ---------------------------
-    Total                                      0.844ns (0.527ns logic, 0.317ns route)
-                                                       (62.4% logic, 37.6% route)
+    Total                                      0.900ns (0.571ns logic, 0.329ns route)
+                                                       (63.4% logic, 36.6% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point keyboard_unit/debounce_ps2_data/result (SLICE_X0Y33.BY), 1 path
+Paths for end point keyboard_unit/ps2_code_reg_6 (SLICE_X1Y22.BY), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.870ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               keyboard_unit/debounce_ps2_data/flipflops_1 (FF)
-  Destination:          keyboard_unit/debounce_ps2_data/result (FF)
+Slack (hold path):      0.901ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               keyboard_unit/ps2_code_next_6 (FF)
+  Destination:          keyboard_unit/ps2_code_reg_6 (FF)
   Requirement:          0.000ns
-  Data Path Delay:      0.867ns (Levels of Logic = 0)
-  Clock Path Skew:      -0.003ns (0.005 - 0.008)
+  Data Path Delay:      0.901ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
   Source Clock:         clk rising at 40.000ns
   Destination Clock:    clk rising at 40.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path: keyboard_unit/debounce_ps2_data/flipflops_1 to keyboard_unit/debounce_ps2_data/result
+  Minimum Data Path: keyboard_unit/ps2_code_next_6 to keyboard_unit/ps2_code_reg_6
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X0Y34.XQ       Tcko                  0.412   keyboard_unit/debounce_ps2_data/flipflops<1>
-                                                       keyboard_unit/debounce_ps2_data/flipflops_1
-    SLICE_X0Y33.BY       net (fanout=3)        0.323   keyboard_unit/debounce_ps2_data/flipflops<1>
-    SLICE_X0Y33.CLK      Tckdi       (-Th)    -0.132   keyboard_unit/debounce_ps2_data/result
-                                                       keyboard_unit/debounce_ps2_data/result
+    SLICE_X0Y22.YQ       Tcko                  0.454   keyboard_unit/ps2_code_next<6>
+                                                       keyboard_unit/ps2_code_next_6
+    SLICE_X1Y22.BY       net (fanout=1)        0.330   keyboard_unit/ps2_code_next<6>
+    SLICE_X1Y22.CLK      Tckdi       (-Th)    -0.117   keyboard_unit/ps2_code_reg<7>
+                                                       keyboard_unit/ps2_code_reg_6
     -------------------------------------------------  ---------------------------
-    Total                                      0.867ns (0.544ns logic, 0.323ns route)
-                                                       (62.7% logic, 37.3% route)
+    Total                                      0.901ns (0.571ns logic, 0.330ns route)
+                                                       (63.4% logic, 36.6% route)
 
 --------------------------------------------------------------------------------
 
@@ -549,27 +709,27 @@ Slack: 37.224ns (period - (min low pulse limit / (low pulse / period)))
   Period: 40.000ns
   Low pulse: 20.000ns
   Low pulse limit: 1.388ns (Trpw)
-  Physical resource: graph_unit/proj1_y_reg<1>/SR
-  Logical resource: graph_unit/proj1_y_reg_1/SR
-  Location pin: SLICE_X21Y23.SR
+  Physical resource: graph_unit/ship_y_reg<4>/SR
+  Logical resource: graph_unit/ship_y_reg_4/SR
+  Location pin: SLICE_X12Y1.SR
   Clock network: reset_IBUF
 --------------------------------------------------------------------------------
 Slack: 37.224ns (period - (min high pulse limit / (high pulse / period)))
   Period: 40.000ns
   High pulse: 20.000ns
   High pulse limit: 1.388ns (Trpw)
-  Physical resource: graph_unit/proj1_y_reg<1>/SR
-  Logical resource: graph_unit/proj1_y_reg_1/SR
-  Location pin: SLICE_X21Y23.SR
+  Physical resource: graph_unit/ship_y_reg<4>/SR
+  Logical resource: graph_unit/ship_y_reg_4/SR
+  Location pin: SLICE_X12Y1.SR
   Clock network: reset_IBUF
 --------------------------------------------------------------------------------
 Slack: 37.224ns (period - (min low pulse limit / (low pulse / period)))
   Period: 40.000ns
   Low pulse: 20.000ns
   Low pulse limit: 1.388ns (Trpw)
-  Physical resource: graph_unit/proj1_y_reg<1>/SR
-  Logical resource: graph_unit/proj1_y_reg_2/SR
-  Location pin: SLICE_X21Y23.SR
+  Physical resource: counter_unit/dig0_reg<3>/SR
+  Logical resource: counter_unit/dig0_reg_3/SR
+  Location pin: SLICE_X19Y26.SR
   Clock network: reset_IBUF
 --------------------------------------------------------------------------------
 
@@ -586,7 +746,7 @@ Clock to Setup on destination clock clock
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clock          |   11.925|         |         |         |
+clock          |   14.958|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -595,16 +755,16 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 40806 paths, 0 nets, and 2297 connections
+Constraints cover 46367 paths, 0 nets, and 2327 connections
 
 Design statistics:
-   Minimum period:  11.925ns{1}   (Maximum frequency:  83.857MHz)
+   Minimum period:  14.958ns{1}   (Maximum frequency:  66.854MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Mon Jan 23 02:50:33 2023 
+Analysis completed Mon Jan 23 03:05:21 2023 
 --------------------------------------------------------------------------------
 
 Trace Settings:

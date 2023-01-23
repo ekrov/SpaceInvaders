@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-localhost.localdomain::  Mon Jan 23 02:50:25 2023
+localhost.localdomain::  Mon Jan 23 03:05:13 2023
 
 par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
 
@@ -45,7 +45,7 @@ Design Summary Report:
    Number of BUFGMUXs                        2 out of 24      8%
    Number of DCMs                            1 out of 2      50%
    Number of RAMB16s                         1 out of 4      25%
-   Number of Slices                        426 out of 960    44%
+   Number of Slices                        440 out of 960    45%
       Number of SLICEMs                      2 out of 480     1%
 
 
@@ -55,59 +55,59 @@ Placer effort level (-pl):    High
 Placer cost table entry (-t): 1
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 1 secs 
-Finished initial Timing Analysis.  REAL time: 1 secs 
+Starting initial Timing Analysis.  REAL time: 0 secs 
+Finished initial Timing Analysis.  REAL time: 0 secs 
 
 WARNING:Par:288 - The signal btn<0>_IBUF has no load.  PAR will not attempt to route this signal.
 WARNING:Par:288 - The signal btn<1>_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
 Total REAL time at the beginning of Placer: 1 secs 
-Total CPU  time at the beginning of Placer: 1 secs 
+Total CPU  time at the beginning of Placer: 0 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:c51b2a39) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:bf1914c8) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
 INFO:Place:834 - Only a subset of IOs are locked. Out of 21 IOs, 18 are locked and 3 are not locked. If you would like
    to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
-Phase 2.7  Design Feasibility Check (Checksum:c51b2a39) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:bf1914c8) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:c51b2a39) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:bf1914c8) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
 .......
-Phase 4.2  Initial Clock and IO Placement (Checksum:f47f1ba5) REAL time: 1 secs 
+Phase 4.2  Initial Clock and IO Placement (Checksum:ee1992d4) REAL time: 1 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:f47f1ba5) REAL time: 1 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:ee1992d4) REAL time: 1 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:f47f1ba5) REAL time: 1 secs 
+Phase 6.36  Local Placement Optimization (Checksum:ee1992d4) REAL time: 1 secs 
 
 Phase 7.3  Local Placement Optimization
 ...
-Phase 7.3  Local Placement Optimization (Checksum:fb44bd35) REAL time: 1 secs 
+Phase 7.3  Local Placement Optimization (Checksum:f4d0c718) REAL time: 1 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:fb44bd35) REAL time: 1 secs 
+Phase 8.5  Local Placement Optimization (Checksum:f4d0c718) REAL time: 1 secs 
 
 Phase 9.8  Global Placement
 ...
-...................................
-......
-...........
-Phase 9.8  Global Placement (Checksum:12e2cc10) REAL time: 3 secs 
+................................
+.....
+...................
+Phase 9.8  Global Placement (Checksum:92ffedc) REAL time: 2 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:12e2cc10) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:92ffedc) REAL time: 2 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:ba584772) REAL time: 3 secs 
+Phase 11.18  Placement Optimization (Checksum:2621f727) REAL time: 3 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:ba584772) REAL time: 3 secs 
+Phase 12.5  Local Placement Optimization (Checksum:2621f727) REAL time: 3 secs 
 
 Total REAL time to Placer completion: 3 secs 
 Total CPU  time to Placer completion: 3 secs 
@@ -118,13 +118,13 @@ Writing design to file pong_top.ncd
 Starting Router
 
 
-Phase  1  : 2548 unrouted;      REAL time: 4 secs 
+Phase  1  : 2681 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 2370 unrouted;      REAL time: 4 secs 
+Phase  2  : 2495 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 436 unrouted;      REAL time: 4 secs 
+Phase  3  : 451 unrouted;      REAL time: 4 secs 
 
-Phase  4  : 436 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+Phase  4  : 451 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
 Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
@@ -137,6 +137,8 @@ Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 WARNING:Route:455 - CLK Net:keyboard_unit/debounce_ps2_clk/result may have excessive skew because 
       0 CLK pins and 12 NON_CLK pins failed to route using a CLK template.
+WARNING:Route:455 - CLK Net:state_reg_FSM_FFd1 may have excessive skew because 
+      0 CLK pins and 85 NON_CLK pins failed to route using a CLK template.
 WARNING:Route:455 - CLK Net:graph_unit/proj1_x_l_cmp_eq0000 may have excessive skew because 
       0 CLK pins and 10 NON_CLK pins failed to route using a CLK template.
 
@@ -159,16 +161,18 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|                 clk |  BUFGMUX_X1Y0| No   |  105 |  0.028     |  0.063      |
+|                 clk |  BUFGMUX_X1Y0| No   |  108 |  0.030     |  0.063      |
 +---------------------+--------------+------+------+------------+-------------+
 |keyboard_unit/deboun |              |      |      |            |             |
-|   ce_ps2_clk/result |         Local|      |   18 |  0.010     |  0.667      |
-+---------------------+--------------+------+------+------------+-------------+
-|graph_unit/proj1_x_l |              |      |      |            |             |
-|         _cmp_eq0000 |         Local|      |   15 |  0.110     |  0.586      |
+|   ce_ps2_clk/result |         Local|      |   18 |  0.023     |  1.339      |
 +---------------------+--------------+------+------+------------+-------------+
 |graph_unit/proj1_hit |              |      |      |            |             |
-|            _not0001 |         Local|      |    1 |  0.000     |  0.979      |
+|            _not0001 |         Local|      |    1 |  0.000     |  0.493      |
++---------------------+--------------+------+------+------------+-------------+
+|  state_reg_FSM_FFd1 |         Local|      |   90 |  0.021     |  1.537      |
++---------------------+--------------+------+------+------------+-------------+
+|graph_unit/proj1_x_l |              |      |      |            |             |
+|         _cmp_eq0000 |         Local|      |   15 |  0.008     |  1.356      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -188,8 +192,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH  | SETUP       |    28.075ns|    11.925ns|       0|           0
-  50%                                       | HOLD        |     0.812ns|            |       0|           0
+  TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH  | SETUP       |    25.042ns|    14.958ns|       0|           0
+  50%                                       | HOLD        |     0.821ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
@@ -203,16 +207,16 @@ All signals are completely routed.
 WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
 Total REAL time to PAR completion: 5 secs 
-Total CPU time to PAR completion: 5 secs 
+Total CPU time to PAR completion: 4 secs 
 
-Peak Memory Usage:  649 MB
+Peak Memory Usage:  650 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.
 Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 6
+Number of warning messages: 7
 Number of info messages: 1
 
 Writing design to file pong_top.ncd
