@@ -346,7 +346,7 @@ BEGIN
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position 
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on,proj1_y_initial)
+    PROCESS (proj1_y_reg, proj1_y_t, refr_tick, gra_still, PROJ1_V, proj1_y_initial, keyboard_code, proj1_hit, ship_x_reg)
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
         IF gra_still = '1' THEN --initial position of projectile 1
@@ -366,8 +366,6 @@ BEGIN
                 proj1_hit <= '1';
             END IF;
         END IF;
-
-
         IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
                 proj1_hit <= '0';
                 proj1_x_initial <= ship_x_reg;
@@ -378,6 +376,38 @@ BEGIN
         END IF;
 
     END PROCESS;
+    -- PROCESS (proj1_y_reg, proj1_y_t, refr_tick, gra_still, PROJ1_V,ship_y_reg,ship_x_reg,keyboard_code,proj1_hit)
+    --     BEGIN
+    --         proj1_y_next <= proj1_y_reg; -- no move
+    --         IF gra_still = '1' THEN --initial position of projectile 1
+    --             proj1_hit <= '1';
+
+    --         ELSIF refr_tick = '1' THEN
+
+    --             -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
+    --             --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
+    --             --     new_proj1_next <= '0';
+    --             IF proj1_y_t > 1 THEN
+    --                 proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
+
+    --                 -- new_proj1_next <= '0';
+    --             ELSE
+    --                 -- new_proj1_next <= '1';
+    --                 proj1_hit <= '1';
+    --             END IF;
+    --         END IF;
+    --         IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
+    --             proj1_hit <= '0';
+    --             proj1_x_initial <= ship_x_reg;
+    --             PROJ1_V <= 2; -- Velocity will be 1
+    --             proj1_y_next <= to_unsigned(to_integer(ship_y_reg) - 16 - PROJ_SIZE, 10);
+
+    --             proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
+    --         END IF;
+
+    -- END PROCESS;
+
+        
 
     ----------------------------------------------
     -- random number generator
@@ -405,7 +435,7 @@ BEGIN
         '0';
     ship_rgb <= "100"; -- red
     -- new ship position
-    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, keycode_reg, rand_number, ship_y_b, ship_y_t, ship_x_l, ship_x_r,proj1_y_next,proj1_x_l)
+    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r,keyboard_code)
     BEGIN
         ship_y_next <= ship_y_reg;
         ship_x_next <= ship_x_reg;
@@ -417,12 +447,12 @@ BEGIN
             IF (keyboard_code = s) AND ship_y_b < (WALL_Y_B - 1) THEN
                 ship_y_next <= ship_y_reg + ship_V; -- move down
                 --projectile new initial position
-                proj1_y_initial<= to_unsigned(to_integer(ship_y_next) - 16 - PROJ_SIZE, 10);
+                proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
 
             ELSIF (keyboard_code = w) AND ship_y_t > WALL_Y_T2 + 1 THEN
                 ship_y_next <= ship_y_reg - ship_V; -- move up
                 --projectile new initial position
-                proj1_y_initial<= to_unsigned(to_integer(ship_y_next) - 16 - PROJ_SIZE, 10);
+                proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
 
             ELSIF (keyboard_code = a) AND ship_x_l > (WALL1_X_R + 1) THEN
                 ship_x_next <= ship_x_reg - ship_V;
@@ -555,11 +585,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_x_next <=
-        to_unsigned((MAX_X)/2, 10) WHEN gra_still = '1' ELSE
+        to_unsigned((MAX_X)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_x_reg + alien_vx_reg WHEN refr_tick = '1' ELSE
         alien_x_reg;
     alien_y_next <=
-        to_unsigned((MAX_Y)/2, 10) WHEN gra_still = '1' ELSE
+        to_unsigned((MAX_Y)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
         alien_y_reg;
 
@@ -574,7 +604,6 @@ BEGIN
     BEGIN
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
-        alien_alive_next <= alien_alive_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
@@ -591,9 +620,6 @@ BEGIN
         --     ball_vx_next <= ALIEN_V_N; -- bounce back
         --     hit <= '1';
         ELSIF (alien_alive = '1') THEN
-            IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
-                alien_alive_next <= '0';
-            END IF;
             IF (alien_x_l < 1) THEN -- reach left border
             alien_vx_next <= ALIEN_V_P;
         ELSIF (alien_x_r > MAX_X) THEN -- reach right border
@@ -630,11 +656,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_2_x_next <=
-        to_unsigned(((MAX_X)/2) + 50, 10) WHEN gra_still = '1' ELSE
+        to_unsigned(((MAX_X)/2) + 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_x_reg + alien_2_vx_reg WHEN refr_tick = '1' ELSE
         alien_2_x_reg;
     alien_2_y_next <=
-        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN gra_still = '1' ELSE
+        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_y_reg + alien_2_vy_reg WHEN refr_tick = '1' ELSE
         alien_2_y_reg;
 
@@ -643,25 +669,44 @@ BEGIN
     -- New alien 2 velocity
 
     PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_y_t, alien_2_x_l, alien_2_x_r,
-        alien_2_y_b, gra_still)
+        alien_2_y_b, gra_still,alien_2_alive)
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
         alien_2_vy_next <= alien_2_vy_reg;
-        alien_2_alive_next <= alien_2_alive_reg;
+
         IF gra_still = '1' THEN --initial velocity
             alien_2_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_2_alive = '1') THEN
-            IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
-                alien_2_alive_next <= '0';
-            END IF;
             IF (alien_2_x_l < 1) THEN -- reach left border
             alien_2_vx_next <= ALIEN_V_P;
         ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
             -- miss <= '1'; -- a miss
             alien_2_vx_next <= ALIEN_V_N;
             END IF;
+        END IF;
+    END PROCESS;
+
+    ----------------------------------------------  
+    --- Aliens Elimination Process
+    ----------------------------------------------
+    PROCESS (refr_tick, alien_alive, alien_2_alive, proj1_on)
+    BEGIN
+    hit <='0';
+        alien_alive_next <= alien_alive_reg;
+        alien_2_alive_next <= alien_2_alive_reg;
+        IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
+            alien_alive_next <= '1';
+            alien_2_alive_next <= '1';
+        END IF;
+        IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
+            alien_alive_next <= '0';
+            hit <='1';
+        END IF;
+        IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
+            alien_2_alive_next <= '0';
+            hit <='1';
         END IF;
     END PROCESS;
 
