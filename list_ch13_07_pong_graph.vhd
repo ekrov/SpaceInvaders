@@ -572,6 +572,7 @@ BEGIN
     PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
         alien_y_b, gra_still)
     BEGIN
+        hit<='0';
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
         alien_alive_next <= alien_alive_reg;
@@ -592,6 +593,7 @@ BEGIN
         --     hit <= '1';
         ELSIF (alien_alive = '1') THEN
             IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
+                hit <= '1';
                 alien_alive_next <= '0';
             END IF;
             IF (alien_x_l < 1) THEN -- reach left border
@@ -655,6 +657,8 @@ BEGIN
         ELSIF (alien_2_alive = '1') THEN
             IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
                 alien_2_alive_next <= '0';
+                hit<='1';
+
             END IF;
             IF (alien_2_x_l < 1) THEN -- reach left border
             alien_2_vx_next <= ALIEN_V_P;
