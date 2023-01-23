@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Mon Jan 23 03:34:50 2023
+Mon Jan 23 04:36:06 2023
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -56,7 +56,7 @@ Pinout by Pin Number:
 |C6        |           |DIFFS    |IO_L08N_0/VREF_0         |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
 |C7        |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |C8        |           |DIFFSI   |IP_L06N_0/GCLK9          |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
-|C9        |           |DIFFS    |IO_L04N_0/GCLK5          |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
+|C9        |rgb<0>     |IOB      |IO_L04N_0/GCLK5          |OUTPUT   |LVCMOS25*  |0             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
 |C10       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |C11       |btn<1>     |IBUF     |IP                       |INPUT    |LVCMOS25*  |0             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
 |C12       |           |DIFFS    |IO_L01N_0                |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
@@ -65,7 +65,7 @@ Pinout by Pin Number:
 |D1        |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |D2        |           |IOB      |IO                       |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |D3        |           |         |VCCINT                   |         |           |              |          |         |           |         |1.2    |          |           |                |
-|D12       |rgb<2>     |IOB      |IO_L09N_1/LDC0           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|D12       |           |DIFFS    |IO_L09N_1/LDC0           |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
 |D13       |outred<1>  |IOB      |IO_L09P_1/HDC            |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |D14       |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |E1        |           |         |VCCO_3                   |         |           |3             |          |         |           |         |2.50   |          |           |                |
@@ -74,10 +74,10 @@ Pinout by Pin Number:
 |E12       |           |         |VCCAUX                   |         |           |              |          |         |           |         |2.5    |          |           |                |
 |E13       |           |         |VCCO_1                   |         |           |1             |          |         |           |         |2.50   |          |           |                |
 |E14       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
-|F1        |rgb<0>     |IOB      |IO_L05P_3/LHCLK2         |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|F1        |           |DIFFM    |IO_L05P_3/LHCLK2         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |F2        |           |DIFFS    |IO_L04N_3/LHCLK1         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |F3        |           |DIFFM    |IO_L04P_3/LHCLK0         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
-|F12       |           |IOB      |IO/A0                    |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
+|F12       |rgb<2>     |IOB      |IO/A0                    |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
 |F13       |outred<2>  |IOB      |IO_L08N_1/A1             |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |F14       |outgreen<0>|IOB      |IO_L08P_1/A2             |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |G1        |led<7>     |IOB      |IO_L05N_3/LHCLK3/IRDY2   |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
