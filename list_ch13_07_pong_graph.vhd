@@ -201,7 +201,7 @@ ARCHITECTURE arch OF pong_graph IS
     -- Porjectile 1
     SIGNAL proj1_y_t, proj1_y_b : unsigned(9 DOWNTO 0);
     SIGNAL proj1_x_l, proj1_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL proj1_y_reg, proj1_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL proj1_y_reg, proj1_y_next ,proj1_y_initial: unsigned(9 DOWNTO 0);
     SIGNAL PROJ1_V : INTEGER;
     SIGNAL new_proj1_next, new_proj1_reg : STD_LOGIC;
 
@@ -345,8 +345,8 @@ BEGIN
         (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit = '0')ELSE
         '0';
     proj1_rgb <= "111"; -- white  
-    -- new projectile1 y-position  
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on)
+    -- new projectile1 y-position 
+    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on,proj1_y_initial)
     BEGIN
         proj1_y_next <= proj1_y_reg; -- no move
         IF gra_still = '1' THEN --initial position of projectile 1
@@ -372,7 +372,7 @@ BEGIN
                 proj1_hit <= '0';
                 proj1_x_initial <= ship_x_reg;
                 PROJ1_V <= 2; -- Velocity will be 1
-                proj1_y_next <= to_unsigned(to_integer(ship_y_reg) - 16 - PROJ_SIZE, 10);
+                proj1_y_next <= proj1_y_initial;
 
                 proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
         END IF;
@@ -405,24 +405,32 @@ BEGIN
         '0';
     ship_rgb <= "100"; -- red
     -- new ship position
-    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, keycode_reg, rand_number, ship_y_b, ship_y_t, ship_x_l, ship_x_r)
+    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, keycode_reg, rand_number, ship_y_b, ship_y_t, ship_x_l, ship_x_r,proj1_y_next,proj1_x_l)
     BEGIN
         ship_y_next <= ship_y_reg;
         ship_x_next <= ship_x_reg;
+
         IF gra_still = '1' THEN --initial position of ship
             ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
             ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
         ELSIF refr_tick = '1' THEN
             IF (keyboard_code = s) AND ship_y_b < (WALL_Y_B - 1) THEN
                 ship_y_next <= ship_y_reg + ship_V; -- move down
+                --projectile new initial position
+                proj1_y_initial<= to_unsigned(to_integer(ship_y_next) - 16 - PROJ_SIZE, 10);
+
             ELSIF (keyboard_code = w) AND ship_y_t > WALL_Y_T2 + 1 THEN
                 ship_y_next <= ship_y_reg - ship_V; -- move up
+                --projectile new initial position
+                proj1_y_initial<= to_unsigned(to_integer(ship_y_next) - 16 - PROJ_SIZE, 10);
+
             ELSIF (keyboard_code = a) AND ship_x_l > (WALL1_X_R + 1) THEN
                 ship_x_next <= ship_x_reg - ship_V;
             ELSIF (keyboard_code = d) AND ship_x_r < (WALL2_X_L - 1) THEN
                 ship_x_next <= ship_x_reg + ship_V;
             END IF;
         END IF;
+
     END PROCESS;
 
     -- -- wall

@@ -5,6 +5,12 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd</arg>&quot; is newer than current system time.
+</msg>
+
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; is newer than current system time.
+</msg>
+
 <msg type="warning" file="Xst" num="753" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd</arg>&quot; line <arg fmt="%d" index="2">41</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">LOCKED_OUT</arg>&apos; of component &apos;<arg fmt="%s" index="4">clockmanager</arg>&apos;.
 </msg>
 
@@ -19,15 +25,15 @@
 <arg fmt="%s" index="3">&lt;keyboard_code&gt;</arg>
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">564</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">572</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;alien_alive_reg&gt;, &lt;alien_alive&gt;, &lt;rd_alien_1_on&gt;, &lt;proj1_on&gt;</arg>
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">637</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">645</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;alien_2_alive_reg&gt;, &lt;alien_2_alive&gt;, &lt;rd_alien_2_on&gt;, &lt;proj1_on&gt;</arg>
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">661</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">669</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;rd_ship_on&gt;, &lt;rd_alien_1_on&gt;, &lt;rd_alien_2_on&gt;, &lt;alien_rgb&gt;</arg>
 </msg>
 
@@ -154,6 +160,9 @@
 <msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">1</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">proj1_hit</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 </msg>
 
+<msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">10</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">proj1_y_initial</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+</msg>
+
 <msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">10</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">proj1_x_l</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 </msg>
 
@@ -249,10 +258,10 @@ It will be removed from the design.
 <msg type="info" file="Xst" num="3225" delta="old" >The RAM &lt;<arg fmt="%s" index="1">Mrom_data_rom0000</arg>&gt; will be implemented as BLOCK RAM
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_21</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">7 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_22</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">7 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_8</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">8 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;1&gt; &lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_9</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">8 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;1&gt; &lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_7</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">7 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
@@ -261,7 +270,7 @@ It will be removed from the design.
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LPM_DFF_3</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">8 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;1&gt; &lt;3&gt; &lt;4&gt; &lt;7&gt; &lt;5&gt; &lt;6&gt; &lt;8&gt; &lt;9&gt; </arg>
 </msg>
 
-<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">LPM_DFF_8</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">LPM_DFF_9</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">LPM_DFF_3</arg>&gt;. This FF/Latch will be trimmed during the optimization process.

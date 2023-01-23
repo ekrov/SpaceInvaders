@@ -34,20 +34,20 @@ architecture arch of pong_text is
       -- row 1
       
        "0000000", -- 
-      "0000000", -- 
+      "1010011", -- S
+      "1010000", -- P
+      "1000001", -- A
+      "1000011", -- C
+      "1000101", -- E
       "0000000", --
-      "0000000", -- 
-      "0000000", -- 
-      "0000000", --
-      "0000000", --
-      "1001000", -- H
       "1001001", -- I
-      "0100001", -- !
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
-      "0000000", --
+      "1001110", -- N
+      "1010110", -- V
+      "1000001", -- A
+      "1000100", -- D
+      "1000101", -- E
+      "1010010", -- R
+      "1010011", -- S
       "0000000", --
       -- row 2
       "0000000", --
@@ -184,27 +184,27 @@ begin
            row_addr_s,row_addr_r,row_addr_o,
            bit_addr_s,bit_addr_r,bit_addr_o)
    begin
-      text_rgb <= "110";  -- background, yellow
+      text_rgb <= "000";  -- background, black
       if score_on='1' then
          char_addr <= char_addr_s;
          row_addr <= row_addr_s;
          bit_addr <= bit_addr_s;
          if font_bit='1' then
-            text_rgb <= "001";
+            text_rgb <= "111";
          end if;
       elsif rule_on='1' then
          char_addr <= char_addr_r;
          row_addr <= row_addr_r;
          bit_addr <= bit_addr_r;
          if font_bit='1' then
-            text_rgb <= "001";
+            text_rgb <= "111"; -- Green
          end if;
       else -- game over
          char_addr <= char_addr_o;
          row_addr <= row_addr_o;
          bit_addr <= bit_addr_o;
          if font_bit='1' then
-            text_rgb <= "001";
+            text_rgb <= "111";
          end if;
       end if;
    end process;
