@@ -567,7 +567,7 @@ BEGIN
         alien_y_b, gra_still)
     BEGIN
         alien_vx_next <= alien_vx_reg;
-        alien_vy_next <= alien_vy_reg;        
+        alien_vy_next <= alien_vy_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
@@ -583,7 +583,7 @@ BEGIN
             --     -- reach x of right bar, a hit
             --     ball_vx_next <= ALIEN_V_N; -- bounce back
             --     hit <= '1';
-        ELSIF (alien_alive = '1') THEN            
+        ELSIF (alien_alive = '1') THEN
             IF (alien_x_l < 1) THEN -- reach left border
                 alien_vx_next <= ALIEN_V_P;
             ELSIF (alien_x_r > MAX_X) THEN -- reach right border
@@ -642,7 +642,7 @@ BEGIN
             alien_2_vx_next <= ALIEN_V_N;
             -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
-        ELSIF (alien_2_alive = '1') THEN            
+        ELSIF (alien_2_alive = '1') THEN
             IF (alien_2_x_l < 1) THEN -- reach left border
                 alien_2_vx_next <= ALIEN_V_P;
             ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
@@ -655,22 +655,20 @@ BEGIN
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
-    PROCESS (refr_tick, alien_alive, alien_2_alive)
+    PROCESS (refr_tick, alien_alive, alien_2_alive, proj1_on)
     BEGIN
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
-        --IF refr_tick = '1' THEN
-            IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
-                alien_alive_next <= '1';
-                alien_2_alive_next <= '1';
-            END IF;
-            IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
-                alien_alive_next <= '0';
-            END IF;
-            IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
-                alien_2_alive_next <= '0';
-            END IF;
-        --END IF;
+        IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
+            alien_alive_next <= '1';
+            alien_2_alive_next <= '1';
+        END IF;
+        IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
+            alien_alive_next <= '0';
+        END IF;
+        IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
+            alien_2_alive_next <= '0';
+        END IF;
     END PROCESS;
 
     -- rgb multiplexing circuit
