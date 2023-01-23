@@ -143,7 +143,7 @@
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
      "__class__": "Path"
     },
-    "mtime": 1674486993.9520113,
+    "mtime": 1674487433.604053,
     "flags": {
      "source_specific": [],
      "single": [],
@@ -252,67 +252,6 @@
       "locations": [
        [
         21,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmi87qs93.vhd",
-     "__class__": "TemporaryPath"
-    },
-    "mtime": 1674486994.5708961,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmi87qs93.vhd",
-       "__class__": "TemporaryPath"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        3,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmi87qs93.vhd",
-       "__class__": "TemporaryPath"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        2,
         4
        ]
       ],
@@ -1803,6 +1742,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp9qf_ozz7.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpnbz9hum6.vhd",
     "__class__": "Path"
    },
    {
@@ -3886,6 +3829,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp3c4cxo7f.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp50yzf2gs.vhd",
     "__class__": "Path"
    },
@@ -4531,25 +4478,6 @@
    },
    {
     "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "clockmanager",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      27,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
-   },
-   {
-    "owner": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
      "__class__": "Path"
     },
@@ -4562,6 +4490,25 @@
     "locations": [
      [
       4,
+      7
+     ]
+    ],
+    "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "clockmanager",
+     "case_sensitive": false,
+     "__class__": "VhdlIdentifier"
+    },
+    "locations": [
+     [
+      27,
       7
      ]
     ],
@@ -4756,25 +4703,6 @@
      ]
     ],
     "__class__": "VerilogDesignUnit"
-   },
-   {
-    "owner": {
-     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmi87qs93.vhd",
-     "__class__": "TemporaryPath"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "pong_graph",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      4,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
    },
    {
     "owner": {

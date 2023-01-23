@@ -693,8 +693,8 @@ BEGIN
 
     -- New alien 2 velocity
 
-    PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_y_t, alien_2_x_l, alien_2_x_r,
-        alien_2_y_b, gra_still,alien_2_alive)
+    PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_x_l, alien_2_x_r,
+         gra_still,alien_2_alive)
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
         alien_2_vy_next <= alien_2_vy_reg;
