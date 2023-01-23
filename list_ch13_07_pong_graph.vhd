@@ -136,7 +136,7 @@ ARCHITECTURE arch OF pong_graph IS
 
     
     ---------------------------------  
-    -- Alien  
+    -- Aliens  
     ---------------------------------
     CONSTANT ALIEN_SIZE : INTEGER := 8; -- 8
     -- Alien 1
@@ -179,6 +179,26 @@ ARCHITECTURE arch OF pong_graph IS
     "10011001"  -- *  **  *
     );    
 
+    ---------------------------------  
+    -- Aliens Projectiles  
+    ---------------------------------
+    CONSTANT ALIEN_PROJECTIL_SIZE : INTEGER := 4; -- 4
+    CONSTANT ALIEN_PROJECTIL_WIDTH : INTEGER := 2; -- 2
+    CONSTANT ALIEN_PROJ_V_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
+    CONSTANT ALIEN_PROJ_V_NO_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(0, 10);
+    -- SIGNAL projectil_timer_reg, projectil_timer_next : unsigned(4 DOWNTO 0);
+    -- Alien 1
+    SIGNAL alien_projectil_x_l, alien_projectil_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_projectil_y_t, alien_projectil_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_projectil_x_reg, alien_projectil_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_projectil_y_reg, alien_projectil_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_projectil_on, alien_projectil_hit_reg, alien_projectil_hit_next : STD_LOGIC;
+    -- Alien 2
+    SIGNAL alien_2_projectil_x_l, alien_2_projectil_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_projectil_y_t, alien_2_projectil_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_projectil_x_reg, alien_2_projectil_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_projectil_y_reg, alien_2_projectil_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_2_projectil_on, alien_2_projectil_hit_reg, alien_2_projectil_hit_next : STD_LOGIC;
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -270,6 +290,10 @@ BEGIN
             alien_2_vy_reg <= ("0000000100");
             alien_2_alive_reg <= '1';
 
+            -- projectil_timer_reg <= (OTHERS => '0');
+            alien_projectil_hit_reg <= '1';
+            alien_2_projectil_hit_reg <= '1';
+
             keycode_reg <= (OTHERS => '0');
             -- SHIP_x_reg <= (OTHERS => '0');
             -- SHIP_y_reg <= (OTHERS => '0');
@@ -302,19 +326,20 @@ BEGIN
             alien_2_vy_reg <= alien_2_vy_next;
             alien_2_alive_reg <= alien_2_alive_next;
 
-            -- SHIP_x_reg <= ball_x_next;
-            -- SHIP_y_reg <= ball_y_next;
-            -- SHIP_vx_reg <= ball_vx_next;
-            -- SHIP_vy_reg <= ball_vy_next;
+ -- projectil_timer_reg <= projectil_timer_next;
+            alien_projectil_x_reg <= alien_projectil_x_next;
+            alien_projectil_y_reg <= alien_projectil_y_next;
+            alien_projectil_hit_reg <= alien_projectil_hit_next;
 
+            alien_2_projectil_x_reg <= alien_2_projectil_x_next;
+            alien_2_projectil_y_reg <= alien_2_projectil_y_next;
+            alien_2_projectil_hit_reg <= alien_2_projectil_hit_next;
             ship_x_reg <= ship_x_next;
             ship_y_reg <= ship_y_next;
 
             proj1_y_reg <= proj1_y_next;
             rand_reg <= rand_next;
             new_proj1_reg <= new_proj1_next;
-           
-
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -709,9 +734,90 @@ BEGIN
             hit <='1';
         END IF;
     END PROCESS;
+----------------------------------------------  
+    --- Alien 1 Projectil
+    ----------------------------------------------
+    alien_projectil_x_l <= alien_projectil_x_reg;
+    alien_projectil_y_t <= alien_projectil_y_reg;
+    alien_projectil_x_r <= alien_projectil_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    alien_projectil_y_b <= alien_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    alien_projectil_on <=
+        '1' WHEN (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
+        (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) AND (alien_projectil_hit_reg = '0') AND 
+		(alien_alive='1')		  ELSE
+        '0';
 
+    -- new alien projectil position
+    -- alien_projectil_x_next <=
+    --     alien_x_reg WHEN projectil_timer_reg = "00000" ELSE
+    --     alien_projectil_x_reg;
+    -- alien_projectil_y_next <=
+    --     alien_y_reg WHEN projectil_timer_reg = "00000" ELSE
+    --     alien_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+    --     alien_projectil_y_reg;
+
+    alien_projectil_x_next <=
+        alien_x_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') ELSE
+        alien_projectil_x_reg;
+    alien_projectil_y_next <=
+        alien_y_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') ELSE
+        alien_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+        alien_projectil_y_reg;
+
+    PROCESS (alien_alive, alien_projectil_hit_reg, alien_projectil_on,rd_ship_on, alien_projectil_y_b)
+    BEGIN
+        -- projectil_timer_next <= projectil_timer_reg;
+        alien_projectil_hit_next <= alien_projectil_hit_reg;
+        -- IF refr_tick = '1' THEN
+        IF (alien_alive = '1') THEN
+            -- projectil_timer_next <= projectil_timer_reg + 1;
+            IF alien_projectil_hit_reg = '1' THEN
+                alien_projectil_hit_next <= '0';
+            ELSIF (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
+                alien_projectil_hit_next <= '1';
+            ELSIF (alien_projectil_y_b > MAX_Y) THEN
+                alien_projectil_hit_next <= '1';
+            END IF;
+        END IF;
+        -- END IF;
+    END PROCESS;
+
+    ----------------------------------------------  
+    --- Alien 2 Projectil
+    ----------------------------------------------
+    alien_2_projectil_x_l <= alien_2_projectil_x_reg;
+    alien_2_projectil_y_t <= alien_2_projectil_y_reg;
+    alien_2_projectil_x_r <= alien_2_projectil_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    alien_2_projectil_y_b <= alien_2_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    alien_2_projectil_on <=
+        '1' WHEN (alien_2_projectil_x_l <= pix_x) AND (pix_x <= alien_2_projectil_x_r) AND
+        (alien_2_projectil_y_t <= pix_y) AND (pix_y <= alien_2_projectil_y_b) AND (alien_2_projectil_hit_reg = '0') AND (alien_2_alive='1') ELSE
+        '0';
+
+    alien_2_projectil_x_next <=
+        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
+        alien_2_projectil_x_reg;
+    alien_2_projectil_y_next <=
+        alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
+        alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+        alien_2_projectil_y_reg;
+
+    PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b)
+    BEGIN
+        alien_2_projectil_hit_next <= alien_2_projectil_hit_reg;
+        IF (alien_2_alive = '1') THEN
+            IF alien_2_projectil_hit_reg = '1' THEN
+                alien_2_projectil_hit_next <= '0';
+            ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+                alien_2_projectil_hit_next <= '1';
+            ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
+                alien_2_projectil_hit_next <= '1';
+            END IF;
+        END IF;
+    END PROCESS;
     -- rgb multiplexing circuit
-    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on)
+    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
+            alien_projectil_on, alien_2_projectil_on)
     BEGIN
         -- IF wall_on = '1' THEN
         --     rgb <= wall_rgb;
@@ -722,6 +828,8 @@ BEGIN
         IF rd_ship_on = '1' THEN
             rgb <= ship_rgb;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
+            rgb <= alien_rgb;
+        ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
@@ -760,5 +868,5 @@ BEGIN
     --     SHIP_y_reg;
     -- -- new graphic_on signal
 
-    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on;
+    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR alien_2_projectil_on;
 END arch;
