@@ -254,8 +254,8 @@ BEGIN
             alien_2_alive_reg <= '1';
 
             -- projectil_timer_reg <= (OTHERS => '0');
-            alien_projectil_hit_reg <= '0';
-            alien_2_projectil_hit_reg <= '0';
+            alien_projectil_hit_reg <= '1';
+            alien_2_projectil_hit_reg <= '1';
 
             keycode_reg <= (OTHERS => '0');
             SHIP_x_reg <= (OTHERS => '0');
