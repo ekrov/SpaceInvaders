@@ -110,7 +110,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
     SIGNAL alien_alive, alien_alive_reg, alien_alive_next : STD_LOGIC;
-    SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(3 DOWNTO 0);
+    SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(2 DOWNTO 0);
     -- Alien 2
     SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
@@ -122,7 +122,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
     SIGNAL alien_2_alive, alien_2_alive_reg, alien_2_alive_next : STD_LOGIC;
-    SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(3 DOWNTO 0);
+    SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(2 DOWNTO 0);
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);

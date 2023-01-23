@@ -91,7 +91,7 @@ R21
 R22
 R13
 Epong_graph
-Z23 w1674493942
+Z23 w1674495272
 R2
 R3
 R4
@@ -104,11 +104,11 @@ Vbn7iKdGCfFmP:5FX4f`1N2
 !s100 d[oWWc88k`l^d[GV_:N6b0
 R7
 32
-Z26 !s110 1674493943
+Z26 !s110 1674495272
 !i10b 1
-Z27 !s108 1674493943.000000
+Z27 !s108 1674495272.000000
 Z28 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
-Z29 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
+!s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 !i113 0
 R12
 R13
@@ -116,18 +116,18 @@ Aarch
 R2
 R3
 R4
-Z30 DEx4 work 10 pong_graph 0 22 bn7iKdGCfFmP:5FX4f`1N2
+Z29 DEx4 work 10 pong_graph 0 22 bn7iKdGCfFmP:5FX4f`1N2
 l218
 L19
-Z31 V[4=ZW^z4HEB2dLgIR1ZgJ0
-Z32 !s100 kQW>2]LW40fJo9I42M7Ze0
+Z30 V2m;0dB4DC8V;dTBAXRA0e2
+Z31 !s100 Ia8ABW8:nan>mEPHOch4Q1
 R7
 32
 R26
 !i10b 1
 R27
 R28
-R29
+Z32 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 !i113 0
 R12
 R13
