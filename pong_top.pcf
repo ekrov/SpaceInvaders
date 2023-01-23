@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 23 04:35:57 2023
+// Written by: Map P.20131013 on Mon Jan 23 05:20:47 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -44,14 +44,13 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "counter_unit/dig0_reg_3" BEL "counter_unit/dig0_reg_2" BEL
         "counter_unit/dig0_reg_1" BEL "counter_unit/dig0_reg_0" BEL
         "graph_unit/alien_2_vx_reg_2" BEL "graph_unit/alien_2_vx_reg_0" BEL
-        "graph_unit/alien_2_vx_reg_1" BEL "graph_unit/alien_2_vy_reg_2" BEL
+        "graph_unit/alien_2_vx_reg_1" BEL "graph_unit/alien_2_vx_reg_3" BEL
+        "graph_unit/alien_2_vx_reg_4" BEL "graph_unit/alien_2_vx_reg_5" BEL
+        "graph_unit/alien_2_vx_reg_9" BEL "graph_unit/alien_2_vy_reg_2" BEL
         "graph_unit/alien_vx_reg_2" BEL "graph_unit/alien_vx_reg_0" BEL
-        "graph_unit/alien_vx_reg_1" BEL "graph_unit/proj1_y_t_reg_9" BEL
-        "graph_unit/proj1_y_t_reg_8" BEL "graph_unit/proj1_y_t_reg_7" BEL
-        "graph_unit/proj1_y_t_reg_6" BEL "graph_unit/proj1_y_t_reg_5" BEL
-        "graph_unit/proj1_y_t_reg_4" BEL "graph_unit/proj1_y_t_reg_3" BEL
-        "graph_unit/proj1_y_t_reg_2" BEL "graph_unit/proj1_y_t_reg_1" BEL
-        "graph_unit/proj1_y_t_reg_0" BEL "graph_unit/alien_projectil_y_reg_9"
+        "graph_unit/alien_vx_reg_1" BEL "graph_unit/alien_vx_reg_3" BEL
+        "graph_unit/alien_vx_reg_4" BEL "graph_unit/alien_vx_reg_5" BEL
+        "graph_unit/alien_vx_reg_9" BEL "graph_unit/alien_projectil_y_reg_9"
         BEL "graph_unit/alien_projectil_y_reg_8" BEL
         "graph_unit/alien_projectil_y_reg_7" BEL
         "graph_unit/alien_projectil_y_reg_6" BEL
@@ -71,6 +70,21 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "graph_unit/alien_2_projectil_y_reg_2" BEL
         "graph_unit/alien_2_projectil_y_reg_1" BEL
         "graph_unit/alien_2_projectil_y_reg_0" BEL
+        "graph_unit/proj1_y_t_reg_9" BEL "graph_unit/proj1_y_t_reg_8" BEL
+        "graph_unit/proj1_y_t_reg_7" BEL "graph_unit/proj1_y_t_reg_6" BEL
+        "graph_unit/proj1_y_t_reg_5" BEL "graph_unit/proj1_y_t_reg_4" BEL
+        "graph_unit/proj1_y_t_reg_3" BEL "graph_unit/proj1_y_t_reg_2" BEL
+        "graph_unit/proj1_y_t_reg_1" BEL "graph_unit/proj1_y_t_reg_0" BEL
+        "graph_unit/alien_hits_counter_reg_4" BEL
+        "graph_unit/alien_hits_counter_reg_3" BEL
+        "graph_unit/alien_hits_counter_reg_2" BEL
+        "graph_unit/alien_hits_counter_reg_1" BEL
+        "graph_unit/alien_hits_counter_reg_0" BEL
+        "graph_unit/alien_2_hits_counter_reg_4" BEL
+        "graph_unit/alien_2_hits_counter_reg_3" BEL
+        "graph_unit/alien_2_hits_counter_reg_2" BEL
+        "graph_unit/alien_2_hits_counter_reg_1" BEL
+        "graph_unit/alien_2_hits_counter_reg_0" BEL
         "graph_unit/alien_projectil_hit_reg" BEL
         "graph_unit/alien_2_projectil_x_reg_9" BEL
         "graph_unit/alien_2_projectil_x_reg_8" BEL
@@ -123,12 +137,12 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "graph_unit/alien_x_reg_5" BEL "graph_unit/alien_x_reg_4" BEL
         "graph_unit/alien_x_reg_3" BEL "graph_unit/alien_x_reg_2" BEL
         "graph_unit/alien_x_reg_1" BEL "graph_unit/alien_x_reg_0" BEL
-        "graph_unit/ship_x_reg_9" BEL "graph_unit/ship_x_reg_8" BEL
-        "graph_unit/ship_x_reg_7" BEL "graph_unit/ship_x_reg_6" BEL
-        "graph_unit/ship_x_reg_5" BEL "graph_unit/ship_x_reg_4" BEL
-        "graph_unit/ship_x_reg_3" BEL "graph_unit/ship_x_reg_2" BEL
-        "graph_unit/ship_x_reg_1" BEL "graph_unit/ship_x_reg_0" BEL
-        "graph_unit/alien_2_alive_reg" BEL "graph_unit/alien_alive_reg" BEL
+        "graph_unit/alien_2_alive_reg" BEL "graph_unit/ship_x_reg_9" BEL
+        "graph_unit/ship_x_reg_8" BEL "graph_unit/ship_x_reg_7" BEL
+        "graph_unit/ship_x_reg_6" BEL "graph_unit/ship_x_reg_5" BEL
+        "graph_unit/ship_x_reg_4" BEL "graph_unit/ship_x_reg_3" BEL
+        "graph_unit/ship_x_reg_2" BEL "graph_unit/ship_x_reg_1" BEL
+        "graph_unit/ship_x_reg_0" BEL "graph_unit/alien_alive_reg" BEL
         "keyboard_unit/count_idle_22" BEL "keyboard_unit/count_idle_21" BEL
         "keyboard_unit/count_idle_20" BEL "keyboard_unit/count_idle_19" BEL
         "keyboard_unit/count_idle_18" BEL "keyboard_unit/count_idle_17" BEL
@@ -172,8 +186,9 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "keyboard_unit/ps2_code_next_4" BEL "keyboard_unit/ps2_code_next_3"
         BEL "keyboard_unit/ps2_code_next_2" BEL
         "keyboard_unit/ps2_code_next_1" BEL "keyboard_unit/ps2_code_next_0"
-        BEL "state_reg_FSM_FFd1" BEL "text_unit/font_unit/Mrom_data_rom0000.A"
-        BEL "keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0/SRL16E" BEL
+        BEL "state_reg_FSM_FFd1" BEL "vga_sync_unit/v_count_reg_2_1" BEL
+        "text_unit/font_unit/Mrom_data_rom0000.A" BEL
+        "keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0/SRL16E" BEL
         "keyboard_unit/debounce_ps2_clk/flipflops_0" BEL
         "keyboard_unit/debounce_ps2_data/Mshreg_flipflops_0/SRL16E" BEL
         "keyboard_unit/debounce_ps2_data/flipflops_0";

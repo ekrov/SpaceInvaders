@@ -110,6 +110,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
     SIGNAL alien_alive, alien_alive_reg, alien_alive_next : STD_LOGIC;
+    SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(4 DOWNTO 0);
     -- Alien 2
     SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
@@ -121,6 +122,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
     SIGNAL alien_2_alive, alien_2_alive_reg, alien_2_alive_next : STD_LOGIC;
+    SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(4 DOWNTO 0);
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
@@ -136,7 +138,7 @@ ARCHITECTURE arch OF pong_graph IS
     "01100110", --  **  ** 
     "11111111", -- ********
     "10011001", -- *  **  *
-    "10011001"  -- *  **  *
+    "10011001" -- *  **  *
     );    
 
     ---------------------------------  
@@ -229,13 +231,16 @@ BEGIN
             alien_vx_reg <= ("0000000100");
             alien_vy_reg <= ("0000000100");
             alien_alive_reg <= '1';
+            alien_hits_counter_reg <= (OTHERS => '0');
 
             alien_2_x_reg <= (OTHERS => '0');
             alien_2_y_reg <= (OTHERS => '0');
             alien_2_vx_reg <= ("0000000100");
             alien_2_vy_reg <= ("0000000100");
             alien_2_alive_reg <= '1';
+            alien_2_hits_counter_reg <= (OTHERS => '0');
 
+            -- projectil_timer_reg <= (OTHERS => '0');
             alien_projectil_hit_reg <= '1';
             alien_2_projectil_hit_reg <= '1';
 
@@ -264,12 +269,14 @@ BEGIN
             alien_vx_reg <= alien_vx_next;
             alien_vy_reg <= alien_vy_next;
             alien_alive_reg <= alien_alive_next;
+            alien_hits_counter_reg <= alien_hits_counter_next;
 
             alien_2_x_reg <= alien_2_x_next;
             alien_2_y_reg <= alien_2_y_next;
             alien_2_vx_reg <= alien_2_vx_next;
             alien_2_vy_reg <= alien_2_vy_next;
             alien_2_alive_reg <= alien_2_alive_next;
+            alien_2_hits_counter_reg <= alien_2_hits_counter_next;
 
  -- projectil_timer_reg <= projectil_timer_next;
             alien_projectil_x_reg <= alien_projectil_x_next;
@@ -446,20 +453,20 @@ BEGIN
     -- With new hit, miss signals
 
     PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
-        alien_y_b, gra_still)
+        alien_y_b, gra_still,alien_alive, alien_hits_counter_reg)
     BEGIN
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
         IF gra_still = '1' THEN --initial velocity
-            alien_vx_next <= ALIEN_V_N;
+            alien_vx_next <= ALIEN_V_N - alien_hits_counter_reg;
             -- alien_vy_next <= ALIEN_V_P;
             alien_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_alive = '1') THEN
             IF (alien_x_l < 1) THEN -- reach left border
-            alien_vx_next <= ALIEN_V_P;
+                alien_vx_next <= ALIEN_V_P + alien_hits_counter_reg;
         ELSIF (alien_x_r > MAX_X) THEN -- reach right border
             -- miss <= '1'; -- a miss
-            alien_vx_next <= ALIEN_V_N;
+                alien_vx_next <= ALIEN_V_N - alien_hits_counter_reg;
 
             END IF;
         END IF;
@@ -502,21 +509,21 @@ BEGIN
 
     -- New alien 2 velocity
 
-    PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_x_l, alien_2_x_r,
-         gra_still,alien_2_alive)
+    PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_x_l, alien_2_x_r, gra_still, alien_2_alive, alien_2_hits_counter_reg)
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
         alien_2_vy_next <= alien_2_vy_reg;
 
         IF gra_still = '1' THEN --initial velocity
-            alien_2_vx_next <= ALIEN_V_N;
+            alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
+            -- alien_vy_next <= ALIEN_V_P;
             alien_2_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_2_alive = '1') THEN
             IF (alien_2_x_l < 1) THEN -- reach left border
-            alien_2_vx_next <= ALIEN_V_P;
+                alien_2_vx_next <= ALIEN_V_P + alien_2_hits_counter_reg;
         ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
             -- miss <= '1'; -- a miss
-            alien_2_vx_next <= ALIEN_V_N;
+                alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
             END IF;
         END IF;
     END PROCESS;
@@ -524,22 +531,27 @@ BEGIN
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
-    PROCESS (refr_tick, alien_alive, alien_2_alive, proj1_on)
+    PROCESS (alien_alive_reg, alien_2_alive_reg, alien_alive_next, alien_2_alive_next, rd_alien_1_on, rd_alien_2_on, proj1_on,
+            alien_hits_counter_reg, alien_2_hits_counter_reg)
     BEGIN
     hit <='0';
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
+        alien_hits_counter_next <= alien_hits_counter_reg;
+        alien_2_hits_counter_next <= alien_2_hits_counter_reg;
         IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
         END IF;
         IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
             alien_alive_next <= '0';
-            hit <='1';
+            alien_hits_counter_next <= alien_hits_counter_reg + 1;
+            hit <= '1';
         END IF;
         IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
             alien_2_alive_next <= '0';
-            hit <='1';
+            alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
+            hit <= '1';
         END IF;
     END PROCESS;
     ----------------------------------------------  
@@ -560,7 +572,7 @@ BEGIN
         alien_projectil_x_reg;
     alien_projectil_y_next <=
         alien_y_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') ELSE
-        alien_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+        alien_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_projectil_y_reg;
 
     PROCESS (alien_alive, alien_projectil_hit_reg, alien_projectil_on,rd_ship_on, alien_projectil_y_b)
@@ -594,7 +606,7 @@ BEGIN
         alien_2_projectil_x_reg;
     alien_2_projectil_y_next <=
         alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
-        alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+        alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_2_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_2_projectil_y_reg;
 
     PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b)
