@@ -290,7 +290,12 @@ BEGIN
             alien_2_alive_reg <= alien_2_alive_next;
 
             -- projectil_timer_reg <= projectil_timer_next;
+            alien_projectil_x_reg <= alien_projectil_x_next;
+            alien_projectil_y_reg <= alien_projectil_y_next;
             alien_projectil_hit_reg <= alien_projectil_hit_next;
+
+            alien_2_projectil_x_reg <= alien_2_projectil_x_next;
+            alien_2_projectil_y_reg <= alien_2_projectil_y_next;
             alien_2_projectil_hit_reg <= alien_2_projectil_hit_next;
 
             SHIP_x_reg <= ball_x_next;
@@ -666,10 +671,10 @@ BEGIN
     --     alien_projectil_y_reg;
 
     alien_projectil_x_next <=
-        alien_x_reg WHEN alien_projectil_hit_reg = '1' ELSE
+        alien_x_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') ELSE
         alien_projectil_x_reg;
     alien_projectil_y_next <=
-        alien_y_reg WHEN alien_projectil_hit_reg = '1' ELSE
+        alien_y_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') ELSE
         alien_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
         alien_projectil_y_reg;
 
@@ -704,10 +709,10 @@ BEGIN
         '0';
 
     alien_2_projectil_x_next <=
-        alien_2_x_reg WHEN alien_2_projectil_hit_reg = '1' ELSE
+        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
         alien_2_projectil_x_reg;
     alien_2_projectil_y_next <=
-        alien_2_y_reg WHEN alien_2_projectil_hit_reg = '1' ELSE
+        alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
         alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
         alien_2_projectil_y_reg;
 
