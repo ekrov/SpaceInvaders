@@ -659,10 +659,10 @@ BEGIN
     BEGIN
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
-        IF refr_tick = '1' THEN
+        --IF refr_tick = '1' THEN
             IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
-                alien_alive_next = '1';
-                alien_2_alive_next = '1';
+                alien_alive_next <= '1';
+                alien_2_alive_next <= '1';
             END IF;
             IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
                 alien_alive_next <= '0';
@@ -670,7 +670,7 @@ BEGIN
             IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
                 alien_2_alive_next <= '0';
             END IF;
-        END IF;
+        --END IF;
     END PROCESS;
 
     -- rgb multiplexing circuit
