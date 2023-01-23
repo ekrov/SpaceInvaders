@@ -142,7 +142,7 @@ begin
    -- rule region
    --   - display rule (4-by-16 tiles)on center
    --   - rule text:
-   --             HI!
+   --        SPACE INVADERS
    --
    --         PLEASE PRESS
    --        ENTER TO START
