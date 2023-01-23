@@ -110,7 +110,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
     SIGNAL alien_alive, alien_alive_reg, alien_alive_next : STD_LOGIC;
-    SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(4 DOWNTO 0);
+    SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(3 DOWNTO 0);
     -- Alien 2
     SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
@@ -122,7 +122,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
     SIGNAL alien_2_alive, alien_2_alive_reg, alien_2_alive_next : STD_LOGIC;
-    SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(4 DOWNTO 0);
+    SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(3 DOWNTO 0);
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
@@ -531,7 +531,7 @@ BEGIN
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
-    PROCESS (alien_alive_reg, alien_2_alive_reg, alien_alive_next, alien_2_alive_next, rd_alien_1_on, rd_alien_2_on, proj1_on,
+    PROCESS (alien_alive, alien_2_alive, alien_alive_reg, alien_2_alive_reg, rd_alien_1_on, rd_alien_2_on, proj1_on,
             alien_hits_counter_reg, alien_2_hits_counter_reg)
     BEGIN
     hit <='0';
@@ -539,19 +539,23 @@ BEGIN
         alien_2_alive_next <= alien_2_alive_reg;
         alien_hits_counter_next <= alien_hits_counter_reg;
         alien_2_hits_counter_next <= alien_2_hits_counter_reg;
-        IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
+        IF (alien_alive_reg = '0' AND alien_2_alive_reg = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
         END IF;
         IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
-            alien_alive_next <= '0';
-            alien_hits_counter_next <= alien_hits_counter_reg + 1;
+            alien_alive_next <= '0';            
             hit <= '1';
+            IF (alien_alive = '1') THEN
+                alien_hits_counter_next <= alien_hits_counter_reg + 1;
+            END IF;
         END IF;
         IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
-            alien_2_alive_next <= '0';
-            alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
+            alien_2_alive_next <= '0';            
             hit <= '1';
+            IF (alien_2_alive = '1') THEN
+                alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
+            END IF;
         END IF;
     END PROCESS;
     ----------------------------------------------  
