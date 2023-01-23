@@ -446,7 +446,7 @@ BEGIN
                 END IF;
             ELSIF (keyboard_code = left_arrow) THEN
                 
-                IF (ship_x_reg < MAX_X - 20) THEN
+                IF (ship_x_reg > MAX_X - 20) THEN
                     ship_x_next <= to_unsigned(20, 10);
                 ELSE 
                     ship_x_next <= ship_x_reg - ship_V; -- move right
