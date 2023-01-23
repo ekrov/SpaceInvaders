@@ -34,6 +34,7 @@ architecture arch of pong_top is
    signal ball: std_logic_vector(1 downto 0);
 	signal CODEWORD: std_logic_vector(7 downto 0);
 	signal debounce_out: std_logic; 
+   signal died: std_logic;
 begin
 
    -- instantiate clock manager unit
@@ -75,7 +76,7 @@ begin
                text_on=>text_on, text_rgb=>text_rgb);
    -- instantiate graph module
    graph_unit: entity work.pong_graph
-      port map(clk=>clk, reset=>reset, btn=>btn,
+      port map(clk=>clk, reset=>reset, btn=>btn,died=>died,
               pixel_x=>pixel_x, pixel_y=>pixel_y,
               gra_still=>gra_still,hit=>hit, miss=>miss,
               graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',fight_on=>'1');
@@ -120,21 +121,29 @@ begin
       timer_start <='0';
       d_inc <= '0';
       d_clr <= '0';
+      died<='0';
       state_next <= state_reg;
       ball_next <= ball_reg;
       case state_reg is
          when newgame =>
             ball_next <= "11";    -- three balls
             d_clr <= '1';         -- clear score
+            died<='0';
             -- if (btn /= "00") then -- button pressed
             if (CODEWORD = "01011010") then -- button pressed
                state_next <= play;
-               ball_next <= ball_reg - 1;
             end if;
          when play =>
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
+               
+            elsif miss='1' then
+               ball_next <= ball_reg - 1;
+            elsif (ball_reg=0) then
+               state_next <= over;
+
+--                  state_next <= over;
 --            elsif miss='1' then
 --               if (ball_reg=0) then
 --                  state_next <= over;
@@ -150,6 +159,8 @@ begin
               state_next <= play;
             end if;
          when over =>
+            died<='1';
+
             -- wait for 2 sec to display game over
             if timer_up='1' then
                 state_next <= newgame;
