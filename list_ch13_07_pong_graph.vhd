@@ -428,19 +428,36 @@ BEGIN
             ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
         ELSIF refr_tick = '1' THEN
             IF (keyboard_code = down_arrow) THEN
-                ship_y_next <= ship_y_reg + ship_V; -- move down
+                IF (ship_y_reg > MAX_Y - 20) THEN
+                    ship_y_next <= to_unsigned(20, 10);
+                ELSE 
+                    ship_y_next <= ship_y_reg + ship_V; -- move down
                 --projectile new initial position
                 -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
-
+                END IF;
             ELSIF (keyboard_code = up_arrow) THEN
-                ship_y_next <= ship_y_reg - ship_V; -- move up
+                
                 --projectile new initial position
                 -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
-
+                IF (ship_y_reg < 20) THEN
+                    ship_y_next <= to_unsigned(MAX_Y - 20, 10);
+                ELSE 
+                    ship_y_next <= ship_y_reg - ship_V; -- move up
+                END IF;
             ELSIF (keyboard_code = left_arrow) THEN
-                ship_x_next <= ship_x_reg - ship_V;
+                
+                IF (ship_x_reg < MAX_X - 20) THEN
+                    ship_x_next <= to_unsigned(20, 10);
+                ELSE 
+                    ship_x_next <= ship_x_reg - ship_V; -- move right
+                END IF;
             ELSIF (keyboard_code = right_arrow) THEN
-                ship_x_next <= ship_x_reg + ship_V;
+                
+                IF (ship_x_reg < 20) THEN
+                    ship_x_next <= to_unsigned(MAX_X - 20, 10);
+                ELSE 
+                    ship_x_next <= ship_x_reg + ship_V; -- move left
+                END IF;
             END IF;
         END IF;
 
