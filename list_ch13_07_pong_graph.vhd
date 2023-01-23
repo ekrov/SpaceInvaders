@@ -244,19 +244,26 @@ BEGIN
             ball_vx_reg <= ("0000000100");
             ball_vy_reg <= ("0000000100");
 
-            alien_x_reg <= (OTHERS => '0');
-            alien_y_reg <= (OTHERS => '0');
-            alien_vx_reg <= ("0000000100");
-            alien_vy_reg <= ("0000000100");
-            alien_alive_reg <= '1';
-            alien_hits_counter_reg <= (OTHERS => '0');
+            -- alien_x_reg <= (OTHERS => '0');
+            -- alien_y_reg <= (OTHERS => '0');
+            -- alien_vx_reg <= ("0000000100");
+            -- alien_vy_reg <= ("0000000100");
+            -- alien_alive_reg <= '1';
+            -- alien_hits_counter_reg <= (OTHERS => '0');
 
-            alien_2_x_reg <= (OTHERS => '0');
-            alien_2_y_reg <= (OTHERS => '0');
-            alien_2_vx_reg <= ("0000000100");
-            alien_2_vy_reg <= ("0000000100");
-            alien_2_alive_reg <= '1';
-            alien_2_hits_counter_reg <= (OTHERS => '0');
+            -- alien_2_x_reg <= (OTHERS => '0');
+            -- alien_2_y_reg <= (OTHERS => '0');
+            -- alien_2_vx_reg <= ("0000000100");
+            -- alien_2_vy_reg <= ("0000000100");
+            -- alien_2_alive_reg <= '1';
+            -- alien_2_hits_counter_reg <= (OTHERS => '0');
+
+            play_alien_x_reg <= (OTHERS => '0');
+            play_alien_y_reg <= (OTHERS => '0');
+            play_alien_vx_reg <= ("0000000100");
+            play_alien_vy_reg <= ("0000000100");
+            play_alien_alive_reg <= '1';
+            play_alien_hits_counter_reg <= (OTHERS => '0');
 
             -- projectil_timer_reg <= (OTHERS => '0');
             alien_projectil_hit_reg <= '1';
@@ -282,19 +289,26 @@ BEGIN
             ball_vy_reg <= ball_vy_next;
             keycode_reg <= keycode_next;
 
-            alien_x_reg <= alien_x_next;
-            alien_y_reg <= alien_y_next;
-            alien_vx_reg <= alien_vx_next;
-            alien_vy_reg <= alien_vy_next;
-            alien_alive_reg <= alien_alive_next;
-            alien_hits_counter_reg <= alien_hits_counter_next;
+            -- alien_x_reg <= alien_x_next;
+            -- alien_y_reg <= alien_y_next;
+            -- alien_vx_reg <= alien_vx_next;
+            -- alien_vy_reg <= alien_vy_next;
+            -- alien_alive_reg <= alien_alive_next;
+            -- alien_hits_counter_reg <= alien_hits_counter_next;
 
-            alien_2_x_reg <= alien_2_x_next;
-            alien_2_y_reg <= alien_2_y_next;
-            alien_2_vx_reg <= alien_2_vx_next;
-            alien_2_vy_reg <= alien_2_vy_next;
-            alien_2_alive_reg <= alien_2_alive_next;
-            alien_2_hits_counter_reg <= alien_2_hits_counter_next;
+            -- alien_2_x_reg <= alien_2_x_next;
+            -- alien_2_y_reg <= alien_2_y_next;
+            -- alien_2_vx_reg <= alien_2_vx_next;
+            -- alien_2_vy_reg <= alien_2_vy_next;
+            -- alien_2_alive_reg <= alien_2_alive_next;
+            -- alien_2_hits_counter_reg <= alien_2_hits_counter_next;
+
+            play_alien_x_reg <= play_alien_x_next;
+            play_alien_y_reg <= play_alien_y_next;
+            play_alien_vx_reg <= play_alien_vx_next;
+            play_alien_vy_reg <= play_alien_vy_next;
+            play_alien_alive_reg <= play_alien_alive_next;
+            play_alien_hits_counter_reg <= play_alien_hits_counter_next;
 
  -- projectil_timer_reg <= projectil_timer_next;
             alien_projectil_x_reg <= alien_projectil_x_next;
