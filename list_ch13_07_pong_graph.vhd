@@ -193,6 +193,8 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_projectil_x_reg, alien_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_projectil_y_reg, alien_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_projectil_on, alien_projectil_hit_reg, alien_projectil_hit_next : STD_LOGIC;
+    SIGNAL alien_projectil_2_on, alien_projectil_2_hit_reg, alien_projectil_2_hit_next : STD_LOGIC;
+    SIGNAL alien_projectil_on, alien_projectil_hit_reg, alien_projectil_hit_next : STD_LOGIC;
     -- Alien 2
     SIGNAL alien_2_projectil_x_l, alien_2_projectil_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_y_t, alien_2_projectil_y_b : unsigned(9 DOWNTO 0);
@@ -742,10 +744,16 @@ BEGIN
     alien_projectil_x_r <= alien_projectil_x_l + ALIEN_PROJECTIL_WIDTH - 1;
     alien_projectil_y_b <= alien_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
     alien_projectil_on <=
-        '1' WHEN (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
-        (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) AND (alien_projectil_hit_reg = '0') AND 
-		(alien_alive='1')		  ELSE
-        '0';
+        '1' WHEN    (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
+                    (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) 
+                    AND (alien_projectil_hit_reg = '0') AND (alien_alive='1') ELSE
+                    '0';
+
+    alien_projectil_2_on <=
+        '1' WHEN    (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
+                    (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) 
+                    AND (alien_projectil_hit_reg = '0') AND (alien_alive='1') ELSE
+                    '0';
 
     -- new alien projectil position
     -- alien_projectil_x_next <=
