@@ -81,11 +81,52 @@ ARCHITECTURE arch OF pong_graph IS
     "0000011111111000", 
     "0000111111111100", 
     "0001111111111110", 
-    "0011011111110110", 
-    "0000001111100000", 
-    "0000001111100000", 
-    "0000011101110000", 
-    "0000000101000000", 
+    "0011111111111111", 
+    "0000001111110000", 
+    "0000001111110000", 
+    "0000011100111000", 
+    "0000000100100000", 
+    "0000000000000000", 
+    "0000000000000000"
+    );
+
+    CONSTANT ship_ROM_2l : rom_type_ship :=
+    (
+    "0000000000000000", 
+    "0000000001000000", 
+    "0000000001000000", 
+    "0000000011000000", 
+    "0000000111100000", 
+    "0000000111100000", 
+    "0000000011100000", 
+    "0000100011110100", 
+    "0001111111111110", 
+    "0011011111110111", 
+    "0000001111110000", 
+    "0000001111110000", 
+    "0000011100111000", 
+    "0000000100000000", 
+    "0000000000000000", 
+    "0000000000000000"
+    );
+	 
+     
+    CONSTANT ship_ROM_1l : rom_type_ship :=
+    (
+    "0000000000000000", 
+    "0000000001000000", 
+    "0000000001000000", 
+    "0000000011000000", 
+    "0000000011000000", 
+    "0000000010100000", 
+    "0000000011100000", 
+    "0000100011110100", 
+    "0001111100011110", 
+    "0011010001110111", 
+    "0000000001100000", 
+    "0000000111100000", 
+    "0000011100110000", 
+    "0000000100000000", 
     "0000000000000000", 
     "0000000000000000"
     );
@@ -328,7 +369,7 @@ BEGIN
         '1' WHEN (proj1_x_l_reg <= pix_x) AND (pix_x <= proj1_x_r) AND
         (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit_reg = '0')ELSE
         '0';
-    proj1_rgb <= "111"; -- white  
+    proj1_rgb <= "101"; -- magenta  
     -- new projectile1 y-position 
 
    
@@ -376,23 +417,26 @@ BEGIN
     -- square ship
     ship_x_l <= ship_x_reg;
     ship_y_t <= ship_y_reg;
-    ship_x_r <= ship_x_l + ship_SIZE - 1;
-    ship_y_b <= ship_y_t + ship_SIZE - 1;
+    ship_x_r <= ship_x_l + ship_SIZE + ship_SIZE - 1;
+    ship_y_b <= ship_y_t + ship_SIZE + ship_SIZE - 1;
     sq_ship_on <=
         '1' WHEN (ship_x_l <= pix_x) AND (pix_x <= ship_x_r) AND
         (ship_y_t <= pix_y) AND (pix_y <= ship_y_b) ELSE
         '0';
     -- round ship
-    rom_addr_ship <= pix_y(3 DOWNTO 0) - ship_y_t(3 DOWNTO 0);
-    rom_col_ship <= pix_x(3 DOWNTO 0) - ship_x_l(3 DOWNTO 0);
-    rom_data_ship <= ship_ROM(to_integer(rom_addr_ship));
+    rom_addr_ship <= pix_y(4 DOWNTO 1) - ship_y_t(4 DOWNTO 1);
+    rom_col_ship <= pix_x(4 DOWNTO 1) - ship_x_l(4 DOWNTO 1);
+
+
+    rom_data_ship <=ship_ROM_2l(to_integer(rom_addr_ship)) WHEN ship_lives_reg ="10" ELSE ship_ROM_1l(to_integer(rom_addr_ship)) WHEN  ship_lives_reg ="01"  ELSE ship_ROM(to_integer(rom_addr_ship));
+
     rom_bit_ship <= rom_data_ship(to_integer(NOT rom_col_ship));
     rd_ship_on <=
         '1' WHEN (sq_ship_on = '1') AND (rom_bit_ship = '1') ELSE
         '0';
-    ship_rgb <= "100"; -- red
+    ship_rgb <= "111"; --white
     ship_rgb_2 <= "110"; -- yellow
-    ship_rgb_1 <="111";
+    ship_rgb_1 <="100";-- red
     -- new ship position
     PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r,keyboard_code)
     BEGIN
