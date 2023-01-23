@@ -111,6 +111,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_bit_alien : STD_LOGIC;
     SIGNAL alien_alive, alien_alive_reg, alien_alive_next : STD_LOGIC;
     SIGNAL alien_hits_counter_reg, alien_hits_counter_next : unsigned(3 DOWNTO 0);
+    SIGNAL sq_alien_1_on, rd_alien_1_on : STD_LOGIC;
     -- Alien 2
     SIGNAL alien_2_x_l, alien_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_t, alien_2_y_b : unsigned(9 DOWNTO 0);
@@ -123,6 +124,21 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
     SIGNAL alien_2_alive, alien_2_alive_reg, alien_2_alive_next : STD_LOGIC;
     SIGNAL alien_2_hits_counter_reg, alien_2_hits_counter_next : unsigned(3 DOWNTO 0);
+    SIGNAL sq_alien_2_on, rd_alien_2_on : STD_LOGIC;
+
+    -- Playable Alien
+    SIGNAL play_alien_x_l, play_alien_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_y_t, play_alien_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_x_reg, play_alien_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_y_reg, play_alien_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_vx_reg, play_alien_vx_next : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_vy_reg, play_alien_vy_next : unsigned(9 DOWNTO 0);
+    SIGNAL rom_addr_play_alien, rom_col_play_alien : unsigned(2 DOWNTO 0);
+    SIGNAL rom_data_play_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL rom_bit_play_alien : STD_LOGIC;
+    SIGNAL play_alien_alive, play_alien_alive_reg, play_alien_alive_next : STD_LOGIC;
+    SIGNAL play_alien_hits_counter_reg, play_alien_hits_counter_next : unsigned(3 DOWNTO 0);
+    SIGNAL sq_play_alien_on, rd_play_alien_on : STD_LOGIC;
 
     CONSTANT ALIEN_V : INTEGER := 4;
     CONSTANT ALIEN_V_P : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
@@ -164,10 +180,14 @@ ARCHITECTURE arch OF pong_graph IS
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
-    CONSTANT a : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01101011";
-    CONSTANT d : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110100";
-    CONSTANT s : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110010";
-    CONSTANT w : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110101";
+    CONSTANT left_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01101011";
+    CONSTANT right_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110100";
+    CONSTANT down_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110010";
+    CONSTANT up_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110101";
+    constant a: std_logic_vector (7 downto 0):="00011100"; 
+	constant d: std_logic_vector (7 downto 0):="00100011";
+	constant s: std_logic_vector (7 downto 0):="00011011";
+	constant w: std_logic_vector (7 downto 0):="00011101";
     CONSTANT spacebar : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
 
     ---------------------------------
@@ -205,11 +225,9 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT WALL_Y_B2 : INTEGER := WALL_Y_B + WIDTH;
 
     SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on,proj1_hit_reg,proj1_hit_next : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, alien_rgb :
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, alien_rgb, play_alien_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
-    -- Alien Flags
-    SIGNAL sq_alien_1_on, rd_alien_1_on : STD_LOGIC;
-    SIGNAL sq_alien_2_on, rd_alien_2_on : STD_LOGIC;
+    
 
     SIGNAL refr_tick : STD_LOGIC;
     SIGNAL rom_ship_addr, rom_ship_col : unsigned(2 DOWNTO 0);
@@ -395,19 +413,19 @@ BEGIN
             ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
             ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
         ELSIF refr_tick = '1' THEN
-            IF (keyboard_code = s) AND ship_y_b < (WALL_Y_B - 1) THEN
+            IF (keyboard_code = down_arrow) THEN
                 ship_y_next <= ship_y_reg + ship_V; -- move down
                 --projectile new initial position
                 -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
 
-            ELSIF (keyboard_code = w) AND ship_y_t > WALL_Y_T2 + 1 THEN
+            ELSIF (keyboard_code = up_arrow) THEN
                 ship_y_next <= ship_y_reg - ship_V; -- move up
                 --projectile new initial position
                 -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
 
-            ELSIF (keyboard_code = a) AND ship_x_l > (WALL1_X_R + 1) THEN
+            ELSIF (keyboard_code = left_arrow) THEN
                 ship_x_next <= ship_x_reg - ship_V;
-            ELSIF (keyboard_code = d) AND ship_x_r < (WALL2_X_L - 1) THEN
+            ELSIF (keyboard_code = right_arrow) THEN
                 ship_x_next <= ship_x_reg + ship_V;
             END IF;
         END IF;
@@ -526,6 +544,65 @@ BEGIN
                 alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
             END IF;
         END IF;
+    END PROCESS;
+
+    ----------------------------------------------  
+    --- Playable Alien
+    ----------------------------------------------
+    -- Square Alien
+    play_alien_x_l <= play_alien_x_reg;
+    play_alien_y_t <= play_alien_y_reg;
+    play_alien_x_r <= play_alien_x_l + ALIEN_SIZE + ALIEN_SIZE - 1;
+    play_alien_y_b <= play_alien_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
+    sq_play_alien_on <=
+        '1' WHEN (play_alien_x_l <= pix_x) AND (pix_x <= play_alien_x_r) AND
+        (play_alien_y_t <= pix_y) AND (pix_y <= play_alien_y_b) ELSE
+        '0';
+    -- Round Alien
+    rom_addr_play_alien <= pix_y(3 DOWNTO 1) - play_alien_y_t(3 DOWNTO 1);
+    rom_col_play_alien <= pix_x(3 DOWNTO 1) - play_alien_x_l(3 DOWNTO 1);
+    rom_data_play_alien <= ALIEN_ROM(to_integer(rom_addr_play_alien) - 1) WHEN to_integer(rom_addr_play_alien) > 0
+        ELSE
+        ALIEN_ROM(7);
+    rom_bit_play_alien <= rom_data_play_alien(to_integer(NOT rom_col_play_alien));
+    rd_play_alien_on <=
+        '1' WHEN (sq_play_alien_on = '1') AND (rom_bit_play_alien = '1') AND (play_alien_alive = '1') ELSE
+        '0';
+    play_alien_rgb <= "011"; -- cyan
+    -- -- new alien position
+    -- play_alien_x_next <=
+    --     to_unsigned(((MAX_X)/2) + 50, 10) WHEN (gra_still = '1' OR play_alien_alive = '0') ELSE
+    --     play_alien_x_reg + play_alien_vx_reg WHEN refr_tick = '1' ELSE
+    --     play_alien_x_reg;
+    -- play_alien_y_next <=
+    --     to_unsigned(((MAX_Y)/2) - 50, 10) WHEN (gra_still = '1' OR play_alien_alive = '0') ELSE
+    --     play_alien_y_reg + play_alien_vy_reg WHEN refr_tick = '1' ELSE
+    --     play_alien_y_reg;
+
+    -- play_alien_alive <= play_alien_alive_reg;
+
+    -- New playable alien position
+
+    PROCESS (refr_tick, gra_still, play_alien_y_reg, play_alien_x_reg,keyboard_code)
+    BEGIN
+        play_alien_x_next <= play_alien_x_reg;
+        play_alien_y_next <= play_alien_y_reg;
+
+        IF gra_still = '1' THEN --initial position of ship
+            play_alien_x_next <= to_unsigned((MAX_X)/2, 10);
+            play_alien_y_next <= to_unsigned(((MAX_Y)/2) - 50, 10);
+        ELSIF refr_tick = '1' THEN
+            IF (keyboard_code = s) THEN
+                play_alien_y_next <= play_alien_y_reg + ALIEN_V_P; -- move down
+            ELSIF (keyboard_code = w) THEN
+                play_alien_y_next <= play_alien_y_reg + ALIEN_V_N; -- move up
+            ELSIF (keyboard_code = a) THEN
+                play_alien_x_next <= play_alien_x_reg + ALIEN_V_N; -- move left
+            ELSIF (keyboard_code = d) THEN
+                play_alien_x_next <= play_alien_x_reg + ALIEN_V_P; -- move right
+            END IF;
+        END IF;
+
     END PROCESS;
 
     ----------------------------------------------  
