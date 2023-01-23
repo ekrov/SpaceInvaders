@@ -346,38 +346,68 @@ BEGIN
         '0';
     proj1_rgb <= "111"; -- white  
     -- new projectile1 y-position 
-    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on,proj1_y_initial)
-    BEGIN
-        proj1_y_next <= proj1_y_reg; -- no move
-        IF gra_still = '1' THEN --initial position of projectile 1
-            proj1_hit <= '1';
+    -- PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on,proj1_y_initial)
+    -- BEGIN
+    --     proj1_y_next <= proj1_y_reg; -- no move
+    --     IF gra_still = '1' THEN --initial position of projectile 1
+    --         proj1_hit <= '1';
 
-        ELSIF refr_tick = '1' THEN
+    --     ELSIF refr_tick = '1' THEN
 
-            -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
-            --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
-            --     new_proj1_next <= '0';
-            IF proj1_y_t > 1 THEN
-                proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
+    --         -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
+    --         --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
+    --         --     new_proj1_next <= '0';
+    --         IF proj1_y_t > 1 THEN
+    --             proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
                 
-                -- new_proj1_next <= '0';
-            ELSE
-                -- new_proj1_next <= '1';
+    --             -- new_proj1_next <= '0';
+    --         ELSE
+    --             -- new_proj1_next <= '1';
+    --             proj1_hit <= '1';
+    --         END IF;
+    --     END IF;
+--	 IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
+--                proj1_hit <= '0';
+--                proj1_x_initial <= ship_x_reg;
+--                PROJ1_V <= 2; -- Velocity will be 1
+--                proj1_y_next <= proj1_y_initial;
+--
+--                proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
+--        END IF;
+--
+--    END PROCESS;
+    PROCESS (proj1_y_reg, proj1_y_b, proj1_y_t, refr_tick, gra_still, attack_1_on, new_proj1_reg, rand_number, PROJ1_V, proj1_on,ship_y_reg,ship_x_reg)
+        BEGIN
+            proj1_y_next <= proj1_y_reg; -- no move
+            IF gra_still = '1' THEN --initial position of projectile 1
                 proj1_hit <= '1';
+
+            ELSIF refr_tick = '1' THEN
+
+                -- IF proj1_y_b < (WALL_Y_B2 + 30 + PROJ_SIZE - 1) AND random1(5) = '1' THEN
+                --     proj1_y_next <= proj1_y_reg + PROJ1_V; -- move down
+                --     new_proj1_next <= '0';
+                IF proj1_y_t > 1 THEN
+                    proj1_y_next <= proj1_y_reg - PROJ1_V; -- move up
+
+                    -- new_proj1_next <= '0';
+                ELSE
+                    -- new_proj1_next <= '1';
+                    proj1_hit <= '1';
+                END IF;
             END IF;
-        END IF;
-
-
-        IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
+            IF (keyboard_code = spacebar AND proj1_hit = '1') THEN
                 proj1_hit <= '0';
                 proj1_x_initial <= ship_x_reg;
                 PROJ1_V <= 2; -- Velocity will be 1
-                proj1_y_next <= proj1_y_initial;
+                proj1_y_next <= to_unsigned(to_integer(ship_y_reg) - 16 - PROJ_SIZE, 10);
 
                 proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
-        END IF;
+            END IF;
 
     END PROCESS;
+
+        
 
     ----------------------------------------------
     -- random number generator
@@ -657,7 +687,7 @@ BEGIN
         ELSIF (alien_2_alive = '1') THEN
             IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
                 alien_2_alive_next <= '0';
-                hit<='1';
+                -- hit<='1';
 
             END IF;
             IF (alien_2_x_l < 1) THEN -- reach left border

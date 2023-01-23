@@ -140,6 +140,128 @@
   "sources": [
    {
     "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1674484007.894804,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        3,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        2,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1672399836.2953444,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        20,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        21,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\F44MS49IFLC35N1.v",
      "__class__": "Path"
     },
@@ -150,292 +272,6 @@
      "dependencies": []
     },
     "dependencies": [],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1674476573.8046823,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        2,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        3,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "font_rom",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": null,
-      "locations": [
-       [
-        107,
-        21
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1574434981.0727081,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        22,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "Vcomponents",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "UNISIM",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        25,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        23,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1674476568.6558917,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        3,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_07_pong_graph.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        2,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1674397049.1688614,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        3,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        2,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
     "diags": []
    },
    {
@@ -623,44 +459,6 @@
    },
    {
     "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\keyboard.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1672149219.6385183,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\keyboard.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "STD_LOGIC_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "IEEE",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        20,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_handson.vhd",
      "__class__": "Path"
     },
@@ -722,6 +520,147 @@
    },
    {
     "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1674483659.0660458,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        2,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        3,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_06_pong_text.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "font_rom",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": null,
+      "locations": [
+       [
+        107,
+        21
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1674397049.1688614,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        3,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch12_01_vga_sync.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        2,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ps2_keyboard.vhd",
      "__class__": "Path"
     },
@@ -750,67 +689,6 @@
       "locations": [
        [
         23,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1672152858.3715687,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        3,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        2,
         4
        ]
       ],
@@ -1034,67 +912,6 @@
    },
    {
     "path": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
-     "__class__": "Path"
-    },
-    "mtime": 1672399836.2953444,
-    "flags": {
-     "source_specific": [],
-     "single": [],
-     "dependencies": []
-    },
-    "dependencies": [
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "std_logic_1164",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        20,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     },
-     {
-      "owner": {
-       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
-       "__class__": "Path"
-      },
-      "name": {
-       "name": "numeric_std",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "library": {
-       "name": "ieee",
-       "case_sensitive": false,
-       "__class__": "VhdlIdentifier"
-      },
-      "locations": [
-       [
-        21,
-        4
-       ]
-      ],
-      "__class__": "RequiredDesignUnit"
-     }
-    ],
-    "diags": []
-   },
-   {
-    "path": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_01_font_rom.vhd",
      "__class__": "Path"
     },
@@ -1146,6 +963,189 @@
       "locations": [
        [
         10,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\keyboard.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1672149219.6385183,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\keyboard.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "STD_LOGIC_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "IEEE",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        20,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1672152858.3715687,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        3,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        2,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     }
+    ],
+    "diags": []
+   },
+   {
+    "path": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
+     "__class__": "Path"
+    },
+    "mtime": 1574434981.0727081,
+    "flags": {
+     "source_specific": [],
+     "single": [],
+     "dependencies": []
+    },
+    "dependencies": [
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "std_logic_1164",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        22,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "Vcomponents",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "UNISIM",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        25,
+        4
+       ]
+      ],
+      "__class__": "RequiredDesignUnit"
+     },
+     {
+      "owner": {
+       "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
+       "__class__": "Path"
+      },
+      "name": {
+       "name": "numeric_std",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "library": {
+       "name": "ieee",
+       "case_sensitive": false,
+       "__class__": "VhdlIdentifier"
+      },
+      "locations": [
+       [
+        23,
         4
        ]
       ],
@@ -1246,6 +1246,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpg_cqxz5j.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmv6yuiux.vhd",
     "__class__": "Path"
    },
    {
@@ -1373,11 +1377,19 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpzy_z186t.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp3kfqonz5.vhd",
     "__class__": "Path"
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpaa_f2jtj.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpbt8ned92.vhd",
     "__class__": "Path"
    },
    {
@@ -1406,6 +1418,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpmviztt58.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpk48n5mf7.vhd",
     "__class__": "Path"
    },
    {
@@ -1517,6 +1533,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmppntql49a.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp_95twjpu.vhd",
     "__class__": "Path"
    },
@@ -1578,6 +1598,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpn0_i1w6p.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpqsqqxzk9.vhd",
     "__class__": "Path"
    },
    {
@@ -1697,7 +1721,15 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp9vxd1l77.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpde6r0i_0.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpat82ygck.vhd",
     "__class__": "Path"
    },
    {
@@ -1829,6 +1861,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp1m4e0gt6.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpn1mvu8ei.vhd",
     "__class__": "Path"
    },
@@ -1862,6 +1898,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp6gqwuv4p.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpwyp4nscq.vhd",
     "__class__": "Path"
    },
    {
@@ -2033,6 +2073,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpy_0m3lta.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp_5p75tmy.vhd",
     "__class__": "Path"
    },
@@ -2130,6 +2174,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpilbt591b.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpa8va7ew1.vhd",
     "__class__": "Path"
    },
    {
@@ -2705,6 +2753,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp15rvarfw.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpg6f9t83h.vhd",
     "__class__": "Path"
    },
@@ -2973,6 +3025,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp471vptuy.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp9guwt8__.vhd",
     "__class__": "Path"
    },
@@ -3121,7 +3177,15 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpp43d7mvq.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_08_pong_counter.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmphh6yhkw1.vhd",
     "__class__": "Path"
    },
    {
@@ -3146,6 +3210,14 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpukiw_ovr.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp1z0vp2k3.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmplwcq4flc.vhd",
     "__class__": "Path"
    },
    {
@@ -3258,6 +3330,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp2hstvkwu.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmph_hdv2x8.vhd",
     "__class__": "Path"
    },
    {
@@ -3377,6 +3453,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp81m01q95.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ClockManager.vhd",
     "__class__": "Path"
    },
@@ -3406,6 +3486,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpj_skce5h.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp_gafyc77.vhd",
     "__class__": "Path"
    },
    {
@@ -3578,6 +3662,10 @@
    },
    {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmptwj1z6kv.vhd",
+    "__class__": "Path"
+   },
+   {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp_9svkf_g.vhd",
     "__class__": "Path"
    },
    {
@@ -3817,6 +3905,10 @@
     "__class__": "Path"
    },
    {
+    "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmp7kgkz_t2.vhd",
+    "__class__": "Path"
+   },
+   {
     "name": "C:\\Users\\Carlos\\AppData\\Local\\Temp\\tmpqm4jo327.vhd",
     "__class__": "Path"
    },
@@ -3868,25 +3960,6 @@
     "locations": [
      [
       4,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
-   },
-   {
-    "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_01_font_rom.vhd",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "font_rom",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      11,
       7
      ]
     ],
@@ -3951,69 +4024,12 @@
    },
    {
     "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "debounce_2",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      31,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
-   },
-   {
-    "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ps2_keyboard.vhd",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "ps2_keyboard",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      25,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
-   },
-   {
-    "owner": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_handson.vhd",
      "__class__": "Path"
     },
     "type_": "entity",
     "name": {
      "name": "debounce_handson",
-     "case_sensitive": false,
-     "__class__": "VhdlIdentifier"
-    },
-    "locations": [
-     [
-      4,
-      7
-     ]
-    ],
-    "__class__": "VhdlDesignUnit"
-   },
-   {
-    "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "timer_2",
      "case_sensitive": false,
      "__class__": "VhdlIdentifier"
     },
@@ -4065,25 +4081,6 @@
    },
    {
     "owner": {
-     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\F44MS49IFLC35N1.v",
-     "__class__": "Path"
-    },
-    "type_": "entity",
-    "name": {
-     "name": "Keyboard",
-     "case_sensitive": true,
-     "__class__": "VerilogIdentifier"
-    },
-    "locations": [
-     [
-      22,
-      7
-     ]
-    ],
-    "__class__": "VerilogDesignUnit"
-   },
-   {
-    "owner": {
      "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_internet.vhd",
      "__class__": "Path"
     },
@@ -4119,6 +4116,101 @@
      ]
     ],
     "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\list_ch13_01_font_rom.vhd",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "font_rom",
+     "case_sensitive": false,
+     "__class__": "VhdlIdentifier"
+    },
+    "locations": [
+     [
+      11,
+      7
+     ]
+    ],
+    "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\debounce_2.vhd",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "debounce_2",
+     "case_sensitive": false,
+     "__class__": "VhdlIdentifier"
+    },
+    "locations": [
+     [
+      31,
+      7
+     ]
+    ],
+    "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\ps2_keyboard.vhd",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "ps2_keyboard",
+     "case_sensitive": false,
+     "__class__": "VhdlIdentifier"
+    },
+    "locations": [
+     [
+      25,
+      7
+     ]
+    ],
+    "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\timer_2.vhd",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "timer_2",
+     "case_sensitive": false,
+     "__class__": "VhdlIdentifier"
+    },
+    "locations": [
+     [
+      4,
+      7
+     ]
+    ],
+    "__class__": "VhdlDesignUnit"
+   },
+   {
+    "owner": {
+     "name": "d:\\Xilinx\\projects\\Jogo_EletProg_VG\\Jogo_EletProg\\F44MS49IFLC35N1.v",
+     "__class__": "Path"
+    },
+    "type_": "entity",
+    "name": {
+     "name": "Keyboard",
+     "case_sensitive": true,
+     "__class__": "VerilogIdentifier"
+    },
+    "locations": [
+     [
+      22,
+      7
+     ]
+    ],
+    "__class__": "VerilogDesignUnit"
    },
    {
     "owner": {
