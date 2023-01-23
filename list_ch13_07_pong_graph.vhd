@@ -439,19 +439,19 @@ BEGIN
                 ELSE
                     ship_y_next <= ship_y_reg - ship_V; -- move up
                 END IF;
-            ELSIF (keyboard_code = left_arrow) THEN
+            ELSIF (keyboard_code = right_arrow) THEN
 
                 IF (ship_x_reg > MAX_X - 20) THEN
                     ship_x_next <= to_unsigned(20, 10);
                 ELSE
-                    ship_x_next <= ship_x_reg - ship_V; -- move right
+                    ship_x_next <= ship_x_reg + ship_V; -- move right
                 END IF;
-            ELSIF (keyboard_code = right_arrow) THEN
+            ELSIF (keyboard_code = left_arrow) THEN
 
                 IF (ship_x_reg < 20) THEN
                     ship_x_next <= to_unsigned(MAX_X - 20, 10);
                 ELSE
-                    ship_x_next <= ship_x_reg + ship_V; -- move left
+                    ship_x_next <= ship_x_reg - ship_V; -- move left
                 END IF;
             END IF;
         END IF;
@@ -594,7 +594,7 @@ BEGIN
     rd_play_alien_on <=
         '1' WHEN (sq_play_alien_on = '1') AND (rom_bit_play_alien = '1') ELSE
         '0';
-        --AND (play_alien_alive = '1') 
+    --AND (play_alien_alive = '1') 
     play_alien_rgb <= "011"; -- cyan
     -- -- new alien position
     -- play_alien_x_next <=
@@ -606,7 +606,7 @@ BEGIN
     --     play_alien_y_reg + play_alien_vy_reg WHEN refr_tick = '1' ELSE
     --     play_alien_y_reg;
 
-    
+    play_alien_alive <= play_alien_alive_reg;
 
     -- New playable alien position
 
@@ -620,31 +620,30 @@ BEGIN
             play_alien_y_next <= to_unsigned(((MAX_Y)/2) - 50, 10);
         ELSIF refr_tick = '1' THEN
             IF (keyboard_code = s) THEN
-                play_alien_y_next <= play_alien_y_reg + ALIEN_V_P; -- move down
+                play_alien_y_next <= play_alien_y_reg + ship_v; -- move down
             ELSIF (keyboard_code = w) THEN
-                play_alien_y_next <= play_alien_y_reg + ALIEN_V_N; -- move up
+                play_alien_y_next <= play_alien_y_reg - ship_v; -- move up
             ELSIF (keyboard_code = a) THEN
-                play_alien_x_next <= play_alien_x_reg + ALIEN_V_N; -- move left
+                play_alien_x_next <= play_alien_x_reg - ship_v; -- move left
             ELSIF (keyboard_code = d) THEN
-                play_alien_x_next <= play_alien_x_reg + ALIEN_V_P; -- move right
+                play_alien_x_next <= play_alien_x_reg + ship_v; -- move right
             END IF;
         END IF;
 
     END PROCESS;
 
-    play_alien_alive <= play_alien_alive_reg;
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
     PROCESS (alien_alive, alien_2_alive, alien_alive_reg, alien_2_alive_reg, rd_alien_1_on, rd_alien_2_on, proj1_on,
-        alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_alive, play_alien_hits_counter_reg,play_alien_alive_reg)
+        alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_alive, play_alien_hits_counter_reg, play_alien_alive_reg)
     BEGIN
         hit <= '0';
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
         alien_hits_counter_next <= alien_hits_counter_reg;
         alien_2_hits_counter_next <= alien_2_hits_counter_reg;
-        play_alien_alive_next<=play_alien_alive_reg;
+        play_alien_alive_next <= play_alien_alive_reg;
         IF (alien_alive_reg = '0' AND alien_2_alive_reg = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
@@ -741,7 +740,7 @@ BEGIN
     END PROCESS;
     -- rgb multiplexing circuit
     PROCESS (rd_ship_on, ship_rgb, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
-        alien_projectil_on, alien_2_projectil_on, rd_play_alien_on, play_alien_rgb)
+        alien_projectil_on, alien_2_projectil_on, rd_play_alien_on, play_alien_rgb, play_alien_hits_counter_reg)
     BEGIN
 
         IF rd_ship_on = '1' THEN
@@ -751,7 +750,13 @@ BEGIN
         ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF rd_play_alien_on = '1' THEN
-            rgb <= play_alien_rgb;
+            IF (play_alien_hits_counter_reg = 0) THEN
+                rgb <= play_alien_rgb;
+            ELSIF (play_alien_hits_counter_reg = 1) THEN
+                rgb <= "110";
+            ELSE
+                rgb <= "101";
+            END IF;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
         ELSE
