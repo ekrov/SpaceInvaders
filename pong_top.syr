@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: pong_top.prj
@@ -214,8 +214,8 @@ Analyzing Entity <font_rom> in library <work> (Architecture <arch>).
 Entity <font_rom> analyzed. Unit <font_rom> generated.
 
 Analyzing Entity <pong_graph> in library <work> (Architecture <arch>).
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 626: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <rd_ship_on>
+WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" line 636: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <rd_ship_on>, <ship_lives_reg>
 Entity <pong_graph> analyzed. Unit <pong_graph> generated.
 
 Analyzing Entity <timer> in library <work> (Architecture <arch>).
@@ -302,87 +302,88 @@ WARNING:Xst:653 - Signal <ball_vx_next> is used but never assigned. This sourcel
 WARNING:Xst:1780 - Signal <ball_rgb> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <PROJ1_V<31:10>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <PROJ1_V<9:0>> is used but never assigned. This sourceless signal will be automatically connected to value 0000000010.
-    Found 16x16-bit ROM for signal <rom_data_ship$rom0000> created at line 382.
+    Found 16x16-bit ROM for signal <rom_data_ship$rom0000> created at line 389.
+WARNING:Xst:737 - Found 2-bit latch for signal <ship_lives_next>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
     Found 8x8-bit ROM for signal <rom_data_alien>.
     Found 1-bit register for signal <alien_2_alive_reg>.
     Found 5-bit up counter for signal <alien_2_hits_counter_reg>.
     Found 1-bit register for signal <alien_2_projectil_hit_reg>.
-    Found 10-bit comparator greater for signal <alien_2_projectil_hit_reg$cmp_gt0000> created at line 619.
-    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0000> created at line 599.
-    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0001> created at line 599.
-    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0002> created at line 599.
-    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0003> created at line 599.
+    Found 10-bit comparator greater for signal <alien_2_projectil_hit_reg$cmp_gt0000> created at line 629.
+    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0000> created at line 609.
+    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0001> created at line 609.
+    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0002> created at line 609.
+    Found 10-bit comparator lessequal for signal <alien_2_projectil_on$cmp_le0003> created at line 609.
     Found 10-bit subtractor for signal <alien_2_projectil_x_r>.
-    Found 10-bit adder for signal <alien_2_projectil_x_r$addsub0000> created at line 597.
+    Found 10-bit adder for signal <alien_2_projectil_x_r$addsub0000> created at line 607.
     Found 10-bit register for signal <alien_2_projectil_x_reg>.
     Found 10-bit subtractor for signal <alien_2_projectil_y_b>.
-    Found 10-bit adder for signal <alien_2_projectil_y_b$addsub0000> created at line 598.
+    Found 10-bit adder for signal <alien_2_projectil_y_b$addsub0000> created at line 608.
     Found 10-bit register for signal <alien_2_projectil_y_reg>.
-    Found 10-bit adder for signal <alien_2_projectil_y_reg$addsub0000> created at line 607.
+    Found 10-bit adder for signal <alien_2_projectil_y_reg$addsub0000> created at line 617.
     Found 10-bit register for signal <alien_2_vx_reg>.
-    Found 10-bit adder for signal <alien_2_vx_reg$add0000> created at line 523.
-    Found 10-bit comparator greatequal for signal <alien_2_vx_reg$cmp_ge0000> created at line 522.
-    Found 10-bit comparator lessequal for signal <alien_2_vx_reg$cmp_le0000> created at line 523.
-    Found 10-bit comparator less for signal <alien_2_vx_reg$cmp_lt0000> created at line 522.
+    Found 10-bit adder for signal <alien_2_vx_reg$add0000> created at line 532.
+    Found 10-bit comparator greatequal for signal <alien_2_vx_reg$cmp_ge0000> created at line 531.
+    Found 10-bit comparator lessequal for signal <alien_2_vx_reg$cmp_le0000> created at line 532.
+    Found 10-bit comparator less for signal <alien_2_vx_reg$cmp_lt0000> created at line 531.
     Found 10-bit adder for signal <alien_2_vx_reg$share0000>.
     Found 10-bit register for signal <alien_2_vy_reg>.
     Found 10-bit subtractor for signal <alien_2_x_r>.
-    Found 10-bit adder for signal <alien_2_x_r$addsub0000> created at line 481.
-    Found 10-bit adder for signal <alien_2_x_r$addsub0001> created at line 481.
+    Found 10-bit adder for signal <alien_2_x_r$addsub0000> created at line 490.
+    Found 10-bit adder for signal <alien_2_x_r$addsub0001> created at line 490.
     Found 10-bit register for signal <alien_2_x_reg>.
-    Found 10-bit adder for signal <alien_2_x_reg$addsub0000> created at line 499.
+    Found 10-bit adder for signal <alien_2_x_reg$addsub0000> created at line 508.
     Found 10-bit subtractor for signal <alien_2_y_b>.
-    Found 10-bit adder for signal <alien_2_y_b$addsub0000> created at line 482.
-    Found 10-bit adder for signal <alien_2_y_b$addsub0001> created at line 482.
+    Found 10-bit adder for signal <alien_2_y_b$addsub0000> created at line 491.
+    Found 10-bit adder for signal <alien_2_y_b$addsub0001> created at line 491.
     Found 10-bit register for signal <alien_2_y_reg>.
-    Found 10-bit adder for signal <alien_2_y_reg$addsub0000> created at line 503.
+    Found 10-bit adder for signal <alien_2_y_reg$addsub0000> created at line 512.
     Found 1-bit register for signal <alien_alive_reg>.
     Found 5-bit up counter for signal <alien_hits_counter_reg>.
     Found 1-bit register for signal <alien_projectil_hit_reg>.
-    Found 10-bit comparator greater for signal <alien_projectil_hit_reg$cmp_gt0000> created at line 585.
-    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0000> created at line 564.
-    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0001> created at line 564.
-    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0002> created at line 564.
-    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0003> created at line 564.
+    Found 10-bit comparator greater for signal <alien_projectil_hit_reg$cmp_gt0000> created at line 595.
+    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0000> created at line 573.
+    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0001> created at line 573.
+    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0002> created at line 573.
+    Found 10-bit comparator lessequal for signal <alien_projectil_on$cmp_le0003> created at line 573.
     Found 10-bit subtractor for signal <alien_projectil_x_r>.
-    Found 10-bit adder for signal <alien_projectil_x_r$addsub0000> created at line 562.
+    Found 10-bit adder for signal <alien_projectil_x_r$addsub0000> created at line 571.
     Found 10-bit register for signal <alien_projectil_x_reg>.
     Found 10-bit subtractor for signal <alien_projectil_y_b>.
-    Found 10-bit adder for signal <alien_projectil_y_b$addsub0000> created at line 563.
+    Found 10-bit adder for signal <alien_projectil_y_b$addsub0000> created at line 572.
     Found 10-bit register for signal <alien_projectil_y_reg>.
     Found 10-bit adder for signal <alien_projectil_y_reg$add0000>.
-    Found 10-bit adder for signal <alien_projectil_y_reg$addsub0000> created at line 573.
+    Found 10-bit adder for signal <alien_projectil_y_reg$addsub0000> created at line 582.
     Found 10-bit register for signal <alien_vx_reg>.
-    Found 10-bit comparator greatequal for signal <alien_vx_reg$cmp_ge0000> created at line 465.
-    Found 10-bit comparator lessequal for signal <alien_vx_reg$cmp_le0000> created at line 466.
-    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 465.
+    Found 10-bit comparator greatequal for signal <alien_vx_reg$cmp_ge0000> created at line 474.
+    Found 10-bit comparator lessequal for signal <alien_vx_reg$cmp_le0000> created at line 475.
+    Found 10-bit comparator less for signal <alien_vx_reg$cmp_lt0000> created at line 474.
     Found 10-bit adder for signal <alien_vx_reg$share0000>.
     Found 10-bit register for signal <alien_vy_reg>.
     Found 10-bit subtractor for signal <alien_x_r>.
-    Found 10-bit adder for signal <alien_x_r$addsub0000> created at line 424.
-    Found 10-bit adder for signal <alien_x_r$addsub0001> created at line 424.
+    Found 10-bit adder for signal <alien_x_r$addsub0000> created at line 433.
+    Found 10-bit adder for signal <alien_x_r$addsub0001> created at line 433.
     Found 10-bit register for signal <alien_x_reg>.
-    Found 10-bit adder for signal <alien_x_reg$addsub0000> created at line 441.
+    Found 10-bit adder for signal <alien_x_reg$addsub0000> created at line 450.
     Found 10-bit subtractor for signal <alien_y_b>.
-    Found 10-bit adder for signal <alien_y_b$addsub0000> created at line 425.
-    Found 10-bit adder for signal <alien_y_b$addsub0001> created at line 425.
+    Found 10-bit adder for signal <alien_y_b$addsub0000> created at line 434.
+    Found 10-bit adder for signal <alien_y_b$addsub0001> created at line 434.
     Found 10-bit register for signal <alien_y_reg>.
-    Found 10-bit adder for signal <alien_y_reg$addsub0000> created at line 445.
-    Found 8-bit comparator not equal for signal <keycode_next$cmp_ne0000> created at line 307.
+    Found 10-bit adder for signal <alien_y_reg$addsub0000> created at line 454.
+    Found 8-bit comparator not equal for signal <keycode_next$cmp_ne0000> created at line 314.
     Found 8-bit register for signal <keycode_reg>.
     Found 1-bit register for signal <proj1_hit_reg>.
-    Found 10-bit comparator less for signal <proj1_hit_reg$cmp_lt0000> created at line 332.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0000> created at line 321.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0001> created at line 321.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0002> created at line 321.
-    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0003> created at line 321.
+    Found 10-bit comparator less for signal <proj1_hit_reg$cmp_lt0000> created at line 339.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0000> created at line 328.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0001> created at line 328.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0002> created at line 328.
+    Found 10-bit comparator lessequal for signal <proj1_on$cmp_le0003> created at line 328.
     Found 10-bit register for signal <proj1_x_l_reg>.
     Found 10-bit adder for signal <proj1_x_r>.
     Found 10-bit subtractor for signal <proj1_y_b>.
-    Found 10-bit adder for signal <proj1_y_b$addsub0000> created at line 316.
+    Found 10-bit adder for signal <proj1_y_b$addsub0000> created at line 323.
     Found 10-bit register for signal <proj1_y_t_reg>.
-    Found 10-bit subtractor for signal <proj1_y_t_reg$addsub0000> created at line 330.
-    Found 1-bit xor4 for signal <rand_next$xor0000> created at line 367.
+    Found 10-bit subtractor for signal <proj1_y_t_reg$addsub0000> created at line 337.
+    Found 1-bit xor4 for signal <rand_next$xor0000> created at line 374.
     Found 10-bit register for signal <rand_reg>.
     Found 3-bit subtractor for signal <rom_addr_alien>.
     Found 3-bit subtractor for signal <rom_addr_alien_2>.
@@ -393,39 +394,41 @@ WARNING:Xst:653 - Signal <PROJ1_V<9:0>> is used but never assigned. This sourcel
     Found 3-bit subtractor for signal <rom_col_alien>.
     Found 3-bit subtractor for signal <rom_col_alien_2>.
     Found 4-bit subtractor for signal <rom_col_ship>.
-    Found 3-bit comparator greater for signal <rom_data_alien_2$cmp_gt0000> created at line 490.
+    Found 3-bit comparator greater for signal <rom_data_alien_2$cmp_gt0000> created at line 499.
+    Found 2-bit subtractor for signal <ship_lives_next$addsub0000> created at line 595.
+    Found 2-bit register for signal <ship_lives_reg>.
     Found 10-bit subtractor for signal <ship_x_r>.
-    Found 10-bit adder for signal <ship_x_r$addsub0000> created at line 373.
+    Found 10-bit adder for signal <ship_x_r$addsub0000> created at line 380.
     Found 10-bit register for signal <ship_x_reg>.
     Found 10-bit addsub for signal <ship_x_reg$addsub0000>.
-    Found 10-bit comparator greatequal for signal <ship_x_reg$cmp_ge0000> created at line 409.
-    Found 10-bit comparator greater for signal <ship_x_reg$cmp_gt0000> created at line 399.
-    Found 10-bit comparator greater for signal <ship_x_reg$cmp_gt0001> created at line 404.
-    Found 10-bit comparator lessequal for signal <ship_x_reg$cmp_le0000> created at line 404.
-    Found 10-bit comparator less for signal <ship_x_reg$cmp_lt0000> created at line 398.
+    Found 10-bit comparator greatequal for signal <ship_x_reg$cmp_ge0000> created at line 418.
+    Found 10-bit comparator greater for signal <ship_x_reg$cmp_gt0000> created at line 408.
+    Found 10-bit comparator greater for signal <ship_x_reg$cmp_gt0001> created at line 413.
+    Found 10-bit comparator lessequal for signal <ship_x_reg$cmp_le0000> created at line 413.
+    Found 10-bit comparator less for signal <ship_x_reg$cmp_lt0000> created at line 407.
     Found 10-bit subtractor for signal <ship_y_b>.
-    Found 10-bit adder for signal <ship_y_b$addsub0000> created at line 374.
+    Found 10-bit adder for signal <ship_y_b$addsub0000> created at line 381.
     Found 10-bit register for signal <ship_y_reg>.
     Found 10-bit addsub for signal <ship_y_reg$addsub0000>.
-    Found 10-bit comparator greatequal for signal <ship_y_reg$cmp_ge0000> created at line 398.
-    Found 10-bit comparator lessequal for signal <ship_y_reg$cmp_le0000> created at line 399.
-    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0000> created at line 426.
-    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0001> created at line 426.
-    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0002> created at line 426.
-    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0003> created at line 426.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0000> created at line 483.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0001> created at line 483.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0002> created at line 483.
-    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0003> created at line 483.
-    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0000> created at line 375.
-    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0001> created at line 375.
-    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0002> created at line 375.
-    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0003> created at line 375.
+    Found 10-bit comparator greatequal for signal <ship_y_reg$cmp_ge0000> created at line 407.
+    Found 10-bit comparator lessequal for signal <ship_y_reg$cmp_le0000> created at line 408.
+    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0000> created at line 435.
+    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0001> created at line 435.
+    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0002> created at line 435.
+    Found 10-bit comparator lessequal for signal <sq_alien_1_on$cmp_le0003> created at line 435.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0000> created at line 492.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0001> created at line 492.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0002> created at line 492.
+    Found 10-bit comparator lessequal for signal <sq_alien_2_on$cmp_le0003> created at line 492.
+    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0000> created at line 382.
+    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0001> created at line 382.
+    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0002> created at line 382.
+    Found 10-bit comparator lessequal for signal <sq_ship_on$cmp_le0003> created at line 382.
     Summary:
 	inferred   2 ROM(s).
 	inferred   2 Counter(s).
-	inferred 133 D-type flip-flop(s).
-	inferred  46 Adder/Subtractor(s).
+	inferred 135 D-type flip-flop(s).
+	inferred  47 Adder/Subtractor(s).
 	inferred  42 Comparator(s).
 	inferred   3 Multiplexer(s).
 	inferred   1 Xor(s).
@@ -556,10 +559,11 @@ Macro Statistics
  2048x8-bit ROM                                        : 1
  64x7-bit ROM                                          : 1
  8x8-bit ROM                                           : 1
-# Adders/Subtractors                                   : 48
+# Adders/Subtractors                                   : 49
  10-bit adder                                          : 26
  10-bit addsub                                         : 2
  10-bit subtractor                                     : 12
+ 2-bit subtractor                                      : 1
  3-bit subtractor                                      : 4
  4-bit adder                                           : 2
  4-bit subtractor                                      : 2
@@ -571,13 +575,16 @@ Macro Statistics
  5-bit up counter                                      : 2
  7-bit down counter                                    : 1
  9-bit up counter                                      : 2
-# Registers                                            : 41
+# Registers                                            : 42
  1-bit register                                        : 17
  10-bit register                                       : 17
  11-bit register                                       : 2
+ 2-bit register                                        : 1
  3-bit register                                        : 1
  4-bit register                                        : 2
  8-bit register                                        : 2
+# Latches                                              : 1
+ 2-bit latch                                           : 1
 # Comparators                                          : 51
  10-bit comparator greatequal                          : 6
  10-bit comparator greater                             : 4
@@ -673,10 +680,11 @@ Macro Statistics
  16x7-bit ROM                                          : 1
  64x7-bit ROM                                          : 1
  8x8-bit ROM                                           : 1
-# Adders/Subtractors                                   : 45
+# Adders/Subtractors                                   : 46
  10-bit adder                                          : 24
  10-bit addsub                                         : 2
  10-bit subtractor                                     : 11
+ 2-bit subtractor                                      : 1
  3-bit subtractor                                      : 4
  4-bit adder                                           : 2
  4-bit subtractor                                      : 2
@@ -691,8 +699,10 @@ Macro Statistics
 # Accumulators                                         : 3
  10-bit down loadable accumulator                      : 1
  10-bit up loadable accumulator                        : 2
-# Registers                                            : 195
- Flip-Flops                                            : 195
+# Registers                                            : 197
+ Flip-Flops                                            : 197
+# Latches                                              : 1
+ 2-bit latch                                           : 1
 # Comparators                                          : 51
  10-bit comparator greatequal                          : 6
  10-bit comparator greater                             : 4
@@ -717,9 +727,9 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-INFO:Xst:2261 - The FF/Latch <0> in Unit <LPM_DFF_9> is equivalent to the following 8 FFs/Latches, which will be removed : <1> <3> <4> <7> <5> <6> <8> <9> 
+INFO:Xst:2261 - The FF/Latch <0> in Unit <LPM_DFF_10> is equivalent to the following 8 FFs/Latches, which will be removed : <1> <3> <4> <7> <5> <6> <8> <9> 
 INFO:Xst:2261 - The FF/Latch <0> in Unit <LPM_DFF_4> is equivalent to the following 8 FFs/Latches, which will be removed : <1> <3> <4> <7> <5> <6> <8> <9> 
-WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_10>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <LPM_DFF_4>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <rand_reg_9> of sequential type is unconnected in block <pong_graph>.
 WARNING:Xst:2677 - Node <rand_reg_8> of sequential type is unconnected in block <pong_graph>.
@@ -770,8 +780,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 260
- Flip-Flops                                            : 260
+# Registers                                            : 262
+ Flip-Flops                                            : 262
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -802,33 +812,34 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 1896
+# BELS                             : 1903
 #      GND                         : 1
-#      INV                         : 71
+#      INV                         : 70
 #      LUT1                        : 129
-#      LUT2                        : 391
-#      LUT2_D                      : 3
-#      LUT2_L                      : 2
+#      LUT2                        : 395
+#      LUT2_D                      : 2
 #      LUT3                        : 128
-#      LUT3_D                      : 2
-#      LUT3_L                      : 5
-#      LUT4                        : 233
-#      LUT4_D                      : 11
-#      LUT4_L                      : 16
+#      LUT3_D                      : 3
+#      LUT3_L                      : 4
+#      LUT4                        : 241
+#      LUT4_D                      : 13
+#      LUT4_L                      : 13
 #      MULT_AND                    : 18
 #      MUXCY                       : 525
 #      MUXF5                       : 51
 #      MUXF6                       : 11
 #      VCC                         : 1
 #      XORCY                       : 298
-# FlipFlops/Latches                : 262
+# FlipFlops/Latches                : 266
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 3
 #      FDCE                        : 138
 #      FDE                         : 50
+#      FDP                         : 2
 #      FDPE                        : 7
 #      FDRE                        : 41
+#      LDE                         : 2
 # RAMS                             : 1
 #      RAMB16_S9                   : 1
 # Shift Registers                  : 2
@@ -848,10 +859,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      525  out of    960    54%  
- Number of Slice Flip Flops:            262  out of   1920    13%  
- Number of 4 input LUTs:                993  out of   1920    51%  
-    Number used as logic:               991
+ Number of Slices:                      527  out of    960    54%  
+ Number of Slice Flip Flops:            266  out of   1920    13%  
+ Number of 4 input LUTs:               1000  out of   1920    52%  
+    Number used as logic:               998
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -880,7 +891,8 @@ Clock Information:
 -------------------------------------+------------------------------------+-------+
 Clock Signal                         | Clock buffer(FF name)              | Load  |
 -------------------------------------+------------------------------------+-------+
-clock                                | ClockManager_unit/DCM_SP_INST:CLK2X| 254   |
+clock                                | ClockManager_unit/DCM_SP_INST:CLK2X| 256   |
+graph_unit/alien_alive_reg           | NONE(graph_unit/ship_lives_next_1) | 2     |
 keyboard_unit/debounce_ps2_clk/result| NONE(keyboard_unit/ps2_word_10)    | 11    |
 -------------------------------------+------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -890,7 +902,7 @@ Asynchronous Control Signals Information:
 -----------------------------------+------------------------+-------+
 Control Signal                     | Buffer(FF name)        | Load  |
 -----------------------------------+------------------------+-------+
-reset                              | IBUF                   | 148   |
+reset                              | IBUF                   | 150   |
 -----------------------------------+------------------------+-------+
 
 Timing Summary:
@@ -909,7 +921,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
   Clock period: 23.299ns (frequency: 42.920MHz)
-  Total number of paths / destination ports: 72795 / 537
+  Total number of paths / destination ports: 75591 / 537
 -------------------------------------------------------------------------
 Delay:               11.650ns (Levels of Logic = 17)
   Source:            graph_unit/proj1_y_t_reg_2 (FF)
@@ -945,6 +957,29 @@ Delay:               11.650ns (Levels of Logic = 17)
                                        (70.1% logic, 29.9% route)
 
 =========================================================================
+Timing constraint: Default period analysis for Clock 'graph_unit/alien_alive_reg'
+  Clock period: 2.266ns (frequency: 441.238MHz)
+  Total number of paths / destination ports: 3 / 2
+-------------------------------------------------------------------------
+Delay:               2.266ns (Levels of Logic = 2)
+  Source:            graph_unit/ship_lives_next_1 (LATCH)
+  Destination:       graph_unit/ship_lives_next_1 (LATCH)
+  Source Clock:      graph_unit/alien_alive_reg falling
+  Destination Clock: graph_unit/alien_alive_reg falling
+
+  Data Path: graph_unit/ship_lives_next_1 to graph_unit/ship_lives_next_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LDE:G->Q              3   0.588   0.520  graph_unit/ship_lives_next_1 (graph_unit/ship_lives_next_1)
+     LUT4:I1->O            1   0.612   0.000  graph_unit/ship_lives_next_mux0002<1>1 (graph_unit/ship_lives_next_mux0002<1>1)
+     MUXF5:I1->O           1   0.278   0.000  graph_unit/ship_lives_next_mux0002<1>_f5 (graph_unit/ship_lives_next_mux0002<1>)
+     LDE:D                     0.268          graph_unit/ship_lives_next_1
+    ----------------------------------------
+    Total                      2.266ns (1.746ns logic, 0.520ns route)
+                                       (77.0% logic, 23.0% route)
+
+=========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
   Clock period: 1.281ns (frequency: 780.671MHz)
   Total number of paths / destination ports: 10 / 10
@@ -978,7 +1013,7 @@ Offset:              4.125ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O           152   1.106   1.174  reset_IBUF (reset_IBUF)
+     IBUF:I->O           154   1.106   1.175  reset_IBUF (reset_IBUF)
      LUT3:I1->O           10   0.612   0.750  graph_unit/alien_projectil_x_reg_and00001 (graph_unit/alien_projectil_x_reg_and0000)
      FDE:CE                    0.483          graph_unit/alien_projectil_x_reg_0
     ----------------------------------------
@@ -1008,14 +1043,14 @@ Offset:              4.433ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.28 secs
+Total CPU time to Xst completion: 8.40 secs
  
 --> 
 
 
-Total memory usage is 653556 kilobytes
+Total memory usage is 654368 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   90 (   0 filtered)
+Number of warnings :   91 (   0 filtered)
 Number of infos    :   11 (   0 filtered)
 

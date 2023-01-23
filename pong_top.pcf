@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 23 05:20:47 2023
+// Written by: Map P.20131013 on Mon Jan 23 05:42:15 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -85,6 +85,7 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "graph_unit/alien_2_hits_counter_reg_2" BEL
         "graph_unit/alien_2_hits_counter_reg_1" BEL
         "graph_unit/alien_2_hits_counter_reg_0" BEL
+        "graph_unit/ship_lives_reg_1" BEL "graph_unit/ship_lives_reg_0" BEL
         "graph_unit/alien_projectil_hit_reg" BEL
         "graph_unit/alien_2_projectil_x_reg_9" BEL
         "graph_unit/alien_2_projectil_x_reg_8" BEL
