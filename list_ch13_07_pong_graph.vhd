@@ -592,8 +592,9 @@ BEGIN
         ALIEN_ROM(7);
     rom_bit_play_alien <= rom_data_play_alien(to_integer(NOT rom_col_play_alien));
     rd_play_alien_on <=
-        '1' WHEN (sq_play_alien_on = '1') AND (rom_bit_play_alien = '1') AND (play_alien_alive = '1') ELSE
+        '1' WHEN (sq_play_alien_on = '1') AND (rom_bit_play_alien = '1') ELSE
         '0';
+        --AND (play_alien_alive = '1') 
     play_alien_rgb <= "011"; -- cyan
     -- -- new alien position
     -- play_alien_x_next <=
@@ -605,7 +606,7 @@ BEGIN
     --     play_alien_y_reg + play_alien_vy_reg WHEN refr_tick = '1' ELSE
     --     play_alien_y_reg;
 
-    -- play_alien_alive <= play_alien_alive_reg;
+    
 
     -- New playable alien position
 
@@ -631,17 +632,19 @@ BEGIN
 
     END PROCESS;
 
+    play_alien_alive <= play_alien_alive_reg;
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
     PROCESS (alien_alive, alien_2_alive, alien_alive_reg, alien_2_alive_reg, rd_alien_1_on, rd_alien_2_on, proj1_on,
-        alien_hits_counter_reg, alien_2_hits_counter_reg)
+        alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_alive, play_alien_hits_counter_reg,play_alien_alive_reg)
     BEGIN
         hit <= '0';
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
         alien_hits_counter_next <= alien_hits_counter_reg;
         alien_2_hits_counter_next <= alien_2_hits_counter_reg;
+        play_alien_alive_next<=play_alien_alive_reg;
         IF (alien_alive_reg = '0' AND alien_2_alive_reg = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
@@ -658,6 +661,13 @@ BEGIN
             hit <= '1';
             IF (alien_2_alive = '1') THEN
                 alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
+            END IF;
+        END IF;
+        IF (rd_play_alien_on = '1' AND proj1_on = '1') THEN
+            play_alien_alive_next <= '0';
+            hit <= '1';
+            IF (play_alien_alive = '1') THEN
+                play_alien_hits_counter_next <= play_alien_hits_counter_reg + 1;
             END IF;
         END IF;
     END PROCESS;
