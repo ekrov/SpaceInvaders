@@ -7,7 +7,7 @@ ENTITY pong_graph IS
         clk, reset : STD_LOGIC;
         btn : STD_LOGIC_VECTOR(1 DOWNTO 0);
         pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-        gra_still : IN STD_LOGIC;
+        gra_still ,died: IN STD_LOGIC;
         timer_up, attack_1_on, fight_on : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
         graph_on, hit, miss : OUT STD_LOGIC;
@@ -218,9 +218,9 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_ship_bit : STD_LOGIC;
 BEGIN
     -- registers
-    PROCESS (clk, reset, keyboard_code)
+    PROCESS (clk, reset,died, keyboard_code)
     BEGIN
-        IF reset = '1' THEN
+        IF reset = '1' OR died = '1' THEN
             bar_y_reg <= (OTHERS => '0');
             ball_x_reg <= (OTHERS => '0');
             ball_y_reg <= (OTHERS => '0');
@@ -324,7 +324,6 @@ BEGIN
     proj1_x_r <= proj1_x_l_reg + PROJ_WIDTH;
     proj1_x_l <= proj1_x_l_reg;
     
-
     proj1_on <=
         '1' WHEN (proj1_x_l_reg <= pix_x) AND (pix_x <= proj1_x_r) AND
         (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit_reg = '0')ELSE
@@ -587,12 +586,13 @@ BEGIN
     PROCESS (alien_alive, alien_projectil_hit_reg, alien_projectil_on,rd_ship_on, alien_projectil_y_b,ship_lives_reg)
     BEGIN
         alien_projectil_hit_next <= alien_projectil_hit_reg;
+        -- ship_lives_next <= ship_lives_reg;
         IF (alien_alive = '1') THEN
             IF alien_projectil_hit_reg = '1' THEN
                 alien_projectil_hit_next <= '0';
             ELSIF (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
                 alien_projectil_hit_next <= '1';
-                ship_lives_next<=ship_lives_reg-1;
+                -- ship_lives_next<=ship_lives_reg-1;
             ELSIF (alien_projectil_y_b > MAX_Y) THEN
                 alien_projectil_hit_next <= '1';
             END IF;
@@ -619,19 +619,37 @@ BEGIN
         alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_2_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_2_projectil_y_reg;
 
-    PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b)
+    PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b,ship_lives_reg)
     BEGIN
         alien_2_projectil_hit_next <= alien_2_projectil_hit_reg;
+        -- ship_lives_next <= ship_lives_reg;
         IF (alien_2_alive = '1') THEN
             IF alien_2_projectil_hit_reg = '1' THEN
                 alien_2_projectil_hit_next <= '0';
             ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
                 alien_2_projectil_hit_next <= '1';
+                --  ship_lives_next<=ship_lives_reg-1;
             ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
                 alien_2_projectil_hit_next <= '1';
             END IF;
         END IF;
     END PROCESS;
+
+    --aliens hitting ship
+    Process (alien_alive,alien_2_alive,alien_projectil_on,alien_2_projectil_on,rd_ship_on,ship_lives_reg)
+    begin
+        miss<='0';
+        ship_lives_next <= ship_lives_reg;
+        IF (alien_2_alive = '1' and alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next<=ship_lives_reg-1;
+            miss<='1';
+        ELSIF (alien_alive = '1' and alien_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next<=ship_lives_reg-1;
+            miss<='1';
+
+        END IF;
+
+    END process;
     -- rgb multiplexing circuit
     PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
             alien_projectil_on, alien_2_projectil_on)
