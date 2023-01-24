@@ -67,7 +67,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL ship_y_t, ship_y_b : unsigned(9 DOWNTO 0);
     SIGNAL ship_x_reg, ship_x_next : unsigned(9 DOWNTO 0);
     SIGNAL ship_y_reg, ship_y_next : unsigned(9 DOWNTO 0);
-    CONSTANT ship_V : INTEGER := 4;
+    CONSTANT ship_V : INTEGER := 3;
     TYPE rom_type_ship IS ARRAY (0 TO 15) OF
     STD_LOGIC_VECTOR (15 DOWNTO 0);
     CONSTANT ship_ROM : rom_type_ship :=
@@ -224,8 +224,8 @@ ARCHITECTURE arch OF pong_graph IS
     ---------------------------------  
     -- Aliens Projectiles  
     ---------------------------------
-    CONSTANT ALIEN_PROJECTIL_SIZE : INTEGER := 4; -- 4
-    CONSTANT ALIEN_PROJECTIL_WIDTH : INTEGER := 2; -- 2
+    CONSTANT ALIEN_PROJECTIL_SIZE : INTEGER := 12; -- 4
+    CONSTANT ALIEN_PROJECTIL_WIDTH : INTEGER := 4; -- 2
     CONSTANT ALIEN_PROJ_V_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
     CONSTANT ALIEN_PROJ_V_NO_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(0, 10);
     -- SIGNAL projectil_timer_reg, projectil_timer_next : unsigned(4 DOWNTO 0);
@@ -270,7 +270,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL proj1_y_t, proj1_y_b : unsigned(9 DOWNTO 0);
     SIGNAL proj1_x_l,proj1_x_l_reg,proj1_x_l_next, proj1_x_r : unsigned(9 DOWNTO 0);
     SIGNAL proj1_y_t_reg, proj1_y_t_next ,proj1_y_initial: unsigned(9 DOWNTO 0);
-    SIGNAL PROJ1_V : INTEGER :=2;
+    SIGNAL PROJ1_V : INTEGER :=4;
     SIGNAL new_proj1_next, new_proj1_reg : STD_LOGIC;
 
     SIGNAL proj1_x_initial : unsigned(9 DOWNTO 0);
@@ -648,17 +648,17 @@ BEGIN
     alien_boss_rgb <= "100"; -- red
     -- new alien position
     alien_boss_x_next <=
-        to_unsigned(((MAX_X)/2) + 50, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        to_unsigned(((MAX_X)/2) + 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
         alien_boss_x_reg + alien_boss_vx_reg WHEN refr_tick = '1' ELSE
         alien_boss_x_reg;
     alien_boss_y_next <=
-        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        to_unsigned(((MAX_Y)/2) - 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
         alien_boss_y_reg + alien_boss_vy_reg WHEN refr_tick = '1' ELSE
         alien_boss_y_reg;
 
     alien_boss_alive <= alien_boss_alive_reg;
 
-    -- New alien 2 velocity
+    -- New alien bosss velocity
 
     PROCESS (alien_boss_vx_reg, alien_boss_vy_reg, alien_boss_x_l, alien_boss_x_r, gra_still, alien_boss_alive, alien_boss_hits_counter_reg)
     BEGIN
@@ -696,6 +696,8 @@ BEGIN
         IF (alien_alive_next = '0' AND alien_2_alive_next = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
+            alien_boss_alive_next <= '1';
+
         END IF;
         IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
             alien_alive_next <= '0';
