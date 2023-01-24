@@ -1208,3 +1208,52 @@ map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_to
 par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
 trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml pong_top.twx pong_top.ncd -o pong_top.twr pong_top.pcf -ucf Basys2.ucf 
 bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml pong_top.twx pong_top.ncd -o pong_top.twr pong_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml pong_top.twx pong_top.ncd -o pong_top.twr pong_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml pong_top.twx pong_top.ncd -o pong_top.twr pong_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/pong_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 pong_top.ngc pong_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o pong_top_map.ncd pong_top.ngd pong_top.pcf 
+par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml pong_top.twx pong_top.ncd -o pong_top.twr pong_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f pong_top.ut pong_top.ncd 

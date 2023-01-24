@@ -7,7 +7,7 @@ ENTITY pong_graph IS
         clk, reset : STD_LOGIC;
         btn : STD_LOGIC_VECTOR(1 DOWNTO 0);
         pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-        gra_still ,died: IN STD_LOGIC;
+        gra_still, died : IN STD_LOGIC;
         timer_up, attack_1_on, fight_on : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
         graph_on, hit, miss : OUT STD_LOGIC;
@@ -62,72 +62,70 @@ ARCHITECTURE arch OF pong_graph IS
     ---------------------------------
     -- giga ship
     ---------------------------------
-    CONSTANT ship_SIZE : INTEGER := 16; 
+    CONSTANT ship_SIZE : INTEGER := 16;
     SIGNAL ship_x_l, ship_x_r : unsigned(9 DOWNTO 0);
     SIGNAL ship_y_t, ship_y_b : unsigned(9 DOWNTO 0);
     SIGNAL ship_x_reg, ship_x_next : unsigned(9 DOWNTO 0);
     SIGNAL ship_y_reg, ship_y_next : unsigned(9 DOWNTO 0);
-    CONSTANT ship_V : INTEGER := 4;
+    CONSTANT ship_V : INTEGER := 3;
     TYPE rom_type_ship IS ARRAY (0 TO 15) OF
     STD_LOGIC_VECTOR (15 DOWNTO 0);
     CONSTANT ship_ROM : rom_type_ship :=
     (
-    "0000000000000000", 
-    "0000000011000000", 
-    "0000000011000000", 
-    "0000000011000000", 
-    "0000000111100000", 
-    "0000000111100000", 
-    "0000011111111000", 
-    "0000111111111100", 
-    "0001111111111110", 
-    "0011111111111111", 
-    "0000001111110000", 
-    "0000001111110000", 
-    "0000011100111000", 
-    "0000000100100000", 
-    "0000000000000000", 
+    "0000000000000000",
+    "0000000011000000",
+    "0000000011000000",
+    "0000000011000000",
+    "0000000111100000",
+    "0000000111100000",
+    "0000011111111000",
+    "0000111111111100",
+    "0001111111111110",
+    "0011111111111111",
+    "0000001111110000",
+    "0000001111110000",
+    "0000011100111000",
+    "0000000100100000",
+    "0000000000000000",
     "0000000000000000"
     );
 
     CONSTANT ship_ROM_2l : rom_type_ship :=
     (
-    "0000000000000000", 
-    "0000000001000000", 
-    "0000000001000000", 
-    "0000000011000000", 
-    "0000000111100000", 
-    "0000000111100000", 
-    "0000000011100000", 
-    "0000100011110100", 
-    "0001111111111110", 
-    "0011011111110111", 
-    "0000001111110000", 
-    "0000001111110000", 
-    "0000011100111000", 
-    "0000000100000000", 
-    "0000000000000000", 
+    "0000000000000000",
+    "0000000001000000",
+    "0000000001000000",
+    "0000000011000000",
+    "0000000111100000",
+    "0000000111100000",
+    "0000000011100000",
+    "0000100011110100",
+    "0001111111111110",
+    "0011011111110111",
+    "0000001111110000",
+    "0000001111110000",
+    "0000011100111000",
+    "0000000100000000",
+    "0000000000000000",
     "0000000000000000"
     );
-	 
-     
     CONSTANT ship_ROM_1l : rom_type_ship :=
     (
-    "0000000000000000", 
-    "0000000001000000", 
-    "0000000001000000", 
-    "0000000011000000", 
-    "0000000011000000", 
-    "0000000010100000", 
-    "0000000011100000", 
-    "0000100011110100", 
-    "0001111100011110", 
-    "0011010001110111", 
-    "0000000001100000", 
-    "0000000111100000", 
-    "0000011100110000", 
-    "0000000100000000", 
-    "0000000000000000", 
+    "0000000000000000",
+    "0000000001000000",
+    "0000000001000000",
+    "0000000011000000",
+    "0000000011000000",
+    "0000000010100000",
+    "0000000011100000",
+    "0000100011110100",
+    "0001111100011110",
+    "0011010001110111",
+    "0000000001100000",
+    "0000000111100000",
+    "0000011100110000",
+    "0000000100000000",
+    "0000000000000000",
     "0000000000000000"
     );
 
@@ -135,12 +133,12 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_ship : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL rom_bit_ship : STD_LOGIC;
     SIGNAL ship_lives_reg, ship_lives_next : unsigned(1 DOWNTO 0);
-
-    
     ---------------------------------  
     -- Aliens  
     ---------------------------------
     CONSTANT ALIEN_SIZE : INTEGER := 8; -- 8
+    CONSTANT ALIEN_BOSS_SIZE : INTEGER := 16; -- 16
+
     -- Alien 1
     SIGNAL alien_x_l, alien_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_y_t, alien_y_b : unsigned(9 DOWNTO 0);
@@ -197,13 +195,68 @@ ARCHITECTURE arch OF pong_graph IS
     "11111111", -- ********
     "10011001", -- *  **  *
     "10011001" -- *  **  *
+    );
+    --Alien boss
+    SIGNAL alien_boss_x_l, alien_boss_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_y_t, alien_boss_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_x_reg, alien_boss_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_y_reg, alien_boss_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_vx_reg, alien_boss_vx_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_vy_reg, alien_boss_vy_next : unsigned(9 DOWNTO 0);
+    SIGNAL rom_addr_alien_boss, rom_col_alien_boss : unsigned(3 DOWNTO 0);
+    SIGNAL rom_data_alien_boss : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    SIGNAL rom_bit_alien_boss : STD_LOGIC;
+    SIGNAL alien_boss_alive, alien_boss_alive_reg, alien_boss_alive_next : STD_LOGIC;
+    SIGNAL alien_boss_hits_counter_reg, alien_boss_hits_counter_next : unsigned(4 DOWNTO 0);
+    SIGNAL alien_boss_lives_reg, alien_boss_lives_next : unsigned(3 DOWNTO 0);
+
+    TYPE rom_type_al_Boss IS ARRAY (0 TO 15) OF
+    STD_LOGIC_VECTOR (15 DOWNTO 0);
+    CONSTANT ALIEN_BOSS_ROM : rom_type_al_Boss :=
+    (
+    "0000000000000000",
+    "0000000000000000",
+    "0000001111000000",
+    "0000011111100000",
+    "0000111111110000",
+    "0001110111011000",
+    "0001110010011000",
+    "0000111111110000",
+    "0000001111100000",
+    "0001001111100100",
+    "0001011111110100",
+    "0001110000111100",
+    "0000011001100000",
+    "0000001001000000",
+    "0000000000000000",
+    "0000000000000000"
+    );
+
+    CONSTANT ALIEN_BOSS_2_ROM : rom_type_al_Boss :=
+    (
+    "0000000000000000", 
+    "0000000000000000", 
+    "0000000111000000", 
+    "0000000111100000", 
+    "0000011111100000", 
+    "0001110111011000", 
+    "0001110010011000", 
+    "0000111111110000", 
+    "0000000111100000", 
+    "0001000011100100", 
+    "0001011110110100", 
+    "0000000000111100", 
+    "0000000001100000", 
+    "0000000001000000", 
+    "0000000000000000", 
+    "0000000000000000"
     );    
 
     ---------------------------------  
     -- Aliens Projectiles  
     ---------------------------------
-    CONSTANT ALIEN_PROJECTIL_SIZE : INTEGER := 4; -- 4
-    CONSTANT ALIEN_PROJECTIL_WIDTH : INTEGER := 2; -- 2
+    CONSTANT ALIEN_PROJECTIL_SIZE : INTEGER := 12; -- 4
+    CONSTANT ALIEN_PROJECTIL_WIDTH : INTEGER := 4; -- 2
     CONSTANT ALIEN_PROJ_V_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(1, 10);
     CONSTANT ALIEN_PROJ_V_NO_MOVE : unsigned(9 DOWNTO 0) := to_unsigned(0, 10);
     -- SIGNAL projectil_timer_reg, projectil_timer_next : unsigned(4 DOWNTO 0);
@@ -219,12 +272,12 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_projectil_2_x_reg, alien_projectil_2_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_projectil_2_y_reg, alien_projectil_2_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_projectil_2_on, alien_projectil_2_hit_reg, alien_projectil_2_hit_next : STD_LOGIC;
-    -- Projectil 3
-    SIGNAL alien_projectil_3_x_l, alien_projectil_3_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL alien_projectil_3_y_t, alien_projectil_3_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL alien_projectil_3_x_reg, alien_projectil_3_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_projectil_3_y_reg, alien_projectil_3_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_projectil_3_on, alien_projectil_3_hit_reg, alien_projectil_3_hit_next : STD_LOGIC;
+    -- -- Projectil 3
+    -- SIGNAL alien_projectil_3_x_l, alien_projectil_3_x_r : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_projectil_3_y_t, alien_projectil_3_y_b : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_projectil_3_x_reg, alien_projectil_3_x_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_projectil_3_y_reg, alien_projectil_3_y_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_projectil_3_on, alien_projectil_3_hit_reg, alien_projectil_3_hit_next : STD_LOGIC;
     ---------------- Alien 2 ----------------
     -- Projectil 1
     SIGNAL alien_2_projectil_x_l, alien_2_projectil_x_r : unsigned(9 DOWNTO 0);
@@ -232,18 +285,24 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_2_projectil_x_reg, alien_2_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_y_reg, alien_2_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_on, alien_2_projectil_hit_reg, alien_2_projectil_hit_next : STD_LOGIC;
--- Projectil 2
+    -- Projectil 2
     SIGNAL alien_2_projectil_2_x_l, alien_2_projectil_2_x_r : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_2_y_t, alien_2_projectil_2_y_b : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_2_x_reg, alien_2_projectil_2_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_2_y_reg, alien_2_projectil_2_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_2_on, alien_2_projectil_2_hit_reg, alien_2_projectil_2_hit_next : STD_LOGIC;
-    -- Projectil 3
-    SIGNAL alien_2_projectil_3_x_l, alien_2_projectil_3_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_projectil_3_y_t, alien_2_projectil_3_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_projectil_3_x_reg, alien_2_projectil_3_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_projectil_3_y_reg, alien_2_projectil_3_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_projectil_3_on, alien_2_projectil_3_hit_reg, alien_2_projectil_3_hit_next : STD_LOGIC;
+    -- -- Projectil 3
+    -- SIGNAL alien_2_projectil_3_x_l, alien_2_projectil_3_x_r : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_2_projectil_3_y_t, alien_2_projectil_3_y_b : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_2_projectil_3_x_reg, alien_2_projectil_3_x_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_2_projectil_3_y_reg, alien_2_projectil_3_y_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_2_projectil_3_on, alien_2_projectil_3_hit_reg, alien_2_projectil_3_hit_next : STD_LOGIC;
+    -- Alien Boss
+    SIGNAL alien_boss_projectil_x_l, alien_boss_projectil_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_projectil_y_t, alien_boss_projectil_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_projectil_x_reg, alien_boss_projectil_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_projectil_y_reg, alien_boss_projectil_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_projectil_on, alien_boss_projectil_hit_reg, alien_boss_projectil_hit_next : STD_LOGIC;
     ---------------------------------  
     -- Playable Alien Projectiles  
     ---------------------------------
@@ -273,7 +332,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rand_reg : unsigned(9 DOWNTO 0) := "0010110101";
     SIGNAL rand_next, rand_number : unsigned(9 DOWNTO 0);
     ---------------------------------
-    -- Projectiles - Bars
+    -- Projectiles - Ship
     ---------------------------------
     CONSTANT PROJ_WIDTH : INTEGER := 3;
     CONSTANT PROJ_SIZE : INTEGER := 10;
@@ -281,7 +340,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL proj1_y_t, proj1_y_b : unsigned(9 DOWNTO 0);
     SIGNAL proj1_x_l, proj1_x_l_reg, proj1_x_l_next, proj1_x_r : unsigned(9 DOWNTO 0);
     SIGNAL proj1_y_t_reg, proj1_y_t_next, proj1_y_initial : unsigned(9 DOWNTO 0);
-    SIGNAL PROJ1_V : INTEGER := 2;
+    SIGNAL PROJ1_V : INTEGER := 4;
     SIGNAL new_proj1_next, new_proj1_reg : STD_LOGIC;
 
     SIGNAL proj1_x_initial : unsigned(9 DOWNTO 0);
@@ -301,10 +360,11 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT WALL_Y_B : INTEGER := WALL_Y_T2 + WALL_SIZE;
     CONSTANT WALL_Y_B2 : INTEGER := WALL_Y_B + WIDTH;
 
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on,proj1_hit_reg,proj1_hit_next : STD_LOGIC;
-    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb,ship_rgb_2,ship_rgb_1, alien_rgb, play_alien_rgb  :
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, proj1_hit_reg, proj1_hit_next : STD_LOGIC;
+    SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, ship_rgb_2, ship_rgb_1, alien_rgb, play_alien_rgb, alien_boss_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
-
+    -- Alien Flags
+    SIGNAL sq_alien_boss_on, rd_alien_boss_on : STD_LOGIC;
 
     SIGNAL refr_tick : STD_LOGIC;
     SIGNAL rom_ship_addr, rom_ship_col : unsigned(2 DOWNTO 0);
@@ -312,7 +372,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_ship_bit : STD_LOGIC;
 BEGIN
     -- registers
-    PROCESS (clk, reset,died, keyboard_code)
+    PROCESS (clk, reset, died, keyboard_code)
     BEGIN
         IF reset = '1' OR died = '1' THEN
             bar_y_reg <= (OTHERS => '0');
@@ -341,11 +401,21 @@ BEGIN
             play_alien_vy_reg <= ("0000000100");
             play_alien_alive_reg <= '1';
             play_alien_hits_counter_reg <= (OTHERS => '0');
-
+            --Alien boss
+            alien_boss_x_reg <= (OTHERS => '0');
+            alien_boss_y_reg <= (OTHERS => '0');
+            alien_boss_vx_reg <= ("0000000100");
+            alien_boss_vy_reg <= ("0000000100");
+            alien_boss_alive_reg <= '1';
+            alien_boss_hits_counter_reg <= (OTHERS => '0');
+            alien_boss_lives_reg <= "1010";
             -- Alien Projectil 1 Hit Flag Initialization
             alien_projectil_hit_reg <= '1';
             -- Alien 2 Projectil 1 Hit Flag Initialization
             alien_2_projectil_hit_reg <= '1';
+            -- Alien Boss projectil hit flag initialization
+            alien_boss_projectil_hit_reg <= '1';
+
             -- Playable Alien Projectil 1 Hit Flag Initialization
             play_alien_projectil_1_hit_reg <= '1';
 
@@ -356,14 +426,14 @@ BEGIN
             proj1_y_t_reg <= (OTHERS => '0');
             new_proj1_reg <= '0';
             rand_reg <= "0010110101"; -- seed
-            
-            proj1_hit_reg<='0';
-            proj1_x_l_reg<=(OTHERS => '0');
-            proj1_y_t_reg<=(OTHERS => '0');
+
+            proj1_hit_reg <= '0';
+            proj1_x_l_reg <= (OTHERS => '0');
+            proj1_y_t_reg <= (OTHERS => '0');
 
             --lives
-            ship_lives_reg<="11";
-            
+            ship_lives_reg <= "11";
+
         ELSIF (clk'event AND clk = '1') THEN
             bar_y_reg <= bar_y_next;
             ball_x_reg <= ball_x_next;
@@ -392,7 +462,16 @@ BEGIN
             play_alien_vy_reg <= play_alien_vy_next;
             play_alien_alive_reg <= play_alien_alive_next;
             play_alien_hits_counter_reg <= play_alien_hits_counter_next;
- -- projectil_timer_reg <= projectil_timer_next;
+            --Alien boss
+            alien_boss_x_reg <= alien_boss_x_next;
+            alien_boss_y_reg <= alien_boss_y_next;
+            alien_boss_vx_reg <= alien_boss_vx_next;
+            alien_boss_vy_reg <= alien_boss_vy_next;
+            alien_boss_alive_reg <= alien_boss_alive_next;
+            alien_boss_hits_counter_reg <= alien_boss_hits_counter_next;
+            alien_boss_lives_reg <= alien_boss_lives_next;
+
+            -- projectil_timer_reg <= projectil_timer_next;
             alien_projectil_x_reg <= alien_projectil_x_next;
             alien_projectil_y_reg <= alien_projectil_y_next;
             alien_projectil_hit_reg <= alien_projectil_hit_next;
@@ -400,10 +479,10 @@ BEGIN
             alien_projectil_2_x_reg <= alien_projectil_2_x_next;
             alien_projectil_2_y_reg <= alien_projectil_2_y_next;
             alien_projectil_2_hit_reg <= alien_projectil_2_hit_next;
-            -- Alien 1: Projectil 3 Position Update
-            alien_projectil_3_x_reg <= alien_projectil_3_x_next;
-            alien_projectil_3_y_reg <= alien_projectil_3_y_next;
-            alien_projectil_3_hit_reg <= alien_projectil_3_hit_next;
+            -- -- Alien 1: Projectil 3 Position Update
+            -- alien_projectil_3_x_reg <= alien_projectil_3_x_next;
+            -- alien_projectil_3_y_reg <= alien_projectil_3_y_next;
+            -- alien_projectil_3_hit_reg <= alien_projectil_3_hit_next;
 
             -- Alien 2: Projectil 1 Position Update
             alien_2_projectil_x_reg <= alien_2_projectil_x_next;
@@ -413,15 +492,19 @@ BEGIN
             alien_2_projectil_2_x_reg <= alien_2_projectil_2_x_next;
             alien_2_projectil_2_y_reg <= alien_2_projectil_2_y_next;
             alien_2_projectil_2_hit_reg <= alien_2_projectil_2_hit_next;
-            -- Alien 2: Projectil 3 Position Update
-            alien_2_projectil_3_x_reg <= alien_2_projectil_3_x_next;
-            alien_2_projectil_3_y_reg <= alien_2_projectil_3_y_next;
-            alien_2_projectil_3_hit_reg <= alien_2_projectil_3_hit_next;
+            -- -- Alien 2: Projectil 3 Position Update
+            -- alien_2_projectil_3_x_reg <= alien_2_projectil_3_x_next;
+            -- alien_2_projectil_3_y_reg <= alien_2_projectil_3_y_next;
+            -- alien_2_projectil_3_hit_reg <= alien_2_projectil_3_hit_next;
             -- Playable Alien Projectil 1 Variables Update
             play_alien_projectil_1_x_reg <= play_alien_projectil_1_x_next;
             play_alien_projectil_1_y_reg <= play_alien_projectil_1_y_next;
             play_alien_projectil_1_hit_reg <= play_alien_projectil_1_hit_next;
 
+            --Alien boss projectil
+            alien_boss_projectil_x_reg <= alien_boss_projectil_x_next;
+            alien_boss_projectil_y_reg <= alien_boss_projectil_y_next;
+            alien_boss_projectil_hit_reg <= alien_boss_projectil_hit_next;
             ship_x_reg <= ship_x_next;
             ship_y_reg <= ship_y_next;
 
@@ -429,12 +512,12 @@ BEGIN
             rand_reg <= rand_next;
             new_proj1_reg <= new_proj1_next;
 
-            proj1_hit_reg<=proj1_hit_next;
-            proj1_x_l_reg<=proj1_x_l_next;
-            proj1_y_t_reg<=proj1_y_t_next;
+            proj1_hit_reg <= proj1_hit_next;
+            proj1_x_l_reg <= proj1_x_l_next;
+            proj1_y_t_reg <= proj1_y_t_next;
 
             --ship lives
-            ship_lives_reg<=ship_lives_next;
+            ship_lives_reg <= ship_lives_next;
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -462,47 +545,18 @@ BEGIN
         '0';
     proj1_rgb <= "101"; -- magenta  
     -- new projectile1 y-position 
-
-
     --Projectile y axis
-    proj1_y_t_next<= ship_y_reg when (proj1_hit_reg = '1') ELSE 
-    (proj1_y_t_reg-PROJ1_V) WHEN refr_tick='1' ELSE
-     proj1_y_t_reg;
-                
-    proj1_hit_next <= '1' WHEN (proj1_y_t < 1 OR gra_still = '1' OR (proj1_on='1' and rd_play_alien_on='1')) ELSE
-     '0' WHEN (keyboard_code = spacebar) ELSE 
-     proj1_hit_reg;
+    proj1_y_t_next <= ship_y_reg WHEN (proj1_hit_reg = '1') ELSE
+        (proj1_y_t_reg - PROJ1_V) WHEN refr_tick = '1' ELSE
+        proj1_y_t_reg;
+
+    proj1_hit_next <= '1' WHEN (proj1_y_t < 3 OR gra_still = '1' OR (proj1_on = '1' AND rd_play_alien_on = '1') OR (rd_alien_boss_on = '1' AND proj1_on = '1')) ELSE
+        '0' WHEN (keyboard_code = spacebar) ELSE
+        proj1_hit_reg;
 
     --Projectile x axis
-    proj1_x_l_next <= ship_x_reg when (keyboard_code = spacebar and proj1_hit_reg = '1') else
-     proj1_x_l_reg;
-
-    -- PROCESS (proj1_y_t_reg, proj1_y_t, refr_tick, gra_still, PROJ1_V, proj1_y_initial, keyboard_code, proj1_hit_reg, ship_x_reg)
-    -- BEGIN
-    --     -- proj1_y_t_next <= proj1_y_t_reg; -- no move
-    --     -- IF gra_still = '1' THEN --initial position of projectile 1
-    --     --     proj1_hit <= '1';
-
-    --     -- ELSIF refr_tick = '1' THEN
-
-    --     --     IF proj1_y_t > 1 THEN
-    --     --         -- proj1_y_t_next <= proj1_y_t_reg - PROJ1_V; -- move up
-    --     --     ELSE
-    --     --         proj1_hit <= '1';
-    --     --     END IF;
-    --     -- END IF;
-    --     IF (keyboard_code = spacebar AND proj1_hit_reg = '1') THEN
-    --             -- proj1_hit <= '0';
-    --             proj1_x_initial <= ship_x_reg;
-    --             -- PROJ1_V <= 2; -- Velocity will be 1
-    --             -- proj1_y_t_next <= proj1_y_initial;
-    --             -- proj1_y_initial <= to_unsigned(to_integer(ship_y_reg) - 16 - PROJ_SIZE, 10);
-    --             -- proj1_x_l <= to_unsigned((to_integer(ship_x_reg)), 10);
-    --     END IF;
-
-    -- END PROCESS;
-
-        
+    proj1_x_l_next <= ship_x_reg WHEN (keyboard_code = spacebar AND proj1_hit_reg = '1') ELSE
+        proj1_x_l_reg;
     ----------------------------------------------
     -- random number generator
     ----------------------------------------------
@@ -522,9 +576,9 @@ BEGIN
     -- round ship
     rom_addr_ship <= pix_y(4 DOWNTO 1) - ship_y_t(4 DOWNTO 1);
     rom_col_ship <= pix_x(4 DOWNTO 1) - ship_x_l(4 DOWNTO 1);
-
-
-    rom_data_ship <=ship_ROM_2l(to_integer(rom_addr_ship)) WHEN ship_lives_reg ="10" ELSE ship_ROM_1l(to_integer(rom_addr_ship)) WHEN  ship_lives_reg ="01"  ELSE ship_ROM(to_integer(rom_addr_ship));
+    rom_data_ship <= ship_ROM_2l(to_integer(rom_addr_ship)) WHEN ship_lives_reg = "10" ELSE
+        ship_ROM_1l(to_integer(rom_addr_ship)) WHEN ship_lives_reg = "01" ELSE
+        ship_ROM(to_integer(rom_addr_ship));
 
     rom_bit_ship <= rom_data_ship(to_integer(NOT rom_col_ship));
     rd_ship_on <=
@@ -532,9 +586,9 @@ BEGIN
         '0';
     ship_rgb <= "111"; --white
     ship_rgb_2 <= "110"; -- yellow
-    ship_rgb_1 <="100";-- red
+    ship_rgb_1 <= "100";-- red
     -- new ship position
-    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r,keyboard_code)
+    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r, keyboard_code)
     BEGIN
         ship_y_next <= ship_y_reg;
         ship_x_next <= ship_x_reg;
@@ -547,9 +601,9 @@ BEGIN
                 IF (ship_y_reg > MAX_Y - 20) THEN
                     ship_y_next <= to_unsigned(20, 10);
                 ELSE
-                ship_y_next <= ship_y_reg + ship_V; -- move down
-                --projectile new initial position
-                -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
+                    ship_y_next <= ship_y_reg + ship_V; -- move down
+                    --projectile new initial position
+                    -- proj1_y_initial<= to_unsigned(to_integer(ship_y_reg + ship_V) - 16 - PROJ_SIZE, 10);
                 END IF;
             ELSIF (keyboard_code = up_arrow) THEN
 
@@ -593,7 +647,7 @@ BEGIN
         (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
         '0';
     -- Round Alien
-    
+
     rom_addr_alien <= pix_y(3 DOWNTO 1) - alien_y_t(3 DOWNTO 1);
     rom_col_alien <= pix_x(3 DOWNTO 1) - alien_x_l(3 DOWNTO 1);
     rom_data_alien <= ALIEN_ROM(to_integer(rom_addr_alien));
@@ -618,7 +672,7 @@ BEGIN
     -- With new hit, miss signals
 
     PROCESS (alien_vx_reg, alien_vy_reg, alien_y_t, alien_x_l, alien_x_r,
-        alien_y_b, gra_still,alien_alive, alien_hits_counter_reg)
+        alien_y_b, gra_still, alien_alive, alien_hits_counter_reg)
     BEGIN
         alien_vx_next <= alien_vx_reg;
         alien_vy_next <= alien_vy_reg;
@@ -629,8 +683,8 @@ BEGIN
         ELSIF (alien_alive = '1') THEN
             IF (alien_x_l < 1) THEN -- reach left border
                 alien_vx_next <= ALIEN_V_P + alien_hits_counter_reg;
-        ELSIF (alien_x_r > MAX_X) THEN -- reach right border
-            -- miss <= '1'; -- a miss
+            ELSIF (alien_x_r > MAX_X) THEN -- reach right border
+                -- miss <= '1'; -- a miss
                 alien_vx_next <= ALIEN_V_N - alien_hits_counter_reg;
 
             END IF;
@@ -686,8 +740,8 @@ BEGIN
         ELSIF (alien_2_alive = '1') THEN
             IF (alien_2_x_l < 1) THEN -- reach left border
                 alien_2_vx_next <= ALIEN_V_P + alien_2_hits_counter_reg;
-        ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
-            -- miss <= '1'; -- a miss
+            ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
+                -- miss <= '1'; -- a miss
                 alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
             END IF;
         END IF;
@@ -768,50 +822,122 @@ BEGIN
         END IF;
 
     END PROCESS;
+    ----------------------------------------------  
+    --- Alien Boss
+    ----------------------------------------------
+    -- Square Alien
+    alien_boss_x_l <= alien_boss_x_reg;
+    alien_boss_y_t <= alien_boss_y_reg;
+    alien_boss_x_r <= alien_boss_x_l + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 4;
+    alien_boss_y_b <= alien_boss_y_t + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 4;
+    sq_alien_boss_on <=
+        '1' WHEN (alien_boss_x_l <= pix_x) AND (pix_x <= alien_boss_x_r) AND
+        (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) ELSE
+        '0';
+    -- Round Alien
+    rom_addr_alien_boss <= pix_y(5 DOWNTO 2) - alien_boss_y_t(5 DOWNTO 2);
+    rom_col_alien_boss <= pix_x(5 DOWNTO 2) - alien_boss_x_l(5 DOWNTO 2);
+    rom_data_alien_boss <= ALIEN_BOSS_ROM(to_integer(rom_addr_alien_boss)) when 
+    (alien_boss_lives_reg>5) else ALIEN_BOSS_2_ROM(to_integer(rom_addr_alien_boss));
+
+    rom_bit_alien_boss <= rom_data_alien_boss(to_integer(NOT rom_col_alien_boss));
+    rd_alien_boss_on <=
+        '1' WHEN (sq_alien_boss_on = '1') AND (rom_bit_alien_boss = '1') AND (alien_boss_alive = '1') ELSE
+        '0';
+    alien_boss_rgb <= "100"; -- red
+    -- new alien position
+    alien_boss_x_next <=
+        to_unsigned(((MAX_X)/2) + 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        alien_boss_x_reg + alien_boss_vx_reg WHEN refr_tick = '1' ELSE
+        alien_boss_x_reg;
+    alien_boss_y_next <=
+        to_unsigned(((MAX_Y)/2) - 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        alien_boss_y_reg + alien_boss_vy_reg WHEN refr_tick = '1' ELSE
+        alien_boss_y_reg;
+
+    alien_boss_alive <= alien_boss_alive_reg;
+
+    -- New alien bosss velocity
+
+    PROCESS (alien_boss_vx_reg, alien_boss_vy_reg, alien_boss_x_l, alien_boss_x_r, gra_still, alien_boss_alive, alien_boss_hits_counter_reg)
+    BEGIN
+        alien_boss_vx_next <= alien_boss_vx_reg;
+        alien_boss_vy_next <= alien_boss_vy_reg;
+
+        IF gra_still = '1' THEN --initial velocity
+            alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
+            -- alien_vy_next <= ALIEN_V_P;
+            alien_boss_vy_next <= to_unsigned(0, 10);
+        ELSIF (alien_boss_alive = '1') THEN
+            IF (alien_boss_x_l < 1) THEN -- reach left border
+                alien_boss_vx_next <= ALIEN_V_P + alien_boss_hits_counter_reg;
+            ELSIF (alien_boss_x_r > MAX_X) THEN -- reach right border
+                -- miss <= '1'; -- a miss
+                alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
+            END IF;
+        END IF;
+    END PROCESS;
 
     ----------------------------------------------  
     --- Aliens Elimination Process
     ----------------------------------------------
     PROCESS (alien_alive_reg, alien_2_alive_reg, alien_alive_next, alien_2_alive_next, rd_alien_1_on, rd_alien_2_on, proj1_on,
-            alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_alive, play_alien_hits_counter_reg, play_alien_alive_reg)
+        alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_alive, play_alien_hits_counter_reg,
+        play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
+        alien_boss_alive_next, alien_boss_lives_reg,alien_2_alive,alien_alive)
     BEGIN
-    hit <='0';
+        hit <= '0';
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
+        alien_boss_alive_next <= alien_boss_alive_reg;
         alien_hits_counter_next <= alien_hits_counter_reg;
         alien_2_hits_counter_next <= alien_2_hits_counter_reg;
         play_alien_alive_next <= play_alien_alive_reg;
         play_alien_hits_counter_next <= play_alien_hits_counter_reg;
-        IF (alien_alive_reg = '0' AND alien_2_alive_reg = '0') THEN
+        alien_boss_hits_counter_next <= alien_boss_hits_counter_reg;
+        alien_boss_lives_next <= alien_boss_lives_reg;
+        IF (alien_alive_next = '0' AND alien_2_alive_next = '0' AND alien_boss_alive_next = '0') THEN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
+            alien_boss_alive_next <= '1';
+            alien_boss_lives_next <= "1010";
+
         END IF;
         IF (rd_alien_1_on = '1' AND proj1_on = '1') THEN
             alien_alive_next <= '0';
             hit <= '1';
             IF (alien_alive = '1') THEN
-            alien_hits_counter_next <= alien_hits_counter_reg + 1;
+                alien_hits_counter_next <= alien_hits_counter_reg + 1;
             END IF;
         END IF;
         IF (rd_alien_2_on = '1' AND proj1_on = '1') THEN
             alien_2_alive_next <= '0';
             hit <= '1';
             IF (alien_2_alive = '1') THEN
-            alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
+                alien_2_hits_counter_next <= alien_2_hits_counter_reg + 1;
             END IF;
         END IF;
         IF (rd_play_alien_on = '1' AND proj1_on = '1') THEN
             play_alien_alive_next <= '0';
             hit <= '1';
             -- IF (play_alien_alive = '1') THEN
-            if(play_alien_hits_counter_reg<2) then
-                 play_alien_hits_counter_next <= play_alien_hits_counter_reg + 1;
-            else
-                 play_alien_hits_counter_next<=(OTHERS => '0');
+            IF (play_alien_hits_counter_reg < 2) THEN
+                play_alien_hits_counter_next <= play_alien_hits_counter_reg + 1;
+            ELSE
+                play_alien_hits_counter_next <= (OTHERS => '0');
             END IF;
+    END IF;
+            IF (rd_alien_boss_on = '1' AND proj1_on = '1') THEN
+                alien_boss_hits_counter_next <= alien_boss_hits_counter_reg + 1;
+                alien_boss_lives_next <= alien_boss_lives_reg - 1;
+                IF (alien_boss_lives_reg = "0000") THEN
+                    alien_boss_alive_next <= '0';
+                END IF;
+                hit <= '1';
+            
         END IF;
     END PROCESS;
-----------------------------------------------  
+    ----------------------------------------------  
     --- Alien 1 Projectil
     ----------------------------------------------
     alien_projectil_x_l <= alien_projectil_x_reg;
@@ -820,8 +946,8 @@ BEGIN
     alien_projectil_y_b <= alien_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
     alien_projectil_on <=
         '1' WHEN (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
-        (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) AND (alien_projectil_hit_reg = '0') AND 
-		(alien_alive='1')		  ELSE
+        (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) AND (alien_projectil_hit_reg = '0') AND
+        (alien_alive = '1') ELSE
         '0';
 
     -- Projectil Hit State
@@ -833,7 +959,7 @@ BEGIN
         alien_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_projectil_y_reg;
 
-    PROCESS (alien_alive, alien_projectil_hit_reg, alien_projectil_on,rd_ship_on, alien_projectil_y_b,ship_lives_reg)
+    PROCESS (alien_alive, alien_projectil_hit_reg, alien_projectil_on, rd_ship_on, alien_projectil_y_b, ship_lives_reg)
     BEGIN
         alien_projectil_hit_next <= alien_projectil_hit_reg;
         -- ship_lives_next <= ship_lives_reg;
@@ -886,42 +1012,42 @@ BEGIN
         END IF;
     END PROCESS;
 
-    ----------------------------------------------  
-    --- Projectil 3
-    ----------------------------------------------
-    alien_projectil_3_x_l <= alien_projectil_3_x_reg;
-    alien_projectil_3_y_t <= alien_projectil_3_y_reg;
-    alien_projectil_3_x_r <= alien_projectil_3_x_l + ALIEN_PROJECTIL_WIDTH - 1;
-    alien_projectil_3_y_b <= alien_projectil_3_y_t + ALIEN_PROJECTIL_SIZE - 1;
-    alien_projectil_3_on <=
-        '1' WHEN (alien_projectil_3_x_l <= pix_x) AND (pix_x <= alien_projectil_3_x_r) AND
-        (alien_projectil_3_y_t <= pix_y) AND (pix_y <= alien_projectil_3_y_b)
-        AND (alien_projectil_3_hit_reg = '0') AND (alien_alive = '1') AND (alien_hits_counter_reg > 2) ELSE
-        '0';
+    -- ----------------------------------------------  
+    -- --- Projectil 3
+    -- ----------------------------------------------
+    -- alien_projectil_3_x_l <= alien_projectil_3_x_reg;
+    -- alien_projectil_3_y_t <= alien_projectil_3_y_reg;
+    -- alien_projectil_3_x_r <= alien_projectil_3_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    -- alien_projectil_3_y_b <= alien_projectil_3_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    -- alien_projectil_3_on <=
+    --     '1' WHEN (alien_projectil_3_x_l <= pix_x) AND (pix_x <= alien_projectil_3_x_r) AND
+    --     (alien_projectil_3_y_t <= pix_y) AND (pix_y <= alien_projectil_3_y_b)
+    --     AND (alien_projectil_3_hit_reg = '0') AND (alien_alive = '1') AND (alien_hits_counter_reg > 2) ELSE
+    --     '0';
 
-    -- New Projectil Position
-    alien_projectil_3_x_next <=
-        alien_x_reg + 16 WHEN (gra_still = '1' OR alien_projectil_3_hit_reg = '1') ELSE
-        alien_projectil_3_x_reg;
-    alien_projectil_3_y_next <=
-        alien_y_reg WHEN (gra_still = '1' OR alien_projectil_3_hit_reg = '1') ELSE
-        alien_projectil_3_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
-        alien_projectil_3_y_reg;
+    -- -- New Projectil Position
+    -- alien_projectil_3_x_next <=
+    --     alien_x_reg + 16 WHEN (gra_still = '1' OR alien_projectil_3_hit_reg = '1') ELSE
+    --     alien_projectil_3_x_reg;
+    -- alien_projectil_3_y_next <=
+    --     alien_y_reg WHEN (gra_still = '1' OR alien_projectil_3_hit_reg = '1') ELSE
+    --     alien_projectil_3_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+    --     alien_projectil_3_y_reg;
 
-    -- Projectil Hit State
-    PROCESS (alien_alive, alien_projectil_3_hit_reg, alien_projectil_3_on, rd_ship_on, alien_projectil_3_y_b)
-    BEGIN
-        alien_projectil_3_hit_next <= alien_projectil_3_hit_reg;
-        IF (alien_alive = '1') THEN
-            IF alien_projectil_3_hit_reg = '1' THEN
-                alien_projectil_3_hit_next <= '0';
-            ELSIF (alien_projectil_3_on = '1' AND rd_ship_on = '1') THEN
-                alien_projectil_3_hit_next <= '1';
-            ELSIF (alien_projectil_3_y_b > MAX_Y) THEN
-                alien_projectil_3_hit_next <= '1';
-            END IF;
-        END IF;
-    END PROCESS;
+    -- -- Projectil Hit State
+    -- PROCESS (alien_alive, alien_projectil_3_hit_reg, alien_projectil_3_on, rd_ship_on, alien_projectil_3_y_b)
+    -- BEGIN
+    --     alien_projectil_3_hit_next <= alien_projectil_3_hit_reg;
+    --     IF (alien_alive = '1') THEN
+    --         IF alien_projectil_3_hit_reg = '1' THEN
+    --             alien_projectil_3_hit_next <= '0';
+    --         ELSIF (alien_projectil_3_on = '1' AND rd_ship_on = '1') THEN
+    --             alien_projectil_3_hit_next <= '1';
+    --         ELSIF (alien_projectil_3_y_b > MAX_Y) THEN
+    --             alien_projectil_3_hit_next <= '1';
+    --         END IF;
+    --     END IF;
+    -- END PROCESS;
 
     ----------------------------------------------  
     -------------- Alien 2 --------------
@@ -936,7 +1062,7 @@ BEGIN
     alien_2_projectil_y_b <= alien_2_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
     alien_2_projectil_on <=
         '1' WHEN (alien_2_projectil_x_l <= pix_x) AND (pix_x <= alien_2_projectil_x_r) AND
-        (alien_2_projectil_y_t <= pix_y) AND (pix_y <= alien_2_projectil_y_b) AND (alien_2_projectil_hit_reg = '0') AND (alien_2_alive='1') ELSE
+        (alien_2_projectil_y_t <= pix_y) AND (pix_y <= alien_2_projectil_y_b) AND (alien_2_projectil_hit_reg = '0') AND (alien_2_alive = '1') ELSE
         '0';
 
     alien_2_projectil_x_next <=
@@ -947,7 +1073,7 @@ BEGIN
         alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_2_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_2_projectil_y_reg;
 
-    PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b,ship_lives_reg)
+    PROCESS (alien_2_alive, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b, ship_lives_reg)
     BEGIN
         alien_2_projectil_hit_next <= alien_2_projectil_hit_reg;
         -- ship_lives_next <= ship_lives_reg;
@@ -963,7 +1089,7 @@ BEGIN
         END IF;
     END PROCESS;
 
- ----------------------------------------------  
+    ----------------------------------------------  
     --- Projectil 2
     ----------------------------------------------
     alien_2_projectil_2_x_l <= alien_2_projectil_2_x_reg;
@@ -1000,61 +1126,98 @@ BEGIN
         END IF;
     END PROCESS;
 
+    -- ----------------------------------------------  
+    -- --- Projectil 3
+    -- ----------------------------------------------
+    -- alien_2_projectil_3_x_l <= alien_2_projectil_3_x_reg;
+    -- alien_2_projectil_3_y_t <= alien_2_projectil_3_y_reg;
+    -- alien_2_projectil_3_x_r <= alien_2_projectil_3_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    -- alien_2_projectil_3_y_b <= alien_2_projectil_3_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    -- alien_2_projectil_3_on <=
+    --     '1' WHEN (alien_2_projectil_3_x_l <= pix_x) AND (pix_x <= alien_2_projectil_3_x_r) AND
+    --     (alien_2_projectil_3_y_t <= pix_y) AND (pix_y <= alien_2_projectil_3_y_b)
+    --     AND (alien_2_projectil_3_hit_reg = '0') AND (alien_2_alive = '1') AND (alien_2_hits_counter_reg > 2) ELSE
+    --     '0';
+
+    -- -- New Projectil Position
+    -- alien_2_projectil_3_x_next <=
+    --     alien_2_x_reg + 16 WHEN (gra_still = '1' OR alien_2_projectil_3_hit_reg = '1') ELSE
+    --     alien_2_projectil_3_x_reg;
+    -- alien_2_projectil_3_y_next <=
+    --     alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_3_hit_reg = '1') ELSE
+    --     alien_2_projectil_3_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
+    --     alien_2_projectil_3_y_reg;
+
+    -- -- Projectil Hit State
+    -- PROCESS (alien_2_alive, alien_2_projectil_3_hit_reg, alien_2_projectil_3_on, rd_ship_on, alien_2_projectil_3_y_b)
+    -- BEGIN
+    --     alien_2_projectil_3_hit_next <= alien_2_projectil_3_hit_reg;
+    --     IF (alien_2_alive = '1') THEN
+    --         IF alien_2_projectil_3_hit_reg = '1' THEN
+    --             alien_2_projectil_3_hit_next <= '0';
+    --         ELSIF (alien_2_projectil_3_on = '1' AND rd_ship_on = '1') THEN
+    --             alien_2_projectil_3_hit_next <= '1';
+    --         ELSIF (alien_2_projectil_3_y_b > MAX_Y) THEN
+    --             alien_2_projectil_3_hit_next <= '1';
+    --         END IF;
+    --     END IF;
+    -- END PROCESS;
+
     ----------------------------------------------  
-    --- Projectil 3
+    --- Alien Boss Projectil
     ----------------------------------------------
-    alien_2_projectil_3_x_l <= alien_2_projectil_3_x_reg;
-    alien_2_projectil_3_y_t <= alien_2_projectil_3_y_reg;
-    alien_2_projectil_3_x_r <= alien_2_projectil_3_x_l + ALIEN_PROJECTIL_WIDTH - 1;
-    alien_2_projectil_3_y_b <= alien_2_projectil_3_y_t + ALIEN_PROJECTIL_SIZE - 1;
-    alien_2_projectil_3_on <=
-        '1' WHEN (alien_2_projectil_3_x_l <= pix_x) AND (pix_x <= alien_2_projectil_3_x_r) AND
-        (alien_2_projectil_3_y_t <= pix_y) AND (pix_y <= alien_2_projectil_3_y_b)
-        AND (alien_2_projectil_3_hit_reg = '0') AND (alien_2_alive = '1') AND (alien_2_hits_counter_reg > 2) ELSE
+    alien_boss_projectil_x_l <= alien_boss_projectil_x_reg;
+    alien_boss_projectil_y_t <= alien_boss_projectil_y_reg;
+    alien_boss_projectil_x_r <= alien_boss_projectil_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    alien_boss_projectil_y_b <= alien_boss_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    alien_boss_projectil_on <=
+        '1' WHEN (alien_boss_projectil_x_l <= pix_x) AND (pix_x <= alien_boss_projectil_x_r) AND
+        (alien_boss_projectil_y_t <= pix_y) AND (pix_y <= alien_boss_projectil_y_b) AND (alien_boss_projectil_hit_reg = '0') AND (alien_boss_alive = '1') ELSE
         '0';
 
-    -- New Projectil Position
-    alien_2_projectil_3_x_next <=
-        alien_2_x_reg + 16 WHEN (gra_still = '1' OR alien_2_projectil_3_hit_reg = '1') ELSE
-        alien_2_projectil_3_x_reg;
-    alien_2_projectil_3_y_next <=
-        alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_3_hit_reg = '1') ELSE
-        alien_2_projectil_3_y_reg + ALIEN_PROJ_V_MOVE WHEN refr_tick = '1' ELSE
-        alien_2_projectil_3_y_reg;
+    alien_boss_projectil_x_next <=
+        (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE)WHEN (gra_still = '1' OR alien_boss_projectil_hit_reg = '1') ELSE
+        alien_boss_projectil_x_reg;
+    alien_boss_projectil_y_next <=
+        (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN (gra_still = '1' OR alien_boss_projectil_hit_reg = '1') ELSE
+        alien_boss_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN refr_tick = '1' ELSE
+        alien_boss_projectil_y_reg;
 
-    -- Projectil Hit State
-    PROCESS (alien_2_alive, alien_2_projectil_3_hit_reg, alien_2_projectil_3_on, rd_ship_on, alien_2_projectil_3_y_b)
+    PROCESS (alien_boss_alive, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b, ship_lives_reg)
     BEGIN
-        alien_2_projectil_3_hit_next <= alien_2_projectil_3_hit_reg;
-        IF (alien_2_alive = '1') THEN
-            IF alien_2_projectil_3_hit_reg = '1' THEN
-                alien_2_projectil_3_hit_next <= '0';
-            ELSIF (alien_2_projectil_3_on = '1' AND rd_ship_on = '1') THEN
-                alien_2_projectil_3_hit_next <= '1';
-            ELSIF (alien_2_projectil_3_y_b > MAX_Y) THEN
-                alien_2_projectil_3_hit_next <= '1';
+        alien_boss_projectil_hit_next <= alien_boss_projectil_hit_reg;
+        -- ship_lives_next <= ship_lives_reg;
+        IF (alien_boss_alive = '1') THEN
+            IF alien_boss_projectil_hit_reg = '1' THEN
+                alien_boss_projectil_hit_next <= '0';
+            ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+                alien_boss_projectil_hit_next <= '1';
+                --  ship_lives_next<=ship_lives_reg-1;
+            ELSIF (alien_boss_projectil_y_b > MAX_Y) THEN
+                alien_boss_projectil_hit_next <= '1';
             END IF;
         END IF;
     END PROCESS;
 
     --aliens hitting ship
-    Process (alien_alive,alien_2_alive,alien_projectil_on,alien_2_projectil_on,rd_ship_on,ship_lives_reg)
-    begin
-        miss<='0';
+    PROCESS (alien_alive, alien_2_alive, alien_projectil_on, alien_2_projectil_on,
+        rd_ship_on, ship_lives_reg, alien_boss_alive, alien_boss_projectil_on)
+    BEGIN
+        miss <= '0';
         ship_lives_next <= ship_lives_reg;
-        IF (alien_2_alive = '1' and alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
-            ship_lives_next<=ship_lives_reg-1;
-            miss<='1';
-        ELSIF (alien_alive = '1' and alien_projectil_on = '1' AND rd_ship_on = '1') THEN
-            ship_lives_next<=ship_lives_reg-1;
-            miss<='1';
-
+        IF (alien_2_alive = '1' AND alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next <= ship_lives_reg - 1;
+            miss <= '1';
+        ELSIF (alien_alive = '1' AND alien_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next <= ship_lives_reg - 1;
+            miss <= '1';
+        ELSIF (alien_boss_alive = '1' AND alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next <= ship_lives_reg - 1;
+            miss <= '1';
         END IF;
 
-    END process;
-    
-    
-     ----------------------------------------------  
+    END PROCESS;
+    ----------------------------------------------  
     -- Playable Alien Projectile 1
     ----------------------------------------------
     play_alien_projectil_1_x_l <= play_alien_projectil_1_x_reg;
@@ -1081,20 +1244,23 @@ BEGIN
         '0' WHEN (keyboard_code = f) ELSE
         play_alien_projectil_1_hit_reg;
     -- rgb multiplexing circuit
-    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
-            alien_projectil_on, alien_2_projectil_on)
+    PROCESS (proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
+        alien_projectil_on, alien_2_projectil_on, ship_lives_reg, ship_rgb, rd_ship_on, ship_rgb_2,
+         ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb,rd_alien_boss_on,rd_play_alien_on,play_alien_projectil_1_on,
+         play_alien_hits_counter_reg,alien_2_projectil_2_on,alien_projectil_2_on,play_alien_rgb)
     BEGIN
-        
-        IF rd_ship_on = '1' and ship_lives_reg ="11" THEN
+
+        IF rd_ship_on = '1' AND ship_lives_reg = "11" THEN
             rgb <= ship_rgb;
-        ELSIF rd_ship_on = '1' and ship_lives_reg ="10" THEN
+        ELSIF rd_ship_on = '1' AND ship_lives_reg = "10" THEN
             rgb <= ship_rgb_2;
-        ELSIF rd_ship_on = '1' and ship_lives_reg ="01" THEN
+        ELSIF rd_ship_on = '1' AND ship_lives_reg = "01" THEN
             rgb <= ship_rgb_1;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
             rgb <= alien_rgb;
-        ELSIF (alien_projectil_on = '1' OR alien_projectil_2_on = '1' OR alien_projectil_3_on = '1' OR 
-                alien_2_projectil_on = '1' OR alien_2_projectil_2_on = '1' OR alien_2_projectil_3_on = '1') THEN
+        ELSIF (alien_projectil_on = '1' OR alien_projectil_2_on = '1'  OR
+            -- alien_2_projectil_on = '1' OR alien_2_projectil_2_on = '1' OR alien_2_projectil_3_on = '1' OR alien_projectil_3_on = '1') THEN
+            alien_2_projectil_on = '1' OR alien_2_projectil_2_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
@@ -1106,10 +1272,17 @@ BEGIN
             ELSE
                 rgb <= "101";
             END IF;
+        ELSIF (rd_alien_boss_on = '1') THEN
+            rgb <= alien_boss_rgb;
+        ELSIF (alien_boss_projectil_on = '1') THEN
+            rgb <= alien_boss_rgb;
         ELSE
             rgb <= "111"; -- black background
         END IF;
     END PROCESS;
     --OR rd_play_alien_on OR play_alien_projectil_1_on
-    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR alien_projectil_2_on OR alien_projectil_3_on OR alien_2_projectil_on OR alien_2_projectil_2_on OR alien_2_projectil_3_on OR  rd_play_alien_on OR play_alien_projectil_1_on;
+    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR
+        alien_projectil_2_on OR alien_2_projectil_on OR alien_2_projectil_2_on OR
+        -- alien_2_projectil_3_on OR rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR alien_projectil_3_on ;
+        rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on;
 END arch;
