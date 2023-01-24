@@ -199,6 +199,33 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_2_projectil_x_reg, alien_2_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_y_reg, alien_2_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_on, alien_2_projectil_hit_reg, alien_2_projectil_hit_next : STD_LOGIC;
+
+    ---------------------------------
+    -- Ship Projectiles
+    ---------------------------------
+    CONSTANT PROJ_WIDTH : INTEGER := 3;
+    CONSTANT PROJ_SIZE : INTEGER := 10;
+    SIGNAL PROJ1_V : INTEGER := 2;
+    SIGNAL shoot_counter_reg, shoot_counter_next : unsigned(1 DOWNTO 0);
+    -- Porjectile 1
+    SIGNAL ship_projectil_1_x_l, ship_projectil_1_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_1_y_t, ship_projectil_1_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_1_x_reg, ship_projectil_1_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_1_y_reg, ship_projectil_1_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_1_on, ship_projectil_1_hit_reg, ship_projectil_1_hit_next : STD_LOGIC;
+    -- Porjectile 2
+    SIGNAL ship_projectil_2_x_l, ship_projectil_2_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_2_y_t, ship_projectil_2_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_2_x_reg, ship_projectil_2_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_2_y_reg, ship_projectil_2_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_2_on, ship_projectil_2_hit_reg, ship_projectil_2_hit_next : STD_LOGIC;
+    -- Porjectile 3
+    SIGNAL ship_projectil_3_x_l, ship_projectil_3_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_3_y_t, ship_projectil_3_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_3_x_reg, ship_projectil_3_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_3_y_reg, ship_projectil_3_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL ship_projectil_3_on, ship_projectil_3_hit_reg, ship_projectil_3_hit_next : STD_LOGIC;
+
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -213,30 +240,6 @@ ARCHITECTURE arch OF pong_graph IS
     ---------------------------------
     SIGNAL rand_reg : unsigned(9 DOWNTO 0) := "0010110101";
     SIGNAL rand_next, rand_number : unsigned(9 DOWNTO 0);
-    ---------------------------------
-    -- Ship Projectiles
-    ---------------------------------
-    CONSTANT PROJ_WIDTH : INTEGER := 3;
-    CONSTANT PROJ_SIZE : INTEGER := 10;
-    -- Porjectile 1
-    SIGNAL proj1_y_t, proj1_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL proj1_x_l, proj1_x_l_reg, proj1_x_l_next, proj1_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL proj1_y_t_reg, proj1_y_t_next, proj1_y_initial : unsigned(9 DOWNTO 0);
-    SIGNAL PROJ1_V : INTEGER := 2;
-    -- SIGNAL new_proj1_next, new_proj1_reg : STD_LOGIC;
-
-    -- Porjectile 2
-    SIGNAL ship_projectil_2_x_l, ship_projectil_2_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_2_y_t, ship_projectil_2_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_2_x_reg, ship_projectil_2_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_2_y_reg, ship_projectil_2_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_2_on, ship_projectil_2_hit_reg, ship_projectil_2_hit_next : STD_LOGIC;
-    -- Porjectile 3
-    SIGNAL ship_projectil_3_x_l, ship_projectil_3_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_3_y_t, ship_projectil_3_y_b : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_3_x_reg, ship_projectil_3_x_next : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_3_y_reg, ship_projectil_3_y_next : unsigned(9 DOWNTO 0);
-    SIGNAL ship_projectil_3_on, ship_projectil_3_hit_reg, ship_projectil_3_hit_next : STD_LOGIC;
 
     -- SIGNAL proj1_x_initial : unsigned(9 DOWNTO 0);
     SIGNAL random1 : unsigned(9 DOWNTO 0);
@@ -255,7 +258,8 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT WALL_Y_B : INTEGER := WALL_Y_T2 + WALL_SIZE;
     CONSTANT WALL_Y_B2 : INTEGER := WALL_Y_B + WIDTH;
 
-    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, proj1_hit_reg, proj1_hit_next : STD_LOGIC;
+    -- SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, proj1_hit_reg, proj1_hit_next : STD_LOGIC;
+    SIGNAL wall_on, bar_on, sq_ball_on, proj1_on, rd_ball_on, sq_ship_on, rd_ship_on, proj1_hit_next : STD_LOGIC;
     SIGNAL wall_rgb, bar_rgb, proj1_rgb, ball_rgb, ship_rgb, ship_rgb_2, ship_rgb_1, alien_rgb :
     STD_LOGIC_VECTOR(2 DOWNTO 0);
     -- Alien Flags
@@ -299,18 +303,23 @@ BEGIN
             ship_x_reg <= (OTHERS => '0');
             ship_y_reg <= (OTHERS => '0');
 
-            proj1_y_t_reg <= (OTHERS => '0');
+            -- proj1_y_t_reg <= (OTHERS => '0');
             -- new_proj1_reg <= '0';
             rand_reg <= "0010110101"; -- seed
 
-            proj1_hit_reg <= '0';
-            proj1_x_l_reg <= (OTHERS => '0');
-            proj1_y_t_reg <= (OTHERS => '0');
+            -- proj1_hit_reg <= '0';
+            -- proj1_x_l_reg <= (OTHERS => '0');
+            -- proj1_y_t_reg <= (OTHERS => '0');
 
+            -- Ship Projectil 1 Hit Flag Initialization
+            ship_projectil_1_hit_reg <= '1';
             -- Ship Projectil 2 Hit Flag Initialization
             ship_projectil_2_hit_reg <= '1';
             -- Ship Projectil 3 Hit Flag Initialization
             ship_projectil_3_hit_reg <= '1';
+
+            -- Shoots Counter Initialization
+            shoot_counter_reg <= (OTHERS => '0');
 
             --lives
             ship_lives_reg <= "11";
@@ -349,14 +358,18 @@ BEGIN
             ship_x_reg <= ship_x_next;
             ship_y_reg <= ship_y_next;
 
-            proj1_y_t_reg <= proj1_y_t_next;
+            -- proj1_y_t_reg <= proj1_y_t_next;
             rand_reg <= rand_next;
             -- new_proj1_reg <= new_proj1_next;
 
-            proj1_hit_reg <= proj1_hit_next;
-            proj1_x_l_reg <= proj1_x_l_next;
-            proj1_y_t_reg <= proj1_y_t_next;
+            -- proj1_hit_reg <= proj1_hit_next;
+            -- proj1_x_l_reg <= proj1_x_l_next;
+            -- proj1_y_t_reg <= proj1_y_t_next;
 
+            -- Shihp Projectil 1 Variables Update
+            ship_projectil_1_x_reg <= ship_projectil_1_x_next;
+            ship_projectil_1_y_reg <= ship_projectil_1_y_next;
+            ship_projectil_1_hit_reg <= ship_projectil_1_hit_next;
             -- Shihp Projectil 2 Variables Update
             ship_projectil_2_x_reg <= ship_projectil_2_x_next;
             ship_projectil_2_y_reg <= ship_projectil_2_y_next;
@@ -365,6 +378,9 @@ BEGIN
             ship_projectil_3_x_reg <= ship_projectil_3_x_next;
             ship_projectil_3_y_reg <= ship_projectil_3_y_next;
             ship_projectil_3_hit_reg <= ship_projectil_3_hit_next;
+
+            -- Shoots Counter Variable Update
+            shoot_counter_reg <= shoot_counter_next;
 
             --ship lives
             ship_lives_reg <= ship_lives_next;
@@ -382,32 +398,45 @@ BEGIN
     -- SHIP PROJECTILES
     ----------------------------------------------
     ----------------------------------------------  
-    -- Projectile 1
+    --- Projectil 1
     ----------------------------------------------
-    proj1_y_t <= proj1_y_t_reg;
-    proj1_y_b <= proj1_y_t + PROJ_SIZE - 1;
-    proj1_x_r <= proj1_x_l_reg + PROJ_WIDTH;
-    proj1_x_l <= proj1_x_l_reg;
-
-    proj1_on <=
-        '1' WHEN (proj1_x_l_reg <= pix_x) AND (pix_x <= proj1_x_r) AND
-        (proj1_y_t <= pix_y) AND (pix_y <= proj1_y_b) AND (proj1_hit_reg = '0')ELSE
+    ship_projectil_1_x_l <= ship_projectil_1_x_reg;
+    ship_projectil_1_y_t <= ship_projectil_1_y_reg;
+    ship_projectil_1_x_r <= ship_projectil_1_x_l + ALIEN_PROJECTIL_WIDTH - 1;
+    ship_projectil_1_y_b <= ship_projectil_1_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    ship_projectil_1_on <=
+        '1' WHEN (ship_projectil_1_x_l <= pix_x) AND (pix_x <= ship_projectil_1_x_r) AND
+        (ship_projectil_1_y_t <= pix_y) AND (pix_y <= ship_projectil_1_y_b) AND
+        (ship_projectil_1_hit_reg = '0') ELSE
         '0';
-    proj1_rgb <= "101"; -- magenta  
-    -- new projectile1 y-position 
 
-    --Projectile y axis
-    proj1_y_t_next <= ship_y_reg WHEN (proj1_hit_reg = '1') ELSE
-        (proj1_y_t_reg - PROJ1_V) WHEN refr_tick = '1' ELSE
-        proj1_y_t_reg;
+    -- Projectil Hit State
+    ship_projectil_1_x_next <=
+        ship_x_reg WHEN (gra_still = '1' OR ship_projectil_1_hit_reg = '1') ELSE
+        ship_projectil_1_x_reg;
+    ship_projectil_1_y_next <=
+        ship_y_reg WHEN (gra_still = '1' OR ship_projectil_1_hit_reg = '1') ELSE
+        ship_projectil_1_y_reg - PROJ1_V WHEN refr_tick = '1' ELSE
+        ship_projectil_1_y_reg;
 
-    proj1_hit_next <= '1' WHEN (proj1_y_t < 1 OR gra_still = '1') ELSE
-        '0' WHEN (keyboard_code = spacebar) ELSE
-        proj1_hit_reg;
+    -- Ship Projectil Hit Flag Update
+    ship_projectil_1_hit_next <= '1' WHEN (ship_projectil_1_y_t < 10 OR gra_still = '1') OR 
+        (ship_projectil_1_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1')) ELSE
+        '0' WHEN (keyboard_code = spacebar AND ship_projectil_1_hit_reg = '1' AND shoot_counter_reg = 0) ELSE
+        ship_projectil_1_hit_reg;
 
-    --Projectile x axis
-    proj1_x_l_next <= ship_x_reg WHEN (keyboard_code = spacebar AND proj1_hit_reg = '1') ELSE
-        proj1_x_l_reg;
+    -- -- Projectil Hit State
+    -- PROCESS (ship_projectil_1_hit_reg, ship_projectil_1_on, ship_projectil_1_y_b, rd_alien_1_on, rd_alien_2_on)
+    -- BEGIN
+    --     ship_projectil_1_hit_next <= ship_projectil_1_hit_reg;
+    --     IF ship_projectil_1_hit_reg = '1' THEN
+    --         ship_projectil_1_hit_next <= '0';
+    --     ELSIF (ship_projectil_1_on = '1') AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
+    --         ship_projectil_1_hit_next <= '1';
+    --     ELSIF (ship_projectil_1_y_b < 10) THEN
+    --         ship_projectil_1_hit_next <= '1';
+    --     END IF;
+    -- END PROCESS;
 
     ----------------------------------------------  
     -- Projectile 2
@@ -432,10 +461,9 @@ BEGIN
         ship_projectil_2_y_reg;
 
     -- Ship Projectil Hit Flag Update
-    ship_projectil_2_hit_next <= '1' WHEN (ship_projectil_2_y_t < 1 OR gra_still = '1') ELSE
-        '0' WHEN (keyboard_code = spacebar) AND 
-        ((proj1_y_t_reg < ship_y_reg - 20 AND proj1_y_t_reg > ship_y_reg + 20) OR proj1_x_l_reg /= ship_x_reg) AND 
-        (proj1_hit_reg = '0') ELSE
+    ship_projectil_2_hit_next <= '1' WHEN (ship_projectil_2_y_t < 10 OR gra_still = '1') OR 
+        (ship_projectil_2_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1')) ELSE
+        '0' WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1' AND shoot_counter_reg = 1) ELSE
         ship_projectil_2_hit_reg;
 
     ----------------------------------------------  
@@ -461,11 +489,22 @@ BEGIN
         ship_projectil_3_y_reg;
 
     -- Ship Projectil Hit Flag Update
-    ship_projectil_3_hit_next <= '1' WHEN (ship_projectil_3_y_t < 1 OR gra_still = '1') ELSE
-        '0' WHEN (keyboard_code = spacebar) AND 
-        ((ship_projectil_2_y_reg < ship_y_reg - 20 AND ship_projectil_2_y_reg > ship_y_reg + 20) OR ship_projectil_2_x_reg /= ship_x_reg) AND 
-        (ship_projectil_3_hit_reg = '0') ELSE
+    ship_projectil_3_hit_next <= '1' WHEN (ship_projectil_3_y_t < 10 OR gra_still = '1') OR 
+        (ship_projectil_3_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1')) ELSE
+        '0' WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1' AND shoot_counter_reg = 3) ELSE
         ship_projectil_3_hit_reg;
+
+    ----------------------------------------------
+    -- Shoots Counter Incrementation Process
+    ----------------------------------------------
+    PROCESS(shoot_counter_reg, keyboard_code)
+    BEGIN
+        shoot_counter_next <= shoot_counter_reg;
+
+        IF (keyboard_code = spacebar) THEN
+            shoot_counter_next <= shoot_counter_reg + 1;
+        END IF;
+    END PROCESS;
 
     ----------------------------------------------
     -- random number generator
@@ -755,8 +794,8 @@ BEGIN
 
     END PROCESS;
     -- rgb multiplexing circuit
-    PROCESS (rd_ship_on, ship_lives_reg, ship_rgb, ship_rgb_2, ship_rgb_1, proj1_rgb, proj1_on, ship_projectil_2_on, ship_projectil_3_on, 
-            rd_alien_1_on, rd_alien_2_on, alien_rgb, alien_projectil_on, alien_2_projectil_on)
+    PROCESS (rd_ship_on, ship_lives_reg, ship_rgb, ship_rgb_2, ship_rgb_1, proj1_rgb, ship_projectil_1_on, ship_projectil_2_on, ship_projectil_3_on,
+        rd_alien_1_on, rd_alien_2_on, alien_rgb, alien_projectil_on, alien_2_projectil_on)
     BEGIN
 
         IF rd_ship_on = '1' AND ship_lives_reg = "11" THEN
@@ -769,13 +808,13 @@ BEGIN
             rgb <= alien_rgb;
         ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
-        ELSIF (proj1_on = '1' OR ship_projectil_2_on = '1' OR ship_projectil_3_on = '1') THEN
+        ELSIF (ship_projectil_1_on = '1' OR ship_projectil_2_on = '1' OR ship_projectil_3_on = '1') THEN
             rgb <= proj1_rgb;
         ELSE
             rgb <= "111"; -- black background
         END IF;
     END PROCESS;
 
-    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR alien_2_projectil_on OR
-                ship_projectil_2_on OR ship_projectil_3_on;
+    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR ship_projectil_1_on OR alien_projectil_on OR alien_2_projectil_on OR
+        ship_projectil_2_on OR ship_projectil_3_on;
 END arch;
