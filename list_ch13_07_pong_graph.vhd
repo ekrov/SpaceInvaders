@@ -424,7 +424,7 @@ BEGIN
 
     -- New Ship Projectil Position
     ship_projectil_2_x_next <=
-        ship_x_reg WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1') ELSE
+        ship_x_reg + 8 WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1') ELSE
         ship_projectil_2_x_reg;
     ship_projectil_2_y_next <=
         ship_y_reg WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1') ELSE
@@ -453,7 +453,7 @@ BEGIN
 
     -- New Ship Projectil Position    
     ship_projectil_3_x_next <=
-        ship_x_reg WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1') ELSE
+        ship_x_reg + 16 WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1') ELSE
         ship_projectil_3_x_reg;
     ship_projectil_3_y_next <=
         ship_y_reg WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1') ELSE
