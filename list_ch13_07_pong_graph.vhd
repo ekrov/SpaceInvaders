@@ -133,6 +133,8 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_ship : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL rom_bit_ship : STD_LOGIC;
     SIGNAL ship_lives_reg, ship_lives_next : unsigned(1 DOWNTO 0);
+    SIGNAL ship_got_hit:STD_LOGIC;
+
     ---------------------------------  
     -- Aliens  
     ---------------------------------
@@ -588,12 +590,12 @@ BEGIN
     ship_rgb_2 <= "110"; -- yellow
     ship_rgb_1 <= "100";-- red
     -- new ship position
-    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r, keyboard_code)
+    PROCESS (refr_tick, gra_still, ship_y_reg, ship_x_reg, ship_y_b, ship_y_t, ship_x_l, ship_x_r, keyboard_code,ship_got_hit)
     BEGIN
         ship_y_next <= ship_y_reg;
         ship_x_next <= ship_x_reg;
 
-        IF gra_still = '1' THEN --initial position of ship
+        IF gra_still = '1' OR ship_got_hit='1' THEN --initial position of ship
             ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
             ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
         ELSIF refr_tick = '1' THEN
@@ -658,11 +660,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_x_next <=
-        to_unsigned((MAX_X)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
+        to_unsigned((MAX_X)/2+50, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_x_reg + alien_vx_reg WHEN refr_tick = '1' ELSE
         alien_x_reg;
     alien_y_next <=
-        to_unsigned((MAX_Y)/2, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
+        to_unsigned((MAX_Y)/2-50, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
         alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
         alien_y_reg;
 
@@ -716,11 +718,11 @@ BEGIN
     alien_rgb <= "010"; -- green
     -- new alien position
     alien_2_x_next <=
-        to_unsigned(((MAX_X)/2) + 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
+        to_unsigned(((MAX_X)/2) + 100, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_x_reg + alien_2_vx_reg WHEN refr_tick = '1' ELSE
         alien_2_x_reg;
     alien_2_y_next <=
-        to_unsigned(((MAX_Y)/2) - 50, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
+        to_unsigned(((MAX_Y)/2) - 100, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
         alien_2_y_reg + alien_2_vy_reg WHEN refr_tick = '1' ELSE
         alien_2_y_reg;
 
@@ -847,11 +849,11 @@ BEGIN
     alien_boss_rgb <= "100"; -- red
     -- new alien position
     alien_boss_x_next <=
-        to_unsigned(((MAX_X)/2) + 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        to_unsigned(((MAX_X)/2) + 200, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
         alien_boss_x_reg + alien_boss_vx_reg WHEN refr_tick = '1' ELSE
         alien_boss_x_reg;
     alien_boss_y_next <=
-        to_unsigned(((MAX_Y)/2) - 150, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
+        to_unsigned(((MAX_Y)/2) - 200, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
         alien_boss_y_reg + alien_boss_vy_reg WHEN refr_tick = '1' ELSE
         alien_boss_y_reg;
 
@@ -1201,7 +1203,7 @@ BEGIN
 
     --aliens hitting ship
     PROCESS (alien_alive, alien_2_alive, alien_projectil_on, alien_2_projectil_on,
-        rd_ship_on, ship_lives_reg, alien_boss_alive, alien_boss_projectil_on)
+        rd_ship_on, ship_lives_reg, alien_boss_alive, alien_boss_projectil_on,ship_got_hit)
     BEGIN
         miss <= '0';
         ship_lives_next <= ship_lives_reg;
@@ -1214,8 +1216,24 @@ BEGIN
         ELSIF (alien_boss_alive = '1' AND alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
             miss <= '1';
+        ELSIF (ship_got_hit='1') THEN
+            ship_lives_next <= ship_lives_reg - 1;
+            miss <= '1';
         END IF;
+    END PROCESS;
 
+    --ship collision damage
+    PROCESS (alien_alive, alien_2_alive,rd_alien_2_on,rd_alien_1_on,rd_alien_boss_on,
+        rd_ship_on, ship_lives_reg, alien_boss_alive)
+    BEGIN
+        ship_got_hit<='0';
+        IF (alien_2_alive = '1' AND rd_alien_2_on = '1' AND rd_ship_on = '1') THEN
+            ship_got_hit<='1';
+        ELSIF (alien_alive = '1' AND rd_alien_1_on = '1' AND rd_ship_on = '1') THEN
+            ship_got_hit<='1';
+        ELSIF (alien_boss_alive = '1' AND rd_alien_boss_on = '1' AND rd_ship_on = '1') THEN
+            ship_got_hit<='1';
+        END IF;
     END PROCESS;
     ----------------------------------------------  
     -- Playable Alien Projectile 1

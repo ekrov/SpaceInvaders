@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 23 17:49:54 2023
+// Written by: Map P.20131013 on Mon Jan 23 19:35:50 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -95,7 +95,6 @@ TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
         "graph_unit/alien_2_hits_counter_reg_2" BEL
         "graph_unit/alien_2_hits_counter_reg_1" BEL
         "graph_unit/alien_2_hits_counter_reg_0" BEL
-        "graph_unit/ship_lives_reg_1" BEL "graph_unit/ship_lives_reg_0" BEL
         "graph_unit/play_alien_projectil_1_y_reg_9" BEL
         "graph_unit/play_alien_projectil_1_y_reg_8" BEL
         "graph_unit/play_alien_projectil_1_y_reg_7" BEL
@@ -106,9 +105,8 @@ TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
         "graph_unit/play_alien_projectil_1_y_reg_2" BEL
         "graph_unit/play_alien_projectil_1_y_reg_1" BEL
         "graph_unit/play_alien_projectil_1_y_reg_0" BEL
-        "graph_unit/alien_boss_lives_reg_2" BEL
-        "graph_unit/alien_boss_lives_reg_1" BEL
         "graph_unit/alien_boss_lives_reg_3" BEL
+        "graph_unit/alien_boss_lives_reg_2" BEL
         "graph_unit/alien_2_projectil_2_y_reg_9" BEL
         "graph_unit/alien_2_projectil_2_y_reg_8" BEL
         "graph_unit/alien_2_projectil_2_y_reg_7" BEL
@@ -120,6 +118,7 @@ TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
         "graph_unit/alien_2_projectil_2_y_reg_1" BEL
         "graph_unit/alien_2_projectil_2_y_reg_0" BEL
         "graph_unit/alien_boss_lives_reg_0" BEL
+        "graph_unit/alien_boss_lives_reg_1" BEL
         "graph_unit/play_alien_hits_counter_reg_1" BEL
         "graph_unit/play_alien_hits_counter_reg_0" BEL
         "graph_unit/alien_projectil_2_y_reg_9" BEL
@@ -201,7 +200,8 @@ TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
         "graph_unit/alien_projectil_x_reg_3" BEL
         "graph_unit/alien_projectil_x_reg_2" BEL
         "graph_unit/alien_projectil_x_reg_1" BEL
-        "graph_unit/alien_projectil_x_reg_0" BEL
+        "graph_unit/alien_projectil_x_reg_0" BEL "graph_unit/ship_lives_reg_1"
+        BEL "graph_unit/ship_lives_reg_0" BEL
         "graph_unit/alien_projectil_hit_reg" BEL
         "graph_unit/alien_boss_projectil_hit_reg" BEL
         "graph_unit/proj1_x_l_reg_9" BEL "graph_unit/proj1_x_l_reg_8" BEL
