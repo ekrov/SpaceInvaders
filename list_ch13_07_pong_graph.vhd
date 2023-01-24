@@ -912,8 +912,8 @@ BEGIN
         END IF;
     END PROCESS;
     -- rgb multiplexing circuit
-    PROCESS (wall_on, bar_on, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
-        alien_projectil_on, alien_2_projectil_on)
+    PROCESS (rd_ship_on, ship_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
+        alien_projectil_on, alien_2_projectil_on, alien_projectil_2_on, alien_projectil_3_on)
     BEGIN
         -- IF wall_on = '1' THEN
         --     rgb <= wall_rgb;
@@ -925,7 +925,7 @@ BEGIN
             rgb <= ship_rgb;
         ELSIF (rd_alien_1_on = '1' OR rd_alien_2_on = '1') THEN
             rgb <= alien_rgb;
-        ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
+        ELSIF (alien_projectil_on = '1' OR alien_projectil_2_on = '1' OR alien_projectil_3_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
         ELSIF proj1_on = '1' THEN
             rgb <= proj1_rgb;
@@ -964,5 +964,6 @@ BEGIN
     --     SHIP_y_reg;
     -- -- new graphic_on signal
 
-    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR alien_2_projectil_on;
+    graph_on <= rd_ship_on OR rd_alien_1_on OR rd_alien_2_on OR proj1_on OR alien_projectil_on OR 
+                alien_projectil_2_on OR alien_projectil_3_on OR alien_2_projectil_on;
 END arch;
