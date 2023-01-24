@@ -23,7 +23,7 @@
 <msg type="warning" file="Xst" num="753" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd</arg>&quot; line <arg fmt="%d" index="2">59</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">ps2_code_new</arg>&apos; of component &apos;<arg fmt="%s" index="4">ps2_keyboard</arg>&apos;.
 </msg>
 
-<msg type="warning" file="Xst" num="819" delta="new" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">847</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+<msg type="warning" file="Xst" num="819" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot; line <arg fmt="%d" index="2">876</arg>: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
 <arg fmt="%s" index="3">&lt;rd_alien_boss_on&gt;</arg>
 </msg>
 
@@ -304,16 +304,16 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">rand_reg_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt;.
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_2_vx_reg_8&gt; &lt;alien_2_vx_reg_6&gt; &lt;alien_2_vx_reg_7&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_vx_reg_8&gt; &lt;alien_vx_reg_6&gt; &lt;alien_vx_reg_7&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vy_reg_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_boss_vy_reg_2&gt; &lt;alien_vy_reg_2&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_boss_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_boss_vx_reg_8&gt; &lt;alien_boss_vx_reg_6&gt; &lt;alien_boss_vx_reg_7&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vy_reg_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_boss_vy_reg_2&gt; &lt;alien_vy_reg_2&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_vx_reg_8&gt; &lt;alien_vx_reg_6&gt; &lt;alien_vx_reg_7&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">pong_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_2_vx_reg_8&gt; &lt;alien_2_vx_reg_6&gt; &lt;alien_2_vx_reg_7&gt; </arg>
 </msg>
 
 <msg type="warning" file="Xst" num="2170" delta="old" >Unit <arg fmt="%s" index="1">pong_graph</arg> : the following signal(s) form a combinatorial loop: </msg>
@@ -335,6 +335,8 @@ It will be removed from the design.
 
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">keyboard_unit/ps2_code_new</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">pong_top</arg>&gt;.
 </msg>
+
+<msg type="warning" file="Xst" num="2170" delta="old" >Unit <arg fmt="%s" index="1">pong_top</arg> : the following signal(s) form a combinatorial loop: </msg>
 
 <msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 </msg>
