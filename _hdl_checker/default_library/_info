@@ -1,359 +1,154 @@
 m255
-K4
-z2
+K3
 13
-!s112 1.1
-!i10d 8192
-!i10e 25
-!i10f 100
 cModel Technology
-Z0 dd:/Xilinx/projects/Jogo_EletProg_VG/Jogo_EletProg
+Z0 dd:\DEV\eprog\Space Invaders\SpaceInvaders
 Efont_rom
-Z1 w1573215248
-Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-R0
-Z5 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_01_font_rom.vhd
-Z6 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_01_font_rom.vhd
+Z1 w1674323812
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z5 dd:\DEV\eprog\Space Invaders\SpaceInvaders
+Z6 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd
+Z7 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd
 l0
 L12
-V_aJ@`J>0Ng[dijePMjQnF0
-!s100 <ZBl?hE7Z>5`47=FJ:U3?2
-Z7 OL;C;10.6d;65
+Vz8BNmNz5]B7TGUZko[BHj0
+Z8 OV;C;10.1d;51
 32
-Z8 !s110 1674426080
+Z9 !s108 1674338569.827000
+Z10 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd|
+Z11 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_01_font_rom.vhd|
+Z12 o-quiet -work {d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library} -check_synthesis -lint -rangecheck -pedanticerrors -explicit -O0
+Z13 tExplicit 1
+!s100 OAneX]>WPK6:]j]^X0:EG2
 !i10b 1
-Z9 !s108 1674426080.000000
-Z10 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_01_font_rom.vhd|
-Z11 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_01_font_rom.vhd|
-!i113 0
-Z12 o-quiet -work {d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library} -check_synthesis -lint -rangecheck -pedanticerrors -explicit
-Z13 tExplicit 1 CvgOpt 0
 Aarch
 R2
 R3
 R4
-Z14 DEx4 work 8 font_rom 0 22 _aJ@`J>0Ng[dijePMjQnF0
+DEx4 work 8 font_rom 0 22 z8BNmNz5]B7TGUZko[BHj0
 l2205
 L20
-VGH6PSWhHCzOH`1j9Cjba30
-!s100 5PVB;B[FhUo8zUad;zgg=0
-R7
-32
+V4GAeXBi5TnPRm@ABOoTS63
 R8
-!i10b 1
+32
 R9
 R10
 R11
-!i113 0
 R12
 R13
-Em100_counter
-Z15 w1201537520
-R2
-R3
-R4
-R0
-Z16 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_08_pong_counter.vhd
-Z17 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_08_pong_counter.vhd
-l0
-L5
-VWhSdZLkL?9NgfP:M98=gf0
-!s100 oWfN3ZTD0U5l8fMVbR1;a2
-R7
-32
-Z18 !s110 1674401052
+!s100 biEMbn7KT`7fQ9I@;HXo22
 !i10b 1
-Z19 !s108 1674401052.000000
-Z20 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_08_pong_counter.vhd|
-Z21 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_08_pong_counter.vhd|
-!i113 0
-Z22 o-permissive -quiet -work {d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library} -defercheck -nocheck -explicit
-R13
-Aarch
-R2
-R3
-R4
-DEx4 work 12 m100_counter 0 22 WhSdZLkL?9NgfP:M98=gf0
-l16
-L13
-VSA829A2O3?`^]z3]2I^z]0
-!s100 n_f`Jn2@Uz_bOI3;R?eYi3
-R7
-32
-R18
-!i10b 1
-R19
-R20
-R21
-!i113 0
-R22
-R13
 Epong_graph
-Z23 w1674510334
+Z14 w1674519463
 R2
 R3
 R4
-R0
-Z24 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd
-Z25 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd
+R5
+Z15 8d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd
+Z16 Fd:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd
 l0
 L5
-Vh<@L6D8JNl6Tok6R?AORV2
-!s100 9Kih^bmRGEEz0EH7?R2^f3
-R7
+VUnV_M[7bmG:JlW7ZX=Fi01
+!s100 9c4Slo<DOaWR=WO8<Y2V93
+R8
 32
-Z26 !s110 1674510335
 !i10b 1
-Z27 !s108 1674510335.000000
-Z28 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
-Z29 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
-!i113 0
+Z17 !s108 1674519492.518000
+Z18 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd|
+Z19 !s107 d:\DEV\eprog\Space Invaders\SpaceInvaders\list_ch13_07_pong_graph.vhd|
 R12
 R13
 Aarch
 R2
 R3
 R4
-Z30 DEx4 work 10 pong_graph 0 22 h<@L6D8JNl6Tok6R?AORV2
+DEx4 work 10 pong_graph 0 22 UnV_M[7bmG:JlW7ZX=Fi01
 l260
 L19
-Z31 V_hk46fHQ<4HX@2:zFnlU=1
-Z32 !s100 jm0ddN@?nMYdE:CH=40_b0
-R7
+V8K=Nh5g<TZA`C7ZAm?jD]0
+!s100 <zaG5Sb1XHlgl2l7Qena=0
+R8
 32
-R26
 !i10b 1
-R27
-R28
-R29
-!i113 0
+R17
+R18
+R19
 R12
 R13
 Epong_text
-Z33 w1674510329
+Z20 w1674338562
 R2
 R3
 R4
-R0
-Z34 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd
-Z35 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd
+R5
+Z21 8C:\Users\NICOLA~1\AppData\Local\Temp\tmpjlm3h55s.vhd
+Z22 FC:\Users\NICOLA~1\AppData\Local\Temp\tmpjlm3h55s.vhd
 l0
 L5
-V6=PcVWm_YE850J94[zB^G0
-!s100 De1We0m<0Xe]:C_LG0Y<<1
-R7
+VRL6WnYdDeclS]zS]RjG791
+R8
 32
-Z36 !s110 1674510330
-!i10b 1
-Z37 !s108 1674510330.000000
-Z38 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd|
-Z39 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd|
-!i113 0
+Z23 !s108 1674338562.465000
+Z24 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|C:\Users\NICOLA~1\AppData\Local\Temp\tmpjlm3h55s.vhd|
+Z25 !s107 C:\Users\NICOLA~1\AppData\Local\Temp\tmpjlm3h55s.vhd|
 R12
 R13
+!s100 PH9S8`mLQPKjWbXzJk9Q^1
+!i10b 1
 Aarch
-R14
+DEx4 work 8 font_rom 0 22 jo:58O`HQcC:G^ba^BGKH2
 R2
 R3
 R4
-DEx4 work 9 pong_text 0 22 6=PcVWm_YE850J94[zB^G0
-l104
+DEx4 work 9 pong_text 0 22 RL6WnYdDeclS]zS]RjG791
+l103
 L16
-VCWFg>]kHAWRaJ9W`fi[3G3
-!s100 oDn8fekWH:1SDBhlXUIXX2
-R7
+Vo`iKFc<jUGZhezF99a[9k2
+R8
 32
-R36
-!i10b 1
-R37
-R38
-R39
-!i113 0
+R23
+R24
+R25
 R12
 R13
-Epong_top
-w1674510317
-R2
-R3
-R4
-R0
-8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd
-Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd
-l0
-L5
-VjPW^aFdjJ3WKk<FIzAhSH0
-!s100 Ajg3ONaABhG8H]`5M:?gS0
-R7
-32
-!s110 1674510318
+!s100 ;=;V1CSmG;gim2KY[W^231
 !i10b 1
-!s108 1674510318.000000
-!s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd|
-!s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd|
-!i113 0
-R12
-R13
-Eps2_keyboard
-Z40 w1672827643
-R3
-R4
-R0
-Z41 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\ps2_keyboard.vhd
-Z42 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\ps2_keyboard.vhd
-l0
-L26
-VEQaIVP6l0;^DDGCWD93iU1
-!s100 _P:DfL@:Lbi<ea260RmVz2
-R7
-32
-Z43 !s110 1674401051
-!i10b 1
-Z44 !s108 1674401050.000000
-Z45 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\ps2_keyboard.vhd|
-Z46 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\ps2_keyboard.vhd|
-!i113 0
-R22
-R13
-Alogic
-R3
-R4
-DEx4 work 12 ps2_keyboard 0 22 EQaIVP6l0;^DDGCWD93iU1
-l59
-L40
-V[@<e_R<o769CiziIj[[PW3
-!s100 O2T>R>XQ@lG40l[kenHcm2
-R7
-32
-R43
-!i10b 1
-R44
-R45
-R46
-!i113 0
-R22
-R13
-Etimer
-Z47 w1573214090
-R2
-R3
-R4
-R0
-Z48 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_09_pong_timer.vhd
-Z49 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_09_pong_timer.vhd
-l0
-L5
-VI:Y?I114CShSDCA1aoK:23
-!s100 jlXS1b^OKA9;HiooiML1H3
-R7
-32
-Z50 !s110 1674401050
-!i10b 1
-Z51 !s108 1674401049.000000
-Z52 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_09_pong_timer.vhd|
-Z53 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_09_pong_timer.vhd|
-!i113 0
-R22
-R13
-Aarch
-R2
-R3
-R4
-DEx4 work 5 timer 0 22 I:Y?I114CShSDCA1aoK:23
-l15
-L13
-V_km:7Ki_OTQYJ;5@D^daT2
-!s100 @<SjT<:lQ9c9A@k[Rma1L3
-R7
-32
-R50
-!i10b 1
-R51
-R52
-R53
-!i113 0
-R22
-R13
-Etimer_2
-Z54 w1672152858
-R2
-R3
-R4
-R0
-Z55 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\timer_2.vhd
-Z56 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\timer_2.vhd
-l0
-L5
-V38Y=ch;<?[:o0:<jMJLH92
-!s100 :QGcfggbHhN[3>nKP2j2^3
-R7
-32
-R18
-!i10b 1
-Z57 !s108 1674401051.000000
-Z58 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\timer_2.vhd|
-Z59 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\timer_2.vhd|
-!i113 0
-R22
-R13
-Aarch
-R2
-R3
-R4
-DEx4 work 7 timer_2 0 22 38Y=ch;<?[:o0:<jMJLH92
-l15
-L13
-VfA_kb4BaT9GMJY^heCJ1T1
-!s100 iT2zfHCK?h2=2a8XgVPCT1
-R7
-32
-R18
-!i10b 1
-R57
-R58
-R59
-!i113 0
-R22
-R13
 Evga_sync
-Z60 w1674397049
+Z26 w1674338819
 R2
 R3
 R4
-R0
-Z61 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch12_01_vga_sync.vhd
-Z62 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch12_01_vga_sync.vhd
+R5
+Z27 8C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
+Z28 FC:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd
 l0
 L5
-VbcjH[kXYQiU9An4XCQEk_2
-!s100 `4PW=jo<R5AR8nFY6XC[03
-R7
+VVZf_fmE30Z?9nNLgj?8AV2
+R8
 32
-Z63 !s110 1674401049
-!i10b 1
-R51
-Z64 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch12_01_vga_sync.vhd|
-Z65 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch12_01_vga_sync.vhd|
-!i113 0
-R22
+Z29 !s108 1674338819.795000
+Z30 !s90 -modelsimini|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\modelsim.ini|-quiet|-work|d:\DEV\eprog\Space Invaders\SpaceInvaders\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
+Z31 !s107 C:\Users\NICOLA~1\AppData\Local\Temp\tmpttnwxrgh.vhd|
+R12
 R13
+!s100 DEPi?EXA@7T3ATm=VJPSA0
+!i10b 1
 Aarch
 R2
 R3
 R4
-DEx4 work 8 vga_sync 0 22 bcjH[kXYQiU9An4XCQEk_2
+DEx4 work 8 vga_sync 0 22 VZf_fmE30Z?9nNLgj?8AV2
 l34
 L14
-V6Sma_SR=RRVKlc`0m8oA>3
-!s100 _X_2`R1oSjXWiEOPUhGiO1
-R7
+V2o3:HBdd;EWB2A24NC:SX3
+R8
 32
-R63
-!i10b 1
-R51
-R64
-R65
-!i113 0
-R22
+R29
+R30
+R31
+R12
 R13
+!s100 Knm72GQNiHcAVhc9XD<2S0
+!i10b 1
