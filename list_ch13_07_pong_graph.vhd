@@ -402,8 +402,8 @@ BEGIN
     ----------------------------------------------
     ship_projectil_1_x_l <= ship_projectil_1_x_reg;
     ship_projectil_1_y_t <= ship_projectil_1_y_reg;
-    ship_projectil_1_x_r <= ship_projectil_1_x_l + ALIEN_PROJECTIL_WIDTH - 1;
-    ship_projectil_1_y_b <= ship_projectil_1_y_t + ALIEN_PROJECTIL_SIZE - 1;
+    ship_projectil_1_x_r <= ship_projectil_1_x_l + PROJ_WIDTH - 1;
+    ship_projectil_1_y_b <= ship_projectil_1_y_t + PROJ_SIZE - 1;
     ship_projectil_1_on <=
         '1' WHEN (ship_projectil_1_x_l <= pix_x) AND (pix_x <= ship_projectil_1_x_r) AND
         (ship_projectil_1_y_t <= pix_y) AND (pix_y <= ship_projectil_1_y_b) AND
@@ -491,7 +491,7 @@ BEGIN
     -- Ship Projectil Hit Flag Update
     ship_projectil_3_hit_next <= '1' WHEN (ship_projectil_3_y_t < 10 OR gra_still = '1') OR 
         (ship_projectil_3_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1')) ELSE
-        '0' WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1' AND shoot_counter_reg = 3) ELSE
+        '0' WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1' AND shoot_counter_reg = 2) ELSE
         ship_projectil_3_hit_reg;
 
     ----------------------------------------------
@@ -503,6 +503,9 @@ BEGIN
 
         IF (keyboard_code = spacebar) THEN
             shoot_counter_next <= shoot_counter_reg + 1;
+            IF shoot_counter_reg = 3 THEN
+                shoot_counter_next <= (OTHERS => '0');
+            END IF;
         END IF;
     END PROCESS;
 

@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Jan 23 03:34:42 2023
+// Written by: Map P.20131013 on Mon Jan 23 20:01:25 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -26,28 +26,33 @@ COMP "outgreen<0>" LOCATE = SITE "F14" LEVEL 1;
 COMP "outgreen<1>" LOCATE = SITE "G13" LEVEL 1;
 COMP "outgreen<2>" LOCATE = SITE "G14" LEVEL 1;
 COMP "PS2_CLK" LOCATE = SITE "B1" LEVEL 1;
-TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
-        BEL "ball_reg_1" BEL "vga_sync_unit/v_count_reg_9" BEL
-        "vga_sync_unit/v_count_reg_8" BEL "vga_sync_unit/v_count_reg_7" BEL
-        "vga_sync_unit/v_count_reg_6" BEL "vga_sync_unit/v_count_reg_5" BEL
-        "vga_sync_unit/v_count_reg_4" BEL "vga_sync_unit/v_count_reg_3" BEL
-        "vga_sync_unit/v_count_reg_2" BEL "vga_sync_unit/v_count_reg_1" BEL
-        "vga_sync_unit/v_count_reg_0" BEL "vga_sync_unit/h_count_reg_9" BEL
-        "vga_sync_unit/h_count_reg_8" BEL "vga_sync_unit/h_count_reg_7" BEL
-        "vga_sync_unit/h_count_reg_6" BEL "vga_sync_unit/h_count_reg_5" BEL
-        "vga_sync_unit/h_count_reg_4" BEL "vga_sync_unit/h_count_reg_3" BEL
-        "vga_sync_unit/h_count_reg_2" BEL "vga_sync_unit/h_count_reg_1" BEL
-        "vga_sync_unit/h_count_reg_0" BEL "vga_sync_unit/h_sync_reg" BEL
-        "vga_sync_unit/mod2_reg" BEL "vga_sync_unit/v_sync_reg" BEL
-        "counter_unit/dig1_reg_3" BEL "counter_unit/dig1_reg_2" BEL
-        "counter_unit/dig1_reg_1" BEL "counter_unit/dig1_reg_0" BEL
-        "counter_unit/dig0_reg_3" BEL "counter_unit/dig0_reg_2" BEL
-        "counter_unit/dig0_reg_1" BEL "counter_unit/dig0_reg_0" BEL
-        "graph_unit/alien_2_vx_reg_2" BEL "graph_unit/alien_2_vx_reg_0" BEL
-        "graph_unit/alien_2_vx_reg_1" BEL "graph_unit/alien_2_vy_reg_2" BEL
-        "graph_unit/alien_vx_reg_2" BEL "graph_unit/alien_vx_reg_0" BEL
-        "graph_unit/alien_vx_reg_1" BEL "graph_unit/alien_2_projectil_y_reg_9"
-        BEL "graph_unit/alien_2_projectil_y_reg_8" BEL
+TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
+        "rgb_reg_1" BEL "rgb_reg_2" BEL "state_reg_FSM_FFd1" BEL
+        "state_reg_FSM_FFd2" BEL "timer_unit/timer_reg_0" BEL
+        "timer_unit/timer_reg_1" BEL "timer_unit/timer_reg_2" BEL
+        "timer_unit/timer_reg_3" BEL "timer_unit/timer_reg_4" BEL
+        "timer_unit/timer_reg_5" BEL "timer_unit/timer_reg_6" BEL
+        "vga_sync_unit/v_count_reg_9" BEL "vga_sync_unit/v_count_reg_8" BEL
+        "vga_sync_unit/v_count_reg_7" BEL "vga_sync_unit/v_count_reg_6" BEL
+        "vga_sync_unit/v_count_reg_5" BEL "vga_sync_unit/v_count_reg_4" BEL
+        "vga_sync_unit/v_count_reg_3" BEL "vga_sync_unit/v_count_reg_2" BEL
+        "vga_sync_unit/v_count_reg_1" BEL "vga_sync_unit/v_count_reg_0" BEL
+        "vga_sync_unit/h_count_reg_9" BEL "vga_sync_unit/h_count_reg_8" BEL
+        "vga_sync_unit/h_count_reg_7" BEL "vga_sync_unit/h_count_reg_6" BEL
+        "vga_sync_unit/h_count_reg_5" BEL "vga_sync_unit/h_count_reg_4" BEL
+        "vga_sync_unit/h_count_reg_3" BEL "vga_sync_unit/h_count_reg_2" BEL
+        "vga_sync_unit/h_count_reg_1" BEL "vga_sync_unit/h_count_reg_0" BEL
+        "vga_sync_unit/h_sync_reg" BEL "vga_sync_unit/mod2_reg" BEL
+        "vga_sync_unit/v_sync_reg" BEL "counter_unit/dig1_reg_3" BEL
+        "counter_unit/dig1_reg_2" BEL "counter_unit/dig1_reg_1" BEL
+        "counter_unit/dig1_reg_0" BEL "counter_unit/dig0_reg_3" BEL
+        "counter_unit/dig0_reg_2" BEL "counter_unit/dig0_reg_1" BEL
+        "counter_unit/dig0_reg_0" BEL "graph_unit/alien_2_vx_reg_2" BEL
+        "graph_unit/alien_2_vx_reg_0" BEL "graph_unit/alien_2_vx_reg_9" BEL
+        "graph_unit/alien_2_vy_reg_2" BEL "graph_unit/alien_vx_reg_2" BEL
+        "graph_unit/alien_vx_reg_0" BEL "graph_unit/alien_vx_reg_9" BEL
+        "graph_unit/alien_2_projectil_y_reg_9" BEL
+        "graph_unit/alien_2_projectil_y_reg_8" BEL
         "graph_unit/alien_2_projectil_y_reg_7" BEL
         "graph_unit/alien_2_projectil_y_reg_6" BEL
         "graph_unit/alien_2_projectil_y_reg_5" BEL
@@ -66,7 +71,69 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "graph_unit/alien_projectil_y_reg_2" BEL
         "graph_unit/alien_projectil_y_reg_1" BEL
         "graph_unit/alien_projectil_y_reg_0" BEL
+        "graph_unit/ship_projectil_1_y_reg_9" BEL
+        "graph_unit/ship_projectil_1_y_reg_8" BEL
+        "graph_unit/ship_projectil_1_y_reg_7" BEL
+        "graph_unit/ship_projectil_1_y_reg_6" BEL
+        "graph_unit/ship_projectil_1_y_reg_5" BEL
+        "graph_unit/ship_projectil_1_y_reg_4" BEL
+        "graph_unit/ship_projectil_1_y_reg_3" BEL
+        "graph_unit/ship_projectil_1_y_reg_2" BEL
+        "graph_unit/ship_projectil_1_y_reg_1" BEL
+        "graph_unit/ship_projectil_1_y_reg_0" BEL
+        "graph_unit/ship_lives_reg_1" BEL "graph_unit/ship_lives_reg_0" BEL
+        "graph_unit/ship_projectil_3_y_reg_9" BEL
+        "graph_unit/ship_projectil_3_y_reg_8" BEL
+        "graph_unit/ship_projectil_3_y_reg_7" BEL
+        "graph_unit/ship_projectil_3_y_reg_6" BEL
+        "graph_unit/ship_projectil_3_y_reg_5" BEL
+        "graph_unit/ship_projectil_3_y_reg_4" BEL
+        "graph_unit/ship_projectil_3_y_reg_3" BEL
+        "graph_unit/ship_projectil_3_y_reg_2" BEL
+        "graph_unit/ship_projectil_3_y_reg_1" BEL
+        "graph_unit/ship_projectil_3_y_reg_0" BEL
+        "graph_unit/ship_projectil_2_y_reg_9" BEL
+        "graph_unit/ship_projectil_2_y_reg_8" BEL
+        "graph_unit/ship_projectil_2_y_reg_7" BEL
+        "graph_unit/ship_projectil_2_y_reg_6" BEL
+        "graph_unit/ship_projectil_2_y_reg_5" BEL
+        "graph_unit/ship_projectil_2_y_reg_4" BEL
+        "graph_unit/ship_projectil_2_y_reg_3" BEL
+        "graph_unit/ship_projectil_2_y_reg_2" BEL
+        "graph_unit/ship_projectil_2_y_reg_1" BEL
+        "graph_unit/ship_projectil_2_y_reg_0" BEL
+        "graph_unit/shoot_counter_reg_1" BEL "graph_unit/shoot_counter_reg_0"
+        BEL "graph_unit/ship_projectil_2_x_reg_9" BEL
+        "graph_unit/ship_projectil_2_x_reg_8" BEL
+        "graph_unit/ship_projectil_2_x_reg_7" BEL
+        "graph_unit/ship_projectil_2_x_reg_6" BEL
+        "graph_unit/ship_projectil_2_x_reg_5" BEL
+        "graph_unit/ship_projectil_2_x_reg_4" BEL
+        "graph_unit/ship_projectil_2_x_reg_3" BEL
+        "graph_unit/ship_projectil_2_x_reg_2" BEL
+        "graph_unit/ship_projectil_2_x_reg_1" BEL
+        "graph_unit/ship_projectil_2_x_reg_0" BEL
+        "graph_unit/ship_projectil_3_x_reg_9" BEL
+        "graph_unit/ship_projectil_3_x_reg_8" BEL
+        "graph_unit/ship_projectil_3_x_reg_7" BEL
+        "graph_unit/ship_projectil_3_x_reg_6" BEL
+        "graph_unit/ship_projectil_3_x_reg_5" BEL
+        "graph_unit/ship_projectil_3_x_reg_4" BEL
+        "graph_unit/ship_projectil_3_x_reg_3" BEL
+        "graph_unit/ship_projectil_3_x_reg_2" BEL
+        "graph_unit/ship_projectil_3_x_reg_1" BEL
+        "graph_unit/ship_projectil_3_x_reg_0" BEL
         "graph_unit/alien_projectil_hit_reg" BEL
+        "graph_unit/ship_projectil_1_x_reg_9" BEL
+        "graph_unit/ship_projectil_1_x_reg_8" BEL
+        "graph_unit/ship_projectil_1_x_reg_7" BEL
+        "graph_unit/ship_projectil_1_x_reg_6" BEL
+        "graph_unit/ship_projectil_1_x_reg_5" BEL
+        "graph_unit/ship_projectil_1_x_reg_4" BEL
+        "graph_unit/ship_projectil_1_x_reg_3" BEL
+        "graph_unit/ship_projectil_1_x_reg_2" BEL
+        "graph_unit/ship_projectil_1_x_reg_1" BEL
+        "graph_unit/ship_projectil_1_x_reg_0" BEL
         "graph_unit/alien_2_projectil_x_reg_9" BEL
         "graph_unit/alien_2_projectil_x_reg_8" BEL
         "graph_unit/alien_2_projectil_x_reg_7" BEL
@@ -92,37 +159,34 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "graph_unit/alien_2_y_reg_6" BEL "graph_unit/alien_2_y_reg_5" BEL
         "graph_unit/alien_2_y_reg_4" BEL "graph_unit/alien_2_y_reg_3" BEL
         "graph_unit/alien_2_y_reg_2" BEL "graph_unit/alien_2_y_reg_1" BEL
-        "graph_unit/alien_2_y_reg_0" BEL "graph_unit/alien_y_reg_9" BEL
-        "graph_unit/alien_y_reg_8" BEL "graph_unit/alien_y_reg_7" BEL
-        "graph_unit/alien_y_reg_6" BEL "graph_unit/alien_y_reg_5" BEL
-        "graph_unit/alien_y_reg_4" BEL "graph_unit/alien_y_reg_3" BEL
-        "graph_unit/alien_y_reg_2" BEL "graph_unit/alien_y_reg_1" BEL
-        "graph_unit/alien_y_reg_0" BEL "graph_unit/alien_2_x_reg_9" BEL
-        "graph_unit/alien_2_x_reg_8" BEL "graph_unit/alien_2_x_reg_7" BEL
+        "graph_unit/alien_2_y_reg_0" BEL "graph_unit/ship_projectil_1_hit_reg"
+        BEL "graph_unit/alien_y_reg_9" BEL "graph_unit/alien_y_reg_8" BEL
+        "graph_unit/alien_y_reg_7" BEL "graph_unit/alien_y_reg_6" BEL
+        "graph_unit/alien_y_reg_5" BEL "graph_unit/alien_y_reg_4" BEL
+        "graph_unit/alien_y_reg_3" BEL "graph_unit/alien_y_reg_2" BEL
+        "graph_unit/alien_y_reg_1" BEL "graph_unit/alien_y_reg_0" BEL
+        "graph_unit/ship_projectil_2_hit_reg" BEL
+        "graph_unit/ship_projectil_3_hit_reg" BEL "graph_unit/alien_2_x_reg_9"
+        BEL "graph_unit/alien_2_x_reg_8" BEL "graph_unit/alien_2_x_reg_7" BEL
         "graph_unit/alien_2_x_reg_6" BEL "graph_unit/alien_2_x_reg_5" BEL
         "graph_unit/alien_2_x_reg_4" BEL "graph_unit/alien_2_x_reg_3" BEL
         "graph_unit/alien_2_x_reg_2" BEL "graph_unit/alien_2_x_reg_1" BEL
-        "graph_unit/alien_2_x_reg_0" BEL "graph_unit/ship_y_reg_9" BEL
+        "graph_unit/alien_2_x_reg_0" BEL "graph_unit/alien_x_reg_9" BEL
+        "graph_unit/alien_x_reg_8" BEL "graph_unit/alien_x_reg_7" BEL
+        "graph_unit/alien_x_reg_6" BEL "graph_unit/alien_x_reg_5" BEL
+        "graph_unit/alien_x_reg_4" BEL "graph_unit/alien_x_reg_3" BEL
+        "graph_unit/alien_x_reg_2" BEL "graph_unit/alien_x_reg_1" BEL
+        "graph_unit/alien_x_reg_0" BEL "graph_unit/ship_y_reg_9" BEL
         "graph_unit/ship_y_reg_8" BEL "graph_unit/ship_y_reg_7" BEL
         "graph_unit/ship_y_reg_6" BEL "graph_unit/ship_y_reg_5" BEL
         "graph_unit/ship_y_reg_4" BEL "graph_unit/ship_y_reg_3" BEL
         "graph_unit/ship_y_reg_2" BEL "graph_unit/ship_y_reg_1" BEL
-        "graph_unit/alien_x_reg_9" BEL "graph_unit/alien_x_reg_8" BEL
-        "graph_unit/alien_x_reg_7" BEL "graph_unit/alien_x_reg_6" BEL
-        "graph_unit/alien_x_reg_5" BEL "graph_unit/alien_x_reg_4" BEL
-        "graph_unit/alien_x_reg_3" BEL "graph_unit/alien_x_reg_2" BEL
-        "graph_unit/alien_x_reg_1" BEL "graph_unit/alien_x_reg_0" BEL
-        "graph_unit/alien_2_alive_reg" BEL "graph_unit/proj1_y_reg_9" BEL
-        "graph_unit/proj1_y_reg_8" BEL "graph_unit/proj1_y_reg_7" BEL
-        "graph_unit/proj1_y_reg_6" BEL "graph_unit/proj1_y_reg_5" BEL
-        "graph_unit/proj1_y_reg_4" BEL "graph_unit/proj1_y_reg_3" BEL
-        "graph_unit/proj1_y_reg_2" BEL "graph_unit/proj1_y_reg_1" BEL
-        "graph_unit/ship_x_reg_9" BEL "graph_unit/ship_x_reg_8" BEL
-        "graph_unit/ship_x_reg_7" BEL "graph_unit/ship_x_reg_6" BEL
-        "graph_unit/ship_x_reg_5" BEL "graph_unit/ship_x_reg_4" BEL
-        "graph_unit/ship_x_reg_3" BEL "graph_unit/ship_x_reg_2" BEL
-        "graph_unit/ship_x_reg_1" BEL "graph_unit/ship_x_reg_0" BEL
-        "graph_unit/alien_alive_reg" BEL "keyboard_unit/count_idle_22" BEL
+        "graph_unit/ship_y_reg_0" BEL "graph_unit/ship_x_reg_9" BEL
+        "graph_unit/ship_x_reg_8" BEL "graph_unit/ship_x_reg_7" BEL
+        "graph_unit/ship_x_reg_6" BEL "graph_unit/ship_x_reg_5" BEL
+        "graph_unit/ship_x_reg_4" BEL "graph_unit/ship_x_reg_3" BEL
+        "graph_unit/ship_x_reg_2" BEL "graph_unit/ship_x_reg_1" BEL
+        "graph_unit/ship_x_reg_0" BEL "keyboard_unit/count_idle_22" BEL
         "keyboard_unit/count_idle_21" BEL "keyboard_unit/count_idle_20" BEL
         "keyboard_unit/count_idle_19" BEL "keyboard_unit/count_idle_18" BEL
         "keyboard_unit/count_idle_17" BEL "keyboard_unit/count_idle_16" BEL
@@ -165,7 +229,8 @@ TIMEGRP clk = BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2" BEL "ball_reg_0"
         "keyboard_unit/ps2_code_next_4" BEL "keyboard_unit/ps2_code_next_3"
         BEL "keyboard_unit/ps2_code_next_2" BEL
         "keyboard_unit/ps2_code_next_1" BEL "keyboard_unit/ps2_code_next_0"
-        BEL "state_reg_FSM_FFd1" BEL "vga_sync_unit/v_count_reg_2_1" BEL
+        BEL "vga_sync_unit/v_count_reg_4_1" BEL
+        "vga_sync_unit/v_count_reg_2_1" BEL "graph_unit/ship_y_reg_1_1" BEL
         "text_unit/font_unit/Mrom_data_rom0000.A" BEL
         "keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0/SRL16E" BEL
         "keyboard_unit/debounce_ps2_clk/flipflops_0" BEL
