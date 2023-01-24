@@ -183,6 +183,42 @@ ARCHITECTURE arch OF pong_graph IS
     "10011001" -- *  **  *
     );    
 
+
+    --Alien boss
+    SIGNAL alien_boss_x_l, alien_boss_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_y_t, alien_boss_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_x_reg, alien_boss_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_y_reg, alien_boss_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_vx_reg, alien_boss_vx_next : unsigned(9 DOWNTO 0);
+    SIGNAL alien_boss_vy_reg, alien_boss_vy_next : unsigned(9 DOWNTO 0);
+    SIGNAL rom_addr_alien_boss, rom_col_alien_boss : unsigned(2 DOWNTO 0);
+    SIGNAL rom_data_alien_boss : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    SIGNAL rom_bit_alien_boss : STD_LOGIC;
+    SIGNAL alien_boss_alive, alien_boss_alive_reg, alien_boss_alive_next : STD_LOGIC;
+    SIGNAL alien_boss_hits_counter_reg, alien_boss_hits_counter_next : unsigned(4 DOWNTO 0);
+
+    TYPE rom_type_al_Boss IS ARRAY (0 TO 15) OF
+    STD_LOGIC_VECTOR (15 DOWNTO 0);
+    CONSTANT ALIEN_BOSS_ROM : rom_type_al_Boss :=
+    (
+    "0000000000000000", 
+    "0000000000000000", 
+    "0000001111000000", 
+    "0000011111100000", 
+    "0000111111110000", 
+    "0001110111011000", 
+    "0001110010011000", 
+    "0000111111110000", 
+    "0000001111100100", 
+    "0001001111100100", 
+    "0001011111110100", 
+    "0001110000111100", 
+    "0000011001100000", 
+    "0000001101000000", 
+    "0000000000000000", 
+    "0000000000000000"
+    );    
+
     ---------------------------------  
     -- Aliens Projectiles  
     ---------------------------------
