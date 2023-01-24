@@ -175,6 +175,16 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_2_projectil_x_reg, alien_2_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_y_reg, alien_2_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_projectil_on, alien_2_projectil_hit_reg, alien_2_projectil_hit_next : STD_LOGIC;
+
+    ---------------------------------  
+    -- Playable Alien Projectiles  
+    ---------------------------------
+    -- Porjectile 1
+    SIGNAL play_alien_projectil_1_x_l, play_alien_projectil_1_x_r : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_projectil_1_y_t, play_alien_projectil_1_y_b : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_projectil_1_x_reg, play_alien_projectil_1_x_next : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_projectil_1_y_reg, play_alien_projectil_1_y_next : unsigned(9 DOWNTO 0);
+    SIGNAL play_alien_projectil_1_on, play_alien_projectil_1_hit_reg, play_alien_projectil_1_hit_next : STD_LOGIC;
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -182,10 +192,11 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT right_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110100";
     CONSTANT down_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110010";
     CONSTANT up_arrow : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110101";
-    CONSTANT a : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00011100";
     CONSTANT d : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00100011";
-    CONSTANT s : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00011011";
-    CONSTANT w : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00011101";
+    CONSTANT r : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101101";
+    CONSTANT j : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101011";
+    CONSTANT g : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00110100";
+    CONSTANT f : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00111011";
     CONSTANT spacebar : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
 
     ---------------------------------
@@ -261,9 +272,12 @@ BEGIN
             play_alien_alive_reg <= '1';
             play_alien_hits_counter_reg <= (OTHERS => '0');
 
-            -- projectil_timer_reg <= (OTHERS => '0');
+            -- Alien Projectil 1 Hit Flag Initialization
             alien_projectil_hit_reg <= '1';
+            -- Alien 2 Projectil 1 Hit Flag Initialization
             alien_2_projectil_hit_reg <= '1';
+            -- Playable Alien Projectil 1 Hit Flag Initialization
+            play_alien_projectil_1_hit_reg <= '1';
 
             keycode_reg <= (OTHERS => '0');
             ship_x_reg <= (OTHERS => '0');
@@ -314,6 +328,12 @@ BEGIN
             alien_2_projectil_x_reg <= alien_2_projectil_x_next;
             alien_2_projectil_y_reg <= alien_2_projectil_y_next;
             alien_2_projectil_hit_reg <= alien_2_projectil_hit_next;
+
+            -- Playable Alien Projectil 1 Variables Update
+            play_alien_projectil_1_x_reg <= play_alien_projectil_1_x_next;
+            play_alien_projectil_1_y_reg <= play_alien_projectil_1_y_next;
+            play_alien_projectil_1_hit_reg <= play_alien_projectil_1_hit_next;
+
             ship_x_reg <= ship_x_next;
             ship_y_reg <= ship_y_next;
 
@@ -324,6 +344,7 @@ BEGIN
             proj1_hit_reg <= proj1_hit_next;
             proj1_x_l_reg <= proj1_x_l_next;
             proj1_y_t_reg <= proj1_y_t_next;
+
         END IF;
     END PROCESS;
     pix_x <= unsigned(pixel_x);
@@ -619,13 +640,13 @@ BEGIN
             play_alien_x_next <= to_unsigned((MAX_X)/2, 10);
             play_alien_y_next <= to_unsigned(((MAX_Y)/2) - 50, 10);
         ELSIF refr_tick = '1' THEN
-            IF (keyboard_code = s) THEN
+            IF (keyboard_code = j) THEN
                 play_alien_y_next <= play_alien_y_reg + ship_v; -- move down
-            ELSIF (keyboard_code = w) THEN
+            ELSIF (keyboard_code = r) THEN
                 play_alien_y_next <= play_alien_y_reg - ship_v; -- move up
-            ELSIF (keyboard_code = a) THEN
-                play_alien_x_next <= play_alien_x_reg - ship_v; -- move left
             ELSIF (keyboard_code = d) THEN
+                play_alien_x_next <= play_alien_x_reg - ship_v; -- move left
+            ELSIF (keyboard_code = g) THEN
                 play_alien_x_next <= play_alien_x_reg + ship_v; -- move right
             END IF;
         END IF;
@@ -665,9 +686,9 @@ BEGIN
         IF (rd_play_alien_on = '1' AND proj1_on = '1') THEN
             play_alien_alive_next <= '0';
             hit <= '1';
-            IF (play_alien_alive = '1') THEN
+            -- IF (play_alien_alive = '1') THEN
                 play_alien_hits_counter_next <= play_alien_hits_counter_reg + 1;
-            END IF;
+            -- END IF;
         END IF;
     END PROCESS;
     ----------------------------------------------  
@@ -738,9 +759,37 @@ BEGIN
             END IF;
         END IF;
     END PROCESS;
+
+    ----------------------------------------------  
+    -- Playable Alien Projectile 1
+    ----------------------------------------------
+    play_alien_projectil_1_x_l <= play_alien_projectil_1_x_reg;
+    play_alien_projectil_1_y_t <= play_alien_projectil_1_y_reg;
+    play_alien_projectil_1_x_r <= play_alien_projectil_1_x_l + PROJ_WIDTH - 1;
+    play_alien_projectil_1_y_b <= play_alien_projectil_1_y_t + PROJ_SIZE - 1;
+    play_alien_projectil_1_on <=
+        '1' WHEN (play_alien_projectil_1_x_l <= pix_x) AND (pix_x <= play_alien_projectil_1_x_r) AND
+        (play_alien_projectil_1_y_t <= pix_y) AND (pix_y <= play_alien_projectil_1_y_b) AND
+        (play_alien_projectil_1_hit_reg = '0') ELSE
+        '0';
+
+    -- New Playable Alien Projectil Position
+    play_alien_projectil_1_x_next <=
+        ship_x_reg + 8 WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+        play_alien_projectil_1_x_reg;
+    play_alien_projectil_1_y_next <=
+        ship_y_reg WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+        play_alien_projectil_1_y_reg + PROJ1_V WHEN refr_tick = '1' ELSE
+        play_alien_projectil_1_y_reg;
+
+    -- Ship Projectil Hit Flag Update
+    play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t < 1 OR gra_still = '1') ELSE
+        '0' WHEN (keyboard_code = f) ELSE
+        play_alien_projectil_1_hit_reg;
+
     -- rgb multiplexing circuit
-    PROCESS (rd_ship_on, ship_rgb, rd_ball_on, wall_rgb, bar_rgb, ball_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb,
-        alien_projectil_on, alien_2_projectil_on, rd_play_alien_on, play_alien_rgb, play_alien_hits_counter_reg)
+    PROCESS (rd_ship_on, ship_rgb, proj1_rgb, proj1_on, rd_alien_1_on, rd_alien_2_on, alien_rgb, alien_projectil_on, alien_2_projectil_on,
+            rd_play_alien_on, play_alien_rgb, play_alien_hits_counter_reg, play_alien_projectil_1_on)
     BEGIN
 
         IF rd_ship_on = '1' THEN
@@ -749,7 +798,7 @@ BEGIN
             rgb <= alien_rgb;
         ELSIF (alien_projectil_on = '1' OR alien_2_projectil_on = '1') THEN
             rgb <= alien_rgb;
-        ELSIF rd_play_alien_on = '1' THEN
+        ELSIF (rd_play_alien_on = '1' OR play_alien_projectil_1_on = '1') THEN
             IF (play_alien_hits_counter_reg = 0) THEN
                 rgb <= play_alien_rgb;
             ELSIF (play_alien_hits_counter_reg = 1) THEN
