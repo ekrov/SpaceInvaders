@@ -1022,7 +1022,7 @@ BEGIN
         -- alien_boss_vy_next <= alien_boss_vy_reg;
 
         IF (fight_on = '0') THEN
-            IF (gra_still = '1' OR  alien_boss_alive_reg = '0') THEN --initial velocity and Position
+            IF (gra_still = '1' OR alien_boss_alive_reg = '0') THEN --initial velocity and Position
                 alien_boss_x_next <= to_unsigned(((MAX_X)/2) + 200, 10);
                 alien_boss_y_next <= to_unsigned(((MAX_Y)/2) - 200, 10);
                 alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
@@ -1033,7 +1033,7 @@ BEGIN
                 -- alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg;
                 -- alien_boss_y_next <= alien_boss_y_reg;
             END IF;
-            
+
             IF (alien_boss_alive_reg = '1') THEN
                 IF (alien_boss_x_l < 1) THEN -- reach left border
                     alien_boss_vx_next <= ALIEN_V_P + alien_boss_hits_counter_reg;
@@ -1041,9 +1041,9 @@ BEGIN
                     -- miss <= '1'; -- a miss
                     alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
                 END IF;
-            -- ELSE
-            --     alien_boss_x_next <= to_unsigned(((MAX_X)/2) + 200, 10);
-            --     alien_boss_y_next <= to_unsigned(((MAX_Y)/2) - 200, 10);
+                -- ELSE
+                --     alien_boss_x_next <= to_unsigned(((MAX_X)/2) + 200, 10);
+                --     alien_boss_y_next <= to_unsigned(((MAX_Y)/2) - 200, 10);
             END IF;
         ELSE
             IF gra_still = '1' THEN --initial position of ship
@@ -1390,43 +1390,47 @@ BEGIN
         '0';
 
     alien_boss_projectil_x_next <=
-        (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE)WHEN (gra_still = '1' OR alien_boss_projectil_hit_reg = '1') ELSE
+        (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE)WHEN
+        ((gra_still = '1' OR alien_boss_projectil_hit_reg = '1') AND fight_on = '0') OR -- Single Mode
+        (keyboard_code = f AND alien_boss_projectil_hit_reg = '1' AND fight_on = '1')ELSE -- Player VS Player Mode
         alien_boss_projectil_x_reg;
+
     alien_boss_projectil_y_next <=
-        (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN (gra_still = '1' OR alien_boss_projectil_hit_reg = '1') ELSE
+        (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN
+        ((gra_still = '1' OR alien_boss_projectil_hit_reg = '1') AND fight_on = '0') OR -- Single Mode
+        (keyboard_code = f AND alien_boss_projectil_hit_reg = '1' AND fight_on = '1') ELSE -- Player VS Player Mode
         alien_boss_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_boss_projectil_y_reg;
+    -- -- New Playable Alien Projectil Position
+    -- play_alien_projectil_1_x_next <=
+    --     play_alien_x_reg + 8 WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+    --     play_alien_projectil_1_x_reg;
+    -- play_alien_projectil_1_y_next <=
+    --     play_alien_y_reg WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+    --     play_alien_projectil_1_y_reg + PROJ1_V WHEN refr_tick = '1' ELSE
+    --     play_alien_projectil_1_y_reg;
 
+    -- -- Ship Projectil Hit Flag Update
+    -- play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t > MAX_Y - 1 OR gra_still = '1') ELSE
+    --     '0' WHEN (keyboard_code = f) ELSE
+    --     play_alien_projectil_1_hit_reg;
 
-    -- New Playable Alien Projectil Position
-    play_alien_projectil_1_x_next <=
-        play_alien_x_reg + 8 WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
-        play_alien_projectil_1_x_reg;
-    play_alien_projectil_1_y_next <=
-        play_alien_y_reg WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
-        play_alien_projectil_1_y_reg + PROJ1_V WHEN refr_tick = '1' ELSE
-        play_alien_projectil_1_y_reg;
-
-    -- Ship Projectil Hit Flag Update
-    play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t > MAX_Y - 1 OR gra_still = '1') ELSE
-        '0' WHEN (keyboard_code = f) ELSE
-        play_alien_projectil_1_hit_reg;
-
-    PROCESS (alien_boss_alive_reg, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b)
+    PROCESS (alien_boss_alive_reg, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b, 
+            fight_on, keyboard_code, gra_still)
     BEGIN
         alien_boss_projectil_hit_next <= alien_boss_projectil_hit_reg;
-        IF (fight_on = '0') THEN
-        IF (alien_boss_alive_reg = '1') THEN
-            IF alien_boss_projectil_hit_reg = '1' THEN
-                alien_boss_projectil_hit_next <= '0';
-            ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
-                alien_boss_projectil_hit_next <= '1';
-            ELSIF (alien_boss_projectil_y_b > MAX_Y) THEN
-                alien_boss_projectil_hit_next <= '1';
+        IF (fight_on = '0') THEN -- Single Mode
+            IF (alien_boss_alive_reg = '1') THEN
+                IF alien_boss_projectil_hit_reg = '1' THEN
+                    alien_boss_projectil_hit_next <= '0';
+                ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+                    alien_boss_projectil_hit_next <= '1';
+                ELSIF (alien_boss_projectil_y_b > MAX_Y) THEN
+                    alien_boss_projectil_hit_next <= '1';
+                END IF;
             END IF;
-        END IF;
-        ELSE
-            IF (alien_boss_projectil_y_t > MAX_Y - 1 OR gra_still = '1') THEN
+        ELSE -- Player VS Player Mode
+            IF (alien_boss_projectil_y_b > MAX_Y - 1 OR gra_still = '1') THEN
                 alien_boss_projectil_hit_next <= '1';
             ELSIF (keyboard_code = f) THEN
                 alien_boss_projectil_hit_next <= '0';
@@ -1537,14 +1541,14 @@ BEGIN
             -- ELSIF (ship_projectil_1_on = '1' OR ship_projectil_2_on = '1' OR ship_projectil_3_on = '1' ) THEN
 
             rgb <= proj1_rgb;
-        -- ELSIF (rd_play_alien_on = '1' OR play_alien_projectil_1_on = '1') THEN
-        --     IF (play_alien_hits_counter_reg = 0) THEN
-        --         rgb <= play_alien_rgb;
-        --     ELSIF (play_alien_hits_counter_reg = 1) THEN
-        --         rgb <= "110";
-        --     ELSE
-        --         rgb <= "101";
-        --     END IF;
+            -- ELSIF (rd_play_alien_on = '1' OR play_alien_projectil_1_on = '1') THEN
+            --     IF (play_alien_hits_counter_reg = 0) THEN
+            --         rgb <= play_alien_rgb;
+            --     ELSIF (play_alien_hits_counter_reg = 1) THEN
+            --         rgb <= "110";
+            --     ELSE
+            --         rgb <= "101";
+            --     END IF;
         ELSIF (rd_alien_boss_on = '1') THEN
             rgb <= alien_boss_rgb;
         ELSIF (alien_boss_projectil_on = '1') THEN
