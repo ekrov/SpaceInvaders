@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-localhost.localdomain::  Tue Jan 24 03:41:50 2023
+localhost.localdomain::  Tue Jan 24 05:04:51 2023
 
 par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
 
@@ -46,7 +46,7 @@ Design Summary Report:
    Number of DCMs                            1 out of 2      50%
    Number of RAMB16s                         1 out of 4      25%
    Number of Slices                        958 out of 960    99%
-      Number of SLICEMs                     10 out of 480     2%
+      Number of SLICEMs                      8 out of 480     1%
 
 
 
@@ -66,48 +66,48 @@ Total REAL time at the beginning of Placer: 1 secs
 Total CPU  time at the beginning of Placer: 1 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:c9398410) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:cc3a9b75) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
 INFO:Place:834 - Only a subset of IOs are locked. Out of 21 IOs, 18 are locked and 3 are not locked. If you would like
    to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1. 
-Phase 2.7  Design Feasibility Check (Checksum:c9398410) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:cc3a9b75) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:c9398410) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:cc3a9b75) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
-..........
-Phase 4.2  Initial Clock and IO Placement (Checksum:2a88df2c) REAL time: 1 secs 
+.......
+Phase 4.2  Initial Clock and IO Placement (Checksum:2dbbb041) REAL time: 1 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:2a88df2c) REAL time: 1 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:2dbbb041) REAL time: 1 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:2a88df2c) REAL time: 1 secs 
+Phase 6.36  Local Placement Optimization (Checksum:2dbbb041) REAL time: 1 secs 
 
 Phase 7.3  Local Placement Optimization
 ...
-Phase 7.3  Local Placement Optimization (Checksum:388c5d62) REAL time: 1 secs 
+Phase 7.3  Local Placement Optimization (Checksum:3bc6651d) REAL time: 1 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:388c5d62) REAL time: 1 secs 
+Phase 8.5  Local Placement Optimization (Checksum:3bc6651d) REAL time: 1 secs 
 
 Phase 9.8  Global Placement
-.....
-.................................................................................
-.................
-..........................
-Phase 9.8  Global Placement (Checksum:4459501b) REAL time: 3 secs 
+....
+...........................................................................
+...............
+......................................
+Phase 9.8  Global Placement (Checksum:ff67bd24) REAL time: 3 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:4459501b) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:ff67bd24) REAL time: 3 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:872db89e) REAL time: 4 secs 
+Phase 11.18  Placement Optimization (Checksum:3dce6cc1) REAL time: 4 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:872db89e) REAL time: 4 secs 
+Phase 12.5  Local Placement Optimization (Checksum:3dce6cc1) REAL time: 4 secs 
 
 Total REAL time to Placer completion: 4 secs 
 Total CPU  time to Placer completion: 4 secs 
@@ -118,13 +118,13 @@ Writing design to file pong_top.ncd
 Starting Router
 
 
-Phase  1  : 6197 unrouted;      REAL time: 4 secs 
+Phase  1  : 6161 unrouted;      REAL time: 4 secs 
 
-Phase  2  : 5860 unrouted;      REAL time: 4 secs 
+Phase  2  : 5824 unrouted;      REAL time: 5 secs 
 
-Phase  3  : 1461 unrouted;      REAL time: 5 secs 
+Phase  3  : 1470 unrouted;      REAL time: 5 secs 
 
-Phase  4  : 1461 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
+Phase  4  : 1470 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 5 secs 
 
 Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 6 secs 
 
@@ -136,7 +136,7 @@ Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL 
 
 Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 7 secs 
 WARNING:Route:455 - CLK Net:keyboard_unit/debounce_ps2_clk/result may have excessive skew because 
-      3 CLK pins and 12 NON_CLK pins failed to route using a CLK template.
+      1 CLK pins and 12 NON_CLK pins failed to route using a CLK template.
 
 Total REAL time to Router completion: 7 secs 
 Total CPU time to Router completion: 6 secs 
@@ -157,10 +157,10 @@ Generating Clock Report
 +---------------------+--------------+------+------+------------+-------------+
 |        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
 +---------------------+--------------+------+------+------------+-------------+
-|                 clk |  BUFGMUX_X1Y0| No   |  228 |  0.031     |  0.064      |
+|                 clk |  BUFGMUX_X1Y0| No   |  228 |  0.033     |  0.066      |
 +---------------------+--------------+------+------+------------+-------------+
 |keyboard_unit/deboun |              |      |      |            |             |
-|   ce_ps2_clk/result |         Local|      |   18 |  0.679     |  1.510      |
+|   ce_ps2_clk/result |         Local|      |   18 |  1.548     |  2.994      |
 +---------------------+--------------+------+------+------------+-------------+
 
 * Net Skew is the difference between the minimum and maximum routing
@@ -180,8 +180,8 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH  | SETUP       |    23.371ns|    16.629ns|       0|           0
-  50%                                       | HOLD        |     0.859ns|            |       0|           0
+  TS_clk = PERIOD TIMEGRP "clk" 40 ns HIGH  | SETUP       |    22.155ns|    17.845ns|       0|           0
+  50%                                       | HOLD        |     0.845ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 

@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.03 secs
  
 --> 
 Reading design: pong_top.prj
@@ -209,7 +209,7 @@ Analyzing Entity <vga_sync> in library <work> (Architecture <arch>).
 Entity <vga_sync> analyzed. Unit <vga_sync> generated.
 
 Analyzing Entity <pong_text> in library <work> (Architecture <arch>).
-WARNING:Xst:790 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" line 230: Index value(s) does not match array range, simulation mismatch.
+WARNING:Xst:790 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" line 239: Index value(s) does not match array range, simulation mismatch.
 Entity <pong_text> analyzed. Unit <pong_text> generated.
 
 Analyzing Entity <font_rom> in library <work> (Architecture <arch>).
@@ -579,16 +579,12 @@ Unit <ps2_keyboard> synthesized.
 
 Synthesizing Unit <pong_text>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd".
-WARNING:Xst:653 - Signal <score_2p_on> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <row_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 0000.
-WARNING:Xst:653 - Signal <char_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 0000000.
-WARNING:Xst:653 - Signal <bit_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 000.
-    Found 96x7-bit ROM for signal <char_addr_r$rom0000> created at line 230.
+    Found 96x7-bit ROM for signal <char_addr_r$rom0000> created at line 239.
     Found 16x7-bit ROM for signal <char_addr_o>.
     Found 1-bit 8-to-1 multiplexer for signal <font_bit>.
-    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 236.
-    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 236.
-    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 152.
+    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 245.
+    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 245.
+    Found 6-bit comparator less for signal <score_2p_on$cmp_lt0000> created at line 191.
     Summary:
 	inferred   2 ROM(s).
 	inferred   3 Comparator(s).
@@ -829,7 +825,7 @@ INFO:Xst:2261 - The FF/Latch <alien_boss_vx_reg_9> in Unit <pong_graph> is equiv
 INFO:Xst:2261 - The FF/Latch <alien_boss_vy_reg_2> in Unit <pong_graph> is equivalent to the following 2 FFs/Latches, which will be removed : <alien_2_vy_reg_2> <alien_vy_reg_2> 
 INFO:Xst:2261 - The FF/Latch <alien_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_vx_reg_8> <alien_vx_reg_6> <alien_vx_reg_5> <alien_vx_reg_7> <alien_vx_reg_4> 
 INFO:Xst:2261 - The FF/Latch <alien_2_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_2_vx_reg_8> <alien_2_vx_reg_6> <alien_2_vx_reg_5> <alien_2_vx_reg_7> <alien_2_vx_reg_4> 
-WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_alive_next, alien_alive_reg_not0001, alien_boss_alive_next_and0001.
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_boss_alive_next_and0001, alien_alive_next, alien_alive_reg_not0001.
 
 Optimizing unit <pong_top> ...
 
@@ -850,7 +846,7 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconne
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
-WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_alive_reg_or0000, graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or000027.
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or000027, graph_unit/alien_boss_alive_reg_or0000.
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 111.
 Optimizing block <pong_top> to meet ratio 100 (+ 5) of 960 slices :
@@ -899,22 +895,22 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 3314
+# BELS                             : 3294
 #      GND                         : 1
-#      INV                         : 132
+#      INV                         : 131
 #      LUT1                        : 175
-#      LUT2                        : 611
-#      LUT2_D                      : 3
-#      LUT3                        : 218
-#      LUT3_D                      : 9
-#      LUT4                        : 625
-#      LUT4_D                      : 25
-#      LUT4_L                      : 21
+#      LUT2                        : 606
+#      LUT2_D                      : 4
+#      LUT3                        : 216
+#      LUT3_D                      : 11
+#      LUT4                        : 615
+#      LUT4_D                      : 28
+#      LUT4_L                      : 24
 #      MULT_AND                    : 22
-#      MUXCY                       : 890
-#      MUXF5                       : 89
+#      MUXCY                       : 889
+#      MUXF5                       : 80
 #      MUXF6                       : 11
-#      MUXF7                       : 4
+#      MUXF7                       : 3
 #      MUXF8                       : 1
 #      VCC                         : 1
 #      XORCY                       : 476
@@ -945,10 +941,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      948  out of    960    98%  
+ Number of Slices:                      942  out of    960    98%  
  Number of Slice Flip Flops:            389  out of   1920    20%  
- Number of 4 input LUTs:               1821  out of   1920    94%  
-    Number used as logic:              1819
+ Number of 4 input LUTs:               1812  out of   1920    94%  
+    Number used as logic:              1810
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -995,8 +991,8 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 28.823ns (Maximum Frequency: 34.695MHz)
-   Minimum input arrival time before clock: 5.929ns
+   Minimum period: 28.608ns (Maximum Frequency: 34.956MHz)
+   Minimum input arrival time before clock: 5.846ns
    Maximum output required time after clock: 4.758ns
    Maximum combinational path delay: No path found
 
@@ -1006,38 +1002,42 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 28.823ns (frequency: 34.695MHz)
-  Total number of paths / destination ports: 556222 / 788
+  Clock period: 28.608ns (frequency: 34.956MHz)
+  Total number of paths / destination ports: 559619 / 788
 -------------------------------------------------------------------------
-Delay:               14.411ns (Levels of Logic = 14)
-  Source:            vga_sync_unit/v_count_reg_2 (FF)
-  Destination:       state_reg_FSM_FFd1 (FF)
+Delay:               14.304ns (Levels of Logic = 18)
+  Source:            graph_unit/ship_projectil_1_y_reg_2 (FF)
+  Destination:       graph_unit/play_alien_alive_reg (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: vga_sync_unit/v_count_reg_2 to state_reg_FSM_FFd1
+  Data Path: graph_unit/ship_projectil_1_y_reg_2 to graph_unit/play_alien_alive_reg
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            41   0.514   1.105  vga_sync_unit/v_count_reg_2 (vga_sync_unit/v_count_reg_2)
-     LUT4:I2->O            3   0.612   0.454  graph_unit/Msub_rom_addr_ship_cy<1>11 (graph_unit/Msub_rom_addr_ship_cy<1>)
-     LUT4_D:I3->O         24   0.612   1.094  graph_unit/Msub_rom_addr_ship_xor<3>11 (graph_unit/rom_addr_ship<3>)
-     LUT4:I2->O            4   0.612   0.529  graph_unit/Mrom_rom_data_ship_rom0002101 (graph_unit/Mrom_rom_data_ship_rom000210)
-     LUT3:I2->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_ship_132 (graph_unit/Mmux_rom_bit_ship_132)
-     MUXF5:I1->O           1   0.278   0.000  graph_unit/Mmux_rom_bit_ship_12_f5 (graph_unit/Mmux_rom_bit_ship_12_f5)
-     MUXF6:I0->O           1   0.451   0.000  graph_unit/Mmux_rom_bit_ship_10_f6 (graph_unit/Mmux_rom_bit_ship_10_f6)
-     MUXF7:I1->O           1   0.451   0.360  graph_unit/Mmux_rom_bit_ship_9_f7 (graph_unit/Mmux_rom_bit_ship_9_f7)
-     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/rd_ship_on_and000099 (graph_unit/rd_ship_on_and000099)
-     LUT4:I3->O           21   0.612   0.962  graph_unit/rd_ship_on_and0000156 (graph_unit/rd_ship_on)
-     LUT4:I3->O            2   0.612   0.532  graph_unit/miss18 (graph_unit/miss18)
-     LUT2:I0->O            4   0.612   0.502  graph_unit/miss30 (miss)
-     LUT4:I3->O            2   0.612   0.410  state_reg_FSM_FFd1-In41 (state_reg_FSM_FFd1-In_bdd1)
-     LUT3:I2->O            1   0.612   0.000  state_reg_FSM_FFd1-In174_G (N222)
-     MUXF5:I1->O           1   0.278   0.000  state_reg_FSM_FFd1-In174 (state_reg_FSM_FFd1-In)
-     FDC:D                     0.268          state_reg_FSM_FFd1
+     FDE:C->Q              4   0.514   0.651  graph_unit/ship_projectil_1_y_reg_2 (graph_unit/ship_projectil_1_y_reg_2)
+     LUT1:I0->O            1   0.612   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<2>_rt (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<2>_rt)
+     MUXCY:S->O            1   0.404   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<2> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<3> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<4> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<5> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<6> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.052   0.000  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<7> (graph_unit/Madd_ship_projectil_1_y_b_addsub0000_cy<7>)
+     XORCY:CI->O           1   0.699   0.357  graph_unit/Madd_ship_projectil_1_y_b_addsub0000_xor<8> (graph_unit/ship_projectil_1_y_b_addsub0000<8>)
+     INV:I->O              1   0.612   0.000  graph_unit/Msub_ship_projectil_1_y_b_lut<8>_INV_0 (graph_unit/Msub_ship_projectil_1_y_b_lut<8>)
+     MUXCY:S->O            0   0.404   0.000  graph_unit/Msub_ship_projectil_1_y_b_cy<8> (graph_unit/Msub_ship_projectil_1_y_b_cy<8>)
+     XORCY:CI->O           1   0.699   0.426  graph_unit/Msub_ship_projectil_1_y_b_xor<9> (graph_unit/ship_projectil_1_y_b<9>)
+     LUT2:I1->O            1   0.612   0.000  graph_unit/Mcompar_ship_projectil_1_on_cmp_le0003_lut<9> (graph_unit/Mcompar_ship_projectil_1_on_cmp_le0003_lut<9>)
+     MUXCY:S->O            1   0.752   0.360  graph_unit/Mcompar_ship_projectil_1_on_cmp_le0003_cy<9> (graph_unit/ship_projectil_1_on_cmp_le0003)
+     LUT4_D:I3->O         15   0.612   1.016  graph_unit/ship_projectil_1_on_and0000 (graph_unit/ship_projectil_1_on)
+     LUT3:I0->O            9   0.612   0.700  graph_unit/alien_boss_alive_next_and00001 (graph_unit/alien_boss_alive_next_and0000)
+     LUT4:I3->O            2   0.612   0.532  graph_unit/alien_boss_alive_reg_mux00001 (graph_unit/alien_boss_alive_reg_mux0000)
+     LUT3_D:I0->O         11   0.612   0.796  graph_unit/alien_boss_alive_reg_or000032 (graph_unit/alien_boss_alive_reg_or0000)
+     LUT4:I3->O            1   0.612   0.357  graph_unit/alien_boss_alive_reg_not0001 (graph_unit/alien_boss_alive_reg_not0001)
+     FDPE:CE                   0.483          graph_unit/alien_boss_alive_reg
     ----------------------------------------
-    Total                     14.411ns (8.360ns logic, 6.051ns route)
-                                       (58.0% logic, 42.0% route)
+    Total                     14.304ns (9.108ns logic, 5.195ns route)
+                                       (63.7% logic, 36.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -1064,7 +1064,7 @@ Delay:               1.281ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock'
   Total number of paths / destination ports: 122 / 122
 -------------------------------------------------------------------------
-Offset:              5.929ns (Levels of Logic = 3)
+Offset:              5.846ns (Levels of Logic = 3)
   Source:            reset (PAD)
   Destination:       graph_unit/alien_2_projectil_y_reg_9 (FF)
   Destination Clock: clock rising 2.0X
@@ -1073,13 +1073,13 @@ Offset:              5.929ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            51   1.106   1.108  reset_IBUF (reset_IBUF)
-     LUT3:I2->O          157   0.612   1.258  graph_unit/alien_alive_reg_or00001 (graph_unit/alien_alive_reg_or0000)
-     LUT4:I0->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
+     IBUF:I->O            54   1.106   1.109  reset_IBUF (reset_IBUF)
+     LUT3:I2->O          154   0.612   1.175  graph_unit/alien_alive_reg_or00001 (graph_unit/alien_alive_reg_or0000)
+     LUT4:I1->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
      FDE:CE                    0.483          graph_unit/alien_projectil_y_reg_0
     ----------------------------------------
-    Total                      5.929ns (2.813ns logic, 3.116ns route)
-                                       (47.4% logic, 52.6% route)
+    Total                      5.846ns (2.813ns logic, 3.033ns route)
+                                       (48.1% logic, 51.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
@@ -1104,14 +1104,14 @@ Offset:              4.758ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 15.00 secs
-Total CPU time to Xst completion: 14.42 secs
+Total CPU time to Xst completion: 14.75 secs
  
 --> 
 
 
-Total memory usage is 676036 kilobytes
+Total memory usage is 676200 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   66 (   0 filtered)
+Number of warnings :   62 (   0 filtered)
 Number of infos    :   12 (   0 filtered)
 

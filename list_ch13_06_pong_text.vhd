@@ -8,7 +8,7 @@ ENTITY pong_text IS
       pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       dig0, dig1 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
       ball : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-      text_on : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+      text_on : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
       text_rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
    );
 END pong_text;
@@ -150,37 +150,37 @@ BEGIN
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
    score_on <=
-      '1' WHEN pix_y(9 DOWNTO 5) = 0 AND
-      pix_x(9 DOWNTO 4) < 24 ELSE
+      '1' WHEN pix_y(9 DOWNTO 4) = 0 AND
+      pix_x(9 DOWNTO 4) < 12 ELSE
       '0';
-   row_addr_s <= STD_LOGIC_VECTOR(pix_y(4 DOWNTO 1));
-   bit_addr_s <= STD_LOGIC_VECTOR(pix_x(3 DOWNTO 1));
-   WITH pix_x(8 DOWNTO 4) SELECT
+   row_addr_s <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
+   bit_addr_s <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
+   WITH pix_x(7 DOWNTO 3) SELECT
    char_addr_s <=
-      "1010011" WHEN "00000", -- S x53
-      "1100011" WHEN "00001", -- c x63
-      "1101111" WHEN "00010", -- o x6f
-      "1110010" WHEN "00011", -- r x72
+      "1010000" WHEN "00000", -- P x50
+      "1101100" WHEN "00001", -- l x6c
+      "1100001" WHEN "00010", -- a x61
+      "1111001" WHEN "00011", -- y x79
       "1100101" WHEN "00100", -- e x65
-      "0111010" WHEN "00101", -- : x3a
-      "011" & dig1 WHEN "00110", -- digit 10
-      "011" & dig0 WHEN "00111", -- digit 1
-      "0000000" WHEN "01000",
-      "1001100" WHEN "01001", -- L x4c
-      "1101001" WHEN "01010", -- i x69
-      "1110110" WHEN "01011", -- v x76
+      "1110010" WHEN "00101", -- r x72
+      "0110001" WHEN "00110", -- 1 x31
+      "0101101" WHEN "00111", -- - 2d
+      "1010011" WHEN "01000", -- S x53
+      "1100011" WHEN "01001", -- c x63
+      "1101111" WHEN "01010", -- o x6f
+      "1110010" WHEN "01011", -- r x72
       "1100101" WHEN "01100", -- e x65
-      "1110011" WHEN "01101", -- s x73
-      "0111010" WHEN "01110", -- :
-      "01100" & ball WHEN "01111",
-      "1010011" WHEN "10000", -- S x53
-      "1100011" WHEN "10001", -- c x63
-      "1101111" WHEN "10010", -- o x6f
-      "1110010" WHEN "10011", -- r x72
-      "1100101" WHEN "10100", -- e x65
-      "0111010" WHEN "10101", -- : x3a
-      "011" & dig1 WHEN "10110", -- digit 10
-      "011" & dig0 WHEN "10111", -- digit 1
+      "0111010" WHEN "01101", -- : x3a
+      "011" & dig1 WHEN "01110", -- digit 10
+      "011" & dig0 WHEN "01111", -- digit 1
+      "0000000" WHEN "10000",
+      "1001100" WHEN "10001", -- L x53
+      "1101001" WHEN "10010", -- i x63
+      "1110110" WHEN "10011", -- v x6f
+      "1100101" WHEN "10100", -- e x72
+      "1110011" WHEN "10101", -- s x65
+      "0111010" WHEN "10110", -- : x3a
+      "01100" & ball WHEN "10111", -- digit 10
       "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- score region 2
@@ -188,30 +188,39 @@ BEGIN
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
-   -- score_2p_on <=
-   --    '1' when pix_y(9 downto 5)=20 and
-   --             pix_x(9 downto 4)<16 else
-   --    '0';
-   -- row_addr_s_2p <= std_logic_vector(pix_y(4 downto 1));
-   -- bit_addr_s_2p <= std_logic_vector(pix_x(3 downto 1));
-   -- with pix_x(7 downto 4) select
-   --   char_addr_s_2p <=
-   --      "1010011" when "0000", -- S x53
-   --      "1100011" when "0001", -- c x63
-   --      "1101111" when "0010", -- o x6f
-   --      "1110010" when "0011", -- r x72
-   --      "1100101" when "0100", -- e x65
-   --      "0111010" when "0101", -- : x3a
-   --      "011" & dig1 when "0110", -- digit 10
-   --      "011" & dig0 when "0111", -- digit 1
-   --      "0000000" when "1000",
-   --      "1001100" when "1001", -- L x4c
-   --      "1101001" when "1010", -- i x69
-   --      "1110110" when "1011", -- v x76
-   --      "1100101" when "1100", -- e x65
-   --      "1110011" when "1101", -- s x73
-   --      "0111010" when "1110", -- :
-   --      "01100" & ball when others;
+   score_2p_on <=
+      '1' WHEN pix_y(9 DOWNTO 4) = 1 AND
+      pix_x(9 DOWNTO 4) < 12 ELSE
+      '0';
+   row_addr_s_2p <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
+   bit_addr_s_2p <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
+   WITH pix_x(7 DOWNTO 3) SELECT
+   char_addr_s_2p <=
+      "1010000" WHEN "00000", -- P x50
+      "1101100" WHEN "00001", -- l x6c
+      "1100001" WHEN "00010", -- a x61
+      "1111001" WHEN "00011", -- y x79
+      "1100101" WHEN "00100", -- e x65
+      "1110010" WHEN "00101", -- r x72
+      "0110010" WHEN "00110", -- 2 x32
+      "0101101" WHEN "00111", -- - 2d
+      "1010011" WHEN "01000", -- S x53
+      "1100011" WHEN "01001", -- c x63
+      "1101111" WHEN "01010", -- o x6f
+      "1110010" WHEN "01011", -- r x72
+      "1100101" WHEN "01100", -- e x65
+      "0111010" WHEN "01101", -- : x3a
+      "011" & dig1 WHEN "01110", -- digit 10
+      "011" & dig0 WHEN "01111", -- digit 1
+      "0000000" WHEN "10000",
+      "1001100" WHEN "10001", -- L x53
+      "1101001" WHEN "10010", -- i x63
+      "1110110" WHEN "10011", -- v x6f
+      "1100101" WHEN "10100", -- e x72
+      "1110011" WHEN "10101", -- s x65
+      "0111010" WHEN "10110", -- : x3a
+      "01100" & ball WHEN "10111", -- digit 10
+      "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- rule region
    --   - display rule (4-by-16 tiles)on center
@@ -289,7 +298,7 @@ BEGIN
          END IF;
       END IF;
    END PROCESS;
-   text_on <= score_on & rule_on & over_on;
+   text_on <= score_2p_on & score_on & rule_on & over_on ;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------
