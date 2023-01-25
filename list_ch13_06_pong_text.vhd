@@ -175,35 +175,35 @@ begin
         "01100" & ball when others;
 
         ---------------------------------------------
-   -- score region
+   -- score region 2
    --  - display two-digit score, ball on top left
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
-   score_2p_on <=
-      '1' when pix_y(9 downto 5)=20 and
-               pix_x(9 downto 4)<16 else
-      '0';
-   row_addr_s_2p <= std_logic_vector(pix_y(4 downto 1));
-   bit_addr_s_2p <= std_logic_vector(pix_x(3 downto 1));
-   with pix_x(7 downto 4) select
-     char_addr_s_2p <=
-        "1010011" when "0000", -- S x53
-        "1100011" when "0001", -- c x63
-        "1101111" when "0010", -- o x6f
-        "1110010" when "0011", -- r x72
-        "1100101" when "0100", -- e x65
-        "0111010" when "0101", -- : x3a
-        "011" & dig1 when "0110", -- digit 10
-        "011" & dig0 when "0111", -- digit 1
-        "0000000" when "1000",
-        "1001100" when "1001", -- L x4c
-        "1101001" when "1010", -- i x69
-        "1110110" when "1011", -- v x76
-        "1100101" when "1100", -- e x65
-        "1110011" when "1101", -- s x73
-        "0111010" when "1110", -- :
-        "01100" & ball when others;
+   -- score_2p_on <=
+   --    '1' when pix_y(9 downto 5)=20 and
+   --             pix_x(9 downto 4)<16 else
+   --    '0';
+   -- row_addr_s_2p <= std_logic_vector(pix_y(4 downto 1));
+   -- bit_addr_s_2p <= std_logic_vector(pix_x(3 downto 1));
+   -- with pix_x(7 downto 4) select
+   --   char_addr_s_2p <=
+   --      "1010011" when "0000", -- S x53
+   --      "1100011" when "0001", -- c x63
+   --      "1101111" when "0010", -- o x6f
+   --      "1110010" when "0011", -- r x72
+   --      "1100101" when "0100", -- e x65
+   --      "0111010" when "0101", -- : x3a
+   --      "011" & dig1 when "0110", -- digit 10
+   --      "011" & dig0 when "0111", -- digit 1
+   --      "0000000" when "1000",
+   --      "1001100" when "1001", -- L x4c
+   --      "1101001" when "1010", -- i x69
+   --      "1110110" when "1011", -- v x76
+   --      "1100101" when "1100", -- e x65
+   --      "1110011" when "1101", -- s x73
+   --      "0111010" when "1110", -- :
+   --      "01100" & ball when others;
    ---------------------------------------------
    -- rule region
    --   - display rule (4-by-16 tiles)on center
