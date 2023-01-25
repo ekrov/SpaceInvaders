@@ -1397,21 +1397,56 @@ BEGIN
         alien_boss_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN refr_tick = '1' ELSE
         alien_boss_projectil_y_reg;
 
+
+    -- New Playable Alien Projectil Position
+    play_alien_projectil_1_x_next <=
+        play_alien_x_reg + 8 WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+        play_alien_projectil_1_x_reg;
+    play_alien_projectil_1_y_next <=
+        play_alien_y_reg WHEN (keyboard_code = f AND play_alien_projectil_1_hit_reg = '1') ELSE
+        play_alien_projectil_1_y_reg + PROJ1_V WHEN refr_tick = '1' ELSE
+        play_alien_projectil_1_y_reg;
+
+    -- Ship Projectil Hit Flag Update
+    play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t > MAX_Y - 1 OR gra_still = '1') ELSE
+        '0' WHEN (keyboard_code = f) ELSE
+        play_alien_projectil_1_hit_reg;
+
     PROCESS (alien_boss_alive_reg, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b)
     BEGIN
         alien_boss_projectil_hit_next <= alien_boss_projectil_hit_reg;
-        -- ship_lives_next <= ship_lives_reg;
+        IF (fight_on = '0') THEN
         IF (alien_boss_alive_reg = '1') THEN
             IF alien_boss_projectil_hit_reg = '1' THEN
                 alien_boss_projectil_hit_next <= '0';
             ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
                 alien_boss_projectil_hit_next <= '1';
-                --  ship_lives_next<=ship_lives_reg-1;
             ELSIF (alien_boss_projectil_y_b > MAX_Y) THEN
                 alien_boss_projectil_hit_next <= '1';
             END IF;
         END IF;
+        ELSE
+            IF (alien_boss_projectil_y_t > MAX_Y - 1 OR gra_still = '1') THEN
+                alien_boss_projectil_hit_next <= '1';
+            ELSIF (keyboard_code = f) THEN
+                alien_boss_projectil_hit_next <= '0';
+            END IF;
+        END IF;
     END PROCESS;
+
+    -- PROCESS (alien_boss_alive_reg, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b)
+    -- BEGIN
+    --     alien_boss_projectil_hit_next <= alien_boss_projectil_hit_reg;
+    --     IF (alien_boss_alive_reg = '1') THEN
+    --         IF alien_boss_projectil_hit_reg = '1' THEN
+    --             alien_boss_projectil_hit_next <= '0';
+    --         ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+    --             alien_boss_projectil_hit_next <= '1';
+    --         ELSIF (alien_boss_projectil_y_b > MAX_Y) THEN
+    --             alien_boss_projectil_hit_next <= '1';
+    --         END IF;
+    --     END IF;
+    -- END PROCESS;
 
     --aliens hitting ship
     PROCESS (alien_alive_reg, alien_2_alive_reg, alien_projectil_on, alien_2_projectil_on,
