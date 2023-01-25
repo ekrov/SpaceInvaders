@@ -207,7 +207,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_boss_x_reg, alien_boss_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_y_reg, alien_boss_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_vx_reg, alien_boss_vx_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_boss_vy_reg, alien_boss_vy_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_boss_vy_reg, alien_boss_vy_next : unsigned(9 DOWNTO 0);
     SIGNAL rom_addr_alien_boss, rom_col_alien_boss : unsigned(3 DOWNTO 0);
     SIGNAL rom_data_alien_boss : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL rom_bit_alien_boss : STD_LOGIC;
@@ -428,7 +428,7 @@ BEGIN
             alien_boss_x_reg <= (OTHERS => '0');
             alien_boss_y_reg <= (OTHERS => '0');
             alien_boss_vx_reg <= ("0000000100");
-            alien_boss_vy_reg <= ("0000000100");
+            -- alien_boss_vy_reg <= ("0000000100");
             alien_boss_alive_reg <= '1';
             alien_boss_hits_counter_reg <= (OTHERS => '0');
             alien_boss_lives_reg <= "1010";
@@ -499,7 +499,7 @@ BEGIN
             alien_boss_x_reg <= alien_boss_x_next;
             alien_boss_y_reg <= alien_boss_y_next;
             alien_boss_vx_reg <= alien_boss_vx_next;
-            alien_boss_vy_reg <= alien_boss_vy_next;
+            -- alien_boss_vy_reg <= alien_boss_vy_next;
             alien_boss_alive_reg <= alien_boss_alive_next;
             alien_boss_hits_counter_reg <= alien_boss_hits_counter_next;
             alien_boss_lives_reg <= alien_boss_lives_next;
@@ -1009,22 +1009,22 @@ BEGIN
         alien_boss_x_reg;
     alien_boss_y_next <=
         to_unsigned(((MAX_Y)/2) - 200, 10) WHEN (gra_still = '1' OR alien_boss_alive = '0') ELSE
-        alien_boss_y_reg + alien_boss_vy_reg WHEN refr_tick = '1' ELSE
+        alien_boss_y_reg WHEN refr_tick = '1' ELSE
         alien_boss_y_reg;
 
     alien_boss_alive <= alien_boss_alive_reg;
 
     -- New alien bosss velocity
 
-    PROCESS (alien_boss_vx_reg, alien_boss_vy_reg, alien_boss_x_l, alien_boss_x_r, gra_still, alien_boss_alive, alien_boss_hits_counter_reg)
+    PROCESS (alien_boss_vx_reg, alien_boss_x_l, alien_boss_x_r, gra_still, alien_boss_alive, alien_boss_hits_counter_reg)
     BEGIN
         alien_boss_vx_next <= alien_boss_vx_reg;
-        alien_boss_vy_next <= alien_boss_vy_reg;
+        -- alien_boss_vy_next <= alien_boss_vy_reg;
 
         IF gra_still = '1' THEN --initial velocity
             alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
             -- alien_vy_next <= ALIEN_V_P;
-            alien_boss_vy_next <= to_unsigned(0, 10);
+            -- alien_boss_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_boss_alive = '1') THEN
             IF (alien_boss_x_l < 1) THEN -- reach left border
                 alien_boss_vx_next <= ALIEN_V_P + alien_boss_hits_counter_reg;
