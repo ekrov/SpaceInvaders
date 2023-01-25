@@ -181,7 +181,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL rom_data_play_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_play_alien : STD_LOGIC;
     -- SIGNAL play_alien_alive, play_alien_alive_reg, play_alien_alive_next : STD_LOGIC;
-    SIGNAL play_alien_alive_reg, play_alien_alive_next : STD_LOGIC;
+    -- SIGNAL play_alien_alive_reg, play_alien_alive_next : STD_LOGIC;
     SIGNAL play_alien_hits_counter_reg, play_alien_hits_counter_next : unsigned(1 DOWNTO 0);
     SIGNAL sq_play_alien_on, rd_play_alien_on : STD_LOGIC;
 
@@ -422,7 +422,7 @@ BEGIN
             play_alien_y_reg <= (OTHERS => '0');
             play_alien_vx_reg <= ("0000000100");
             play_alien_vy_reg <= ("0000000100");
-            play_alien_alive_reg <= '1';
+            -- play_alien_alive_reg <= '1';
             play_alien_hits_counter_reg <= (OTHERS => '0');
             --Alien boss
             alien_boss_x_reg <= (OTHERS => '0');
@@ -493,7 +493,7 @@ BEGIN
             play_alien_y_reg <= play_alien_y_next;
             play_alien_vx_reg <= play_alien_vx_next;
             play_alien_vy_reg <= play_alien_vy_next;
-            play_alien_alive_reg <= play_alien_alive_next;
+            -- play_alien_alive_reg <= play_alien_alive_next;
             play_alien_hits_counter_reg <= play_alien_hits_counter_next;
             --Alien boss
             alien_boss_x_reg <= alien_boss_x_next;
@@ -1040,7 +1040,8 @@ BEGIN
     ----------------------------------------------
     PROCESS (alien_alive_reg, alien_2_alive_reg, alien_alive_next, alien_2_alive_next, rd_alien_1_on, rd_alien_2_on, 
         alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_hits_counter_reg,
-        play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
+        -- play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
+        alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
         alien_boss_alive_next, alien_boss_lives_reg,ship_projectil_1_on,ship_projectil_3_on)
                 -- alien_boss_alive_next, alien_boss_lives_reg, alien_2_alive, alien_alive,ship_projectil_2_on,ship_projectil_1_on,ship_projectil_3_on)
 
@@ -1051,7 +1052,7 @@ BEGIN
         alien_boss_alive_next <= alien_boss_alive_reg;
         alien_hits_counter_next <= alien_hits_counter_reg;
         alien_2_hits_counter_next <= alien_2_hits_counter_reg;
-        play_alien_alive_next <= play_alien_alive_reg;
+        -- play_alien_alive_next <= play_alien_alive_reg;
         play_alien_hits_counter_next <= play_alien_hits_counter_reg;
         alien_boss_hits_counter_next <= alien_boss_hits_counter_reg;
         alien_boss_lives_next <= alien_boss_lives_reg;
@@ -1084,7 +1085,7 @@ BEGIN
         IF (rd_play_alien_on = '1'  AND ( ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
                 -- IF (rd_play_alien_on = '1'  AND (ship_projectil_2_on = '1' OR ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
 
-            play_alien_alive_next <= '0';
+            -- play_alien_alive_next <= '0';
             hit <= '1';
             -- IF (play_alien_alive = '1') THEN
             IF (play_alien_hits_counter_reg < 2) THEN
