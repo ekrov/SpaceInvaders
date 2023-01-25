@@ -91,7 +91,7 @@ R21
 R22
 R13
 Epong_graph
-Z23 w1674610983
+Z23 w1674658440
 R2
 R3
 R4
@@ -104,9 +104,9 @@ V:=Ei7G3XV:HR[<2Lk26]h0
 !s100 XT0RjZ0T:j;XR0A?=8EoN3
 R7
 32
-Z26 !s110 1674610984
+Z26 !s110 1674658441
 !i10b 1
-Z27 !s108 1674610984.000000
+Z27 !s108 1674658441.000000
 Z28 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 !i113 0
@@ -119,8 +119,8 @@ R4
 Z29 DEx4 work 10 pong_graph 0 22 :=Ei7G3XV:HR[<2Lk26]h0
 l393
 L19
-Z30 VFTj[KY0Hb^QM>;z5>L`HP0
-Z31 !s100 [V]if6E6LUDSbRZcIRkR@2
+Z30 V52Pe14;KSg0a<CUCHViZF2
+Z31 !s100 RLkdj1zVj1I;8eSeYl?bO1
 R7
 32
 R26

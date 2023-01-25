@@ -1056,6 +1056,7 @@ BEGIN
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
             alien_boss_alive_next <= '1';
+            play_alien_alive_next<='1';
             alien_boss_lives_next <= "1010";
 
         END IF;
@@ -1081,13 +1082,14 @@ BEGIN
         IF (rd_play_alien_on = '1'  AND ( ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
                 -- IF (rd_play_alien_on = '1'  AND (ship_projectil_2_on = '1' OR ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
 
-            play_alien_alive_next <= '0';
             hit <= '1';
             -- IF (play_alien_alive = '1') THEN
             IF (play_alien_hits_counter_reg < 2) THEN
                 play_alien_hits_counter_next <= play_alien_hits_counter_reg + 1;
             ELSE
                 play_alien_hits_counter_next <= (OTHERS => '0');
+                play_alien_alive_next <= '0';
+
             END IF;
         END IF;
         IF (rd_alien_boss_on = '1'  AND ( ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
@@ -1366,7 +1368,7 @@ BEGIN
 
     --aliens hitting ship
     PROCESS (alien_alive, alien_2_alive, alien_projectil_on, alien_2_projectil_on,
-        rd_ship_on, ship_lives_reg, alien_boss_alive, alien_boss_projectil_on, ship_got_hit)
+        rd_ship_on, ship_lives_reg, alien_boss_alive, alien_boss_projectil_on, ship_got_hit,play_alien_projectil_1_on,play_alien_alive)
     BEGIN
         miss <= '0';
         ship_lives_next <= ship_lives_reg;
@@ -1377,6 +1379,9 @@ BEGIN
             ship_lives_next <= ship_lives_reg - 1;
             miss <= '1';
         ELSIF (alien_boss_alive = '1' AND alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+            ship_lives_next <= ship_lives_reg - 1;
+            miss <= '1';
+        ELSIF (play_alien_alive = '1' AND play_alien_projectil_1_on = '1' AND rd_ship_on = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
             miss <= '1';
         ELSIF (ship_got_hit = '1') THEN
@@ -1421,7 +1426,7 @@ BEGIN
         play_alien_projectil_1_y_reg;
 
     -- Ship Projectil Hit Flag Update
-    play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t > MAX_Y - 1 OR gra_still = '1') ELSE
+    play_alien_projectil_1_hit_next <= '1' WHEN (play_alien_projectil_1_y_t > MAX_Y - 1 OR gra_still = '1' OR ( rd_ship_on='1' and play_alien_projectil_1_on='1')) ELSE
         '0' WHEN (keyboard_code = f) ELSE
         play_alien_projectil_1_hit_reg;
     -- rgb multiplexing circuit
