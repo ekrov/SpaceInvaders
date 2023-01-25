@@ -10,7 +10,7 @@ ENTITY pong_graph IS
         gra_still, died : IN STD_LOGIC;
         timer_up, attack_1_on, gamemode2 : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        graph_on, hit, miss : OUT STD_LOGIC;
+        graph_on, hit, p1_damage : OUT STD_LOGIC;
         rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 
     );
@@ -741,7 +741,7 @@ BEGIN
     rd_ship_on <=
         '1' WHEN (sq_ship_on = '1') AND (rom_bit_ship = '1') ELSE
         '0';
-    ship_rgb <= "111"; --white
+    ship_rgb <= "011"; --white
     ship_rgb_2 <= "110"; -- yellow
     ship_rgb_1 <= "100";-- red
     -- new ship position
@@ -828,7 +828,7 @@ BEGIN
     -- alien_alive <= alien_alive_reg;
 
     -- New alien velocity
-    -- With new hit, miss signals
+    -- With new hit, p1_damage signals
 
     PROCESS (alien_vx_reg, alien_x_l, alien_x_r
         , gra_still, alien_alive_reg, alien_hits_counter_reg)
@@ -843,7 +843,7 @@ BEGIN
             IF (alien_x_l < 1) THEN -- reach left border
                 alien_vx_next <= ALIEN_V_P + alien_hits_counter_reg;
             ELSIF (alien_x_r > MAX_X) THEN -- reach right border
-                -- miss <= '1'; -- a miss
+                -- p1_damage <= '1'; -- a p1_damage
                 alien_vx_next <= ALIEN_V_N - alien_hits_counter_reg;
 
             END IF;
@@ -900,7 +900,7 @@ BEGIN
             IF (alien_2_x_l < 1) THEN -- reach left border
                 alien_2_vx_next <= ALIEN_V_P + alien_2_hits_counter_reg;
             ELSIF (alien_2_x_r > MAX_X) THEN -- reach right border
-                -- miss <= '1'; -- a miss
+                -- p1_damage <= '1'; -- a p1_damage
                 alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
             END IF;
         END IF;
@@ -1046,7 +1046,7 @@ BEGIN
                 IF (alien_boss_x_l < 1) THEN -- reach left border
                     alien_boss_vx_next <= ALIEN_V_P + alien_boss_hits_counter_reg;
                 ELSIF (alien_boss_x_r > MAX_X) THEN -- reach right border
-                    -- miss <= '1'; -- a miss
+                    -- p1_damage <= '1'; -- a p1_damage
                     alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
                 END IF;
                 -- ELSE
@@ -1466,20 +1466,20 @@ BEGIN
     PROCESS (alien_alive_reg, alien_2_alive_reg, alien_projectil_on, alien_2_projectil_on,
         rd_ship_on, ship_lives_reg, alien_boss_alive_reg, alien_boss_projectil_on, ship_got_hit)
     BEGIN
-        miss <= '0';
+        p1_damage <= '0';
         ship_lives_next <= ship_lives_reg;
         IF (alien_2_alive_reg = '1' AND alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
-            miss <= '1';
+            p1_damage <= '1';
         ELSIF (alien_alive_reg = '1' AND alien_projectil_on = '1' AND rd_ship_on = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
-            miss <= '1';
+            p1_damage <= '1';
         ELSIF (alien_boss_alive_reg = '1' AND alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
-            miss <= '1';
+            p1_damage <= '1';
         ELSIF (ship_got_hit = '1') THEN
             ship_lives_next <= ship_lives_reg - 1;
-            miss <= '1';
+            p1_damage <= '1';
         END IF;
     END PROCESS;
 

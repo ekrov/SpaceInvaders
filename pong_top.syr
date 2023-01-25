@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: pong_top.prj
@@ -755,7 +755,7 @@ INFO:Xst:2261 - The FF/Latch <alien_y_reg_1> in Unit <pong_graph> is equivalent 
 INFO:Xst:2261 - The FF/Latch <alien_2_y_reg_2> in Unit <pong_graph> is equivalent to the following 2 FFs/Latches, which will be removed : <alien_2_y_reg_3> <alien_2_y_reg_7> 
 INFO:Xst:2261 - The FF/Latch <alien_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_vx_reg_8> <alien_vx_reg_6> <alien_vx_reg_5> <alien_vx_reg_7> <alien_vx_reg_4> 
 INFO:Xst:2261 - The FF/Latch <alien_2_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_2_vx_reg_8> <alien_2_vx_reg_6> <alien_2_vx_reg_5> <alien_2_vx_reg_7> <alien_2_vx_reg_4> 
-WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_alive_reg_not0001, alien_alive_next, alien_2_alive_next_and0001.
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_2_alive_next_and0001, alien_alive_reg_not0001, alien_alive_next.
 
 Optimizing unit <pong_top> ...
 
@@ -776,7 +776,7 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconne
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
-WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_alive_reg_or0000, graph_unit/alien_boss_alive_reg_or000011, graph_unit/alien_boss_lives_reg_not0003.
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_alive_reg_or000011, graph_unit/alien_boss_alive_reg_or0000, graph_unit/alien_boss_lives_reg_not0003.
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 94.
 FlipFlop graph_unit/alien_boss_y_reg_2 has been replicated 1 time(s)
@@ -839,9 +839,9 @@ Cell Usage :
 #      LUT3                        : 200
 #      LUT3_D                      : 11
 #      LUT3_L                      : 6
-#      LUT4                        : 549
-#      LUT4_D                      : 38
-#      LUT4_L                      : 32
+#      LUT4                        : 551
+#      LUT4_D                      : 37
+#      LUT4_L                      : 31
 #      MULT_AND                    : 4
 #      MUXCY                       : 682
 #      MUXF5                       : 71
@@ -960,7 +960,7 @@ Delay:               13.155ns (Levels of Logic = 11)
      LUT4:I3->O            1   0.612   0.387  graph_unit/Mmux_rom_bit_alien_boss_2_f5_G_SW0 (N281)
      LUT3:I2->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_2_f5_G (N244)
      MUXF5:I1->O           6   0.278   0.572  graph_unit/Mmux_rom_bit_alien_boss_2_f5 (graph_unit/rom_bit_alien_boss1)
-     LUT4_D:I3->O          3   0.612   0.454  graph_unit/ship_got_hit1 (graph_unit/N68)
+     LUT4_D:I3->O          3   0.612   0.454  graph_unit/ship_got_hit1 (graph_unit/N67)
      LUT4_D:I3->O         15   0.612   0.933  graph_unit/ship_x_reg_or00011 (graph_unit/ship_x_reg_or0001)
      LUT2:I1->O           10   0.612   0.750  graph_unit/ship_x_reg_not00021_1 (graph_unit/ship_x_reg_not00021)
      FDCE:CE                   0.483          graph_unit/ship_x_reg_0
@@ -1032,13 +1032,13 @@ Offset:              4.756ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 14.00 secs
-Total CPU time to Xst completion: 13.29 secs
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.64 secs
  
 --> 
 
 
-Total memory usage is 667076 kilobytes
+Total memory usage is 667040 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   40 (   0 filtered)
