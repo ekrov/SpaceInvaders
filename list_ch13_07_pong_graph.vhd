@@ -1432,6 +1432,8 @@ BEGIN
         ELSE -- Player VS Player Mode
             IF (alien_boss_projectil_y_b > MAX_Y - 1 OR gra_still = '1') THEN
                 alien_boss_projectil_hit_next <= '1';
+            ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
+                    alien_boss_projectil_hit_next <= '1';
             ELSIF (keyboard_code = f) THEN
                 alien_boss_projectil_hit_next <= '0';
             END IF;
