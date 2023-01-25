@@ -25,15 +25,15 @@ architecture arch of pong_text is
    signal font_word: std_logic_vector(7 downto 0);
    signal font_bit: std_logic;
    signal score_on, rule_on, over_on: std_logic;
-   signal rule_rom_addr: unsigned(5 downto 0);
-   type rule_rom_type is array (0 to 63) of
+   signal rule_rom_addr: unsigned(6 downto 0);
+   type rule_rom_type is array (0 to 95) of
        std_logic_vector (6 downto 0);
    -- rull text ROM definition
    constant RULE_ROM: rule_rom_type :=
    (
       -- row 1
       
-       "0000000", -- 
+      "0000000", -- 
       "1010011", -- S
       "1010000", -- P
       "1000001", -- A
@@ -82,8 +82,25 @@ architecture arch of pong_text is
       "1010011", -- S
       "1010011", -- S
       "0000000", -- 
-      "0000000", --       
-      -- row 4
+      "0000000", --   
+      --row 4
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --
+      "0000000", --    
+      -- row 5
       "0000000", -- 
       "1000101", -- E
       "1001110", -- N
@@ -91,14 +108,31 @@ architecture arch of pong_text is
       "1000101", -- E
       "1010010", -- R
       "0000000", -- 
-      "1010100", -- T
-      "1001111", -- O
-      "0000000", --
+      "0101000", -- ( x28
+      "1010110", -- V x56
+      "1010011", -- S x53
+      "0000000", --  
+      "0000000", --        
+      "1010000", -- P
+      "1000011", -- C x43
+      "0101001", -- ) x29
+      "0000000", --        
+      -- row 6
+      "0000000", -- 
       "1010011", -- S
-      "1010100", -- T
+      "1010000", -- P
       "1000001", -- A
-      "1010010", -- R
-      "1010100", -- T      
+      "1000011", -- C
+      "1000101", -- E
+      "0000000", -- 
+      "0101000", -- ( x28
+      "1010110", -- V x56
+      "1010011", -- S x53
+      "0000000", --  
+      "0000000", --        
+      "1010000", -- P
+      "0110010", -- 2 x32
+      "0101001", -- ) x29
       "0000000" --
    );
 begin
@@ -148,11 +182,11 @@ begin
    --        ENTER TO START
    ---------------------------------------------
    rule_on <= '1' when pix_x(9 downto 7) = "010" and
-                       pix_y(9 downto 6)=  "0010"  else
+                       pix_y(9 downto 7)=  "001"  else
               '0';
    row_addr_r <= std_logic_vector(pix_y(3 downto 0));
    bit_addr_r <= std_logic_vector(pix_x(2 downto 0));
-   rule_rom_addr <= pix_y(5 downto 4) & pix_x(6 downto 3);
+   rule_rom_addr <= pix_y(6 downto 4) & pix_x(6 downto 3);
    char_addr_r <= RULE_ROM(to_integer(rule_rom_addr));
    ---------------------------------------------
    -- game over region

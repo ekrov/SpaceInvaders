@@ -167,8 +167,8 @@ Analyzing hierarchy for entity <font_rom> in library <work> (architecture <arch>
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <pong_top> in library <work> (Architecture <arch>).
-WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 42: Unconnected output port 'LOCKED_OUT' of component 'clockmanager'.
-WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 59: Unconnected output port 'ps2_code_new' of component 'ps2_keyboard'.
+WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 47: Unconnected output port 'LOCKED_OUT' of component 'clockmanager'.
+WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 64: Unconnected output port 'ps2_code_new' of component 'ps2_keyboard'.
 Entity <pong_top> analyzed. Unit <pong_top> generated.
 
 Analyzing Entity <clockmanager> in library <work> (Architecture <BEHAVIORAL>).
@@ -209,6 +209,7 @@ Analyzing Entity <vga_sync> in library <work> (Architecture <arch>).
 Entity <vga_sync> analyzed. Unit <vga_sync> generated.
 
 Analyzing Entity <pong_text> in library <work> (Architecture <arch>).
+WARNING:Xst:790 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" line 190: Index value(s) does not match array range, simulation mismatch.
 Entity <pong_text> analyzed. Unit <pong_text> generated.
 
 Analyzing Entity <font_rom> in library <work> (Architecture <arch>).
@@ -262,7 +263,6 @@ Synthesizing Unit <pong_graph>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd".
 WARNING:Xst:647 - Input <attack_1_on> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <btn> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <fight_on> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <timer_up> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1780 - Signal <rom_ship_data> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:1780 - Signal <rom_ship_col> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
@@ -579,13 +579,13 @@ Unit <ps2_keyboard> synthesized.
 
 Synthesizing Unit <pong_text>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd".
-    Found 64x7-bit ROM for signal <char_addr_r$rom0000> created at line 156.
+    Found 96x7-bit ROM for signal <char_addr_r$rom0000> created at line 190.
     Found 16x7-bit ROM for signal <char_addr_o>.
     Found 7-bit 16-to-1 multiplexer for signal <char_addr_s>.
     Found 1-bit 8-to-1 multiplexer for signal <font_bit>.
-    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 162.
-    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 162.
-    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 117.
+    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 196.
+    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 196.
+    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 151.
     Summary:
 	inferred   2 ROM(s).
 	inferred   3 Comparator(s).
@@ -600,10 +600,10 @@ WARNING:Xst:646 - Signal <debounce_out> is assigned but never used. This unconne
 INFO:Xst:1799 - State newball is never reached in FSM <state_reg>.
     Found finite state machine <FSM_0> for signal <state_reg>.
     -----------------------------------------------------------------------
-    | States             | 3                                              |
-    | Transitions        | 8                                              |
-    | Inputs             | 6                                              |
-    | Outputs            | 3                                              |
+    | States             | 4                                              |
+    | Transitions        | 13                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 4                                              |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | asynchronous                                   |
@@ -612,8 +612,8 @@ INFO:Xst:1799 - State newball is never reached in FSM <state_reg>.
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
+    Found 2-bit subtractor for signal <ball_next$addsub0000> created at line 152.
     Found 2-bit register for signal <ball_reg>.
-    Found 2-bit subtractor for signal <ball_reg$addsub0000> created at line 142.
     Found 3-bit register for signal <rgb_reg>.
     Summary:
 	inferred   1 Finite State Machine(s).
@@ -631,8 +631,8 @@ Macro Statistics
  16x16-bit ROM                                         : 5
  16x7-bit ROM                                          : 1
  2048x8-bit ROM                                        : 1
- 64x7-bit ROM                                          : 1
  8x8-bit ROM                                           : 1
+ 96x7-bit ROM                                          : 1
 # Adders/Subtractors                                   : 98
  10-bit adder                                          : 57
  10-bit addsub                                         : 4
@@ -689,12 +689,13 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <state_reg/FSM> on signal <state_reg[1:2]> with user encoding.
+Optimizing FSM <state_reg/FSM> on signal <state_reg[1:2]> with sequential encoding.
 ---------------------
  State   | Encoding
 ---------------------
  newgame | 00
- play    | 01
+ play    | 10
+ play_2p | 01
  newball | unreached
  over    | 11
 ---------------------
@@ -765,8 +766,8 @@ Macro Statistics
 # ROMs                                                 : 8
  16x16-bit ROM                                         : 5
  16x7-bit ROM                                          : 1
- 64x7-bit ROM                                          : 1
  8x8-bit ROM                                           : 1
+ 96x7-bit ROM                                          : 1
 # Adders/Subtractors                                   : 93
  10-bit adder                                          : 54
  10-bit addsub                                         : 4
@@ -827,7 +828,7 @@ INFO:Xst:2261 - The FF/Latch <alien_boss_vx_reg_9> in Unit <pong_graph> is equiv
 INFO:Xst:2261 - The FF/Latch <alien_boss_vy_reg_2> in Unit <pong_graph> is equivalent to the following 2 FFs/Latches, which will be removed : <alien_2_vy_reg_2> <alien_vy_reg_2> 
 INFO:Xst:2261 - The FF/Latch <alien_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_vx_reg_8> <alien_vx_reg_6> <alien_vx_reg_5> <alien_vx_reg_7> <alien_vx_reg_4> 
 INFO:Xst:2261 - The FF/Latch <alien_2_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_2_vx_reg_8> <alien_2_vx_reg_6> <alien_2_vx_reg_5> <alien_2_vx_reg_7> <alien_2_vx_reg_4> 
-WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_alive_next, alien_boss_alive_next_and0001, alien_alive_reg_not0001.
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_alive_next, alien_alive_reg_not0001, alien_boss_alive_next_and0001.
 
 Optimizing unit <pong_top> ...
 
@@ -848,13 +849,11 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconne
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
-WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_alive_reg_or000020, graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or0000, graph_unit/alien_boss_alive_reg_or00002.
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or000027, graph_unit/alien_boss_alive_reg_or0000.
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 108.
+Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 110.
 Optimizing block <pong_top> to meet ratio 100 (+ 5) of 960 slices :
-Area constraint is met for block <pong_top>, final ratio is 99.
-FlipFlop vga_sync_unit/v_count_reg_4 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_5 has been replicated 1 time(s)
+Area constraint is met for block <pong_top>, final ratio is 100.
 
 Final Macro Processing ...
 
@@ -867,8 +866,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 389
- Flip-Flops                                            : 389
+# Registers                                            : 387
+ Flip-Flops                                            : 387
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -899,32 +898,31 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 3282
+# BELS                             : 3294
 #      GND                         : 1
 #      INV                         : 130
-#      LUT1                        : 176
-#      LUT2                        : 614
-#      LUT2_D                      : 2
-#      LUT2_L                      : 1
-#      LUT3                        : 211
-#      LUT3_D                      : 9
-#      LUT3_L                      : 8
-#      LUT4                        : 581
-#      LUT4_D                      : 30
-#      LUT4_L                      : 19
+#      LUT1                        : 175
+#      LUT2                        : 606
+#      LUT2_D                      : 3
+#      LUT3                        : 217
+#      LUT3_D                      : 10
+#      LUT3_L                      : 2
+#      LUT4                        : 614
+#      LUT4_D                      : 26
+#      LUT4_L                      : 23
 #      MULT_AND                    : 22
-#      MUXCY                       : 889
-#      MUXF5                       : 91
-#      MUXF6                       : 17
+#      MUXCY                       : 890
+#      MUXF5                       : 83
+#      MUXF6                       : 11
 #      MUXF7                       : 3
 #      MUXF8                       : 1
 #      VCC                         : 1
 #      XORCY                       : 476
-# FlipFlops/Latches                : 391
+# FlipFlops/Latches                : 389
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 7
-#      FDCE                        : 167
+#      FDCE                        : 165
 #      FDE                         : 130
 #      FDPE                        : 23
 #      FDRE                        : 41
@@ -947,10 +945,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      931  out of    960    96%  
- Number of Slice Flip Flops:            391  out of   1920    20%  
- Number of 4 input LUTs:               1783  out of   1920    92%  
-    Number used as logic:              1781
+ Number of Slices:                      940  out of    960    97%  
+ Number of Slice Flip Flops:            389  out of   1920    20%  
+ Number of 4 input LUTs:               1808  out of   1920    94%  
+    Number used as logic:              1806
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -979,7 +977,7 @@ Clock Information:
 -------------------------------------+------------------------------------+-------+
 Clock Signal                         | Clock buffer(FF name)              | Load  |
 -------------------------------------+------------------------------------+-------+
-clock                                | ClockManager_unit/DCM_SP_INST:CLK2X| 383   |
+clock                                | ClockManager_unit/DCM_SP_INST:CLK2X| 381   |
 keyboard_unit/debounce_ps2_clk/result| NONE(keyboard_unit/ps2_word_10)    | 11    |
 -------------------------------------+------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -990,16 +988,16 @@ Asynchronous Control Signals Information:
 Control Signal                                                         | Buffer(FF name)                   | Load  |
 -----------------------------------------------------------------------+-----------------------------------+-------+
 graph_unit/alien_alive_reg_or0000(graph_unit/alien_alive_reg_or00001:O)| NONE(graph_unit/alien_2_alive_reg)| 150   |
-reset                                                                  | IBUF                              | 47    |
+reset                                                                  | IBUF                              | 45    |
 -----------------------------------------------------------------------+-----------------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 28.333ns (Maximum Frequency: 35.294MHz)
-   Minimum input arrival time before clock: 5.969ns
-   Maximum output required time after clock: 4.757ns
+   Minimum period: 28.955ns (Maximum Frequency: 34.536MHz)
+   Minimum input arrival time before clock: 5.929ns
+   Maximum output required time after clock: 4.758ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -1008,37 +1006,38 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 28.333ns (frequency: 35.294MHz)
-  Total number of paths / destination ports: 484115 / 792
+  Clock period: 28.955ns (frequency: 34.536MHz)
+  Total number of paths / destination ports: 581209 / 788
 -------------------------------------------------------------------------
-Delay:               14.167ns (Levels of Logic = 13)
+Delay:               14.477ns (Levels of Logic = 14)
   Source:            vga_sync_unit/v_count_reg_2 (FF)
-  Destination:       graph_unit/play_alien_alive_reg (FF)
+  Destination:       state_reg_FSM_FFd1 (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: vga_sync_unit/v_count_reg_2 to graph_unit/play_alien_alive_reg
+  Data Path: vga_sync_unit/v_count_reg_2 to state_reg_FSM_FFd1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q            43   0.514   1.145  vga_sync_unit/v_count_reg_2 (vga_sync_unit/v_count_reg_2)
-     LUT2:I1->O           15   0.612   0.867  graph_unit/Mcompar_sq_alien_boss_on_cmp_le0002_lut<2> (graph_unit/Mcompar_sq_alien_boss_on_cmp_le0002_lut<2>)
-     LUT4:I3->O            1   0.612   0.426  graph_unit/rom_data_alien_boss<11>_SW2 (N242)
-     LUT2:I1->O            1   0.612   0.000  graph_unit/rom_data_alien_boss<11>_F (N300)
-     MUXF5:I0->O           1   0.278   0.360  graph_unit/rom_data_alien_boss<11> (graph_unit/rom_data_alien_boss<11>)
-     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_6_f5_G (N289)
-     MUXF5:I1->O           1   0.278   0.360  graph_unit/Mmux_rom_bit_alien_boss_6_f5 (graph_unit/Mmux_rom_bit_alien_boss_6_f5)
-     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_2_f5_G (N291)
-     MUXF5:I1->O           2   0.278   0.383  graph_unit/Mmux_rom_bit_alien_boss_2_f5 (graph_unit/rom_bit_alien_boss1)
-     LUT4_D:I3->O          8   0.612   0.646  graph_unit/rd_alien_boss_on_and0000 (graph_unit/rd_alien_boss_on)
-     LUT4:I3->O            2   0.612   0.449  graph_unit/alien_boss_alive_reg_mux00001 (graph_unit/alien_boss_alive_reg_mux0000)
-     LUT3:I1->O            1   0.612   0.426  graph_unit/alien_boss_alive_reg_or000030 (graph_unit/alien_boss_alive_reg_or000030)
-     LUT2_D:I1->O         11   0.612   0.796  graph_unit/alien_boss_alive_reg_or000031 (graph_unit/alien_boss_alive_reg_or0000)
-     LUT4:I3->O            1   0.612   0.357  graph_unit/alien_boss_alive_reg_not0001 (graph_unit/alien_boss_alive_reg_not0001)
-     FDPE:CE                   0.483          graph_unit/alien_boss_alive_reg
+     FDCE:C->Q            41   0.514   1.105  vga_sync_unit/v_count_reg_2 (vga_sync_unit/v_count_reg_2)
+     LUT4:I2->O            3   0.612   0.454  graph_unit/Msub_rom_addr_ship_cy<1>11 (graph_unit/Msub_rom_addr_ship_cy<1>)
+     LUT4_D:I3->O         24   0.612   1.094  graph_unit/Msub_rom_addr_ship_xor<3>11 (graph_unit/rom_addr_ship<3>)
+     LUT4:I2->O            4   0.612   0.529  graph_unit/Mrom_rom_data_ship_rom0002101 (graph_unit/Mrom_rom_data_ship_rom000210)
+     LUT3:I2->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_ship_132 (graph_unit/Mmux_rom_bit_ship_132)
+     MUXF5:I1->O           1   0.278   0.000  graph_unit/Mmux_rom_bit_ship_12_f5 (graph_unit/Mmux_rom_bit_ship_12_f5)
+     MUXF6:I0->O           1   0.451   0.000  graph_unit/Mmux_rom_bit_ship_10_f6 (graph_unit/Mmux_rom_bit_ship_10_f6)
+     MUXF7:I1->O           1   0.451   0.360  graph_unit/Mmux_rom_bit_ship_9_f7 (graph_unit/Mmux_rom_bit_ship_9_f7)
+     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/rd_ship_on_and000098 (graph_unit/rd_ship_on_and000098)
+     LUT4:I3->O           21   0.612   1.111  graph_unit/rd_ship_on_and0000156 (graph_unit/rd_ship_on)
+     LUT4:I0->O            2   0.612   0.449  graph_unit/miss29 (graph_unit/miss29)
+     LUT2:I1->O            4   0.612   0.502  graph_unit/miss30 (miss)
+     LUT4:I3->O            2   0.612   0.410  state_reg_FSM_FFd1-In41 (state_reg_FSM_FFd1-In_bdd1)
+     LUT3:I2->O            1   0.612   0.000  state_reg_FSM_FFd1-In174_G (N229)
+     MUXF5:I1->O           1   0.278   0.000  state_reg_FSM_FFd1-In174 (state_reg_FSM_FFd1-In)
+     FDC:D                     0.268          state_reg_FSM_FFd1
     ----------------------------------------
-    Total                     14.167ns (7.951ns logic, 6.216ns route)
-                                       (56.1% logic, 43.9% route)
+    Total                     14.477ns (8.360ns logic, 6.117ns route)
+                                       (57.7% logic, 42.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -1065,7 +1064,7 @@ Delay:               1.281ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock'
   Total number of paths / destination ports: 122 / 122
 -------------------------------------------------------------------------
-Offset:              5.969ns (Levels of Logic = 3)
+Offset:              5.929ns (Levels of Logic = 3)
   Source:            reset (PAD)
   Destination:       graph_unit/alien_2_projectil_y_reg_9 (FF)
   Destination Clock: clock rising 2.0X
@@ -1074,19 +1073,19 @@ Offset:              5.969ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            56   1.106   1.231  reset_IBUF (reset_IBUF)
-     LUT2:I0->O          154   0.612   1.175  graph_unit/alien_alive_reg_or00001 (graph_unit/alien_alive_reg_or0000)
-     LUT4:I1->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
+     IBUF:I->O            51   1.106   1.108  reset_IBUF (reset_IBUF)
+     LUT3:I2->O          157   0.612   1.258  graph_unit/alien_alive_reg_or00001 (graph_unit/alien_alive_reg_or0000)
+     LUT4:I0->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
      FDE:CE                    0.483          graph_unit/alien_projectil_y_reg_0
     ----------------------------------------
-    Total                      5.969ns (2.813ns logic, 3.156ns route)
-                                       (47.1% logic, 52.9% route)
+    Total                      5.929ns (2.813ns logic, 3.116ns route)
+                                       (47.4% logic, 52.6% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
   Total number of paths / destination ports: 21 / 21
 -------------------------------------------------------------------------
-Offset:              4.757ns (Levels of Logic = 1)
+Offset:              4.758ns (Levels of Logic = 1)
   Source:            keyboard_unit/ps2_code_reg_1 (FF)
   Destination:       led<1> (PAD)
   Source Clock:      clock rising 2.0X
@@ -1095,22 +1094,22 @@ Offset:              4.757ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              37   0.514   1.074  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
+     FD:C->Q              39   0.514   1.075  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
      OBUF:I->O                 3.169          led_1_OBUF (led<1>)
     ----------------------------------------
-    Total                      4.757ns (3.683ns logic, 1.074ns route)
+    Total                      4.758ns (3.683ns logic, 1.075ns route)
                                        (77.4% logic, 22.6% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 16.00 secs
-Total CPU time to Xst completion: 15.41 secs
+Total REAL time to Xst completion: 15.00 secs
+Total CPU time to Xst completion: 14.67 secs
  
 --> 
 
 
-Total memory usage is 675404 kilobytes
+Total memory usage is 676064 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   62 (   0 filtered)
