@@ -1284,29 +1284,46 @@ BEGIN
     alien_2_projectil_y_b <= alien_2_projectil_y_t + ALIEN_PROJECTIL_SIZE - 1;
     alien_2_projectil_on <=
         '1' WHEN (alien_2_projectil_x_l <= pix_x) AND (pix_x <= alien_2_projectil_x_r) AND
-        (alien_2_projectil_y_t <= pix_y) AND (pix_y <= alien_2_projectil_y_b) AND (alien_2_projectil_hit_reg = '0') AND (alien_2_alive_reg = '1') AND (gamemode2 = '0') ELSE
+        (alien_2_projectil_y_t <= pix_y) AND (pix_y <= alien_2_projectil_y_b) AND (alien_2_projectil_hit_reg = '0') AND 
+        ((alien_2_alive_reg = '1' AND gamemode2 = '0') OR -- Single Mode
+        (alien_boss_alive_reg = '1' AND gamemode2 = '1')) ELSE -- Player VS Player Mode
         '0';
 
     alien_2_projectil_x_next <=
-        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
+        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
+        (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE) WHEN
+        (keyboard_code = f AND alien_boss_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_2_projectil_x_reg;
     alien_2_projectil_y_next <=
-        alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') ELSE
-        alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_2_hits_counter_reg WHEN refr_tick = '1' ELSE
+        alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
+        (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN
+        (keyboard_code = f AND alien_boss_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
+        alien_2_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_2_hits_counter_reg WHEN (refr_tick = '1' AND gamemode2 = '0') ELSE -- Single Mode
+        alien_boss_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN (refr_tick = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_2_projectil_y_reg;
 
-    PROCESS (alien_2_alive_reg, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b)
+    -- Alien 2 Projectil Hit Flag Update Process
+    PROCESS (alien_2_alive_reg, alien_2_projectil_hit_reg, alien_2_projectil_on, rd_ship_on, alien_2_projectil_y_b, gra_still,
+            gamemode2, keyboard_code)
     BEGIN
         alien_2_projectil_hit_next <= alien_2_projectil_hit_reg;
         -- ship_lives_next <= ship_lives_reg;
-        IF (alien_2_alive_reg = '1') THEN
-            IF alien_2_projectil_hit_reg = '1' THEN
+        IF (gamemode2 = '0') THEN -- Single Mode        
+            IF (alien_2_alive_reg = '1') THEN
+                IF alien_2_projectil_hit_reg = '1' THEN
+                    alien_2_projectil_hit_next <= '0';
+                ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+                    alien_2_projectil_hit_next <= '1';
+                    --  ship_lives_next<=ship_lives_reg-1;
+                ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
+                    alien_2_projectil_hit_next <= '1';
+                END IF;
+            END IF;
+        ELSE -- Player VS Player Mode
+            IF (alien_2_projectil_y_b > MAX_Y - 1 OR gra_still = '1') OR (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+                alien_2_projectil_hit_next <= '1';
+            ELSIF (keyboard_code = f) THEN
                 alien_2_projectil_hit_next <= '0';
-            ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
-                alien_2_projectil_hit_next <= '1';
-                --  ship_lives_next<=ship_lives_reg-1;
-            ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
-                alien_2_projectil_hit_next <= '1';
             END IF;
         END IF;
     END PROCESS;
