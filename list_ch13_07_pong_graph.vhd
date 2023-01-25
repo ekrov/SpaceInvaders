@@ -1016,7 +1016,7 @@ BEGIN
         alien_boss_x_next <= alien_boss_x_reg;
         alien_boss_y_next <= alien_boss_y_reg;
 
-        -- alien_boss_vx_next <= alien_boss_vx_reg;
+        alien_boss_vx_next <= alien_boss_vx_reg;
         -- alien_boss_vy_next <= alien_boss_vy_reg;
 
         IF (fight_on = '0') THEN

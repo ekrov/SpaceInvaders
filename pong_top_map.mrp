@@ -9,23 +9,23 @@ Target Device  : xc3s100e
 Target Package : cp132
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Mon Jan 23 22:43:37 2023
+Mapped Date    : Tue Jan 24 03:17:29 2023
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    2
 Logic Utilization:
-  Number of Slice Flip Flops:           390 out of   1,920   20%
-  Number of 4 input LUTs:             1,610 out of   1,920   83%
+  Number of Slice Flip Flops:           365 out of   1,920   19%
+  Number of 4 input LUTs:             1,530 out of   1,920   79%
 Logic Distribution:
-  Number of occupied Slices:            958 out of     960   99%
-    Number of Slices containing only related logic:     958 out of     958 100%
-    Number of Slices containing unrelated logic:          0 out of     958   0%
+  Number of occupied Slices:            918 out of     960   95%
+    Number of Slices containing only related logic:     918 out of     918 100%
+    Number of Slices containing unrelated logic:          0 out of     918   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,786 out of   1,920   93%
-    Number used as logic:             1,608
-    Number used as a route-thru:        176
+  Total Number of 4 input LUTs:       1,695 out of   1,920   88%
+    Number used as logic:             1,528
+    Number used as a route-thru:        165
     Number used as Shift registers:       2
 
   The Slice Logic Distribution report is not meaningful if the design is
@@ -36,9 +36,9 @@ Logic Distribution:
   Number of BUFGMUXs:                     2 out of      24    8%
   Number of DCMs:                         1 out of       2   50%
 
-Average Fanout of Non-Clock Nets:                3.30
+Average Fanout of Non-Clock Nets:                3.31
 
-Peak Memory Usage:  679 MB
+Peak Memory Usage:  678 MB
 Total REAL time to MAP completion:  2 secs 
 Total CPU time to MAP completion:   2 secs 
 
@@ -104,7 +104,7 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-   7 block(s) optimized away
+   4 block(s) optimized away
 
 Section 5 - Removed Logic
 -------------------------
@@ -113,9 +113,6 @@ Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
-MUXCY 		graph_unit/Madd_alien_2_y_reg_addsub0000_cy<0>
-MUXCY 		graph_unit/Madd_alien_boss_y_reg_addsub0000_cy<0>
-MUXCY 		graph_unit/Madd_alien_y_reg_addsub0000_cy<0>
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.

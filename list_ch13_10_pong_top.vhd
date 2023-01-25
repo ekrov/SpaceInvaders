@@ -79,7 +79,7 @@ begin
       port map(clk=>clk, reset=>reset, btn=>btn,died=>died,
               pixel_x=>pixel_x, pixel_y=>pixel_y,
               gra_still=>gra_still,hit=>hit, miss=>miss,
-              graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',fight_on=>'1');
+              graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',fight_on=>'0');
    -- instantiate 2 sec timer
    timer_tick <=  -- 60 Hz tick
       '1' when pixel_x="0000000000" and
