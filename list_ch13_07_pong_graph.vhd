@@ -38,8 +38,8 @@ ARCHITECTURE arch OF pong_graph IS
     -- SIGNAL ball_y_reg, ball_y_next : unsigned(9 DOWNTO 0);
     -- SIGNAL ball_vx_reg, ball_vx_next : unsigned(9 DOWNTO 0);
     -- SIGNAL ball_vy_reg, ball_vy_next : unsigned(9 DOWNTO 0);
-    SIGNAL keycode_reg : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    SIGNAL keycode_next : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    -- SIGNAL keycode_reg : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    -- SIGNAL keycode_next : STD_LOGIC_VECTOR(7 DOWNTO 0);
     -- CONSTANT BALL_V_P : unsigned(9 DOWNTO 0)
     -- := to_unsigned(2, 10);
     -- CONSTANT BALL_V_N : unsigned(9 DOWNTO 0)
@@ -147,7 +147,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_x_reg, alien_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_y_reg, alien_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_vx_reg, alien_vx_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_vy_reg, alien_vy_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_vy_reg, alien_vy_next : unsigned(9 DOWNTO 0);
     SIGNAL rom_addr_alien, rom_col_alien : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien : STD_LOGIC;
@@ -160,7 +160,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_2_x_reg, alien_2_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_y_reg, alien_2_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_2_vx_reg, alien_2_vx_next : unsigned(9 DOWNTO 0);
-    SIGNAL alien_2_vy_reg, alien_2_vy_next : unsigned(9 DOWNTO 0);
+    -- SIGNAL alien_2_vy_reg, alien_2_vy_next : unsigned(9 DOWNTO 0);
     SIGNAL rom_addr_alien_2, rom_col_alien_2 : unsigned(2 DOWNTO 0);
     SIGNAL rom_data_alien_2 : STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rom_bit_alien_2 : STD_LOGIC;
@@ -404,14 +404,14 @@ BEGIN
             alien_x_reg <= (OTHERS => '0');
             alien_y_reg <= (OTHERS => '0');
             alien_vx_reg <= ("0000000100");
-            alien_vy_reg <= ("0000000100");
+            -- alien_vy_reg <= ("0000000100");
             alien_alive_reg <= '1';
             alien_hits_counter_reg <= (OTHERS => '0');
 
             alien_2_x_reg <= (OTHERS => '0');
             alien_2_y_reg <= (OTHERS => '0');
             alien_2_vx_reg <= ("0000000100");
-            alien_2_vy_reg <= ("0000000100");
+            -- alien_2_vy_reg <= ("0000000100");
             alien_2_alive_reg <= '1';
             alien_2_hits_counter_reg <= (OTHERS => '0');
 
@@ -439,7 +439,7 @@ BEGIN
             -- Playable Alien Projectil 1 Hit Flag Initialization
             play_alien_projectil_1_hit_reg <= '1';
 
-            keycode_reg <= (OTHERS => '0');
+            -- keycode_reg <= (OTHERS => '0');
             ship_x_reg <= (OTHERS => '0');
             ship_y_reg <= (OTHERS => '0');
 
@@ -470,19 +470,19 @@ BEGIN
             -- ball_y_reg <= ball_y_next;
             -- ball_vx_reg <= ball_vx_next;
             -- ball_vy_reg <= ball_vy_next;
-            keycode_reg <= keycode_next;
+            -- keycode_reg <= keycode_next;
 
             alien_x_reg <= alien_x_next;
             alien_y_reg <= alien_y_next;
             alien_vx_reg <= alien_vx_next;
-            alien_vy_reg <= alien_vy_next;
+            -- alien_vy_reg <= alien_vy_next;
             alien_alive_reg <= alien_alive_next;
             alien_hits_counter_reg <= alien_hits_counter_next;
 
             alien_2_x_reg <= alien_2_x_next;
             alien_2_y_reg <= alien_2_y_next;
             alien_2_vx_reg <= alien_2_vx_next;
-            alien_2_vy_reg <= alien_2_vy_next;
+            -- alien_2_vy_reg <= alien_2_vy_next;
             alien_2_alive_reg <= alien_2_alive_next;
             alien_2_hits_counter_reg <= alien_2_hits_counter_next;
 
@@ -572,8 +572,8 @@ BEGIN
         '0';
 
     --KEYBOARD
-    keycode_next <= keyboard_code WHEN keycode_reg /= keyboard_code ELSE
-        "00000000";
+    -- keycode_next <= keyboard_code WHEN keycode_reg /= keyboard_code ELSE
+    --     "00000000";
     ----------------------------------------------  
     -- SHIP PROJECTILES
     ----------------------------------------------
@@ -816,7 +816,7 @@ BEGIN
         alien_x_reg;
     alien_y_next <=
         to_unsigned((MAX_Y)/2 - 50, 10) WHEN (gra_still = '1' OR alien_alive = '0') ELSE
-        alien_y_reg + alien_vy_reg WHEN refr_tick = '1' ELSE
+        alien_y_reg WHEN refr_tick = '1' ELSE
         alien_y_reg;
 
     alien_alive <= alien_alive_reg;
@@ -824,15 +824,15 @@ BEGIN
     -- New alien velocity
     -- With new hit, miss signals
 
-    PROCESS (alien_vx_reg, alien_vy_reg, alien_x_l, alien_x_r
+    PROCESS (alien_vx_reg, alien_x_l, alien_x_r
     , gra_still, alien_alive, alien_hits_counter_reg)
     BEGIN
         alien_vx_next <= alien_vx_reg;
-        alien_vy_next <= alien_vy_reg;
+        -- alien_vy_next <= alien_vy_reg;
         IF gra_still = '1' THEN --initial velocity
             alien_vx_next <= ALIEN_V_N - alien_hits_counter_reg;
             -- alien_vy_next <= ALIEN_V_P;
-            alien_vy_next <= to_unsigned(0, 10);
+            -- alien_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_alive = '1') THEN
             IF (alien_x_l < 1) THEN -- reach left border
                 alien_vx_next <= ALIEN_V_P + alien_hits_counter_reg;
@@ -874,22 +874,22 @@ BEGIN
         alien_2_x_reg;
     alien_2_y_next <=
         to_unsigned(((MAX_Y)/2) - 100, 10) WHEN (gra_still = '1' OR alien_2_alive = '0') ELSE
-        alien_2_y_reg + alien_2_vy_reg WHEN refr_tick = '1' ELSE
+        alien_2_y_reg WHEN refr_tick = '1' ELSE
         alien_2_y_reg;
 
     alien_2_alive <= alien_2_alive_reg;
 
     -- New alien 2 velocity
 
-    PROCESS (alien_2_vx_reg, alien_2_vy_reg, alien_2_x_l, alien_2_x_r, gra_still, alien_2_alive, alien_2_hits_counter_reg)
+    PROCESS (alien_2_vx_reg, alien_2_x_l, alien_2_x_r, gra_still, alien_2_alive, alien_2_hits_counter_reg)
     BEGIN
         alien_2_vx_next <= alien_2_vx_reg;
-        alien_2_vy_next <= alien_2_vy_reg;
+        -- alien_2_vy_next <= alien_2_vy_reg;
 
         IF gra_still = '1' THEN --initial velocity
             alien_2_vx_next <= ALIEN_V_N - alien_2_hits_counter_reg;
             -- alien_vy_next <= ALIEN_V_P;
-            alien_2_vy_next <= to_unsigned(0, 10);
+            -- alien_2_vy_next <= to_unsigned(0, 10);
         ELSIF (alien_2_alive = '1') THEN
             IF (alien_2_x_l < 1) THEN -- reach left border
                 alien_2_vx_next <= ALIEN_V_P + alien_2_hits_counter_reg;
