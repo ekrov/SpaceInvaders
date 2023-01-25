@@ -121,11 +121,11 @@ Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12
 Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" is newer than current system time.
-Architecture arch of Entity pong_text is up to date.
+Entity <pong_text> compiled.
+Entity <pong_text> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" is newer than current system time.
-Entity <pong_graph> compiled.
-Entity <pong_graph> (Architecture <arch>) compiled.
+Architecture arch of Entity pong_graph is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
 Architecture arch of Entity timer is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd" in Library work.
@@ -209,7 +209,7 @@ Analyzing Entity <vga_sync> in library <work> (Architecture <arch>).
 Entity <vga_sync> analyzed. Unit <vga_sync> generated.
 
 Analyzing Entity <pong_text> in library <work> (Architecture <arch>).
-WARNING:Xst:790 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" line 190: Index value(s) does not match array range, simulation mismatch.
+WARNING:Xst:790 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" line 230: Index value(s) does not match array range, simulation mismatch.
 Entity <pong_text> analyzed. Unit <pong_text> generated.
 
 Analyzing Entity <font_rom> in library <work> (Architecture <arch>).
@@ -579,17 +579,20 @@ Unit <ps2_keyboard> synthesized.
 
 Synthesizing Unit <pong_text>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd".
-    Found 96x7-bit ROM for signal <char_addr_r$rom0000> created at line 190.
+WARNING:Xst:653 - Signal <score_2p_on> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:653 - Signal <row_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 0000.
+WARNING:Xst:653 - Signal <char_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 0000000.
+WARNING:Xst:653 - Signal <bit_addr_s_2p> is used but never assigned. This sourceless signal will be automatically connected to value 000.
+    Found 96x7-bit ROM for signal <char_addr_r$rom0000> created at line 230.
     Found 16x7-bit ROM for signal <char_addr_o>.
-    Found 7-bit 16-to-1 multiplexer for signal <char_addr_s>.
     Found 1-bit 8-to-1 multiplexer for signal <font_bit>.
-    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 196.
-    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 196.
-    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 151.
+    Found 5-bit comparator greatequal for signal <over_on$cmp_le0000> created at line 236.
+    Found 5-bit comparator lessequal for signal <over_on$cmp_le0001> created at line 236.
+    Found 6-bit comparator less for signal <score_on$cmp_lt0000> created at line 152.
     Summary:
 	inferred   2 ROM(s).
 	inferred   3 Comparator(s).
-	inferred   8 Multiplexer(s).
+	inferred   1 Multiplexer(s).
 Unit <pong_text> synthesized.
 
 
@@ -673,11 +676,10 @@ Macro Statistics
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
  7-bit comparator greater                              : 1
-# Multiplexers                                         : 8
+# Multiplexers                                         : 7
  1-bit 16-to-1 multiplexer                             : 2
  1-bit 8-to-1 multiplexer                              : 4
  16-bit 4-to-1 multiplexer                             : 1
- 7-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 3
  1-bit xor2                                            : 2
  1-bit xor9                                            : 1
@@ -804,11 +806,10 @@ Macro Statistics
  5-bit comparator lessequal                            : 1
  6-bit comparator less                                 : 1
  7-bit comparator greater                              : 1
-# Multiplexers                                         : 8
+# Multiplexers                                         : 7
  1-bit 16-to-1 multiplexer                             : 2
  1-bit 8-to-1 multiplexer                              : 4
  16-bit 4-to-1 multiplexer                             : 1
- 7-bit 16-to-1 multiplexer                             : 1
 # Xors                                                 : 3
  1-bit xor2                                            : 2
  1-bit xor9                                            : 1
@@ -849,9 +850,9 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconne
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
-WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or000027, graph_unit/alien_boss_alive_reg_or0000.
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: graph_unit/alien_boss_alive_reg_or0000, graph_unit/alien_boss_lives_reg_not0003, graph_unit/alien_boss_alive_reg_or000027.
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 110.
+Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 111.
 Optimizing block <pong_top> to meet ratio 100 (+ 5) of 960 slices :
 Area constraint is met for block <pong_top>, final ratio is 100.
 
@@ -898,23 +899,22 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 3294
+# BELS                             : 3314
 #      GND                         : 1
-#      INV                         : 130
+#      INV                         : 132
 #      LUT1                        : 175
-#      LUT2                        : 606
+#      LUT2                        : 611
 #      LUT2_D                      : 3
-#      LUT3                        : 217
-#      LUT3_D                      : 10
-#      LUT3_L                      : 2
-#      LUT4                        : 614
-#      LUT4_D                      : 26
-#      LUT4_L                      : 23
+#      LUT3                        : 218
+#      LUT3_D                      : 9
+#      LUT4                        : 625
+#      LUT4_D                      : 25
+#      LUT4_L                      : 21
 #      MULT_AND                    : 22
 #      MUXCY                       : 890
-#      MUXF5                       : 83
+#      MUXF5                       : 89
 #      MUXF6                       : 11
-#      MUXF7                       : 3
+#      MUXF7                       : 4
 #      MUXF8                       : 1
 #      VCC                         : 1
 #      XORCY                       : 476
@@ -945,10 +945,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      940  out of    960    97%  
+ Number of Slices:                      948  out of    960    98%  
  Number of Slice Flip Flops:            389  out of   1920    20%  
- Number of 4 input LUTs:               1808  out of   1920    94%  
-    Number used as logic:              1806
+ Number of 4 input LUTs:               1821  out of   1920    94%  
+    Number used as logic:              1819
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -995,7 +995,7 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 28.955ns (Maximum Frequency: 34.536MHz)
+   Minimum period: 28.823ns (Maximum Frequency: 34.695MHz)
    Minimum input arrival time before clock: 5.929ns
    Maximum output required time after clock: 4.758ns
    Maximum combinational path delay: No path found
@@ -1006,10 +1006,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 28.955ns (frequency: 34.536MHz)
-  Total number of paths / destination ports: 581209 / 788
+  Clock period: 28.823ns (frequency: 34.695MHz)
+  Total number of paths / destination ports: 556222 / 788
 -------------------------------------------------------------------------
-Delay:               14.477ns (Levels of Logic = 14)
+Delay:               14.411ns (Levels of Logic = 14)
   Source:            vga_sync_unit/v_count_reg_2 (FF)
   Destination:       state_reg_FSM_FFd1 (FF)
   Source Clock:      clock rising 2.0X
@@ -1027,17 +1027,17 @@ Delay:               14.477ns (Levels of Logic = 14)
      MUXF5:I1->O           1   0.278   0.000  graph_unit/Mmux_rom_bit_ship_12_f5 (graph_unit/Mmux_rom_bit_ship_12_f5)
      MUXF6:I0->O           1   0.451   0.000  graph_unit/Mmux_rom_bit_ship_10_f6 (graph_unit/Mmux_rom_bit_ship_10_f6)
      MUXF7:I1->O           1   0.451   0.360  graph_unit/Mmux_rom_bit_ship_9_f7 (graph_unit/Mmux_rom_bit_ship_9_f7)
-     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/rd_ship_on_and000098 (graph_unit/rd_ship_on_and000098)
-     LUT4:I3->O           21   0.612   1.111  graph_unit/rd_ship_on_and0000156 (graph_unit/rd_ship_on)
-     LUT4:I0->O            2   0.612   0.449  graph_unit/miss29 (graph_unit/miss29)
-     LUT2:I1->O            4   0.612   0.502  graph_unit/miss30 (miss)
+     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/rd_ship_on_and000099 (graph_unit/rd_ship_on_and000099)
+     LUT4:I3->O           21   0.612   0.962  graph_unit/rd_ship_on_and0000156 (graph_unit/rd_ship_on)
+     LUT4:I3->O            2   0.612   0.532  graph_unit/miss18 (graph_unit/miss18)
+     LUT2:I0->O            4   0.612   0.502  graph_unit/miss30 (miss)
      LUT4:I3->O            2   0.612   0.410  state_reg_FSM_FFd1-In41 (state_reg_FSM_FFd1-In_bdd1)
-     LUT3:I2->O            1   0.612   0.000  state_reg_FSM_FFd1-In174_G (N229)
+     LUT3:I2->O            1   0.612   0.000  state_reg_FSM_FFd1-In174_G (N222)
      MUXF5:I1->O           1   0.278   0.000  state_reg_FSM_FFd1-In174 (state_reg_FSM_FFd1-In)
      FDC:D                     0.268          state_reg_FSM_FFd1
     ----------------------------------------
-    Total                     14.477ns (8.360ns logic, 6.117ns route)
-                                       (57.7% logic, 42.3% route)
+    Total                     14.411ns (8.360ns logic, 6.051ns route)
+                                       (58.0% logic, 42.0% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -1104,14 +1104,14 @@ Offset:              4.758ns (Levels of Logic = 1)
 
 
 Total REAL time to Xst completion: 15.00 secs
-Total CPU time to Xst completion: 14.67 secs
+Total CPU time to Xst completion: 14.42 secs
  
 --> 
 
 
-Total memory usage is 676064 kilobytes
+Total memory usage is 676036 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   62 (   0 filtered)
+Number of warnings :   66 (   0 filtered)
 Number of infos    :   12 (   0 filtered)
 
