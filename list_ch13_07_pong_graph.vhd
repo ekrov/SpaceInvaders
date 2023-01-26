@@ -10,7 +10,7 @@ ENTITY pong_graph IS
         gra_still, died : IN STD_LOGIC;
         timer_up, attack_1_on, gamemode2 : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        graph_on, hit, p1_damage : OUT STD_LOGIC;
+        graph_on, hit, p1_damage ,hit_p2,p2_damage: OUT STD_LOGIC;
         rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 
     );
@@ -1095,11 +1095,12 @@ BEGIN
         -- alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_hits_counter_reg,
         -- play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
         alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
-        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on)
+        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on,gamemode2)
         -- alien_boss_alive_next, alien_boss_lives_reg, alien_2_alive, alien_alive,ship_projectil_2_on,ship_projectil_1_on,ship_projectil_3_on)
 
     BEGIN
         hit <= '0';
+        p2_damage<='0';
         alien_alive_next <= alien_alive_reg;
         alien_2_alive_next <= alien_2_alive_reg;
         alien_boss_alive_next <= alien_boss_alive_reg;
@@ -1157,6 +1158,9 @@ BEGIN
             END IF;
             hit <= '1';
 
+            IF(gamemode2='1') then
+                p2_damage<='1';
+            end if;
         END IF;
     END PROCESS;
     ----------------------------------------------  
@@ -1426,6 +1430,7 @@ BEGIN
     PROCESS (alien_boss_alive_reg, alien_boss_projectil_hit_reg, alien_boss_projectil_on, rd_ship_on, alien_boss_projectil_y_b,
         gamemode2, keyboard_code, gra_still)
     BEGIN
+    hit_p2<='0';
         alien_boss_projectil_hit_next <= alien_boss_projectil_hit_reg;
         IF (gamemode2 = '0') THEN -- Single Mode
             IF (alien_boss_alive_reg = '1') THEN
@@ -1442,6 +1447,7 @@ BEGIN
                 alien_boss_projectil_hit_next <= '1';
             ELSIF (alien_boss_projectil_on = '1' AND rd_ship_on = '1') THEN
                 alien_boss_projectil_hit_next <= '1';
+                hit_p2<='1';
             ELSIF (keyboard_code = f) THEN
                 alien_boss_projectil_hit_next <= '0';
             END IF;

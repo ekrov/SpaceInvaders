@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Tue Jan 24 06:11:18 2023
+// Written by: Map P.20131013 on Tue Jan 24 09:00:36 2023
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -26,37 +26,42 @@ COMP "outgreen<0>" LOCATE = SITE "F14" LEVEL 1;
 COMP "outgreen<1>" LOCATE = SITE "G13" LEVEL 1;
 COMP "outgreen<2>" LOCATE = SITE "G14" LEVEL 1;
 COMP "PS2_CLK" LOCATE = SITE "B1" LEVEL 1;
-TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
-        "rgb_reg_1" BEL "rgb_reg_2" BEL "timer_unit/timer_reg_0" BEL
-        "timer_unit/timer_reg_1" BEL "timer_unit/timer_reg_2" BEL
-        "timer_unit/timer_reg_3" BEL "timer_unit/timer_reg_4" BEL
-        "timer_unit/timer_reg_5" BEL "timer_unit/timer_reg_6" BEL
-        "state_reg_FSM_FFd1" BEL "state_reg_FSM_FFd2" BEL
-        "vga_sync_unit/v_count_reg_9" BEL "vga_sync_unit/v_count_reg_8" BEL
-        "vga_sync_unit/v_count_reg_7" BEL "vga_sync_unit/v_count_reg_6" BEL
-        "vga_sync_unit/v_count_reg_5" BEL "vga_sync_unit/v_count_reg_4" BEL
-        "vga_sync_unit/v_count_reg_3" BEL "vga_sync_unit/v_count_reg_2" BEL
-        "vga_sync_unit/v_count_reg_1" BEL "vga_sync_unit/v_count_reg_0" BEL
-        "vga_sync_unit/h_count_reg_9" BEL "vga_sync_unit/h_count_reg_8" BEL
-        "vga_sync_unit/h_count_reg_7" BEL "vga_sync_unit/h_count_reg_6" BEL
-        "vga_sync_unit/h_count_reg_5" BEL "vga_sync_unit/h_count_reg_4" BEL
-        "vga_sync_unit/h_count_reg_3" BEL "vga_sync_unit/h_count_reg_2" BEL
-        "vga_sync_unit/h_count_reg_1" BEL "vga_sync_unit/h_count_reg_0" BEL
-        "vga_sync_unit/h_sync_reg" BEL "vga_sync_unit/mod2_reg" BEL
-        "vga_sync_unit/v_sync_reg" BEL "counter_unit/dig1_reg_3" BEL
-        "counter_unit/dig1_reg_2" BEL "counter_unit/dig1_reg_1" BEL
-        "counter_unit/dig1_reg_0" BEL "counter_unit/dig0_reg_3" BEL
-        "counter_unit/dig0_reg_2" BEL "counter_unit/dig0_reg_1" BEL
-        "counter_unit/dig0_reg_0" BEL "graph_unit/alien_boss_vx_reg_2" BEL
-        "graph_unit/alien_boss_vx_reg_0" BEL "graph_unit/alien_boss_vx_reg_1"
-        BEL "graph_unit/alien_boss_vx_reg_3" BEL
-        "graph_unit/alien_boss_vx_reg_4" BEL "graph_unit/alien_boss_vx_reg_7"
-        BEL "graph_unit/alien_boss_vx_reg_5" BEL
-        "graph_unit/alien_boss_vx_reg_6" BEL "graph_unit/alien_boss_vx_reg_8"
-        BEL "graph_unit/alien_boss_vx_reg_9" BEL "graph_unit/alien_2_vx_reg_2"
-        BEL "graph_unit/alien_2_vx_reg_0" BEL "graph_unit/alien_2_vx_reg_1"
-        BEL "graph_unit/alien_2_vx_reg_3" BEL "graph_unit/alien_2_vx_reg_9"
-        BEL "graph_unit/alien_vx_reg_2" BEL "graph_unit/alien_vx_reg_0" BEL
+TIMEGRP clk = BEL "lives_p1_reg_0" BEL "lives_p1_reg_1" BEL "lives_p2_reg_0"
+        BEL "lives_p2_reg_1" BEL "rgb_reg_0" BEL "rgb_reg_1" BEL "rgb_reg_2"
+        BEL "timer_unit/timer_reg_0" BEL "timer_unit/timer_reg_1" BEL
+        "timer_unit/timer_reg_2" BEL "timer_unit/timer_reg_3" BEL
+        "timer_unit/timer_reg_4" BEL "timer_unit/timer_reg_5" BEL
+        "timer_unit/timer_reg_6" BEL "state_reg_FSM_FFd1" BEL
+        "state_reg_FSM_FFd2" BEL "vga_sync_unit/v_count_reg_9" BEL
+        "vga_sync_unit/v_count_reg_8" BEL "vga_sync_unit/v_count_reg_7" BEL
+        "vga_sync_unit/v_count_reg_6" BEL "vga_sync_unit/v_count_reg_5" BEL
+        "vga_sync_unit/v_count_reg_4" BEL "vga_sync_unit/v_count_reg_3" BEL
+        "vga_sync_unit/v_count_reg_2" BEL "vga_sync_unit/v_count_reg_1" BEL
+        "vga_sync_unit/v_count_reg_0" BEL "vga_sync_unit/h_count_reg_9" BEL
+        "vga_sync_unit/h_count_reg_8" BEL "vga_sync_unit/h_count_reg_7" BEL
+        "vga_sync_unit/h_count_reg_6" BEL "vga_sync_unit/h_count_reg_5" BEL
+        "vga_sync_unit/h_count_reg_4" BEL "vga_sync_unit/h_count_reg_3" BEL
+        "vga_sync_unit/h_count_reg_2" BEL "vga_sync_unit/h_count_reg_1" BEL
+        "vga_sync_unit/h_count_reg_0" BEL "vga_sync_unit/h_sync_reg" BEL
+        "vga_sync_unit/mod2_reg" BEL "vga_sync_unit/v_sync_reg" BEL
+        "counter_unit_2p/dig1_reg_3" BEL "counter_unit_2p/dig1_reg_2" BEL
+        "counter_unit_2p/dig1_reg_1" BEL "counter_unit_2p/dig1_reg_0" BEL
+        "counter_unit_2p/dig0_reg_3" BEL "counter_unit_2p/dig0_reg_2" BEL
+        "counter_unit_2p/dig0_reg_1" BEL "counter_unit_2p/dig0_reg_0" BEL
+        "counter_unit/dig1_reg_3" BEL "counter_unit/dig1_reg_2" BEL
+        "counter_unit/dig1_reg_1" BEL "counter_unit/dig1_reg_0" BEL
+        "counter_unit/dig0_reg_3" BEL "counter_unit/dig0_reg_2" BEL
+        "counter_unit/dig0_reg_1" BEL "counter_unit/dig0_reg_0" BEL
+        "graph_unit/alien_boss_vx_reg_2" BEL "graph_unit/alien_boss_vx_reg_0"
+        BEL "graph_unit/alien_boss_vx_reg_1" BEL
+        "graph_unit/alien_boss_vx_reg_3" BEL "graph_unit/alien_boss_vx_reg_4"
+        BEL "graph_unit/alien_boss_vx_reg_7" BEL
+        "graph_unit/alien_boss_vx_reg_5" BEL "graph_unit/alien_boss_vx_reg_6"
+        BEL "graph_unit/alien_boss_vx_reg_8" BEL
+        "graph_unit/alien_boss_vx_reg_9" BEL "graph_unit/alien_2_vx_reg_2" BEL
+        "graph_unit/alien_2_vx_reg_0" BEL "graph_unit/alien_2_vx_reg_1" BEL
+        "graph_unit/alien_2_vx_reg_3" BEL "graph_unit/alien_2_vx_reg_9" BEL
+        "graph_unit/alien_vx_reg_2" BEL "graph_unit/alien_vx_reg_0" BEL
         "graph_unit/alien_vx_reg_1" BEL "graph_unit/alien_vx_reg_3" BEL
         "graph_unit/alien_vx_reg_9" BEL "graph_unit/ship_projectil_3_y_reg_9"
         BEL "graph_unit/ship_projectil_3_y_reg_8" BEL
@@ -258,10 +263,6 @@ TIMEGRP clk = BEL "ball_reg_0" BEL "ball_reg_1" BEL "rgb_reg_0" BEL
         "keyboard_unit/ps2_code_next_4" BEL "keyboard_unit/ps2_code_next_3"
         BEL "keyboard_unit/ps2_code_next_2" BEL
         "keyboard_unit/ps2_code_next_1" BEL "keyboard_unit/ps2_code_next_0"
-        BEL "vga_sync_unit/v_count_reg_4_1" BEL
-        "vga_sync_unit/v_count_reg_5_1" BEL "graph_unit/alien_boss_y_reg_2_1"
-        BEL "vga_sync_unit/v_count_reg_3_1" BEL
-        "vga_sync_unit/v_count_reg_1_1" BEL "vga_sync_unit/v_count_reg_2_1"
         BEL "text_unit/font_unit/Mrom_data_rom0000.A" BEL
         "keyboard_unit/debounce_ps2_clk/Mshreg_flipflops_0/SRL16E" BEL
         "keyboard_unit/debounce_ps2_clk/flipflops_0" BEL

@@ -85,12 +85,12 @@ begin
       port map(clk=>clk, reset=>reset,
                pixel_x=>pixel_x, pixel_y=>pixel_y,
                dig0=>dig0, dig1=>dig1, lives_p1=>lives_p1, lives_p2=>lives_p2,dig0_2p=>dig0_2p, dig1_2p=>dig1_2p,
-               text_on=>text_on, text_rgb=>text_rgb);
+               text_on=>text_on, text_rgb=>text_rgb,gamemode2=>GameMode2);
    -- instantiate graph module
    graph_unit: entity work.pong_graph
       port map(clk=>clk, reset=>reset, btn=>btn,died=>died,
               pixel_x=>pixel_x, pixel_y=>pixel_y,
-              gra_still=>gra_still,hit=>hit, p1_damage=>p1_damage,
+              gra_still=>gra_still,hit=>hit, p1_damage=>p1_damage,hit_p2=>hit_p2,p2_damage=>p2_damage,
               graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',gamemode2=>GameMode2);
    -- instantiate 2 sec timer
    timer_tick <=  -- 60 Hz tick
@@ -122,10 +122,14 @@ begin
       if reset='1' then
          state_reg <= newgame;
          lives_p1_reg <= (others=>'0');
+                  lives_p2_reg <= (others=>'0');
+
          rgb_reg <= (others=>'0');
       elsif (clk'event and clk='1') then
          state_reg <= state_next;
          lives_p1_reg <= lives_p1_next;
+                  lives_p2_reg <= lives_p2_next;
+
          if (pixel_tick='1') then
            rgb_reg <= rgb_next;
          end if;
@@ -133,7 +137,7 @@ begin
    end process;
    -- fsmd next-state logic
    process(btn,hit,p1_damage,timer_up,state_reg,
-           lives_p1_reg,lives_p1_next, CODEWORD)
+           lives_p1_reg,lives_p1_next,lives_p2_reg,lives_p2_next, CODEWORD,hit_p2,p2_damage)
    begin
       gra_still <= '1';
       timer_start <='0';
@@ -146,9 +150,11 @@ begin
 
       state_next <= state_reg;
       lives_p1_next <= lives_p1_reg;
+      lives_p2_next <= lives_p2_reg;
       case state_reg is
          when newgame =>
-            lives_p1_next <= "11";    -- three balls
+            lives_p1_next <= "11";    -- three lives
+            lives_p2_next <= "11";    -- three lives
             d_clr <= '1';         -- clear score
             d_clr_2p<='1';
             died<='0';
@@ -163,10 +169,11 @@ begin
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
-               
-            elsif p1_damage='1' then
+            end if;
+            if p1_damage='1' then
                lives_p1_next <= lives_p1_reg - 1;
-            elsif (lives_p1_reg=0) then
+            end if;
+            if (lives_p1_reg=0) then
                state_next <= over;
 
 --                  state_next <= over;
@@ -184,13 +191,17 @@ begin
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
-               elsif hit_p2='1' then
+            end if;
+            if hit_p2='1' then
                d_inc_2p <= '1';   
-            elsif p1_damage='1' then
+            END IF;
+            if p1_damage='1' then
                lives_p1_next <= lives_p1_reg - 1;
-               elsif p2_damage='1' then
-               lives_p1_next <= lives_p1_reg - 1;
-            elsif (lives_p1_reg=0) then
+            end if;
+            if p2_damage='1' then
+               lives_p2_next <= lives_p2_reg - 1;
+            end if;
+            if (lives_p1_reg=0 or lives_p2_reg=0) then
                state_next <= over;
             end if;
          when newball =>
