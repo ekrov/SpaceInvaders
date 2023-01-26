@@ -1577,7 +1577,7 @@ BEGIN
         ELSIF (hp_alien_boss_bar_green_on = '1') THEN
             rgb <= "010"; -- green
         ELSIF (hp_alien_boss_bar_red_on = '1') THEN
-            rgb <= "010"; -- green
+            rgb <= "100"; -- green
         ELSE
             rgb <= "111"; -- black background
         END IF;
