@@ -1530,10 +1530,10 @@ BEGIN
     ----------------------------------------------
     -- HP Alien Boss Bar
     ----------------------------------------------
-    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 250 AND pix_x < (MAX_X - 50 - 20*(10 - alien_boss_lives_reg)) AND
-                                    (pix_y > 50 AND pix_y < 150)  ELSE '0';
-    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 50 - 20*(10 - alien_boss_lives_reg)) AND pix_x < (MAX_X - 50) AND
-                                    (pix_y > 50 AND pix_y < 150) ELSE '0';
+    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 50 - 10*(10 - alien_boss_lives_reg)) AND
+                                    (pix_y > 20 AND pix_y < 70)  ELSE '0';
+    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 50 - 10*(10 - alien_boss_lives_reg)) AND pix_x < (MAX_X - 50) AND
+                                    (pix_y > 20 AND pix_y < 70) ELSE '0';
     ----------------------------------------------
     -- rgb multiplexing circuit
     ----------------------------------------------
@@ -1577,7 +1577,7 @@ BEGIN
         ELSIF (hp_alien_boss_bar_green_on = '1') THEN
             rgb <= "010"; -- green
         ELSIF (hp_alien_boss_bar_red_on = '1') THEN
-            rgb <= "100"; -- green
+            rgb <= "100"; -- red
         ELSE
             rgb <= "111"; -- black background
         END IF;
