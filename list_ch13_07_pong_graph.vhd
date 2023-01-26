@@ -1188,14 +1188,19 @@ BEGIN
                 alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg;
                 -- alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg;
                 -- alien_boss_y_next <= alien_boss_y_reg;
+                if(alien_boss_vx_reg=ALIEN_V_P) then
+                    alien_boss_x_next<= alien_boss_x_reg +alien_boss_vx_reg + alien_boss_hits_counter_reg;
+                ELSIF(alien_boss_vx_reg=ALIEN_V_N) then
+                    alien_boss_x_next<= alien_boss_x_reg +alien_boss_vx_reg- alien_boss_hits_counter_reg;
+                END IF;
             END IF;
 
             IF (alien_boss_alive_reg = '1') THEN
                 IF (alien_boss_x_l < 1) THEN -- reach left border
-                    alien_boss_vx_next <= ALIEN_V_P + alien_boss_hits_counter_reg;
+                    alien_boss_vx_next <= ALIEN_V_P;
                 ELSIF (alien_boss_x_r > MAX_X) THEN -- reach right border
                     -- p1_damage <= '1'; -- a p1_damage
-                    alien_boss_vx_next <= ALIEN_V_N - alien_boss_hits_counter_reg;
+                    alien_boss_vx_next <= ALIEN_V_N ;
                 END IF;
                 -- ELSE
                 --     alien_boss_x_next <= to_unsigned(((MAX_X)/2) + 200, 10);
@@ -1731,9 +1736,9 @@ BEGIN
     ----------------------------------------------
     -- HP Alien Boss Bar
     ----------------------------------------------
-    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND
+    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0' AND gra_still='0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND
                                     (pix_y > 10 AND pix_y < 30)  ELSE '0';
-    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND pix_x < (MAX_X - 50) AND
+    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0' AND gra_still='0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND pix_x < (MAX_X - 50) AND
                                     (pix_y > 10 AND pix_y < 30) ELSE '0';
 
     -- hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +  (to_unsignedl(alien_boss_lives_reg, 10)(9 DOWNTO 4) & "0000")) AND
