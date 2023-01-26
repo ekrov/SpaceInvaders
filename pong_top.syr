@@ -121,8 +121,7 @@ Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12
 Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" is newer than current system time.
-Entity <pong_text> compiled.
-Entity <pong_text> (Architecture <arch>) compiled.
+Architecture arch of Entity pong_text is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" is newer than current system time.
 Architecture arch of Entity pong_graph is up to date.
@@ -132,7 +131,8 @@ Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13
 Architecture arch of Entity m100_counter is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" is newer than current system time.
-Architecture arch of Entity pong_top is up to date.
+Entity <pong_top> compiled.
+Entity <pong_top> (Architecture <arch>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -169,8 +169,6 @@ Analyzing hierarchy for entity <font_rom> in library <work> (architecture <arch>
 Analyzing Entity <pong_top> in library <work> (Architecture <arch>).
 WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 53: Unconnected output port 'LOCKED_OUT' of component 'clockmanager'.
 WARNING:Xst:753 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 70: Unconnected output port 'ps2_code_new' of component 'ps2_keyboard'.
-WARNING:Xst:819 - "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" line 140: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
-   <round_end>
 Entity <pong_top> analyzed. Unit <pong_top> generated.
 
 Analyzing Entity <clockmanager> in library <work> (Architecture <BEHAVIORAL>).
@@ -578,17 +576,14 @@ Unit <pong_text> synthesized.
 Synthesizing Unit <pong_top>.
     Related source file is "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd".
 WARNING:Xst:653 - Signal <timer_start_2> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:653 - Signal <round_start> is used but never assigned. This sourceless signal will be automatically connected to value 0.
-WARNING:Xst:646 - Signal <round_end> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <debounce_out> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-INFO:Xst:1799 - State round_ended is never reached in FSM <state_reg>.
 INFO:Xst:1799 - State newball is never reached in FSM <state_reg>.
     Found finite state machine <FSM_0> for signal <state_reg>.
     -----------------------------------------------------------------------
-    | States             | 4                                              |
-    | Transitions        | 10                                             |
-    | Inputs             | 6                                              |
-    | Outputs            | 4                                              |
+    | States             | 5                                              |
+    | Transitions        | 13                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 5                                              |
     | Clock              | clk                       (rising_edge)        |
     | Reset              | reset                     (positive)           |
     | Reset type         | asynchronous                                   |
@@ -600,7 +595,7 @@ INFO:Xst:1799 - State newball is never reached in FSM <state_reg>.
     Found 2-bit register for signal <lives_p1_reg>.
     Found 2-bit subtractor for signal <lives_p1_reg$addsub0000>.
     Found 2-bit register for signal <lives_p2_reg>.
-    Found 2-bit subtractor for signal <lives_p2_reg$addsub0000> created at line 212.
+    Found 2-bit subtractor for signal <lives_p2_reg$addsub0000> created at line 214.
     Found 3-bit register for signal <rgb_reg>.
     Summary:
 	inferred   1 Finite State Machine(s).
@@ -677,16 +672,16 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <state_reg/FSM> on signal <state_reg[1:2]> with sequential encoding.
+Optimizing FSM <state_reg/FSM> on signal <state_reg[1:5]> with one-hot encoding.
 -------------------------
  State       | Encoding
 -------------------------
- newgame     | 00
- play        | 10
- play_2p     | 01
- round_ended | unreached
+ newgame     | 00001
+ play        | 00100
+ play_2p     | 00010
+ round_ended | 01000
  newball     | unreached
- over        | 11
+ over        | 10000
 -------------------------
 WARNING:Xst:1290 - Hierarchical block <timer_unit_2> is unconnected in block <pong_top>.
    It will be removed from the design.
@@ -798,7 +793,7 @@ INFO:Xst:2261 - The FF/Latch <alien_y_reg_1> in Unit <pong_graph> is equivalent 
 INFO:Xst:2261 - The FF/Latch <alien_2_y_reg_2> in Unit <pong_graph> is equivalent to the following 2 FFs/Latches, which will be removed : <alien_2_y_reg_3> <alien_2_y_reg_7> 
 INFO:Xst:2261 - The FF/Latch <alien_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_vx_reg_8> <alien_vx_reg_6> <alien_vx_reg_5> <alien_vx_reg_7> <alien_vx_reg_4> 
 INFO:Xst:2261 - The FF/Latch <alien_2_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_2_vx_reg_8> <alien_2_vx_reg_6> <alien_2_vx_reg_5> <alien_2_vx_reg_7> <alien_2_vx_reg_4> 
-WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_alive_next, alien_2_alive_next_and0001, round_end.
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_2_alive_next_and0001, round_end, alien_alive_next.
 
 Optimizing unit <pong_top> ...
 
@@ -816,24 +811,14 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_1> of sequential type is unconne
 WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_2> of sequential type is unconnected in block <pong_top>.
 WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_3> of sequential type is unconnected in block <pong_top>.
 WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_6> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_5> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_4> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_3> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_2> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_1> of sequential type is unconnected in block <pong_top>.
-WARNING:Xst:2677 - Node <graph_unit/respawn_timer_reg_0> of sequential type is unconnected in block <pong_top>.
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: state_reg_FSM_FFd3-In, graph_unit/N51, graph_unit/respawn_timer_reg_not0001147, round_end.
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 105.
+Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 107.
 Optimizing block <pong_top> to meet ratio 100 (+ 5) of 960 slices :
-Area constraint is met for block <pong_top>, final ratio is 93.
-FlipFlop state_reg_FSM_FFd1 has been replicated 1 time(s)
-FlipFlop state_reg_FSM_FFd2 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_1 has been replicated 1 time(s)
-FlipFlop vga_sync_unit/v_count_reg_2 has been replicated 2 time(s)
+Area constraint is met for block <pong_top>, final ratio is 95.
 FlipFlop vga_sync_unit/v_count_reg_3 has been replicated 1 time(s)
 FlipFlop vga_sync_unit/v_count_reg_4 has been replicated 1 time(s)
 FlipFlop vga_sync_unit/v_count_reg_5 has been replicated 1 time(s)
@@ -849,8 +834,8 @@ Unit <pong_top> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 354
- Flip-Flops                                            : 354
+# Registers                                            : 359
+ Flip-Flops                                            : 359
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -881,32 +866,33 @@ Design Statistics
 # IOs                              : 27
 
 Cell Usage :
-# BELS                             : 2860
+# BELS                             : 2891
 #      GND                         : 1
-#      INV                         : 104
+#      INV                         : 105
 #      LUT1                        : 136
-#      LUT2                        : 478
-#      LUT2_D                      : 7
-#      LUT2_L                      : 5
-#      LUT3                        : 265
-#      LUT3_D                      : 8
-#      LUT3_L                      : 5
-#      LUT4                        : 610
-#      LUT4_D                      : 43
-#      LUT4_L                      : 62
+#      LUT2                        : 523
+#      LUT2_D                      : 3
+#      LUT2_L                      : 3
+#      LUT3                        : 235
+#      LUT3_D                      : 9
+#      LUT3_L                      : 4
+#      LUT4                        : 655
+#      LUT4_D                      : 28
+#      LUT4_L                      : 43
 #      MUXCY                       : 682
-#      MUXF5                       : 91
+#      MUXF5                       : 101
 #      MUXF6                       : 10
 #      MUXF7                       : 3
 #      MUXF8                       : 1
 #      VCC                         : 1
 #      XORCY                       : 348
-# FlipFlops/Latches                : 363
+# FlipFlops/Latches                : 368
 #      FD                          : 12
 #      FD_1                        : 11
 #      FDC                         : 18
-#      FDCE                        : 142
+#      FDCE                        : 146
 #      FDE                         : 110
+#      FDP                         : 1
 #      FDPE                        : 22
 #      FDRE                        : 41
 #      LDCE                        : 7
@@ -929,10 +915,10 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-5 
 
- Number of Slices:                      897  out of    960    93%  
- Number of Slice Flip Flops:            363  out of   1920    18%  
- Number of 4 input LUTs:               1725  out of   1920    89%  
-    Number used as logic:              1723
+ Number of Slices:                      913  out of    960    95%  
+ Number of Slice Flip Flops:            368  out of   1920    19%  
+ Number of 4 input LUTs:               1746  out of   1920    90%  
+    Number used as logic:              1744
     Number used as Shift registers:       2
  Number of IOs:                          27
  Number of bonded IOBs:                  25  out of     83    30%  
@@ -961,7 +947,7 @@ Clock Information:
 -------------------------------------------------------------+----------------------------------------------------+-------+
 Clock Signal                                                 | Clock buffer(FF name)                              | Load  |
 -------------------------------------------------------------+----------------------------------------------------+-------+
-clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X                | 348   |
+clock                                                        | ClockManager_unit/DCM_SP_INST:CLK2X                | 353   |
 graph_unit/refr_tick(graph_unit/refr_tick_and0000_wg_cy<4>:O)| NONE(*)(graph_unit/play_alien_shoot_counter_next_6)| 7     |
 keyboard_unit/debounce_ps2_clk/result                        | NONE(keyboard_unit/ps2_word_10)                    | 11    |
 -------------------------------------------------------------+----------------------------------------------------+-------+
@@ -975,8 +961,8 @@ Asynchronous Control Signals Information:
 ----------------------------------------------------------------------------------+-------------------------------------------------+-------+
 Control Signal                                                                    | Buffer(FF name)                                 | Load  |
 ----------------------------------------------------------------------------------+-------------------------------------------------+-------+
-graph_unit/alien_boss_lives_reg_or0000(graph_unit/alien_boss_lives_reg_or00001:O) | NONE(graph_unit/alien_2_alive_reg)              | 119   |
-reset                                                                             | IBUF                                            | 63    |
+graph_unit/alien_boss_lives_reg_or0000(graph_unit/alien_boss_lives_reg_or00001:O) | NONE(graph_unit/alien_2_alive_reg)              | 126   |
+reset                                                                             | IBUF                                            | 61    |
 graph_unit/alien_boss_projectil_hit_reg(graph_unit/alien_boss_projectil_hit_reg:Q)| NONE(graph_unit/play_alien_shoot_counter_next_0)| 7     |
 ----------------------------------------------------------------------------------+-------------------------------------------------+-------+
 
@@ -984,9 +970,9 @@ Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 24.827ns (Maximum Frequency: 40.278MHz)
-   Minimum input arrival time before clock: 6.047ns
-   Maximum output required time after clock: 4.756ns
+   Minimum period: 27.466ns (Maximum Frequency: 36.408MHz)
+   Minimum input arrival time before clock: 5.965ns
+   Maximum output required time after clock: 4.757ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -995,35 +981,37 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clock'
-  Clock period: 24.827ns (frequency: 40.278MHz)
-  Total number of paths / destination ports: 352729 / 703
+  Clock period: 27.466ns (frequency: 36.408MHz)
+  Total number of paths / destination ports: 497197 / 712
 -------------------------------------------------------------------------
-Delay:               12.414ns (Levels of Logic = 11)
-  Source:            graph_unit/alien_boss_lives_reg_3 (FF)
-  Destination:       counter_unit/dig1_reg_3 (FF)
+Delay:               13.733ns (Levels of Logic = 13)
+  Source:            state_reg_FSM_FFd4 (FF)
+  Destination:       graph_unit/alien_boss_lives_reg_3 (FF)
   Source Clock:      clock rising 2.0X
   Destination Clock: clock rising 2.0X
 
-  Data Path: graph_unit/alien_boss_lives_reg_3 to counter_unit/dig1_reg_3
+  Data Path: state_reg_FSM_FFd4 to graph_unit/alien_boss_lives_reg_3
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDPE:C->Q             6   0.514   0.721  graph_unit/alien_boss_lives_reg_3 (graph_unit/alien_boss_lives_reg_3)
-     LUT4:I0->O            1   0.612   0.387  graph_unit/rom_data_alien_boss_or0000_G (N323)
-     LUT4:I2->O            9   0.612   0.700  graph_unit/rom_data_alien_boss_or0000 (graph_unit/rom_data_alien_boss_or0000)
-     LUT4:I3->O            1   0.612   0.387  graph_unit/rom_data_alien_boss<11>_SW2 (N286)
-     LUT4:I2->O            1   0.612   0.360  graph_unit/rom_data_alien_boss<11> (graph_unit/rom_data_alien_boss<11>)
-     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_6_f5_G (N472)
+     FDC:C->Q             84   0.514   1.117  state_reg_FSM_FFd4 (state_reg_FSM_FFd4)
+     LUT3:I2->O            1   0.612   0.000  graph_unit/rom_data_alien_boss_or0000_G (N314)
+     MUXF5:I1->O          10   0.278   0.753  graph_unit/rom_data_alien_boss_or0000 (graph_unit/rom_data_alien_boss_or0000)
+     LUT4:I3->O            1   0.612   0.360  graph_unit/rom_data_alien_boss<11>_SW0 (N179)
+     LUT4:I3->O            1   0.612   0.000  graph_unit/rom_data_alien_boss<11>_F (N495)
+     MUXF5:I0->O           1   0.278   0.360  graph_unit/rom_data_alien_boss<11> (graph_unit/rom_data_alien_boss<11>)
+     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_6_f5_G (N500)
      MUXF5:I1->O           1   0.278   0.360  graph_unit/Mmux_rom_bit_alien_boss_6_f5 (graph_unit/Mmux_rom_bit_alien_boss_6_f5)
-     LUT4:I3->O            1   0.612   0.000  graph_unit/Mmux_rom_bit_alien_boss_2_f5_G (N470)
-     MUXF5:I1->O           3   0.278   0.454  graph_unit/Mmux_rom_bit_alien_boss_2_f5 (graph_unit/rom_bit_alien_boss1)
-     LUT4_D:I3->O          7   0.612   0.632  graph_unit/rd_alien_boss_on_and0000 (graph_unit/rd_alien_boss_on)
-     LUT3:I2->O           14   0.612   0.853  graph_unit/alien_boss_lives_reg_not00031 (graph_unit/alien_boss_hits_counter_reg_and0000)
-     LUT4:I3->O            4   0.612   0.499  counter_unit/dig0_reg_not00021 (counter_unit/dig0_reg_not0002)
-     FDCE:CE                   0.483          counter_unit/dig0_reg_0
+     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/Mmux_rom_bit_alien_boss_3 (graph_unit/Mmux_rom_bit_alien_boss_3)
+     LUT4:I3->O           16   0.612   0.882  graph_unit/rd_alien_boss_on_and0000 (graph_unit/rd_alien_boss_on)
+     LUT4_L:I3->LO         1   0.612   0.103  graph_unit/respawn_timer_reg_not0001143_SW1 (N349)
+     LUT4:I3->O            1   0.612   0.426  graph_unit/respawn_timer_reg_not0001143 (graph_unit/respawn_timer_reg_not0001143)
+     LUT4_D:I1->O         12   0.612   0.820  graph_unit/respawn_timer_reg_not0001158 (graph_unit/N51)
+     LUT4:I3->O            4   0.612   0.499  graph_unit/alien_boss_lives_reg_not0003 (graph_unit/alien_boss_lives_reg_not0003)
+     FDPE:CE                   0.483          graph_unit/alien_boss_lives_reg_1
     ----------------------------------------
-    Total                     12.414ns (7.061ns logic, 5.353ns route)
-                                       (56.9% logic, 43.1% route)
+    Total                     13.733ns (7.951ns logic, 5.782ns route)
+                                       (57.9% logic, 42.1% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'keyboard_unit/debounce_ps2_clk/result'
@@ -1050,7 +1038,7 @@ Delay:               1.281ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clock'
   Total number of paths / destination ports: 102 / 102
 -------------------------------------------------------------------------
-Offset:              6.047ns (Levels of Logic = 3)
+Offset:              5.965ns (Levels of Logic = 3)
   Source:            reset (PAD)
   Destination:       graph_unit/alien_2_projectil_y_reg_9 (FF)
   Destination Clock: clock rising 2.0X
@@ -1059,19 +1047,19 @@ Offset:              6.047ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            67   1.106   1.234  reset_IBUF (reset_IBUF)
-     LUT3:I0->O          126   0.612   1.250  graph_unit/alien_boss_lives_reg_or00001 (graph_unit/alien_boss_lives_reg_or0000)
-     LUT4:I0->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
+     IBUF:I->O            70   1.106   1.235  reset_IBUF (reset_IBUF)
+     LUT2:I0->O          128   0.612   1.168  graph_unit/alien_boss_lives_reg_or00001 (graph_unit/alien_boss_lives_reg_or0000)
+     LUT4:I1->O           10   0.612   0.750  graph_unit/alien_projectil_y_reg_and00001 (graph_unit/alien_projectil_y_reg_and0000)
      FDE:CE                    0.483          graph_unit/alien_projectil_y_reg_0
     ----------------------------------------
-    Total                      6.047ns (2.813ns logic, 3.234ns route)
-                                       (46.5% logic, 53.5% route)
+    Total                      5.965ns (2.813ns logic, 3.152ns route)
+                                       (47.2% logic, 52.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clock'
   Total number of paths / destination ports: 21 / 21
 -------------------------------------------------------------------------
-Offset:              4.756ns (Levels of Logic = 1)
+Offset:              4.757ns (Levels of Logic = 1)
   Source:            keyboard_unit/ps2_code_reg_1 (FF)
   Destination:       led<1> (PAD)
   Source Clock:      clock rising 2.0X
@@ -1080,24 +1068,24 @@ Offset:              4.756ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              34   0.514   1.073  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
+     FD:C->Q              36   0.514   1.074  keyboard_unit/ps2_code_reg_1 (keyboard_unit/ps2_code_reg_1)
      OBUF:I->O                 3.169          led_1_OBUF (led<1>)
     ----------------------------------------
-    Total                      4.756ns (3.683ns logic, 1.073ns route)
+    Total                      4.757ns (3.683ns logic, 1.074ns route)
                                        (77.4% logic, 22.6% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 16.00 secs
-Total CPU time to Xst completion: 15.80 secs
+Total REAL time to Xst completion: 18.00 secs
+Total CPU time to Xst completion: 17.42 secs
  
 --> 
 
 
-Total memory usage is 675412 kilobytes
+Total memory usage is 672844 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   50 (   0 filtered)
-Number of infos    :   14 (   0 filtered)
+Number of warnings :   41 (   0 filtered)
+Number of infos    :   13 (   0 filtered)
 

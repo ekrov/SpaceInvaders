@@ -148,6 +148,7 @@ begin
       d_clr_2p <= '0';
       died<='0';
       GameMode2<='0';
+      round_start<='0';
 
       state_next <= state_reg;
       lives_p1_next <= lives_p1_reg;
@@ -191,10 +192,11 @@ begin
                state_next <= round_ended;
             end if;
          when round_ended=>
-            gra_still <= '0';    -- animated screen
+            gra_still <= '1';    -- dont animate screen
             --show end of round graph
             if (CODEWORD =enter) then -- button pressed 
                state_next <= play;
+               round_start<='1';
             end if;
          when play_2p=>
             GameMode2<='1';
