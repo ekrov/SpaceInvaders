@@ -1158,6 +1158,7 @@ BEGIN
             alien_boss_lives_next <= alien_boss_lives_reg - 1;
             IF (alien_boss_lives_reg = "0000") THEN
                 alien_boss_alive_next <= '0';
+                alien_boss_lives_next<="1010";
             END IF;
             hit <= '1';
 
@@ -1530,28 +1531,10 @@ BEGIN
     ----------------------------------------------
     -- HP Alien Boss Bar
     ----------------------------------------------
-    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +   alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg +
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg + 
-                                                                                            alien_boss_lives_reg) AND
-                                    (pix_y > 20 AND pix_y < 70)  ELSE '0';
-    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg +
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg + 
-                                                                alien_boss_lives_reg) AND pix_x < (MAX_X - 50) AND
-                                    (pix_y > 20 AND pix_y < 70) ELSE '0';
+    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND
+                                    (pix_y > 10 AND pix_y < 30)  ELSE '0';
+    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND pix_x < (MAX_X - 50) AND
+                                    (pix_y > 10 AND pix_y < 30) ELSE '0';
 
     -- hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +  (to_unsignedl(alien_boss_lives_reg, 10)(9 DOWNTO 4) & "0000")) AND
     --                                 (pix_y > 20 AND pix_y < 70)  ELSE '0';
