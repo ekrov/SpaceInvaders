@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Jan 24 15:12:58 2023
+Tue Jan 24 18:21:16 2023
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -60,7 +60,7 @@ Pinout by Pin Number:
 |C10       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |C11       |btn<1>     |IBUF     |IP                       |INPUT    |LVCMOS25*  |0             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
 |C12       |           |DIFFS    |IO_L01N_0                |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
-|C13       |           |DIFFS    |IO_L10N_1/LDC2           |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
+|C13       |rgb<2>     |IOB      |IO_L10N_1/LDC2           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
 |C14       |outred<0>  |IOB      |IO_L10P_1/LDC1           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |D1        |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |D2        |           |IOB      |IO                       |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
@@ -82,14 +82,14 @@ Pinout by Pin Number:
 |F14       |outgreen<0>|IOB      |IO_L08P_1/A2             |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |G1        |led<7>     |IOB      |IO_L05N_3/LHCLK3/IRDY2   |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |G2        |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
-|G3        |rgb<1>     |IOB      |IO_L06P_3/LHCLK4/TRDY2   |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|G3        |           |DIFFM    |IO_L06P_3/LHCLK4/TRDY2   |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |G12       |btn<0>     |IBUF     |IP/VREF_1                |INPUT    |LVCMOS25*  |1             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
 |G13       |outgreen<1>|IOB      |IO_L07N_1/A3/RHCLK7      |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |G14       |outgreen<2>|IOB      |IO_L07P_1/A4/RHCLK6      |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |H1        |           |DIFFS    |IO_L06N_3/LHCLK5         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
-|H2        |rgb<0>     |IOB      |IO_L07P_3/LHCLK6         |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
-|H3        |           |DIFFS    |IO_L07N_3/LHCLK7         |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
-|H12       |rgb<2>     |IOB      |IO_L06N_1/A5/RHCLK5      |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|H2        |rgb<1>     |IOB      |IO_L07P_3/LHCLK6         |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|H3        |rgb<0>     |IOB      |IO_L07N_3/LHCLK7         |OUTPUT   |LVCMOS25*  |3             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|H12       |           |DIFFS    |IO_L06N_1/A5/RHCLK5      |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
 |H13       |outblue<0> |IOB      |IO_L06P_1/A6/RHCLK4/IRDY1|OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |H14       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |J1        |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |

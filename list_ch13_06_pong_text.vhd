@@ -279,7 +279,7 @@ BEGIN
    --        ALINES INCOMING
    ---------------------------------------------
    aliens_inc_on <= '1' WHEN pix_x(9 DOWNTO 7) = "010" AND
-      pix_y(9 DOWNTO 6) = "0011" ELSE
+      pix_y(9 DOWNTO 4) = "001100" ELSE
       '0';
    row_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
    bit_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
