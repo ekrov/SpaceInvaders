@@ -9,22 +9,22 @@ Target Device  : xc3s100e
 Target Package : cp132
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Tue Jan 24 09:00:34 2023
+Mapped Date    : Tue Jan 24 11:21:57 2023
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    2
 Logic Utilization:
-  Number of Slice Flip Flops:           341 out of   1,920   17%
-  Number of 4 input LUTs:             1,483 out of   1,920   77%
+  Number of Slice Flip Flops:           358 out of   1,920   18%
+  Number of 4 input LUTs:             1,519 out of   1,920   79%
 Logic Distribution:
-  Number of occupied Slices:            877 out of     960   91%
-    Number of Slices containing only related logic:     877 out of     877 100%
-    Number of Slices containing unrelated logic:          0 out of     877   0%
+  Number of occupied Slices:            909 out of     960   94%
+    Number of Slices containing only related logic:     909 out of     909 100%
+    Number of Slices containing unrelated logic:          0 out of     909   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,615 out of   1,920   84%
-    Number used as logic:             1,481
+  Total Number of 4 input LUTs:       1,651 out of   1,920   85%
+    Number used as logic:             1,517
     Number used as a route-thru:        132
     Number used as Shift registers:       2
 
@@ -36,11 +36,11 @@ Logic Distribution:
   Number of BUFGMUXs:                     2 out of      24    8%
   Number of DCMs:                         1 out of       2   50%
 
-Average Fanout of Non-Clock Nets:                3.41
+Average Fanout of Non-Clock Nets:                3.39
 
 Peak Memory Usage:  678 MB
-Total REAL time to MAP completion:  2 secs 
-Total CPU time to MAP completion:   2 secs 
+Total REAL time to MAP completion:  3 secs 
+Total CPU time to MAP completion:   3 secs 
 
 NOTES:
 
@@ -92,9 +92,11 @@ WARNING:PhysDesignRules:367 - The signal <btn<1>_IBUF> is incomplete. The signal
 Section 3 - Informational
 -------------------------
 INFO:Security:54 - 'xc3s100e' is a WebPack part.
-INFO:LIT:243 - Logical network btn<1>_IBUF has no load.
-INFO:LIT:395 - The above info message is repeated 1 more times for the following
+INFO:LIT:243 - Logical network graph_unit/alien_boss_alive_reg_or000056/LO has
+   no load.
+INFO:LIT:395 - The above info message is repeated 2 more times for the following
    (max. 5 shown):
+   btn<1>_IBUF,
    btn<0>_IBUF
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
@@ -104,10 +106,27 @@ INFO:LIT:244 - All of the single ended outputs in this design are using slew
 
 Section 4 - Removed Logic Summary
 ---------------------------------
+   1 block(s) removed
    4 block(s) optimized away
+   1 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "graph_unit/alien_boss_alive_reg_or000056/LO" is loadless and has
+been removed.
+ Loadless block "graph_unit/alien_boss_alive_reg_or000056/LUT4_D_BUF" (BUF)
+removed.
 
 Optimized Block(s):
 TYPE 		BLOCK

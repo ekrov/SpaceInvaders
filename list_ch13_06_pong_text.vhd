@@ -301,7 +301,7 @@ BEGIN
          END IF;
       END IF;
    END PROCESS;
-   text_on <= score_2p_on & score_on & rule_on & over_on;
+   text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on  AND font_bit) & over_on ;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------
