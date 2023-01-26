@@ -281,8 +281,8 @@ BEGIN
    aliens_inc_on <= '1' WHEN pix_x(9 DOWNTO 7) = "010" AND
       pix_y(9 DOWNTO 4) = "001100" ELSE
       '0';
-   row_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
-   bit_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
+   row_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_y(4 DOWNTO 1));
+   bit_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_x(3 DOWNTO 1));
    aliens_inc_rom_addr <= pix_y(6 DOWNTO 4) & pix_x(6 DOWNTO 3);
    char_addr_aliens_inc <= ALIENS_INCOMING_ROM(to_integer(aliens_inc_rom_addr));
 
@@ -337,7 +337,7 @@ BEGIN
          row_addr <= row_addr_aliens_inc;
          bit_addr <= bit_addr_aliens_inc;
          IF font_bit = '1' THEN
-            text_rgb <= "101"; -- Magenta
+            text_rgb <= "100"; -- Red
          END IF;
       -- ELSIF rule_on = '1' THEN
       --    char_addr <= char_addr_r;
