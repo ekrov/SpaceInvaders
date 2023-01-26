@@ -348,6 +348,10 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL ship_projectil_3_y_reg, ship_projectil_3_y_next : unsigned(9 DOWNTO 0);
     SIGNAL ship_projectil_3_on, ship_projectil_3_hit_reg, ship_projectil_3_hit_next : STD_LOGIC;
 
+    ---------------------------------  
+    -- HP Alien Boss Bar
+    ---------------------------------
+    SIGNAL hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on : STD_LOGIC;
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -1524,12 +1528,19 @@ BEGIN
     --     play_alien_projectil_1_hit_reg;
 
     ----------------------------------------------
+    -- HP Alien Boss Bar
+    ----------------------------------------------
+    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 250 AND pix_x < (MAX_X - 50 - 20*(10 - alien_boss_lives_reg)) AND
+                                    (pix_y > 50 AND pix_y < 150)  ELSE '0';
+    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 50 - 20*(10 - alien_boss_lives_reg)) AND pix_x < (MAX_X - 50) AND
+                                    (pix_y > 50 AND pix_y < 150) ELSE '0';
+    ----------------------------------------------
     -- rgb multiplexing circuit
     ----------------------------------------------
     PROCESS (proj1_rgb, rd_alien_1_on, rd_alien_2_on, alien_rgb,
         alien_projectil_on, alien_2_projectil_on, ship_lives_reg, ship_rgb, rd_ship_on, ship_rgb_2,
         ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on,
-        ship_projectil_1_on, ship_projectil_3_on)
+        ship_projectil_1_on, ship_projectil_3_on, hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on)
         -- ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on, rd_play_alien_on, play_alien_projectil_1_on,
         -- play_alien_hits_counter_reg, play_alien_rgb, ship_projectil_1_on, ship_projectil_3_on)
         -- -- play_alien_hits_counter_reg, play_alien_rgb,ship_projectil_1_on,ship_projectil_2_on,ship_projectil_3_on)
@@ -1563,6 +1574,10 @@ BEGIN
             rgb <= alien_boss_rgb;
         ELSIF (alien_boss_projectil_on = '1') THEN
             rgb <= alien_boss_rgb;
+        ELSIF (hp_alien_boss_bar_green_on = '1') THEN
+            rgb <= "010"; -- green
+        ELSIF (hp_alien_boss_bar_red_on = '1') THEN
+            rgb <= "010"; -- green
         ELSE
             rgb <= "111"; -- black background
         END IF;
@@ -1573,7 +1588,7 @@ BEGIN
         -- alien_2_projectil_3_on OR rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR alien_projectil_3_on ;
         -- rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR
         alien_boss_projectil_on OR rd_alien_boss_on OR
-        ship_projectil_1_on OR ship_projectil_3_on;
+        ship_projectil_1_on OR ship_projectil_3_on OR hp_alien_boss_bar_green_on OR hp_alien_boss_bar_red_on;
     -- ship_projectil_1_on OR ship_projectil_2_on OR ship_projectil_3_on;
 
 END arch;
