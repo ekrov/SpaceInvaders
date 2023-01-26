@@ -1175,7 +1175,7 @@ BEGIN
 
     alien_projectil_x_next <=
         alien_x_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
-        (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE) WHEN
+        (alien_boss_x_reg) WHEN
         (keyboard_code = f AND alien_boss_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_projectil_x_reg;
     alien_projectil_y_next <=
