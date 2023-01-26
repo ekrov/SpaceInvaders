@@ -374,6 +374,10 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL ship_projectil_3_y_reg, ship_projectil_3_y_next : unsigned(9 DOWNTO 0);
     SIGNAL ship_projectil_3_on, ship_projectil_3_hit_reg, ship_projectil_3_hit_next : STD_LOGIC;
 
+    ---------------------------------  
+    -- HP Alien Boss Bar
+    ---------------------------------
+    SIGNAL hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on : STD_LOGIC;
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -386,7 +390,8 @@ ARCHITECTURE arch OF pong_graph IS
     CONSTANT j : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101011";
     CONSTANT g : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00110100";
     CONSTANT f : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00111011";
-    CONSTANT spacebar : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
+    -- CONSTANT shoot : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
+    CONSTANT shoot : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01110000";
 
     ---------------------------------
     -- Random Generator
@@ -728,10 +733,10 @@ BEGIN
         '0';
 
     ship_projectil_1_x_next <=
-        ship_x_reg WHEN (keyboard_code = spacebar AND ship_projectil_1_hit_reg = '1') ELSE
+        ship_x_reg WHEN (keyboard_code = shoot AND ship_projectil_1_hit_reg = '1') ELSE
         ship_projectil_1_x_reg;
     ship_projectil_1_y_next <=
-        ship_y_reg WHEN (keyboard_code = spacebar AND ship_projectil_1_hit_reg = '1') ELSE
+        ship_y_reg WHEN (keyboard_code = shoot AND ship_projectil_1_hit_reg = '1') ELSE
         ship_projectil_1_y_reg - PROJ1_V WHEN refr_tick = '1' ELSE
         ship_projectil_1_y_reg;
 
@@ -739,7 +744,7 @@ BEGIN
     ship_projectil_1_hit_next <= '1' WHEN (ship_projectil_1_y_t < 3 OR gra_still = '1') OR
         -- (ship_projectil_1_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1' OR rd_alien_boss_on = '1' OR rd_play_alien_on = '1')) ELSE
         (ship_projectil_1_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1' OR rd_alien_boss_on = '1')) ELSE
-        '0' WHEN (keyboard_code = spacebar) ELSE
+        '0' WHEN (keyboard_code = shoot) ELSE
         ship_projectil_1_hit_reg;
 
     -- -- Projectil Hit State
@@ -772,11 +777,11 @@ BEGIN
     --     proj1_y_t_reg;
 
     -- proj1_hit_next <= '1' WHEN (proj1_y_t < 3 OR gra_still = '1' OR (proj1_on = '1' AND rd_play_alien_on = '1') OR (rd_alien_boss_on = '1' AND proj1_on = '1')) ELSE
-    --     '0' WHEN (keyboard_code = spacebar) ELSE
+    --     '0' WHEN (keyboard_code = shoot) ELSE
     --     proj1_hit_reg;
 
     -- --Projectile x axis
-    -- proj1_x_l_next <= ship_x_reg WHEN (keyboard_code = spacebar AND proj1_hit_reg = '1') ELSE
+    -- proj1_x_l_next <= ship_x_reg WHEN (keyboard_code = shoot AND proj1_hit_reg = '1') ELSE
     --     proj1_x_l_reg;
 
     ----------------------------------------------  
@@ -794,17 +799,17 @@ BEGIN
 
     -- -- New Ship Projectil Position
     -- ship_projectil_2_x_next <=
-    --     ship_x_reg + ship_SIZE WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1') ELSE
+    --     ship_x_reg + ship_SIZE WHEN (keyboard_code = shoot AND ship_projectil_2_hit_reg = '1') ELSE
     --     ship_projectil_2_x_reg;
     -- ship_projectil_2_y_next <=
-    --     ship_y_reg WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1') ELSE
+    --     ship_y_reg WHEN (keyboard_code = shoot AND ship_projectil_2_hit_reg = '1') ELSE
     --     ship_projectil_2_y_reg - PROJ1_V WHEN refr_tick = '1' ELSE
     --     ship_projectil_2_y_reg;
 
     -- -- Ship Projectil Hit Flag Update
     -- ship_projectil_2_hit_next <= '1' WHEN (ship_projectil_2_y_t < 10 OR gra_still = '1') OR
     --     (ship_projectil_2_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1')) ELSE
-    --     '0' WHEN (keyboard_code = spacebar AND ship_projectil_2_hit_reg = '1' AND shoot_counter_reg > 50 AND shoot_counter_reg < 75) ELSE
+    --     '0' WHEN (keyboard_code = shoot AND ship_projectil_2_hit_reg = '1' AND shoot_counter_reg > 50 AND shoot_counter_reg < 75) ELSE
     --     ship_projectil_2_hit_reg;
 
     ----------------------------------------------  
@@ -833,7 +838,7 @@ BEGIN
     ship_projectil_3_hit_next <= '1' WHEN (ship_projectil_3_y_t < 3 OR gra_still = '1') OR
         -- (ship_projectil_3_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1' OR rd_alien_boss_on = '1' OR rd_play_alien_on = '1')) ELSE
         (ship_projectil_3_on = '1' AND (rd_alien_1_on = '1' OR rd_alien_2_on = '1' OR rd_alien_boss_on = '1')) ELSE
-        '0' WHEN (keyboard_code = spacebar AND ship_projectil_3_hit_reg = '1' AND shoot_counter_reg > 100) ELSE
+        '0' WHEN (keyboard_code = shoot AND ship_projectil_3_hit_reg = '1' AND shoot_counter_reg > 100) ELSE
         ship_projectil_3_hit_reg;
 
     ----------------------------------------------
@@ -1724,12 +1729,25 @@ BEGIN
     --     play_alien_projectil_1_hit_reg;
 
     ----------------------------------------------
+    -- HP Alien Boss Bar
+    ----------------------------------------------
+    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND
+                                    (pix_y > 10 AND pix_y < 30)  ELSE '0';
+    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND pix_x < (MAX_X - 50) AND
+                                    (pix_y > 10 AND pix_y < 30) ELSE '0';
+
+    -- hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +  (to_unsignedl(alien_boss_lives_reg, 10)(9 DOWNTO 4) & "0000")) AND
+    --                                 (pix_y > 20 AND pix_y < 70)  ELSE '0';
+    
+    -- hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + (alien_boss_lives_reg & "0000")) AND pix_x < (MAX_X - 50) AND
+    --                                 (pix_y > 20 AND pix_y < 70) ELSE '0';
+    ----------------------------------------------
     -- rgb multiplexing circuit
     ----------------------------------------------
     PROCESS (proj1_rgb, rd_alien_1_on, rd_alien_2_on, alien_rgb,
         alien_projectil_on, alien_2_projectil_on, ship_lives_reg, ship_rgb, rd_ship_on, ship_rgb_2,
         ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on,
-        ship_projectil_1_on, ship_projectil_3_on, rd_border_on, border_rgb, gamemode2)
+        ship_projectil_1_on, ship_projectil_3_on, rd_border_on, border_rgb, gamemode2,hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on)
         -- ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on, rd_play_alien_on, play_alien_projectil_1_on,
         -- play_alien_hits_counter_reg, play_alien_rgb, ship_projectil_1_on, ship_projectil_3_on)
         -- -- play_alien_hits_counter_reg, play_alien_rgb,ship_projectil_1_on,ship_projectil_2_on,ship_projectil_3_on)
@@ -1767,7 +1785,10 @@ BEGIN
             rgb <= alien_boss_rgb;
         ELSIF (alien_boss_projectil_on = '1') THEN
             rgb <= alien_boss_rgb;
-
+        ELSIF (hp_alien_boss_bar_green_on = '1') THEN
+            rgb <= "010"; -- green
+        ELSIF (hp_alien_boss_bar_red_on = '1') THEN
+            rgb <= "100"; -- red
         ELSIF (rd_border_on = '1') THEN
             rgb <= border_rgb;
         ELSE
@@ -1780,7 +1801,7 @@ BEGIN
         -- alien_2_projectil_3_on OR rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR alien_projectil_3_on ;
         -- rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR
         alien_boss_projectil_on OR rd_alien_boss_on OR
-        ship_projectil_1_on OR ship_projectil_3_on OR rd_border_on;
+        ship_projectil_1_on OR ship_projectil_3_on OR rd_border_on OR hp_alien_boss_bar_green_on OR hp_alien_boss_bar_red_on;
     -- ship_projectil_1_on OR ship_projectil_2_on OR ship_projectil_3_on;
 
 END arch;
