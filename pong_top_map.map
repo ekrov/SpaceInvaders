@@ -9,7 +9,7 @@ Target Device  : xc3s100e
 Target Package : cp132
 Target Speed   : -5
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Tue Jan 24 13:55:04 2023
+Mapped Date    : Tue Jan 24 14:41:15 2023
 
 vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 INFO:Security:54 - 'xc3s100e' is a WebPack part.
@@ -37,17 +37,17 @@ Design Summary:
 Number of errors:      0
 Number of warnings:    3
 Logic Utilization:
-  Total Number Slice Registers:         355 out of   1,920   18%
-    Number used as Flip Flops:          348
+  Total Number Slice Registers:         363 out of   1,920   18%
+    Number used as Flip Flops:          356
     Number used as Latches:               7
-  Number of 4 input LUTs:             1,579 out of   1,920   82%
+  Number of 4 input LUTs:             1,587 out of   1,920   82%
 Logic Distribution:
-  Number of occupied Slices:            929 out of     960   96%
-    Number of Slices containing only related logic:     929 out of     929 100%
-    Number of Slices containing unrelated logic:          0 out of     929   0%
+  Number of occupied Slices:            937 out of     960   97%
+    Number of Slices containing only related logic:     937 out of     937 100%
+    Number of Slices containing unrelated logic:          0 out of     937   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,723 out of   1,920   89%
-    Number used as logic:             1,577
+  Total Number of 4 input LUTs:       1,731 out of   1,920   90%
+    Number used as logic:             1,585
     Number used as a route-thru:        144
     Number used as Shift registers:       2
 
@@ -59,9 +59,9 @@ Logic Distribution:
   Number of BUFGMUXs:                     2 out of      24    8%
   Number of DCMs:                         1 out of       2   50%
 
-Average Fanout of Non-Clock Nets:                3.48
+Average Fanout of Non-Clock Nets:                3.46
 
-Peak Memory Usage:  678 MB
+Peak Memory Usage:  679 MB
 Total REAL time to MAP completion:  2 secs 
 Total CPU time to MAP completion:   2 secs 
 
