@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Jan 24 05:59:03 2023
+Tue Jan 24 11:41:46 2023
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -60,12 +60,12 @@ Pinout by Pin Number:
 |C10       |           |         |GND                      |         |           |              |          |         |           |         |       |          |           |                |
 |C11       |btn<1>     |IBUF     |IP                       |INPUT    |LVCMOS25*  |0             |          |         |           |NONE     |       |LOCATED   |NO         |NONE            |
 |C12       |           |DIFFS    |IO_L01N_0                |UNUSED   |           |0             |          |         |           |         |       |          |           |                |
-|C13       |           |DIFFS    |IO_L10N_1/LDC2           |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
+|C13       |rgb<2>     |IOB      |IO_L10N_1/LDC2           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
 |C14       |outred<0>  |IOB      |IO_L10P_1/LDC1           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |D1        |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |D2        |           |IOB      |IO                       |UNUSED   |           |3             |          |         |           |         |       |          |           |                |
 |D3        |           |         |VCCINT                   |         |           |              |          |         |           |         |1.2    |          |           |                |
-|D12       |rgb<2>     |IOB      |IO_L09N_1/LDC0           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |UNLOCATED |NO         |NONE            |
+|D12       |           |DIFFS    |IO_L09N_1/LDC0           |UNUSED   |           |1             |          |         |           |         |       |          |           |                |
 |D13       |outred<1>  |IOB      |IO_L09P_1/HDC            |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |NONE**     |         |       |LOCATED   |NO         |NONE            |
 |D14       |           |         |NC                       |         |           |              |          |         |           |         |       |          |           |                |
 |E1        |           |         |VCCO_3                   |         |           |3             |          |         |           |         |2.50   |          |           |                |

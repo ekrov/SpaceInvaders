@@ -7,7 +7,10 @@ ENTITY pong_text IS
       clk, reset : IN STD_LOGIC;
       pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       dig0, dig1 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-      ball : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      dig0_2p, dig1_2p : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      lives_p2 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      gamemode2 : IN STD_LOGIC;
+      lives_p1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       text_on : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
       text_rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
    );
@@ -140,12 +143,12 @@ BEGIN
    pix_x <= unsigned(pixel_x);
    pix_y <= unsigned(pixel_y);
    -- instantiate font rom
-   font_unit: entity work.font_rom
-      port map(clk=>clk, reset=>reset, addr=>rom_addr, data=>font_word);
+   font_unit : ENTITY work.font_rom
+      PORT MAP(clk => clk, reset => reset, addr => rom_addr, data => font_word);
 
    ---------------------------------------------
    -- score region
-   --  - display two-digit score, ball on top left
+   --  - display two-digit score, lives_p1 on top left
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
@@ -180,17 +183,17 @@ BEGIN
       "1100101" WHEN "10100", -- e x72
       "1110011" WHEN "10101", -- s x65
       "0111010" WHEN "10110", -- : x3a
-      "01100" & ball WHEN "10111", -- digit 10
+      "01100" & lives_p1 WHEN "10111", -- digit 10
       "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- score region 2
-   --  - display two-digit score, ball on top left
+   --  - display two-digit score, lives_p1 on top left
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
    score_2p_on <=
       '1' WHEN pix_y(9 DOWNTO 4) = 1 AND
-      pix_x(9 DOWNTO 4) < 12 ELSE
+      pix_x(9 DOWNTO 4) < 12  AND gamemode2='1' ELSE
       '0';
    row_addr_s_2p <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
    bit_addr_s_2p <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
@@ -210,8 +213,8 @@ BEGIN
       "1110010" WHEN "01011", -- r x72
       "1100101" WHEN "01100", -- e x65
       "0111010" WHEN "01101", -- : x3a
-      "011" & dig1 WHEN "01110", -- digit 10
-      "011" & dig0 WHEN "01111", -- digit 1
+      "011" & dig1_2p WHEN "01110", -- digit 10
+      "011" & dig0_2p WHEN "01111", -- digit 1
       "0000000" WHEN "10000",
       "1001100" WHEN "10001", -- L x53
       "1101001" WHEN "10010", -- i x63
@@ -219,7 +222,7 @@ BEGIN
       "1100101" WHEN "10100", -- e x72
       "1110011" WHEN "10101", -- s x65
       "0111010" WHEN "10110", -- : x3a
-      "01100" & ball WHEN "10111", -- digit 10
+      "01100" & lives_p2 WHEN "10111", -- digit 10
       "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- rule region
@@ -298,7 +301,7 @@ BEGIN
          END IF;
       END IF;
    END PROCESS;
-   text_on <= score_2p_on & score_on & rule_on & over_on ;
+   text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on  AND font_bit) & over_on ;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------
