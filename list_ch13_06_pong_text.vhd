@@ -29,6 +29,37 @@ ARCHITECTURE arch OF pong_text IS
    SIGNAL font_bit : STD_LOGIC;
    SIGNAL score_on, score_2p_on, rule_on, over_on : STD_LOGIC;
 
+   -- Aliens Incoming Message Variables
+   SIGNAL char_addr_aliens_inc : STD_LOGIC_VECTOR(6 DOWNTO 0);
+   SIGNAL row_addr_aliens_inc : STD_LOGIC_VECTOR(3 DOWNTO 0);
+   SIGNAL bit_addr_aliens_inc : STD_LOGIC_VECTOR(2 DOWNTO 0);
+   SIGNAL aliens_inc_on : STD_LOGIC;
+   SIGNAL aliens_inc_rom_addr : unsigned(6 DOWNTO 0);
+   TYPE aliens_incoming_rom_type IS ARRAY (0 TO 15) OF
+   STD_LOGIC_VECTOR (6 DOWNTO 0);
+   -- rull text ROM definition
+   CONSTANT ALIENS_INCOMING_ROM : aliens_incoming_rom_type :=
+   (
+   -- row 1
+
+   "0000000", -- 
+   "1000001", -- A
+   "1001100", -- L
+   "1001001", -- I
+   "1000101", -- E
+   "1001110", -- N
+   "1010011", -- S
+   "0000000", --
+   "1001001", -- I
+   "1001110", -- N
+   "1000011", -- C
+   "1001111", -- O
+   "1001101", -- M
+   "1001001", -- I
+   "1001110", -- N
+   "1000111"  -- G
+   );
+
    SIGNAL rule_rom_addr : unsigned(6 DOWNTO 0);
    TYPE rule_rom_type IS ARRAY (0 TO 95) OF
    STD_LOGIC_VECTOR (6 DOWNTO 0);
@@ -240,6 +271,21 @@ BEGIN
    bit_addr_r <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
    rule_rom_addr <= pix_y(6 DOWNTO 4) & pix_x(6 DOWNTO 3);
    char_addr_r <= RULE_ROM(to_integer(rule_rom_addr));
+
+   ---------------------------------------------
+   -- Aliens Incoming Message Region
+   --   - display rule (1-by-16 tiles)on center
+   --   - rule text:
+   --        ALINES INCOMING
+   ---------------------------------------------
+   aliens_inc_on <= '1' WHEN pix_x(9 DOWNTO 7) = "010" AND
+      pix_y(9 DOWNTO 6) = "0011" ELSE
+      '0';
+   row_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
+   bit_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
+   aliens_inc_rom_addr <= pix_y(6 DOWNTO 4) & pix_x(6 DOWNTO 3);
+   char_addr_aliens_inc <= ALIENS_INCOMING_ROM(to_integer(aliens_inc_rom_addr));
+
    ---------------------------------------------
    -- game over region
    --  - display }Game Over" on center
@@ -268,7 +314,8 @@ BEGIN
    PROCESS (score_on, score_2p_on, rule_on, pix_x, pix_y, font_bit,
       char_addr_s, char_addr_s_2p, char_addr_r, char_addr_o,
       row_addr_s, row_addr_s_2p, row_addr_r, row_addr_o,
-      bit_addr_s, bit_addr_s_2p, bit_addr_r, bit_addr_o)
+      bit_addr_s, bit_addr_s_2p, bit_addr_r, bit_addr_o, 
+      aliens_inc_on, char_addr_aliens_inc, row_addr_aliens_inc, bit_addr_aliens_inc)
    BEGIN
       text_rgb <= "000"; -- background, black
       IF score_on = '1' THEN
@@ -285,13 +332,20 @@ BEGIN
          IF font_bit = '1' THEN
             text_rgb <= "111";
          END IF;
-      ELSIF rule_on = '1' THEN
-         char_addr <= char_addr_r;
-         row_addr <= row_addr_r;
-         bit_addr <= bit_addr_r;
+      ELSIF aliens_inc_on = '1' THEN
+         char_addr <= char_addr_aliens_inc;
+         row_addr <= row_addr_aliens_inc;
+         bit_addr <= bit_addr_aliens_inc;
          IF font_bit = '1' THEN
-            text_rgb <= "111"; -- Green
+            text_rgb <= "101"; -- Magenta
          END IF;
+      -- ELSIF rule_on = '1' THEN
+      --    char_addr <= char_addr_r;
+      --    row_addr <= row_addr_r;
+      --    bit_addr <= bit_addr_r;
+      --    IF font_bit = '1' THEN
+      --       text_rgb <= "111"; -- White
+      --    END IF;
       ELSE -- game over
          char_addr <= char_addr_o;
          row_addr <= row_addr_o;
@@ -301,7 +355,8 @@ BEGIN
          END IF;
       END IF;
    END PROCESS;
-   text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on AND font_bit) & over_on;
+   -- text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on AND font_bit) & over_on;
+   text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (aliens_inc_on AND font_bit) & over_on;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------
