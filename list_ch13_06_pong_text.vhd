@@ -7,7 +7,9 @@ ENTITY pong_text IS
       clk, reset : IN STD_LOGIC;
       pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       dig0, dig1 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-      ball : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      dig0_2p, dig1_2p : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      lives_p2 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      lives_p1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       text_on : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
       text_rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
    );
@@ -145,7 +147,7 @@ BEGIN
 
    ---------------------------------------------
    -- score region
-   --  - display two-digit score, ball on top left
+   --  - display two-digit score, lives_p1 on top left
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
@@ -180,11 +182,11 @@ BEGIN
       "1100101" WHEN "10100", -- e x72
       "1110011" WHEN "10101", -- s x65
       "0111010" WHEN "10110", -- : x3a
-      "01100" & ball WHEN "10111", -- digit 10
+      "01100" & lives_p1 WHEN "10111", -- digit 10
       "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- score region 2
-   --  - display two-digit score, ball on top left
+   --  - display two-digit score, lives_p1 on top left
    --  - scale to 16-by-32 font
    --  - line 1, 16 chars: "Score:DD Ball:D"
    ---------------------------------------------
@@ -219,7 +221,7 @@ BEGIN
       "1100101" WHEN "10100", -- e x72
       "1110011" WHEN "10101", -- s x65
       "0111010" WHEN "10110", -- : x3a
-      "01100" & ball WHEN "10111", -- digit 10
+      "01100" & lives_p1 WHEN "10111", -- digit 10
       "0000000" WHEN OTHERS;
    ---------------------------------------------
    -- rule region
