@@ -7,10 +7,10 @@ ENTITY pong_graph IS
         clk, reset : STD_LOGIC;
         btn : STD_LOGIC_VECTOR(1 DOWNTO 0);
         pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-        gra_still, died : IN STD_LOGIC;
+        gra_still, died ,round_start: IN STD_LOGIC;
         timer_up, attack_1_on, gamemode2 : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        graph_on, hit, p1_damage, hit_p2, p2_damage : OUT STD_LOGIC;
+        graph_on, hit, p1_damage, hit_p2, p2_damage,round_end : OUT STD_LOGIC;
         rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 
     );
@@ -334,7 +334,7 @@ ARCHITECTURE arch OF pong_graph IS
     SIGNAL alien_boss_projectil_x_reg, alien_boss_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_projectil_y_reg, alien_boss_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_projectil_on, alien_boss_projectil_hit_reg, alien_boss_projectil_hit_next : STD_LOGIC;
-    SIGNAL play_alien_shoot_counter_reg, play_alien_shoot_counter_next : unsigned(6 DOWNTO 0);
+    SIGNAL play_alien_shoot_counter_reg, play_alien_shoot_counter_next, respawn_timer_reg,respawn_timer_next : unsigned(6 DOWNTO 0);
     ---------------------------------  
     -- Playable Alien Projectiles  
     ---------------------------------
@@ -497,6 +497,8 @@ BEGIN
             --lives
             ship_lives_reg <= "11";
 
+            respawn_timer_reg<=(OTHERS => '0');
+
         ELSIF (clk'event AND clk = '1') THEN
             -- bar_y_reg <= bar_y_next;
             -- ball_x_reg <= ball_x_next;
@@ -572,6 +574,10 @@ BEGIN
             ship_y_reg <= ship_y_next;
             -- Alien Playable Shoots Counter Variable Update
             play_alien_shoot_counter_reg <= play_alien_shoot_counter_next;
+
+            -- timer respawn
+            respawn_timer_reg <= respawn_timer_next;
+
 
             -- proj1_y_t_reg <= proj1_y_t_next;
             -- rand_reg <= rand_next;
@@ -833,7 +839,7 @@ BEGIN
     ----------------------------------------------
     -- Shoots Counter Incrementation Process
     ----------------------------------------------
-    PROCESS (shoot_counter_reg, refr_tick, ship_projectil_1_hit_reg,play_alien_shoot_counter_reg,gamemode2,alien_boss_projectil_hit_reg)
+    PROCESS (shoot_counter_reg, refr_tick, ship_projectil_1_hit_reg,play_alien_shoot_counter_reg,gamemode2,alien_boss_projectil_hit_reg,respawn_timer_reg)
     BEGIN
         shoot_counter_next <= shoot_counter_reg;
 
@@ -855,6 +861,8 @@ BEGIN
         ELSE
             play_alien_shoot_counter_next <= (OTHERS => '0');
         END IF;
+
+        
     END PROCESS;
     -- -- square ship
     -- ship_x_l <= ship_x_reg;
@@ -1230,7 +1238,7 @@ BEGIN
         -- alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_hits_counter_reg,
         -- play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
         alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
-        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on, gamemode2)
+        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on, gamemode2,respawn_timer_reg,refr_tick,round_start)
         -- alien_boss_alive_next, alien_boss_lives_reg, alien_2_alive, alien_alive,ship_projectil_2_on,ship_projectil_1_on,ship_projectil_3_on)
 
     BEGIN
@@ -1245,12 +1253,28 @@ BEGIN
         -- play_alien_hits_counter_next <= play_alien_hits_counter_reg;
         alien_boss_hits_counter_next <= alien_boss_hits_counter_reg;
         alien_boss_lives_next <= alien_boss_lives_reg;
+        respawn_timer_next<=respawn_timer_reg;
+
+        round_end<='0';
+
+        --aliens respawn 
         IF (alien_alive_next = '0' AND alien_2_alive_next = '0' AND alien_boss_alive_next = '0') THEN
+            
+            IF(round_start='1') then 
+                round_end<='0';
             alien_alive_next <= '1';
             alien_2_alive_next <= '1';
             alien_boss_alive_next <= '1';
             alien_boss_lives_next <= "1010";
+                respawn_timer_next<=(OTHERS => '0');
+            end if;
 
+            IF (refr_tick='1') THEN
+                respawn_timer_next<=respawn_timer_reg+1;
+             END IF;
+            IF(respawn_timer_reg>120) then
+                round_end<='1';
+            END IF;
         END IF;
         IF (rd_alien_1_on = '1' AND (ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
             -- IF (rd_alien_1_on = '1' AND (ship_projectil_2_on = '1' OR ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN

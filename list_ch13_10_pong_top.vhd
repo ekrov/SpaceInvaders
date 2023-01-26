@@ -17,7 +17,7 @@ entity pong_top is
 end pong_top;
 
 architecture arch of pong_top is
-   type state_type is (newgame, play,play_2p, newball, over);
+   type state_type is (newgame, play,play_2p,round_ended, newball, over);
    signal state_reg, state_next: state_type;	
    signal clk: std_logic;
 	signal video_on, pixel_tick: std_logic;
@@ -43,6 +43,7 @@ architecture arch of pong_top is
    CONSTANT spacebar : STD_LOGIC_VECTOR (7 DOWNTO 0) := "00101001";
    CONSTANT enter : STD_LOGIC_VECTOR (7 DOWNTO 0) := "01011010";
    signal GameMode2: std_logic;
+   signal round_end, round_start: std_logic;
 
 
 begin
@@ -91,7 +92,7 @@ begin
       port map(clk=>clk, reset=>reset, btn=>btn,died=>died,
               pixel_x=>pixel_x, pixel_y=>pixel_y,
               gra_still=>gra_still,hit=>hit, p1_damage=>p1_damage,hit_p2=>hit_p2,p2_damage=>p2_damage,
-              graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',gamemode2=>GameMode2);
+              graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',gamemode2=>GameMode2,round_end=>round_end,round_start=>round_start);
    -- instantiate 2 sec timer
    timer_tick <=  -- 60 Hz tick
       '1' when pixel_x="0000000000" and
@@ -137,7 +138,7 @@ begin
    end process;
    -- fsmd next-state logic
    process(btn,hit,p1_damage,timer_up,state_reg,
-           lives_p1_reg,lives_p1_next,lives_p2_reg,lives_p2_next, CODEWORD,hit_p2,p2_damage)
+           lives_p1_reg,lives_p1_next,lives_p2_reg,lives_p2_next, CODEWORD,hit_p2,p2_damage,round_end)
    begin
       gra_still <= '1';
       timer_start <='0';
@@ -147,6 +148,7 @@ begin
       d_clr_2p <= '0';
       died<='0';
       GameMode2<='0';
+      round_start<='0';
 
       state_next <= state_reg;
       lives_p1_next <= lives_p1_reg;
@@ -185,6 +187,17 @@ begin
 --               end if;
 --               timer_start <= '1';  -- 2 sec timer
 --               lives_p1_next <= lives_p1_reg - 1;
+            end if;
+            if(round_end='1') then
+               state_next <= round_ended;
+            end if;
+         when round_ended=>
+            gra_still <= '1';    -- dont animate screen
+            --show end of round graph
+               round_start<='1';
+            if (CODEWORD =enter) then -- button pressed 
+               state_next <= play;
+               
             end if;
          when play_2p=>
             GameMode2<='1';
