@@ -1530,10 +1530,34 @@ BEGIN
     ----------------------------------------------
     -- HP Alien Boss Bar
     ----------------------------------------------
-    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + 10*alien_boss_lives_reg) AND
+    hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +   alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg +
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg + 
+                                                                                            alien_boss_lives_reg) AND
                                     (pix_y > 20 AND pix_y < 70)  ELSE '0';
-    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + 10*alien_boss_lives_reg) AND pix_x < (MAX_X - 50) AND
+    hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg +
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg + 
+                                                                alien_boss_lives_reg) AND pix_x < (MAX_X - 50) AND
                                     (pix_y > 20 AND pix_y < 70) ELSE '0';
+
+    -- hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +  (to_unsignedl(alien_boss_lives_reg, 10)(9 DOWNTO 4) & "0000")) AND
+    --                                 (pix_y > 20 AND pix_y < 70)  ELSE '0';
+    
+    -- hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + (alien_boss_lives_reg & "0000")) AND pix_x < (MAX_X - 50) AND
+    --                                 (pix_y > 20 AND pix_y < 70) ELSE '0';
     ----------------------------------------------
     -- rgb multiplexing circuit
     ----------------------------------------------
