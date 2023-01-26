@@ -22,16 +22,21 @@ architecture arch of pong_top is
    signal clk: std_logic;
 	signal video_on, pixel_tick: std_logic;
    signal pixel_x, pixel_y: std_logic_vector (9 downto 0);
-   signal graph_on, gra_still, hit, miss: std_logic;
+   signal graph_on, gra_still, hit, p1_damage,hit_p2,p2_damage: std_logic;
    signal text_on: std_logic_vector(3 downto 0);
    signal graph_rgb, text_rgb: std_logic_vector(2 downto 0);
    signal rgb_reg, rgb_next: std_logic_vector(2 downto 0);
    signal dig0, dig1: std_logic_vector(3 downto 0);
-   signal d_inc, d_clr: std_logic;
+   signal dig0_2p, dig1_2p: std_logic_vector(3 downto 0);
+
+   signal d_inc, d_clr,d_inc_2p, d_clr_2p: std_logic;
    signal timer_tick, timer_start, timer_up: std_logic;
 	signal timer_tick_2, timer_start_2, timer_up_2: std_logic;
-   signal ball_reg, ball_next: unsigned(1 downto 0);
-   signal ball: std_logic_vector(1 downto 0);
+   signal lives_p1_reg, lives_p1_next: unsigned(1 downto 0);
+   signal lives_p2_reg, lives_p2_next: unsigned(1 downto 0);
+   signal lives_p1: std_logic_vector(1 downto 0);
+   signal lives_p2: std_logic_vector(1 downto 0);
+
 	signal CODEWORD: std_logic_vector(7 downto 0);
 	signal debounce_out: std_logic; 
    signal died: std_logic;
@@ -73,17 +78,19 @@ begin
                pixel_x=>pixel_x, pixel_y=>pixel_y,
                video_on=>video_on, p_tick=>pixel_tick);
    -- instantiate text module
-   ball <= std_logic_vector(ball_reg);  --type conversion
+   lives_p1 <= std_logic_vector(lives_p1_reg);  --type conversion
+      lives_p2 <= std_logic_vector(lives_p2_reg);  --type conversion
+
    text_unit: entity work.pong_text
       port map(clk=>clk, reset=>reset,
                pixel_x=>pixel_x, pixel_y=>pixel_y,
-               dig0=>dig0, dig1=>dig1, ball=>ball,
+               dig0=>dig0, dig1=>dig1, lives_p1=>lives_p1, lives_p2=>lives_p2,dig0_2p=>dig0_2p, dig1_2p=>dig1_2p,
                text_on=>text_on, text_rgb=>text_rgb);
    -- instantiate graph module
    graph_unit: entity work.pong_graph
       port map(clk=>clk, reset=>reset, btn=>btn,died=>died,
               pixel_x=>pixel_x, pixel_y=>pixel_y,
-              gra_still=>gra_still,hit=>hit, miss=>miss,
+              gra_still=>gra_still,hit=>hit, p1_damage=>p1_damage,
               graph_on=>graph_on,rgb=>graph_rgb,keyboard_code=>CODEWORD,timer_up=>timer_up_2,attack_1_on=>'1',gamemode2=>GameMode2);
    -- instantiate 2 sec timer
    timer_tick <=  -- 60 Hz tick
@@ -103,38 +110,47 @@ begin
       port map(clk=>clk, reset=>reset,
                d_inc=>d_inc, d_clr=>d_clr,
                dig0=>dig0, dig1=>dig1);
+
+   -- instantiate 2-digit decade counter
+   counter_unit_2p: entity work.m100_counter
+      port map(clk=>clk, reset=>reset,
+               d_inc=>d_inc_2p, d_clr=>d_clr_2p,
+               dig0=>dig0_2p, dig1=>dig1_2p);
    -- registers
    process (clk,reset)
    begin
       if reset='1' then
          state_reg <= newgame;
-         ball_reg <= (others=>'0');
+         lives_p1_reg <= (others=>'0');
          rgb_reg <= (others=>'0');
       elsif (clk'event and clk='1') then
          state_reg <= state_next;
-         ball_reg <= ball_next;
+         lives_p1_reg <= lives_p1_next;
          if (pixel_tick='1') then
            rgb_reg <= rgb_next;
          end if;
       end if;
    end process;
    -- fsmd next-state logic
-   process(btn,hit,miss,timer_up,state_reg,
-           ball_reg,ball_next, CODEWORD)
+   process(btn,hit,p1_damage,timer_up,state_reg,
+           lives_p1_reg,lives_p1_next, CODEWORD)
    begin
       gra_still <= '1';
       timer_start <='0';
       d_inc <= '0';
       d_clr <= '0';
+      d_inc_2p <= '0';
+      d_clr_2p <= '0';
       died<='0';
       GameMode2<='0';
 
       state_next <= state_reg;
-      ball_next <= ball_reg;
+      lives_p1_next <= lives_p1_reg;
       case state_reg is
          when newgame =>
-            ball_next <= "11";    -- three balls
+            lives_p1_next <= "11";    -- three balls
             d_clr <= '1';         -- clear score
+            d_clr_2p<='1';
             died<='0';
             -- if (btn /= "00") then -- button pressed
             if (CODEWORD =enter) then -- button pressed
@@ -148,29 +164,33 @@ begin
             if hit='1' then
                d_inc <= '1';     -- increment score
                
-            elsif miss='1' then
-               ball_next <= ball_reg - 1;
-            elsif (ball_reg=0) then
+            elsif p1_damage='1' then
+               lives_p1_next <= lives_p1_reg - 1;
+            elsif (lives_p1_reg=0) then
                state_next <= over;
 
 --                  state_next <= over;
---            elsif miss='1' then
---               if (ball_reg=0) then
+--            elsif p1_damage='1' then
+--               if (lives_p1_reg=0) then
 --                  state_next <= over;
 --               else
 --                  state_next <= newball;
 --               end if;
 --               timer_start <= '1';  -- 2 sec timer
---               ball_next <= ball_reg - 1;
+--               lives_p1_next <= lives_p1_reg - 1;
             end if;
          when play_2p=>
             GameMode2<='1';
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
-            elsif miss='1' then
-               ball_next <= ball_reg - 1;
-            elsif (ball_reg=0) then
+               elsif hit_p2='1' then
+               d_inc_2p <= '1';   
+            elsif p1_damage='1' then
+               lives_p1_next <= lives_p1_reg - 1;
+               elsif p2_damage='1' then
+               lives_p1_next <= lives_p1_reg - 1;
+            elsif (lives_p1_reg=0) then
                state_next <= over;
             end if;
          when newball =>

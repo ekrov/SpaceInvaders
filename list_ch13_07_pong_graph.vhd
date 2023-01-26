@@ -987,8 +987,8 @@ BEGIN
     -- Square Alien Boss
     alien_boss_x_l <= alien_boss_x_reg;
     alien_boss_y_t <= alien_boss_y_reg;
-    alien_boss_x_r <= alien_boss_x_l + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 4;
-    alien_boss_y_b <= alien_boss_y_t + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 4;
+    alien_boss_x_r <= alien_boss_x_l + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 16;
+    alien_boss_y_b <= alien_boss_y_t + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 16;
     sq_alien_boss_on <=
         '1' WHEN (alien_boss_x_l <= pix_x) AND (pix_x <= alien_boss_x_r) AND
         (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) ELSE
