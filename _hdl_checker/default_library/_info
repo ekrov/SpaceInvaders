@@ -91,7 +91,7 @@ R21
 R22
 R13
 Epong_graph
-Z23 w1674754240
+Z23 w1674755332
 R2
 R3
 R4
@@ -100,26 +100,26 @@ Z24 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.v
 Z25 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd
 l0
 L5
-V?hl]j>ckenil]T<bDiJD]2
+V6B_D44LX9e4b1N`bMZ`U70
 !s100 ZI^^GY@n6?fEODac^1:K?0
 R7
 32
-Z26 !s110 1674754241
+Z26 !s110 1674755333
 !i10b 1
-Z27 !s108 1674754241.000000
-Z28 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
+Z27 !s108 1674755333.000000
+Z28 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 Z29 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_07_pong_graph.vhd|
 !i113 0
-R12
+R22
 R13
 Aarch
 R2
 R3
 R4
-DEx4 work 10 pong_graph 0 22 ?hl]j>ckenil]T<bDiJD]2
+DEx4 work 10 pong_graph 0 22 6B_D44LX9e4b1N`bMZ`U70
 l423
 L19
-VSXCblVkg?;o3oEXKEfgPM2
+VO4oSQJjkHJ[c_;lI;Bz^d3
 !s100 bI>HTNU1G^lX9geVWNmY90
 R7
 32
@@ -129,27 +129,27 @@ R27
 R28
 R29
 !i113 0
-R12
+R22
 R13
 Epong_text
-Z30 w1674754048
+Z30 w1674755334
 R2
 R3
 R4
 R0
-Z31 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd
-Z32 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd
+Z31 8C:\Users\Carlos\AppData\Local\Temp\tmpncm8zauq.vhd
+Z32 FC:\Users\Carlos\AppData\Local\Temp\tmpncm8zauq.vhd
 l0
 L5
 Voa;>F3OVkfKZAYH:^B7_G2
 !s100 ?:@1kfeHJ;05:GRVZhP=B1
 R7
 32
-Z33 !s110 1674754049
+Z33 !s110 1674755334
 !i10b 1
-Z34 !s108 1674754049.000000
-Z35 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd|
-Z36 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_06_pong_text.vhd|
+Z34 !s108 1674755334.000000
+Z35 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|C:\Users\Carlos\AppData\Local\Temp\tmpncm8zauq.vhd|
+Z36 !s107 C:\Users\Carlos\AppData\Local\Temp\tmpncm8zauq.vhd|
 !i113 0
 R12
 R13
@@ -174,7 +174,7 @@ R36
 R12
 R13
 Epong_top
-w1674754513
+w1674759610
 R2
 R3
 R4
@@ -187,9 +187,9 @@ VjPW^aFdjJ3WKk<FIzAhSH0
 !s100 Ajg3ONaABhG8H]`5M:?gS0
 R7
 32
-!s110 1674754513
+!s110 1674759610
 !i10b 1
-!s108 1674754513.000000
+!s108 1674759610.000000
 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\default_library|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd|
 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\list_ch13_10_pong_top.vhd|
 !i113 0

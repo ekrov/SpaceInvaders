@@ -194,9 +194,10 @@ begin
          when round_ended=>
             gra_still <= '1';    -- dont animate screen
             --show end of round graph
+               round_start<='1';
             if (CODEWORD =enter) then -- button pressed 
                state_next <= play;
-               round_start<='1';
+               
             end if;
          when play_2p=>
             GameMode2<='1';

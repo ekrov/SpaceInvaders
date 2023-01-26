@@ -161,7 +161,7 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">keyboard_unit/ps2_code_new</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">pong_top</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2170" delta="new" >Unit <arg fmt="%s" index="1">pong_top</arg> : the following signal(s) form a combinatorial loop: </msg>
+<msg type="warning" file="Xst" num="2170" delta="old" >Unit <arg fmt="%s" index="1">pong_top</arg> : the following signal(s) form a combinatorial loop: </msg>
 
 <msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 </msg>
