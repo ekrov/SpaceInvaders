@@ -11,7 +11,7 @@ ENTITY pong_text IS
       lives_p2 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       gamemode2 : IN STD_LOGIC;
       lives_p1 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-      text_on : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      text_on : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
       text_rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
    );
 END pong_text;
@@ -37,7 +37,10 @@ ARCHITECTURE arch OF pong_text IS
    SIGNAL aliens_inc_rom_addr : unsigned(6 DOWNTO 0);
    TYPE aliens_incoming_rom_type IS ARRAY (0 TO 15) OF
    STD_LOGIC_VECTOR (6 DOWNTO 0);
+   CONSTANT MAX_X : INTEGER := 640;
+   CONSTANT MAX_Y : INTEGER := 480;
    -- rull text ROM definition
+
    CONSTANT ALIENS_INCOMING_ROM : aliens_incoming_rom_type :=
    (
    -- row 1
@@ -57,7 +60,42 @@ ARCHITECTURE arch OF pong_text IS
    "1001101", -- M
    "1001001", -- I
    "1001110", -- N
-   "1000111"  -- G
+   "1000111" -- G
+   );
+
+   -- Aliens Incoming Message Variables
+   SIGNAL char_addr_press_enter : STD_LOGIC_VECTOR(6 DOWNTO 0); -- Char Code Ex: x4c
+   SIGNAL row_addr_press_enter : STD_LOGIC_VECTOR(3 DOWNTO 0);
+   SIGNAL bit_addr_press_enter : STD_LOGIC_VECTOR(2 DOWNTO 0);
+   SIGNAL press_enter_on : STD_LOGIC;
+   SIGNAL press_enter_rom_addr : unsigned(6 DOWNTO 0);
+   TYPE press_enter_rom_type IS ARRAY (0 TO 19) OF
+   STD_LOGIC_VECTOR (6 DOWNTO 0);
+   -- rull text ROM definition
+
+   CONSTANT PRESS_ENTER_ROM : press_enter_rom_type :=
+   (
+   -- row 1
+   "1010000", -- P
+   "1010010", -- R
+   "1000101", -- E
+   "1010011", -- S
+   "1010011", -- S
+   "0000000", --
+   "1000101", -- E
+   "1001110", -- N
+   "1010100", -- T
+   "1000101", -- E
+   "1010010", -- R
+   "0000000", --
+   "1010100", -- T
+   "1001111", -- O
+   "0000000", --
+   "1010011", -- S
+   "1010100", -- T
+   "1000001", -- A
+   "1010010", -- R
+   "1010100" -- T
    );
 
    SIGNAL rule_rom_addr : unsigned(6 DOWNTO 0);
@@ -265,7 +303,7 @@ BEGIN
    --        ENTER TO START
    ---------------------------------------------
    rule_on <= '1' WHEN pix_x(9 DOWNTO 7) = "010" AND
-      pix_y(9 DOWNTO 7) = "001" ELSE
+      (pix_y > ((MAX_Y/2) - 120)) AND (pix_y < ((MAX_Y/2) - 15)) ELSE
       '0';
    row_addr_r <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
    bit_addr_r <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
@@ -278,13 +316,28 @@ BEGIN
    --   - rule text:
    --        ALINES INCOMING
    ---------------------------------------------
-   aliens_inc_on <= '1' WHEN pix_x(9 DOWNTO 7) = "010" AND
-      pix_y(9 DOWNTO 4) = "001100" ELSE
+   aliens_inc_on <= '1' WHEN (pix_x > ((MAX_X/2) - 130)) AND (pix_x < ((MAX_X/2) + 130)) AND
+      (pix_y(9 DOWNTO 5) = "00111") ELSE
       '0';
    row_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_y(4 DOWNTO 1));
    bit_addr_aliens_inc <= STD_LOGIC_VECTOR(pix_x(3 DOWNTO 1));
-   aliens_inc_rom_addr <= pix_y(6 DOWNTO 4) & pix_x(6 DOWNTO 3);
+   aliens_inc_rom_addr <= pix_y(7 DOWNTO 5) & pix_x(7 DOWNTO 4) - 101;
    char_addr_aliens_inc <= ALIENS_INCOMING_ROM(to_integer(aliens_inc_rom_addr));
+
+   ---------------------------------------------
+   -- Aliens Incoming Message Region
+   --   - display rule (1-by-16 tiles)on center
+   --   - rule text:
+   --        PRESS ENTER TO START
+   ---------------------------------------------
+   -- press_enter_on <= '1' WHEN (pix_x > ((MAX_X/2) - 130)) AND (pix_x < ((MAX_X/2) + 130)) AND
+   press_enter_on <= '1' WHEN (pix_x > ((MAX_X/2) - 150)) AND (pix_x < ((MAX_X/2) + 150)) AND
+      (pix_y > ((MAX_Y/2) + 45)) AND (pix_y < ((MAX_Y/2) + 60)) ELSE
+      '0';
+   row_addr_press_enter <= STD_LOGIC_VECTOR(pix_y(3 DOWNTO 0));
+   bit_addr_press_enter <= STD_LOGIC_VECTOR(pix_x(2 DOWNTO 0));
+   press_enter_rom_addr <= pix_y(6 DOWNTO 5) & pix_x(7 DOWNTO 3) + 2;
+   char_addr_press_enter <= PRESS_ENTER_ROM(to_integer(press_enter_rom_addr));
 
    ---------------------------------------------
    -- game over region
@@ -314,8 +367,9 @@ BEGIN
    PROCESS (score_on, score_2p_on, rule_on, pix_x, pix_y, font_bit,
       char_addr_s, char_addr_s_2p, char_addr_r, char_addr_o,
       row_addr_s, row_addr_s_2p, row_addr_r, row_addr_o,
-      bit_addr_s, bit_addr_s_2p, bit_addr_r, bit_addr_o, 
-      aliens_inc_on, char_addr_aliens_inc, row_addr_aliens_inc, bit_addr_aliens_inc)
+      bit_addr_s, bit_addr_s_2p, bit_addr_r, bit_addr_o,
+      aliens_inc_on, char_addr_aliens_inc, row_addr_aliens_inc, bit_addr_aliens_inc, 
+      press_enter_on, char_addr_press_enter, row_addr_press_enter, bit_addr_press_enter)
    BEGIN
       text_rgb <= "000"; -- background, black
       IF score_on = '1' THEN
@@ -339,13 +393,20 @@ BEGIN
          IF font_bit = '1' THEN
             text_rgb <= "100"; -- Red
          END IF;
-      -- ELSIF rule_on = '1' THEN
-      --    char_addr <= char_addr_r;
-      --    row_addr <= row_addr_r;
-      --    bit_addr <= bit_addr_r;
-      --    IF font_bit = '1' THEN
-      --       text_rgb <= "111"; -- White
-      --    END IF;
+      ELSIF press_enter_on = '1' THEN
+         char_addr <= char_addr_press_enter;
+         row_addr <= row_addr_press_enter;
+         bit_addr <= bit_addr_press_enter;
+         IF font_bit = '1' THEN
+            text_rgb <= "100"; -- Red
+         END IF;
+      ELSIF rule_on = '1' THEN
+         char_addr <= char_addr_r;
+         row_addr <= row_addr_r;
+         bit_addr <= bit_addr_r;
+         IF font_bit = '1' THEN
+            text_rgb <= "111"; -- White
+         END IF;
       ELSE -- game over
          char_addr <= char_addr_o;
          row_addr <= row_addr_o;
@@ -355,8 +416,9 @@ BEGIN
          END IF;
       END IF;
    END PROCESS;
-   -- text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on AND font_bit) & over_on;
-   text_on <= (score_2p_on AND font_bit) & (score_on AND font_bit) & (aliens_inc_on AND font_bit) & over_on;
+   -- text_on <= (aliens_inc_on AND font_bit) & (score_2p_on AND font_bit) & (score_on AND font_bit) & (rule_on AND font_bit) & over_on;
+   text_on <= (press_enter_on AND font_bit) & (aliens_inc_on AND font_bit) & (score_2p_on AND font_bit) & (score_on AND font_bit) & 
+               (rule_on AND font_bit) & over_on;
    ---------------------------------------------
    -- font rom interface
    ---------------------------------------------

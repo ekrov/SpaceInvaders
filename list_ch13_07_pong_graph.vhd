@@ -378,7 +378,7 @@ ARCHITECTURE arch OF pong_graph IS
     -- Initial Animated Bar 
     ---------------------------------
     SIGNAL initial_anim_bar_on : STD_LOGIC;
-    SIGNAL initial_anim_bar_timer_reg, initial_anim_bar_timer_next : unsigned(7 DOWNTO 0);
+    SIGNAL initial_anim_bar_timer_reg, initial_anim_bar_timer_next : unsigned(6 DOWNTO 0);
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -632,12 +632,13 @@ BEGIN
     -- border_x_l <= to_unsigned((MAX_X)/2, 10);
     -- border_x_r <= border_x_l + ship_SIZE * 8;
     -- border_y_b <= border_y_t + ship_SIZE * 8;
+    -- sq_border_on <= '0';
     sq_border_on <=
         '1' WHEN (border_x_l <= pix_x) AND (pix_x <= border_x_r) AND
         (border_y_t <= pix_y) AND (pix_y <= border_y_b) ELSE
         '0';
     rd_border_on <=
-        '1' WHEN (sq_border_on = '1') AND (rom_bit_border = '1') AND (gra_still = '1') ELSE
+        '1' WHEN (sq_border_on = '1') AND (rom_bit_border = '1') AND (gra_still = '1') AND round_start = '0' ELSE
         '0';
     rom_addr_border <= pix_y(6 DOWNTO 3) - border_y_t(6 DOWNTO 3);
     rom_col_border <= pix_x(6 DOWNTO 3) - border_x_l(6 DOWNTO 3);
@@ -646,7 +647,7 @@ BEGIN
     rom_data_border <= initial_border(to_integer(rom_addr_border));
     rom_bit_border <= rom_data_border(to_integer(NOT rom_col_border));
     border_rgb <= "010";
-    ---------------------------s-------------------
+    ----------------------------------------------
     -- SHIP
     ----------------------------------------------
     -- square ship
@@ -681,8 +682,8 @@ BEGIN
         IF gra_still = '1' OR ship_got_hit = '1' THEN --initial position of ship
             -- ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
             -- ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
-            ship_x_next <= to_unsigned((MAX_X)/2, 10);
-            ship_y_next <= to_unsigned((MAX_Y/2) + 30, 10);
+            ship_x_next <= to_unsigned((MAX_X)/2 - ship_SIZE, 10);
+            ship_y_next <= to_unsigned((MAX_Y/2) + 100, 10);
         ELSIF refr_tick = '1' THEN
             IF (keyboard_code = down_arrow) THEN
                 IF (ship_y_reg > MAX_Y - 20) THEN
@@ -958,7 +959,7 @@ BEGIN
     alien_y_b <= alien_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_1_on <=
         '1' WHEN (alien_x_l <= pix_x) AND (pix_x <= alien_x_r) AND
-        (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
+        (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) AND gra_still = '0' ELSE
         '0';
     -- Round Alien
 
@@ -1015,7 +1016,7 @@ BEGIN
     alien_2_y_b <= alien_2_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_2_on <=
         '1' WHEN (alien_2_x_l <= pix_x) AND (pix_x <= alien_2_x_r) AND
-        (alien_2_y_t <= pix_y) AND (pix_y <= alien_2_y_b) AND (gamemode2 = '0') ELSE
+        (alien_2_y_t <= pix_y) AND (pix_y <= alien_2_y_b) AND (gamemode2 = '0') AND gra_still = '0' ELSE
         '0';
     -- Round Alien
     rom_addr_alien_2 <= pix_y(3 DOWNTO 1) - alien_2_y_t(3 DOWNTO 1);
@@ -1146,7 +1147,7 @@ BEGIN
     alien_boss_y_b <= alien_boss_y_t + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 16;
     sq_alien_boss_on <=
         '1' WHEN (alien_boss_x_l <= pix_x) AND (pix_x <= alien_boss_x_r) AND
-        (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) ELSE
+        (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) AND gra_still = '0' ELSE
         '0';
     -- Round Alien Boss
     rom_addr_alien_boss <= pix_y(5 DOWNTO 2) - alien_boss_y_t(5 DOWNTO 2);
@@ -1737,9 +1738,9 @@ BEGIN
     ----------------------------------------------
     -- Initial Animated Bar
     ----------------------------------------------
-    initial_anim_bar_on <= '1' WHEN  pix_x > to_integer((MAX_X - initial_anim_bar_timer_reg)/2) AND 
-                                            pix_x < to_integer((MAX_X + initial_anim_bar_timer_reg)/2) AND
-                                            (pix_y > (MAX_Y/2) + 20 AND pix_y < (MAX_Y/2) + 30) ELSE
+    initial_anim_bar_on <= '1' WHEN  pix_x > ((MAX_X/2) - to_integer(initial_anim_bar_timer_reg)) AND 
+                                            pix_x < ((MAX_X/2) + to_integer(initial_anim_bar_timer_reg)) AND
+                                            (pix_y > (MAX_Y/2) + 20 AND pix_y < (MAX_Y/2) + 30) AND round_start = '1' ELSE
                                             '0';
 
     ----------------------------------------------
