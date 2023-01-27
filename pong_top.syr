@@ -121,18 +121,20 @@ Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12
 Architecture arch of Entity vga_sync is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd" is newer than current system time.
-Architecture arch of Entity pong_text is up to date.
+Entity <space_invaders_text> compiled.
+Entity <space_invaders_text> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd" is newer than current system time.
-Entity <pong_graph> compiled.
-Entity <pong_graph> (Architecture <arch>) compiled.
+Entity <space_invaders_graph> compiled.
+Entity <space_invaders_graph> (Architecture <arch>) compiled.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd" in Library work.
 Architecture arch of Entity timer is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd" in Library work.
 Architecture arch of Entity m100_counter is up to date.
 Compiling vhdl file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" in Library work.
 WARNING:HDLParsers:3530 - Time stamp of file "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd" is newer than current system time.
-Architecture arch of Entity pong_top is up to date.
+Entity <space_invaders_top> compiled.
+Entity <space_invaders_top> (Architecture <arch>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -812,7 +814,7 @@ INFO:Xst:2261 - The FF/Latch <alien_y_reg_1> in Unit <pong_graph> is equivalent 
 INFO:Xst:2261 - The FF/Latch <alien_2_y_reg_2> in Unit <pong_graph> is equivalent to the following 2 FFs/Latches, which will be removed : <alien_2_y_reg_3> <alien_2_y_reg_7> 
 INFO:Xst:2261 - The FF/Latch <alien_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_vx_reg_8> <alien_vx_reg_6> <alien_vx_reg_5> <alien_vx_reg_7> <alien_vx_reg_4> 
 INFO:Xst:2261 - The FF/Latch <alien_2_vx_reg_9> in Unit <pong_graph> is equivalent to the following 5 FFs/Latches, which will be removed : <alien_2_vx_reg_8> <alien_2_vx_reg_6> <alien_2_vx_reg_5> <alien_2_vx_reg_7> <alien_2_vx_reg_4> 
-WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: round_end, alien_2_alive_next_and0001, alien_alive_next.
+WARNING:Xst:2170 - Unit pong_graph : the following signal(s) form a combinatorial loop: alien_2_alive_next_and0001, alien_alive_next, round_end.
 
 Optimizing unit <pong_top> ...
 
@@ -833,7 +835,7 @@ WARNING:Xst:2677 - Node <timer_unit_2/timer_reg_4> of sequential type is unconne
 WARNING:Xst:2677 - Node <keyboard_unit/ps2_code_new> of sequential type is unconnected in block <pong_top>.
 
 Mapping all equations...
-WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: round_end, graph_unit/alien_boss_alive_next, graph_unit/N158, state_reg_FSM_FFd3-In, graph_unit/alien_2_alive_next.
+WARNING:Xst:2170 - Unit pong_top : the following signal(s) form a combinatorial loop: state_reg_FSM_FFd3-In, graph_unit/alien_2_alive_next, graph_unit/N158, round_end, graph_unit/alien_boss_alive_next.
 Building and optimizing final netlist ...
 Found area constraint ratio of 100 (+ 5) on block pong_top, actual ratio is 113.
 Optimizing block <pong_top> to meet ratio 100 (+ 5) of 960 slices :
@@ -1102,13 +1104,13 @@ Offset:              4.757ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 20.00 secs
-Total CPU time to Xst completion: 18.43 secs
+Total REAL time to Xst completion: 17.00 secs
+Total CPU time to Xst completion: 16.19 secs
  
 --> 
 
 
-Total memory usage is 675488 kilobytes
+Total memory usage is 676196 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   41 (   0 filtered)

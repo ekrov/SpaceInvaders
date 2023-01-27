@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-localhost.localdomain::  Tue Jan 24 18:03:37 2023
+localhost.localdomain::  Tue Jan 24 18:32:26 2023
 
 par -w -intstyle ise -ol high -t 1 pong_top_map.ncd pong_top.ncd pong_top.pcf 
 
@@ -88,7 +88,7 @@ Phase 6.36  Local Placement Optimization (Checksum:310d2ac6) REAL time: 1 secs
 
 Phase 7.3  Local Placement Optimization
 .........
-Phase 7.3  Local Placement Optimization (Checksum:3cde0268) REAL time: 1 secs 
+Phase 7.3  Local Placement Optimization (Checksum:3cde0268) REAL time: 2 secs 
 
 Phase 8.5  Local Placement Optimization
 Phase 8.5  Local Placement Optimization (Checksum:3cde0268) REAL time: 2 secs 
@@ -104,13 +104,13 @@ Phase 10.5  Local Placement Optimization
 Phase 10.5  Local Placement Optimization (Checksum:3decdfbe) REAL time: 4 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:1ed78181) REAL time: 4 secs 
+Phase 11.18  Placement Optimization (Checksum:1ed78181) REAL time: 5 secs 
 
 Phase 12.5  Local Placement Optimization
 Phase 12.5  Local Placement Optimization (Checksum:1ed78181) REAL time: 5 secs 
 
 Total REAL time to Placer completion: 5 secs 
-Total CPU  time to Placer completion: 4 secs 
+Total CPU  time to Placer completion: 5 secs 
 Writing design to file pong_top.ncd
 
 
@@ -120,7 +120,7 @@ Starting Router
 
 Phase  1  : 6422 unrouted;      REAL time: 5 secs 
 
-Phase  2  : 6086 unrouted;      REAL time: 5 secs 
+Phase  2  : 6086 unrouted;      REAL time: 6 secs 
 
 Phase  3  : 1679 unrouted;      REAL time: 6 secs 
 

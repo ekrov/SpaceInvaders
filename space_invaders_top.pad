@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Jan 24 18:03:45 2023
+Tue Jan 24 18:43:05 2023
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -9,8 +9,8 @@ Tue Jan 24 18:03:45 2023
 # character is used as the data field separator. This file is also designed
 # to support parsing.
 #
-INPUT FILE:       pong_top_map.ncd
-OUTPUT FILE:      pong_top.pad
+INPUT FILE:       space_invaders_top_map.ncd
+OUTPUT FILE:      space_invaders_top.pad
 PART TYPE:        xc3s100e
 SPEED GRADE:      -5
 PACKAGE:          cp132
