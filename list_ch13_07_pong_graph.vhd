@@ -378,7 +378,7 @@ ARCHITECTURE arch OF pong_graph IS
     -- Initial Animated Bar 
     ---------------------------------
     SIGNAL initial_anim_bar_on : STD_LOGIC;
-    SIGNAL initial_anim_bar_timer_reg, initial_anim_bar_timer_next : unsigned(6 DOWNTO 0);
+    SIGNAL initial_anim_bar_timer_reg, initial_anim_bar_timer_next : unsigned(7 DOWNTO 0);
     ---------------------------------
     -- Constant Keys 
     ---------------------------------
@@ -1737,8 +1737,8 @@ BEGIN
     ----------------------------------------------
     -- Initial Animated Bar
     ----------------------------------------------
-    initial_anim_bar_on <= '1' WHEN  pix_x > (MAX_X/2) - to_integer(initial_anim_bar_timer_reg) AND 
-                                            pix_x < (MAX_X/2) + to_integer(initial_anim_bar_timer_reg) AND
+    initial_anim_bar_on <= '1' WHEN  pix_x > to_integer((MAX_X - initial_anim_bar_timer_reg)/2) AND 
+                                            pix_x < to_integer((MAX_X + initial_anim_bar_timer_reg)/2) AND
                                             (pix_y > (MAX_Y/2) + 20 AND pix_y < (MAX_Y/2) + 30) ELSE
                                             '0';
 
