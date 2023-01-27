@@ -1,0 +1,95 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dd:/Xilinx/projects/Jogo_EletProg_VG/Jogo_EletProg
+Espace_invaders_graph
+Z1 w1674805584
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_graph.vhd
+Z6 Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_graph.vhd
+l0
+L5
+V[7Kfl5L45HoeFdh^91;jP2
+!s100 X8dIk[n7?9gHV2W4VzUao0
+Z7 OL;C;10.6d;65
+32
+Z8 !s110 1674805585
+!i10b 1
+Z9 !s108 1674805585.000000
+Z10 !s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\not_in_project|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_graph.vhd|
+Z11 !s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_graph.vhd|
+!i113 0
+Z12 o-quiet -work {d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\not_in_project} -check_synthesis -lint -rangecheck -pedanticerrors -explicit
+Z13 tExplicit 1 CvgOpt 0
+Aarch
+R2
+R3
+R4
+DEx4 work 20 space_invaders_graph 0 22 [7Kfl5L45HoeFdh^91;jP2
+l435
+L19
+VVE4o;oLRQVk9bWCm>i7Uk2
+!s100 R[Mgb=X1JkV8mA8lBS`4m2
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 0
+R12
+R13
+Espace_invaders_text
+w1674806123
+R2
+R3
+R4
+R0
+8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_text.vhd
+Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_text.vhd
+l0
+L5
+V?D0[iT4Dzl4__oJkO8D;o1
+!s100 X@82?FBzlE@Az3PdMGjYH0
+R7
+32
+Z14 !s110 1674806543
+!i10b 1
+Z15 !s108 1674806543.000000
+!s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\not_in_project|-defercheck|-nocheck|-permissive|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_text.vhd|
+!s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_text.vhd|
+!i113 0
+o-permissive -quiet -work {d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\not_in_project} -defercheck -nocheck -explicit
+R13
+Espace_invaders_top
+w1674806542
+R2
+R3
+R4
+R0
+8d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_top.vhd
+Fd:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_top.vhd
+l0
+L5
+Vn:[jA[idOan>>kNN54@kk2
+!s100 Ve4=F^S6Kdz<jGkTlYYkm3
+R7
+32
+R14
+!i10b 1
+R15
+!s90 -modelsimini|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\modelsim.ini|-quiet|-work|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\_hdl_checker\not_in_project|-check_synthesis|-lint|-rangecheck|-pedanticerrors|-explicit|d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_top.vhd|
+!s107 d:\Xilinx\projects\Jogo_EletProg_VG\Jogo_EletProg\space_invaders_top.vhd|
+!i113 0
+R12
+R13

@@ -11,3 +11,137 @@ map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_i
 par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
 trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
 bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 
+xst -intstyle ise -ifn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.xst" -ofn "/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Basys2.ucf -p xc3s100e-cp132-5 space_invaders_top.ngc space_invaders_top.ngd  
+map -intstyle ise -p xc3s100e-cp132-5 -cm area -ir off -pr off -c 100 -o space_invaders_top_map.ncd space_invaders_top.ngd space_invaders_top.pcf 
+par -w -intstyle ise -ol high -t 1 space_invaders_top_map.ncd space_invaders_top.ncd space_invaders_top.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml space_invaders_top.twx space_invaders_top.ncd -o space_invaders_top.twr space_invaders_top.pcf -ucf Basys2.ucf 
+bitgen -intstyle ise -f space_invaders_top.ut space_invaders_top.ncd 

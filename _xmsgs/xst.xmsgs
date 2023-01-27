@@ -5,64 +5,46 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_top</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/font_rom.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_top/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_10_pong_top.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/vga_sync.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/m100_counter</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_counter.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/m100_counter/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_08_pong_counter.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_counter.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_graph.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_graph</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_graph.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_timer.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_graph/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_07_pong_graph.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_graph.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_counter.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_text</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot;.
+<msg type="warning" file="HDLParsers" num="3530" delta="old" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; is newer than current system time.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/space_invaders_text/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_06_pong_text.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="753" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; line <arg fmt="%d" index="2">53</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">LOCKED_OUT</arg>&apos; of component &apos;<arg fmt="%s" index="4">clockmanager</arg>&apos;.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/timer</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_timer.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="753" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; line <arg fmt="%d" index="2">70</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">ps2_code_new</arg>&apos; of component &apos;<arg fmt="%s" index="4">ps2_keyboard</arg>&apos;.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/timer/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_09_pong_timer.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_timer.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="790" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">310</arg>: Index value(s) does not match array range, simulation mismatch.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/vga_sync</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/vga_sync.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="790" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">315</arg>: Index value(s) does not match array range, simulation mismatch.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/vga_sync/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch12_01_vga_sync.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/vga_sync.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="790" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">432</arg>: Index value(s) does not match array range, simulation mismatch.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/font_rom</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_01_font_rom.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/font_rom.vhd</arg>&quot;.
+<msg type="warning" file="Xst" num="790" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">446</arg>: Index value(s) does not match array range, simulation mismatch.
 </msg>
 
-<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/font_rom/arch</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/list_ch13_01_font_rom.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/font_rom.vhd</arg>&quot;.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3530" delta="new" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; is newer than current system time.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3530" delta="new" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_graph.vhd</arg>&quot; is newer than current system time.
-</msg>
-
-<msg type="warning" file="HDLParsers" num="3530" delta="new" >Time stamp of file &quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; is newer than current system time.
-</msg>
-
-<msg type="warning" file="Xst" num="753" delta="new" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; line <arg fmt="%d" index="2">53</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">LOCKED_OUT</arg>&apos; of component &apos;<arg fmt="%s" index="4">clockmanager</arg>&apos;.
-</msg>
-
-<msg type="warning" file="Xst" num="753" delta="new" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_top.vhd</arg>&quot; line <arg fmt="%d" index="2">70</arg>: Unconnected output port &apos;<arg fmt="%s" index="3">ps2_code_new</arg>&apos; of component &apos;<arg fmt="%s" index="4">ps2_keyboard</arg>&apos;.
-</msg>
-
-<msg type="warning" file="Xst" num="790" delta="new" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">242</arg>: Index value(s) does not match array range, simulation mismatch.
+<msg type="warning" file="Xst" num="790" delta="old" >&quot;<arg fmt="%s" index="1">/home/ise/projects/Jogo_EletProg_VG/Jogo_EletProg/space_invaders_text.vhd</arg>&quot; line <arg fmt="%d" index="2">461</arg>: Index value(s) does not match array range, simulation mismatch.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">attack_1_on</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -89,6 +71,9 @@
 <msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">play_alien_rgb</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">border_rgb</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
 <msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">PROJ1_V&lt;31:10&gt;</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
@@ -104,13 +89,49 @@
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">reset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">score_rom_addr&lt;6:5&gt;</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">row_addr_s_2p</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">row_addr_o</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">press_enter_rom_addr&lt;6:5&gt;</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="old" >Signal &lt;<arg fmt="%s" index="1">over_on</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">char_addr_o</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">bit_addr_s_2p</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">bit_addr_o</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">aliens_inc_rom_addr&lt;6:4&gt;</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">3</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">bit_addr</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+</msg>
+
+<msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">4</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">row_addr</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+</msg>
+
+<msg type="warning" file="Xst" num="737" delta="old" >Found <arg fmt="%d" index="1">7</arg>-bit latch for signal &lt;<arg fmt="%s" index="2">char_addr</arg>&gt;. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+</msg>
+
 <msg type="warning" file="Xst" num="653" delta="old" >Signal &lt;<arg fmt="%s" index="1">timer_start_2</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">0</arg>.
 </msg>
 
 <msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">debounce_out</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
-<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">newball</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">state_reg</arg>&gt;.
+<msg type="warning" file="Xst" num="1780" delta="old" >Signal &lt;<arg fmt="%s" index="1">d_clr_2p</arg>&gt; is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="info" file="Xst" num="1767" delta="old" >HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
@@ -177,10 +198,10 @@ It will be removed from the design.
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_y_reg_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">space_invaders_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_2_y_reg_3&gt; &lt;alien_2_y_reg_7&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">space_invaders_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_vx_reg_8&gt; &lt;alien_vx_reg_6&gt; &lt;alien_vx_reg_5&gt; &lt;alien_vx_reg_7&gt; &lt;alien_vx_reg_4&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vx_reg_4</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">space_invaders_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_2_vx_reg_5&gt; &lt;alien_2_vx_reg_6&gt; &lt;alien_2_vx_reg_7&gt; &lt;alien_2_vx_reg_8&gt; &lt;alien_2_vx_reg_9&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_2_vx_reg_9</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">space_invaders_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_2_vx_reg_8&gt; &lt;alien_2_vx_reg_6&gt; &lt;alien_2_vx_reg_5&gt; &lt;alien_2_vx_reg_7&gt; &lt;alien_2_vx_reg_4&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">alien_vx_reg_4</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">space_invaders_graph</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;alien_vx_reg_5&gt; &lt;alien_vx_reg_6&gt; &lt;alien_vx_reg_7&gt; &lt;alien_vx_reg_8&gt; &lt;alien_vx_reg_9&gt; </arg>
 </msg>
 
 <msg type="warning" file="Xst" num="2170" delta="old" >Unit <arg fmt="%s" index="1">space_invaders_graph</arg> : the following signal(s) form a combinatorial loop: </msg>
@@ -203,7 +224,8 @@ It will be removed from the design.
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">keyboard_unit/ps2_code_new</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">space_invaders_top</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2170" delta="old" >Unit <arg fmt="%s" index="1">space_invaders_top</arg> : the following signal(s) form a combinatorial loop: </msg>
+<msg type="warning" file="Xst" num="1336" delta="old" > (*) More than 100% of Device resources are used
+</msg>
 
 <msg type="info" file="Xst" num="2169" delta="old" >HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 </msg>

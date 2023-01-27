@@ -17,13 +17,13 @@ entity space_invaders_top is
 end space_invaders_top;
 
 architecture arch of space_invaders_top is
-   type state_type is (newgame, play,play_2p,round_ended, newball, over);
+   type state_type is (newgame, play,play_2p,round_ended, over);
    signal state_reg, state_next: state_type;	
    signal clk: std_logic;
 	signal video_on, pixel_tick: std_logic;
    signal pixel_x, pixel_y: std_logic_vector (9 downto 0);
    signal graph_on, gra_still, hit, p1_damage,hit_p2,p2_damage: std_logic;
-   signal text_on: std_logic_vector(3 downto 0);
+   signal text_on: std_logic_vector(5 downto 0);
    signal graph_rgb, text_rgb: std_logic_vector(2 downto 0);
    signal rgb_reg, rgb_next: std_logic_vector(2 downto 0);
    signal dig0, dig1: std_logic_vector(3 downto 0);
@@ -115,7 +115,7 @@ begin
    -- instantiate 2-digit decade counter
    counter_unit_2p: entity work.m100_counter
       port map(clk=>clk, reset=>reset,
-               d_inc=>d_inc_2p, d_clr=>d_clr_2p,
+               d_inc=>d_inc_2p, d_clr=>d_clr,
                dig0=>dig0_2p, dig1=>dig1_2p);
    -- registers
    process (clk,reset)
@@ -123,13 +123,13 @@ begin
       if reset='1' then
          state_reg <= newgame;
          lives_p1_reg <= (others=>'0');
-                  lives_p2_reg <= (others=>'0');
+         lives_p2_reg <= (others=>'0');
 
          rgb_reg <= (others=>'0');
       elsif (clk'event and clk='1') then
          state_reg <= state_next;
          lives_p1_reg <= lives_p1_next;
-                  lives_p2_reg <= lives_p2_next;
+         lives_p2_reg <= lives_p2_next;
 
          if (pixel_tick='1') then
            rgb_reg <= rgb_next;
@@ -137,17 +137,16 @@ begin
       end if;
    end process;
    -- fsmd next-state logic
-   process(btn,hit,p1_damage,timer_up,state_reg,
-           lives_p1_reg,lives_p1_next,lives_p2_reg,lives_p2_next, CODEWORD,hit_p2,p2_damage,round_end)
+   process(hit,p1_damage,timer_up,state_reg,
+           lives_p1_reg, lives_p2_reg, CODEWORD,hit_p2,p2_damage,round_end)
    begin
       gra_still <= '1';
       timer_start <='0';
       d_inc <= '0';
       d_clr <= '0';
       d_inc_2p <= '0';
-      d_clr_2p <= '0';
       died<='0';
-      GameMode2<='0';
+      GameMode2<='1';
       round_start<='0';
 
       state_next <= state_reg;
@@ -155,19 +154,22 @@ begin
       lives_p2_next <= lives_p2_reg;
       case state_reg is
          when newgame =>
+                     GameMode2<='0';
             lives_p1_next <= "11";    -- three lives
             lives_p2_next <= "11";    -- three lives
             d_clr <= '1';         -- clear score
-            d_clr_2p<='1';
             died<='0';
             -- if (btn /= "00") then -- button pressed
             if (CODEWORD =enter) then -- button pressed
+               GameMode2<='0';
                state_next <= play;
             end if;
             if(CODEWORD=spacebar)then
+                        GameMode2<='1';
                state_next <= play_2p;
             end if;
          when play =>
+            GameMode2<='0';
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
@@ -192,6 +194,8 @@ begin
                state_next <= round_ended;
             end if;
          when round_ended=>
+                     GameMode2<='0';
+
             gra_still <= '1';    -- dont animate screen
             --show end of round graph
                round_start<='1';
@@ -200,7 +204,7 @@ begin
                
             end if;
          when play_2p=>
-            GameMode2<='1';
+            
             gra_still <= '0';    -- animated screen
             if hit='1' then
                d_inc <= '1';     -- increment score
@@ -216,11 +220,6 @@ begin
             end if;
             if (lives_p1_reg=0 or lives_p2_reg=0) then
                state_next <= over;
-            end if;
-         when newball =>
-            -- wait for 2 sec and until button pressed
-            if  timer_up='1' and (btn /= "00") then
-              state_next <= play;
             end if;
          when over =>
             died<='1';
@@ -245,7 +244,8 @@ begin
          --    (text_on(3)='1') then
          if (state_reg=newgame and text_on(1)='1') or -- rule
             (state_reg=over and text_on(0)='1') or --game over
-            (text_on(3)='1') or (text_on(2)='1') then --scoreboards
+            (text_on(3)='1') or (text_on(2)='1') OR --scoreboards
+            (state_reg= round_ended and (text_on(4)='1' OR text_on(5)='1')) THEN -- Round Ended
 
             rgb_next <= text_rgb;
          elsif graph_on='1'  then -- display graph

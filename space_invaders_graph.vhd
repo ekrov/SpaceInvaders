@@ -7,10 +7,10 @@ ENTITY space_invaders_graph IS
         clk, reset : STD_LOGIC;
         btn : STD_LOGIC_VECTOR(1 DOWNTO 0);
         pixel_x, pixel_y : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-        gra_still, died ,round_start: IN STD_LOGIC;
+        gra_still, died, round_start : IN STD_LOGIC;
         timer_up, attack_1_on, gamemode2 : IN STD_LOGIC;
         keyboard_code : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-        graph_on, hit, p1_damage, hit_p2, p2_damage,round_end : OUT STD_LOGIC;
+        graph_on, hit, p1_damage, hit_p2, p2_damage, round_end : OUT STD_LOGIC;
         rgb : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 
     );
@@ -257,32 +257,33 @@ ARCHITECTURE arch OF space_invaders_graph IS
     "0000000000000000",
     "0000000000000000"
     );
-    --initial border
-    CONSTANT initial_border : rom_type_16_16 :=
-    (
-    "1100110000110011",
-    "1000000000000001",
-    "0000000000000000",
-    "0000000000000000",
-    "1000000000000001",
-    "1000000000000001",
-    "0000000000000000",
-    "0000000000000000",
-    "0000000000000000",
-    "0000000000000000",
-    "1000000000000001",
-    "1000000000000001",
-    "0000000000000000",
-    "0000000000000000",
-    "1000000000000001",
-    "1100110000110011"
-    );
-    SIGNAL sq_border_on, rd_border_on : STD_LOGIC;
-    SIGNAL rom_addr_border, rom_col_border : unsigned(3 DOWNTO 0);
-    SIGNAL rom_data_border : STD_LOGIC_VECTOR(15 DOWNTO 0);
-    SIGNAL rom_bit_border : STD_LOGIC;
-    SIGNAL border_x_l, border_x_r : unsigned(9 DOWNTO 0);
-    SIGNAL border_y_t, border_y_b : unsigned(9 DOWNTO 0);
+
+    -- --initial border
+    -- CONSTANT initial_border : rom_type_16_16 :=
+    -- (
+    -- "1100110000110011",
+    -- "1000000000000001",
+    -- "0000000000000000",
+    -- "0000000000000000",
+    -- "1000000000000001",
+    -- "1000000000000001",
+    -- "0000000000000000",
+    -- "0000000000000000",
+    -- "0000000000000000",
+    -- "0000000000000000",
+    -- "1000000000000001",
+    -- "1000000000000001",
+    -- "0000000000000000",
+    -- "0000000000000000",
+    -- "1000000000000001",
+    -- "1100110000110011"
+    -- );
+    -- SIGNAL sq_border_on, rd_border_on : STD_LOGIC;
+    -- SIGNAL rom_addr_border, rom_col_border : unsigned(3 DOWNTO 0);
+    -- SIGNAL rom_data_border : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    -- SIGNAL rom_bit_border : STD_LOGIC;
+    -- SIGNAL border_x_l, border_x_r : unsigned(9 DOWNTO 0);
+    -- SIGNAL border_y_t, border_y_b : unsigned(9 DOWNTO 0);
     ---------------------------------  
     -- Aliens Projectiles  
     ---------------------------------
@@ -334,7 +335,8 @@ ARCHITECTURE arch OF space_invaders_graph IS
     SIGNAL alien_boss_projectil_x_reg, alien_boss_projectil_x_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_projectil_y_reg, alien_boss_projectil_y_next : unsigned(9 DOWNTO 0);
     SIGNAL alien_boss_projectil_on, alien_boss_projectil_hit_reg, alien_boss_projectil_hit_next : STD_LOGIC;
-    SIGNAL play_alien_shoot_counter_reg, play_alien_shoot_counter_next, respawn_timer_reg,respawn_timer_next : unsigned(6 DOWNTO 0);
+    -- SIGNAL play_alien_shoot_counter_reg, play_alien_shoot_counter_next, respawn_timer_reg, respawn_timer_next : unsigned(6 DOWNTO 0);
+    SIGNAL play_alien_shoot_counter_reg, play_alien_shoot_counter_next : unsigned(6 DOWNTO 0);
     ---------------------------------  
     -- Playable Alien Projectiles  
     ---------------------------------
@@ -374,6 +376,11 @@ ARCHITECTURE arch OF space_invaders_graph IS
     SIGNAL ship_projectil_3_y_reg, ship_projectil_3_y_next : unsigned(9 DOWNTO 0);
     SIGNAL ship_projectil_3_on, ship_projectil_3_hit_reg, ship_projectil_3_hit_next : STD_LOGIC;
 
+    ---------------------------------  
+    -- Initial Animated Bar 
+    ---------------------------------
+    SIGNAL initial_anim_bar_on : STD_LOGIC;
+    SIGNAL initial_anim_bar_timer_reg, initial_anim_bar_timer_next : unsigned(6 DOWNTO 0);
     ---------------------------------  
     -- HP Alien Boss Bar
     ---------------------------------
@@ -438,14 +445,14 @@ BEGIN
 
             alien_x_reg <= (OTHERS => '0');
             alien_y_reg <= (OTHERS => '0');
-            alien_vx_reg <= ("0000000100");
+            -- alien_vx_reg <= ("0000000100");
             -- alien_vy_reg <= ("0000000100");
             alien_alive_reg <= '1';
             alien_hits_counter_reg <= (OTHERS => '0');
 
             alien_2_x_reg <= (OTHERS => '0');
             alien_2_y_reg <= (OTHERS => '0');
-            alien_2_vx_reg <= ("0000000100");
+            -- alien_2_vx_reg <= ("0000000100");
             -- alien_2_vy_reg <= ("0000000100");
             alien_2_alive_reg <= '1';
             alien_2_hits_counter_reg <= (OTHERS => '0');
@@ -459,7 +466,7 @@ BEGIN
             --Alien boss
             alien_boss_x_reg <= (OTHERS => '0');
             alien_boss_y_reg <= (OTHERS => '0');
-            alien_boss_vx_reg <= ("0000000100");
+            -- alien_boss_vx_reg <= ("0000000100");
             -- alien_boss_vy_reg <= ("0000000100");
             alien_boss_alive_reg <= '1';
             alien_boss_hits_counter_reg <= (OTHERS => '0');
@@ -499,10 +506,13 @@ BEGIN
             -- Shoots Counter Initialization
             shoot_counter_reg <= (OTHERS => '0');
 
+            -- Initial Animated Bar Timer Initialization
+            initial_anim_bar_timer_reg <= (OTHERS => '0');
+
             --lives
             ship_lives_reg <= "11";
 
-            respawn_timer_reg<=(OTHERS => '0');
+            --respawn_timer_reg <= (OTHERS => '0');
 
         ELSIF (clk'event AND clk = '1') THEN
             -- bar_y_reg <= bar_y_next;
@@ -581,9 +591,7 @@ BEGIN
             play_alien_shoot_counter_reg <= play_alien_shoot_counter_next;
 
             -- timer respawn
-            respawn_timer_reg <= respawn_timer_next;
-
-
+            -- respawn_timer_reg <= respawn_timer_next;
             -- proj1_y_t_reg <= proj1_y_t_next;
             -- rand_reg <= rand_next;
             -- new_proj1_reg <= new_proj1_next;
@@ -608,6 +616,9 @@ BEGIN
             -- Shoots Counter Variable Update
             shoot_counter_reg <= shoot_counter_next;
 
+            -- Initial Animated Bar Timer Update
+            initial_anim_bar_timer_reg <= initial_anim_bar_timer_next;
+
             --ship lives
             ship_lives_reg <= ship_lives_next;
         END IF;
@@ -619,30 +630,30 @@ BEGIN
     ----------------------------------------------  
     -- initial border
     ----------------------------------------------
-    border_y_t <= to_unsigned((MAX_Y)/2, 10) - 125;
-    border_x_l <= to_unsigned((MAX_X)/2, 10) - 60;
-    border_x_r <= border_x_l + ship_SIZE * 8 - 1-8;
-    border_y_b <= border_y_t + ship_SIZE * 8 - 1 -6;
+    -- border_y_t <= to_unsigned((MAX_Y)/2, 10) - 125;
+    -- border_x_l <= to_unsigned((MAX_X)/2, 10) - 60;
+    -- border_x_r <= border_x_l + ship_SIZE * 8 - 1 - 8;
+    -- border_y_b <= border_y_t + ship_SIZE * 8 - 1 - 6;
 
-    -- border_y_t <= to_unsigned((MAX_Y)/2, 10);
-    -- border_x_l <= to_unsigned((MAX_X)/2, 10);
-    -- border_x_r <= border_x_l + ship_SIZE * 8;
-    -- border_y_b <= border_y_t + ship_SIZE * 8;
-    sq_border_on <=
-        '1' WHEN (border_x_l <= pix_x) AND (pix_x <= border_x_r) AND
-        (border_y_t <= pix_y) AND (pix_y <= border_y_b) ELSE
-        '0';
-    rd_border_on <=
-        '1' WHEN (sq_border_on = '1') AND (rom_bit_border = '1') AND (gra_still='1') ELSE
-        '0';
-    rom_addr_border <= pix_y(6 DOWNTO 3) - border_y_t(6 DOWNTO 3);
-    rom_col_border <= pix_x(6 DOWNTO 3) - border_x_l(6 DOWNTO 3);
-    -- rom_addr_border <= pix_y(6 DOWNTO 3) - border_y_t(3 DOWNTO 0);
-    -- rom_col_border <= pix_x(6 DOWNTO 3) - border_x_l(3 DOWNTO 0);
-    rom_data_border <= initial_border(to_integer(rom_addr_border));
-    rom_bit_border <= rom_data_border(to_integer(NOT rom_col_border));
-    border_rgb <= "010";
-    ---------------------------s-------------------
+    -- -- border_y_t <= to_unsigned((MAX_Y)/2, 10);
+    -- -- border_x_l <= to_unsigned((MAX_X)/2, 10);
+    -- -- border_x_r <= border_x_l + ship_SIZE * 8;
+    -- -- border_y_b <= border_y_t + ship_SIZE * 8;
+    -- sq_border_on <=
+    --     '1' WHEN (border_x_l <= pix_x) AND (pix_x <= border_x_r) AND
+    --     (border_y_t <= pix_y) AND (pix_y <= border_y_b) ELSE
+    --     '0';
+    -- rd_border_on <=
+    --     '1' WHEN (sq_border_on = '1') AND (rom_bit_border = '1') AND (gra_still = '1') AND round_start = '0' ELSE
+    --     '0';
+    -- rom_addr_border <= pix_y(6 DOWNTO 3) - border_y_t(6 DOWNTO 3);
+    -- rom_col_border <= pix_x(6 DOWNTO 3) - border_x_l(6 DOWNTO 3);
+    -- -- rom_addr_border <= pix_y(6 DOWNTO 3) - border_y_t(3 DOWNTO 0);
+    -- -- rom_col_border <= pix_x(6 DOWNTO 3) - border_x_l(3 DOWNTO 0);
+    -- rom_data_border <= initial_border(to_integer(rom_addr_border));
+    -- rom_bit_border <= rom_data_border(to_integer(NOT rom_col_border));
+    -- border_rgb <= "010";
+    ----------------------------------------------
     -- SHIP
     ----------------------------------------------
     -- square ship
@@ -677,8 +688,8 @@ BEGIN
         IF gra_still = '1' OR ship_got_hit = '1' THEN --initial position of ship
             -- ship_x_next <= to_unsigned((WALL2_X_L + WALL1_X_R)/2, 10);
             -- ship_y_next <= to_unsigned((WALL_Y_B + WALL_Y_T2)/2, 10);
-            ship_x_next <= to_unsigned((MAX_X)/2, 10);
-            ship_y_next <= to_unsigned((MAX_Y/2) + 30, 10);
+            ship_x_next <= to_unsigned((MAX_X)/2 - ship_SIZE, 10);
+            ship_y_next <= to_unsigned((MAX_Y/2) + 100, 10);
         ELSIF refr_tick = '1' THEN
             IF (keyboard_code = down_arrow) THEN
                 IF (ship_y_reg > MAX_Y - 20) THEN
@@ -842,11 +853,12 @@ BEGIN
         ship_projectil_3_hit_reg;
 
     ----------------------------------------------
-    -- Shoots Counter Incrementation Process
+    -- Shoots Counter And Initial Animated Bar Timer Incrementation Process
     ----------------------------------------------
-    PROCESS (shoot_counter_reg, refr_tick, ship_projectil_1_hit_reg,play_alien_shoot_counter_reg,gamemode2,alien_boss_projectil_hit_reg,respawn_timer_reg)
+    PROCESS (shoot_counter_reg, refr_tick, ship_projectil_1_hit_reg, play_alien_shoot_counter_reg, gamemode2, alien_boss_projectil_hit_reg, initial_anim_bar_timer_reg)
     BEGIN
         shoot_counter_next <= shoot_counter_reg;
+        initial_anim_bar_timer_next <= initial_anim_bar_timer_reg;
 
         IF (ship_projectil_1_hit_reg = '0') THEN
             IF (refr_tick = '1') THEN
@@ -867,7 +879,9 @@ BEGIN
             play_alien_shoot_counter_next <= (OTHERS => '0');
         END IF;
 
-        
+        IF (refr_tick = '1') THEN
+            initial_anim_bar_timer_next <= initial_anim_bar_timer_reg + 1;
+        END IF;
     END PROCESS;
     -- -- square ship
     -- ship_x_l <= ship_x_reg;
@@ -951,7 +965,7 @@ BEGIN
     alien_y_b <= alien_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_1_on <=
         '1' WHEN (alien_x_l <= pix_x) AND (pix_x <= alien_x_r) AND
-        (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) ELSE
+        (alien_y_t <= pix_y) AND (pix_y <= alien_y_b) AND gra_still = '0' ELSE
         '0';
     -- Round Alien
 
@@ -1008,7 +1022,7 @@ BEGIN
     alien_2_y_b <= alien_2_y_t + ALIEN_SIZE + ALIEN_SIZE - 1;
     sq_alien_2_on <=
         '1' WHEN (alien_2_x_l <= pix_x) AND (pix_x <= alien_2_x_r) AND
-        (alien_2_y_t <= pix_y) AND (pix_y <= alien_2_y_b) AND (gamemode2 = '0') ELSE
+        (alien_2_y_t <= pix_y) AND (pix_y <= alien_2_y_b) AND (gamemode2 = '0') AND gra_still = '0' ELSE
         '0';
     -- Round Alien
     rom_addr_alien_2 <= pix_y(3 DOWNTO 1) - alien_2_y_t(3 DOWNTO 1);
@@ -1139,13 +1153,13 @@ BEGIN
     alien_boss_y_b <= alien_boss_y_t + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + 16;
     sq_alien_boss_on <=
         '1' WHEN (alien_boss_x_l <= pix_x) AND (pix_x <= alien_boss_x_r) AND
-        (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) ELSE
+        (alien_boss_y_t <= pix_y) AND (pix_y <= alien_boss_y_b) AND gra_still = '0' ELSE
         '0';
     -- Round Alien Boss
     rom_addr_alien_boss <= pix_y(5 DOWNTO 2) - alien_boss_y_t(5 DOWNTO 2);
     rom_col_alien_boss <= pix_x(5 DOWNTO 2) - alien_boss_x_l(5 DOWNTO 2);
     rom_data_alien_boss <= ALIEN_BOSS_ROM(to_integer(rom_addr_alien_boss)) WHEN
-        ((alien_boss_lives_reg > 5 and gamemode2='0') OR (alien_boss_lives_reg > 8 and gamemode2='1') )ELSE
+        ((alien_boss_lives_reg > 5 AND gamemode2 = '0') OR (alien_boss_lives_reg > 8 AND gamemode2 = '1'))ELSE
         ALIEN_BOSS_2_ROM(to_integer(rom_addr_alien_boss));
 
     rom_bit_alien_boss <= rom_data_alien_boss(to_integer(NOT rom_col_alien_boss));
@@ -1188,19 +1202,19 @@ BEGIN
                 alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg;
                 -- alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg;
                 -- alien_boss_y_next <= alien_boss_y_reg;
-                if(alien_boss_vx_reg=ALIEN_V_P) then
-                    alien_boss_x_next<= alien_boss_x_reg +alien_boss_vx_reg + alien_boss_hits_counter_reg;
-                ELSIF(alien_boss_vx_reg=ALIEN_V_N) then
-                    alien_boss_x_next<= alien_boss_x_reg +alien_boss_vx_reg- alien_boss_hits_counter_reg;
+                IF (alien_boss_vx_reg = ALIEN_V_P) THEN
+                    alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg + alien_boss_hits_counter_reg;
+                ELSIF (alien_boss_vx_reg = ALIEN_V_N) THEN
+                    alien_boss_x_next <= alien_boss_x_reg + alien_boss_vx_reg - alien_boss_hits_counter_reg;
                 END IF;
             END IF;
 
             IF (alien_boss_alive_reg = '1') THEN
-                IF (alien_boss_x_l < 1) THEN -- reach left border
+                IF (alien_boss_x_l < 10) THEN -- reach left border
                     alien_boss_vx_next <= ALIEN_V_P;
-                ELSIF (alien_boss_x_r > MAX_X) THEN -- reach right border
+                ELSIF (alien_boss_x_r > MAX_X - 10) THEN -- reach right border
                     -- p1_damage <= '1'; -- a p1_damage
-                    alien_boss_vx_next <= ALIEN_V_N ;
+                    alien_boss_vx_next <= ALIEN_V_N;
                 END IF;
                 -- ELSE
                 --     alien_boss_x_next <= to_unsigned(((MAX_X)/2) + 200, 10);
@@ -1248,7 +1262,8 @@ BEGIN
         -- alien_hits_counter_reg, alien_2_hits_counter_reg, rd_play_alien_on, play_alien_hits_counter_reg,
         -- play_alien_alive_reg, alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
         alien_boss_alive_reg, rd_alien_boss_on, alien_boss_hits_counter_reg,
-        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on, gamemode2,respawn_timer_reg,refr_tick,round_start)
+        alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on, gamemode2, refr_tick, round_start)
+        -- alien_boss_alive_next, alien_boss_lives_reg, ship_projectil_1_on, ship_projectil_3_on, gamemode2, respawn_timer_reg, refr_tick, round_start)
         -- alien_boss_alive_next, alien_boss_lives_reg, alien_2_alive, alien_alive,ship_projectil_2_on,ship_projectil_1_on,ship_projectil_3_on)
 
     BEGIN
@@ -1263,28 +1278,28 @@ BEGIN
         -- play_alien_hits_counter_next <= play_alien_hits_counter_reg;
         alien_boss_hits_counter_next <= alien_boss_hits_counter_reg;
         alien_boss_lives_next <= alien_boss_lives_reg;
-        respawn_timer_next<=respawn_timer_reg;
+        -- respawn_timer_next <= respawn_timer_reg;
 
-        round_end<='0';
+        round_end <= '0';
 
         --aliens respawn 
         IF (alien_alive_next = '0' AND alien_2_alive_next = '0' AND alien_boss_alive_next = '0') THEN
-            
-            IF(round_start='1') then 
-                round_end<='0';
-            alien_alive_next <= '1';
-            alien_2_alive_next <= '1';
-            alien_boss_alive_next <= '1';
-            alien_boss_lives_next <= "1010";
-                respawn_timer_next<=(OTHERS => '0');
-            end if;
 
-            IF (refr_tick='1') THEN
-                respawn_timer_next<=respawn_timer_reg+1;
-             END IF;
-            IF(respawn_timer_reg>120) then
-                round_end<='1';
+            IF (round_start = '1') THEN
+                round_end <= '0';
+                alien_alive_next <= '1';
+                alien_2_alive_next <= '1';
+                alien_boss_alive_next <= '1';
+                alien_boss_lives_next <= "1010";
+                -- respawn_timer_next <= (OTHERS => '0');
             END IF;
+            round_end <= '1';
+            -- IF (refr_tick = '1') THEN
+            --     respawn_timer_next <= respawn_timer_reg + 1;
+            -- END IF;
+            -- IF (respawn_timer_reg > 120) THEN
+            --     round_end <= '1';
+            -- END IF;
         END IF;
         IF (rd_alien_1_on = '1' AND (ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
             -- IF (rd_alien_1_on = '1' AND (ship_projectil_2_on = '1' OR ship_projectil_1_on = '1' OR ship_projectil_3_on = '1')) THEN
@@ -1342,48 +1357,50 @@ BEGIN
     alien_projectil_on <=
         '1' WHEN (alien_projectil_x_l <= pix_x) AND (pix_x <= alien_projectil_x_r) AND
         (alien_projectil_y_t <= pix_y) AND (pix_y <= alien_projectil_y_b) AND (alien_projectil_hit_reg = '0') AND
-        ((alien_alive_reg = '1' AND gamemode2 = '0') OR-- Single Mode
-        (alien_boss_alive_reg = '1' AND gamemode2 = '1')) -- Player VS Player Mode
+        ((alien_alive_reg = '1' AND gamemode2 = '0') -- Single Mode
+        -- OR (alien_boss_alive_reg = '1' AND gamemode2 = '1') -- Player VS Player Mode
+        )
         AND (gra_still = '0') ELSE
         '0';
 
     -- Projectil Hit State
     alien_projectil_x_next <=
         alien_x_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
-        (alien_boss_x_reg + 8) WHEN
-        (keyboard_code = f AND alien_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
+        -- (alien_boss_x_reg + 8) 
+        -- WHEN (keyboard_code = f AND alien_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_projectil_x_reg;
     alien_projectil_y_next <=
         alien_y_reg WHEN (gra_still = '1' OR alien_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
-        (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN
-        (keyboard_code = f AND alien_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
+        -- (alien_boss_y_reg + ALIEN_BOSS_SIZE) WHEN
+        -- (keyboard_code = f AND alien_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_hits_counter_reg WHEN (refr_tick = '1' AND gamemode2 = '0') ELSE -- Single Mode
-        alien_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN (refr_tick = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
+        -- alien_projectil_y_reg + ALIEN_PROJ_V_MOVE + alien_boss_hits_counter_reg WHEN (refr_tick = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
         alien_projectil_y_reg;
 
     -- Alien 1 Projectil Hit Flag Update Process
-    PROCESS (alien_alive_reg, alien_projectil_hit_reg, alien_projectil_on, rd_ship_on, alien_projectil_y_b, gra_still,
-        gamemode2, keyboard_code, play_alien_shoot_counter_reg)
+    PROCESS (alien_alive_reg, alien_projectil_hit_reg, alien_projectil_on, rd_ship_on, alien_projectil_y_b,
+        -- gamemode2, keyboard_code, play_alien_shoot_counter_reg)
+        gamemode2)
     BEGIN
         alien_projectil_hit_next <= alien_projectil_hit_reg;
         -- ship_lives_next <= ship_lives_reg;
         IF (gamemode2 = '0') THEN -- Single Mode        
-        IF (alien_alive_reg = '1') THEN
-            IF alien_projectil_hit_reg = '1' THEN
-                alien_projectil_hit_next <= '0';
-            ELSIF (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
-                alien_projectil_hit_next <= '1';
-                -- ship_lives_next<=ship_lives_reg-1;
-            ELSIF (alien_projectil_y_b > MAX_Y) THEN
-                alien_projectil_hit_next <= '1';
+            IF (alien_alive_reg = '1') THEN
+                IF alien_projectil_hit_reg = '1' THEN
+                    alien_projectil_hit_next <= '0';
+                ELSIF (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
+                    alien_projectil_hit_next <= '1';
+                    -- ship_lives_next<=ship_lives_reg-1;
+                ELSIF (alien_projectil_y_b > MAX_Y) THEN
+                    alien_projectil_hit_next <= '1';
                 END IF;
             END IF;
-        ELSE -- Player VS Player Mode
-            IF (alien_projectil_y_b > MAX_Y - 1 OR gra_still = '1') OR (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
-                alien_projectil_hit_next <= '1';
-            ELSIF (keyboard_code = f AND play_alien_shoot_counter_reg > 40 AND play_alien_shoot_counter_reg < 60) THEN
-                alien_projectil_hit_next <= '0';
-            END IF;
+            -- ELSE -- Player VS Player Mode
+            --     IF (alien_projectil_y_b > MAX_Y - 1 OR gra_still = '1') OR (alien_projectil_on = '1' AND rd_ship_on = '1') THEN
+            --         alien_projectil_hit_next <= '1';
+            --     ELSIF (keyboard_code = f AND play_alien_shoot_counter_reg > 40 AND play_alien_shoot_counter_reg < 60) THEN
+            --         alien_projectil_hit_next <= '0';
+            --     END IF;
         END IF;
     END PROCESS;
 
@@ -1480,9 +1497,9 @@ BEGIN
         '0';
 
     alien_2_projectil_x_next <=
-        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
         (alien_boss_x_reg + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE + ALIEN_BOSS_SIZE) WHEN
         (keyboard_code = f AND alien_2_projectil_hit_reg = '1' AND gamemode2 = '1') ELSE -- Player VS Player Mode
+        alien_2_x_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode        
         alien_2_projectil_x_reg;
     alien_2_projectil_y_next <=
         alien_2_y_reg WHEN (gra_still = '1' OR alien_2_projectil_hit_reg = '1') AND gamemode2 = '0' ELSE -- Single Mode
@@ -1499,14 +1516,14 @@ BEGIN
         alien_2_projectil_hit_next <= alien_2_projectil_hit_reg;
         -- ship_lives_next <= ship_lives_reg;
         IF (gamemode2 = '0') THEN -- Single Mode        
-        IF (alien_2_alive_reg = '1') THEN
-            IF alien_2_projectil_hit_reg = '1' THEN
-                alien_2_projectil_hit_next <= '0';
-            ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
-                alien_2_projectil_hit_next <= '1';
-                --  ship_lives_next<=ship_lives_reg-1;
-            ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
-                alien_2_projectil_hit_next <= '1';
+            IF (alien_2_alive_reg = '1') THEN
+                IF alien_2_projectil_hit_reg = '1' THEN
+                    alien_2_projectil_hit_next <= '0';
+                ELSIF (alien_2_projectil_on = '1' AND rd_ship_on = '1') THEN
+                    alien_2_projectil_hit_next <= '1';
+                    --  ship_lives_next<=ship_lives_reg-1;
+                ELSIF (alien_2_projectil_y_b > MAX_Y) THEN
+                    alien_2_projectil_hit_next <= '1';
                 END IF;
             END IF;
         ELSE -- Player VS Player Mode
@@ -1734,25 +1751,29 @@ BEGIN
     --     play_alien_projectil_1_hit_reg;
 
     ----------------------------------------------
+    -- Initial Animated Bar
+    ----------------------------------------------
+    initial_anim_bar_on <= '1' WHEN pix_x > ((MAX_X/2) - to_integer(initial_anim_bar_timer_reg)) AND
+        pix_x < ((MAX_X/2) + to_integer(initial_anim_bar_timer_reg)) AND
+        (pix_y > (MAX_Y/2) + 20 AND pix_y < (MAX_Y/2) + 30) AND round_start = '1' ELSE
+        '0';
+
+    ----------------------------------------------
     -- HP Alien Boss Bar
     ----------------------------------------------
-    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0' AND gra_still='0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND
-                                    (pix_y > 10 AND pix_y < 30)  ELSE '0';
-    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg='1' AND gamemode2='0' AND gra_still='0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg)*10) AND pix_x < (MAX_X - 50) AND
-                                    (pix_y > 10 AND pix_y < 30) ELSE '0';
-
-    -- hp_alien_boss_bar_green_on <= '1' WHEN pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 +  (to_unsignedl(alien_boss_lives_reg, 10)(9 DOWNTO 4) & "0000")) AND
-    --                                 (pix_y > 20 AND pix_y < 70)  ELSE '0';
-    
-    -- hp_alien_boss_bar_red_on <= '1' WHEN pix_x > (MAX_X - 150 + (alien_boss_lives_reg & "0000")) AND pix_x < (MAX_X - 50) AND
-    --                                 (pix_y > 20 AND pix_y < 70) ELSE '0';
+    hp_alien_boss_bar_green_on <= '1' WHEN (alien_boss_alive_reg = '1' AND gamemode2 = '0' AND gra_still = '0') AND pix_x > MAX_X - 150 AND pix_x < (MAX_X - 150 + to_integer(alien_boss_lives_reg) * 10) AND
+        (pix_y > 10 AND pix_y < 30) ELSE
+        '0';
+    hp_alien_boss_bar_red_on <= '1' WHEN (alien_boss_alive_reg = '1' AND gamemode2 = '0' AND gra_still = '0') AND pix_x > (MAX_X - 150 + to_integer(alien_boss_lives_reg) * 10) AND pix_x < (MAX_X - 50) AND
+        (pix_y > 10 AND pix_y < 30) ELSE
+        '0';
     ----------------------------------------------
     -- rgb multiplexing circuit
     ----------------------------------------------
     PROCESS (proj1_rgb, rd_alien_1_on, rd_alien_2_on, alien_rgb,
         alien_projectil_on, alien_2_projectil_on, ship_lives_reg, ship_rgb, rd_ship_on, ship_rgb_2,
         ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on,
-        ship_projectil_1_on, ship_projectil_3_on, rd_border_on, border_rgb, gamemode2,hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on)
+        ship_projectil_1_on, ship_projectil_3_on, gamemode2, hp_alien_boss_bar_green_on, hp_alien_boss_bar_red_on, initial_anim_bar_on)
         -- ship_rgb_1, alien_boss_projectil_on, alien_boss_rgb, rd_alien_boss_on, rd_play_alien_on, play_alien_projectil_1_on,
         -- play_alien_hits_counter_reg, play_alien_rgb, ship_projectil_1_on, ship_projectil_3_on)
         -- -- play_alien_hits_counter_reg, play_alien_rgb,ship_projectil_1_on,ship_projectil_2_on,ship_projectil_3_on)
@@ -1770,7 +1791,7 @@ BEGIN
             --  alien_2_projectil_2_on = '1'OR alien_projectil_2_on = '1'  OR alien_2_projectil_on = '1' OR alien_2_projectil_2_on = '1' OR alien_2_projectil_3_on = '1' OR alien_projectil_3_on = '1') THEN
             alien_2_projectil_on = '1') THEN
             IF (gamemode2 = '0') THEN
-            rgb <= alien_rgb;
+                rgb <= alien_rgb;
             ELSE
                 rgb <= alien_boss_rgb;
             END IF;
@@ -1790,12 +1811,14 @@ BEGIN
             rgb <= alien_boss_rgb;
         ELSIF (alien_boss_projectil_on = '1') THEN
             rgb <= alien_boss_rgb;
+        ELSIF (initial_anim_bar_on = '1') THEN
+            rgb <= "110"; -- yellow
         ELSIF (hp_alien_boss_bar_green_on = '1') THEN
             rgb <= "010"; -- green
         ELSIF (hp_alien_boss_bar_red_on = '1') THEN
             rgb <= "100"; -- red
-        ELSIF (rd_border_on = '1') THEN
-            rgb <= border_rgb;
+            -- ELSIF (rd_border_on = '1') THEN
+            --     rgb <= border_rgb;
         ELSE
             rgb <= "111"; -- black background
         END IF;
@@ -1806,7 +1829,8 @@ BEGIN
         -- alien_2_projectil_3_on OR rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR alien_projectil_3_on ;
         -- rd_play_alien_on OR play_alien_projectil_1_on OR alien_boss_projectil_on OR rd_alien_boss_on OR
         alien_boss_projectil_on OR rd_alien_boss_on OR
-        ship_projectil_1_on OR ship_projectil_3_on OR rd_border_on OR hp_alien_boss_bar_green_on OR hp_alien_boss_bar_red_on;
+        ship_projectil_1_on OR ship_projectil_3_on OR hp_alien_boss_bar_green_on OR
+        initial_anim_bar_on OR hp_alien_boss_bar_red_on;
     -- ship_projectil_1_on OR ship_projectil_2_on OR ship_projectil_3_on;
 
 END arch;
